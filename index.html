@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notes Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Space Grotesk',-apple-system,sans-serif;width:100%;height:100%;overflow:hidden}
+body{cursor:default}
+
+#stage{position:relative;width:100%;height:100vh;background:#fff;overflow:hidden;transition:background .6s}
+#kw-canvas{position:absolute;inset:0;width:100%;height:100%}
+
+nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-content:space-between;align-items:center;padding:0 32px;z-index:25;background:transparent}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.02em;color:#111;transition:color .6s}
+.nav-links{display:flex;gap:32px}
+.nav-link{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;color:#888;font-weight:500;cursor:pointer;transition:color .25s}
+.nav-link:hover{color:#111}
+
+#headline{position:absolute;bottom:36px;left:32px;z-index:10;pointer-events:none}
+#headline h1{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;line-height:1.08;color:#111;margin:0;transition:color .6s}
+#headline h1 em{font-style:italic}
+#headline p{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:.1em;color:#999;margin-top:12px;transition:color .6s}
+
+#hover-card{position:absolute;display:none;background:#fff;border:0.5px solid #e8e8e8;padding:18px 20px;width:220px;z-index:30;pointer-events:none;border-radius:2px;box-shadow:0 6px 28px rgba(0,0,0,0.07);transition:background .6s,border-color .6s}
+#hc-word{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#111;margin-bottom:7px;transition:color .6s}
+#hc-def{font-family:'Space Grotesk',sans-serif;font-size:11.5px;line-height:1.65;color:#888;margin-bottom:13px;font-weight:400}
+.hc-divider{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.hc-divider-line{width:13px;height:1px;background:#ddd}
+.hc-divider-label{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb}
+#hc-list{display:flex;flex-direction:column;gap:5px;font-family:'Space Grotesk',sans-serif}
+
+#results-panel{position:absolute;top:0;right:0;width:400px;height:100%;background:#fff;opacity:0;transition:opacity .35s,background .6s;padding:70px 32px 24px;display:flex;flex-direction:column;overflow-y:auto;z-index:15;box-shadow:-1px 0 0 #f0f0f0}
+#results-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+#results-keywords{font-family:'Space Grotesk',sans-serif;font-size:10px;color:#aaa;line-height:1.6;letter-spacing:.03em}
+#clear-btn{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#D85A30;cursor:pointer;flex-shrink:0;margin-left:10px;transition:opacity .2s;font-weight:500;opacity:.75}
+#clear-btn:hover{opacity:1}
+#results-list{display:flex;flex-direction:column;gap:20px}
+.result-item{cursor:pointer}
+.result-thumb{width:100%;aspect-ratio:16/9;background:#f5f5f5;border-radius:2px;overflow:hidden;margin-bottom:9px}
+.result-title{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:500;color:#111;line-height:1.3;margin-bottom:4px}
+.result-kw{font-family:'Space Grotesk',sans-serif;font-size:10px;color:#aaa;letter-spacing:.03em}
+#no-match{display:none;font-family:'Space Grotesk',sans-serif;font-size:12px;color:#bbb;line-height:1.75;margin-bottom:4px}
+
+
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="kw-canvas"></canvas>
+
+  <nav>
+    <div class="nav-logo" id="nav-logo">Field Notes Studio</div>
+    <div class="nav-links">
+      <span class="nav-link">Projects</span>
+      <span class="nav-link">About</span>
+      <span class="nav-link">Thoughts</span>
+      <span class="nav-link">Contact</span>
+    </div>
+  </nav>
+
+  <div id="headline">
+    <h1 id="hl-h1">We read the land<br>before we <em>touch</em> it.</h1>
+    <p id="hl-p">Landscape design &nbsp;·&nbsp; Ecology &nbsp;·&nbsp; Research</p>
+  </div>
+
+  <div id="hover-card">
+    <div id="hc-word"></div>
+    <div id="hc-def"></div>
+    <div class="hc-divider">
+      <div class="hc-divider-line"></div>
+      <div class="hc-divider-label">Appears in</div>
+    </div>
+    <div id="hc-list"></div>
+  </div>
+
+  <div id="results-panel">
+    <div id="results-header">
+      <div id="results-keywords"></div>
+      <div id="clear-btn">Clear</div>
+    </div>
+    <div id="no-match">No projects match this combination.<br>Try removing a keyword.</div>
+    <div id="results-list"></div>
+  </div>
+</div>
+
+<script>
+const PROJECTS = [
+  {title:"The Tidal Garden", kw:["water","ecology","community"], color:"#4a8fa8"},
+  {title:"Dormant Meadow", kw:["meadow","native species","slow design"], color:"#7aaa50"},
+  {title:"Quarry Memory", kw:["heritage","water","stone","materiality"], color:"#b08050"},
+  {title:"Ridge Walk", kw:["topography","paths","native species"], color:"#8c6aaa"},
+  {title:"The Slow Courtyard", kw:["contemplative","stone","ecology","materiality"], color:"#a07878"},
+  {title:"Flood Plain Commons", kw:["water","community","resilience"], color:"#5b8fa0"},
+  {title:"Nomadic Nursery", kw:["native species","community","art"], color:"#c09040"},
+  {title:"Estuary Terrace", kw:["water","topography","native species","materiality"], color:"#5a9070"}
+];
+
+const KEYWORD_DEFS = {
+  water:"Hydrology as a design driver — flow, flood, recovery.",
+  ecology:"Designing with living systems rather than around them.",
+  community:"Spaces shaped by who actually shows up to use them.",
+  meadow:"Unmanicured ground, left to find its own composition.",
+  "native species":"Plant palettes drawn from what already belongs here.",
+  "slow design":"Projects measured in seasons, not deadlines.",
+  heritage:"Sites read as layered records of past use.",
+  stone:"Material as memory — weight, weather, and time.",
+  materiality:"How a surface feels under a hand or a foot.",
+  topography:"The ground's own logic, traced before any plan.",
+  paths:"Movement scripted by terrain, not the other way round.",
+  contemplative:"Space designed to slow a visitor down.",
+  resilience:"Built to function differently in a dry year and a wet one.",
+  art:"Where landscape and installation blur together."
+};
+
+const UNIQUE_KEYWORDS = [...new Set(PROJECTS.flatMap(p => p.kw))];
+
+function projectsFor(selected) {
+  if (selected.length === 0) return [];
+  return PROJECTS.filter(p => selected.every(k => p.kw.includes(k)));
+}
+function relatedness(a, b) {
+  let shared = 0;
+  PROJECTS.forEach(p => { if (p.kw.includes(a) && p.kw.includes(b)) shared++; });
+  return shared;
+}
+function projectsWith(kw) {
+  return PROJECTS.filter(p => p.kw.includes(kw));
+}
+function thumbSVG(p, seed) {
+  const W = 200, H = 110;
+  const r = (n, m) => ((seed * 23 + n * 41) % m + m) % m;
+  const lines = [];
+  const lc = 6;
+  for (let i = 0; i < lc; i++) {
+    const y = H * 0.12 + i * (H * 0.78 / lc);
+    const accent = i === Math.floor(lc / 2);
+    lines.push(`<path d="M3,${y} Q${W*0.4},${y-5+r(i,10)} ${W-3},${y+r(i,5)-2}" stroke="${accent ? p.color : '#d8d8d8'}" stroke-width="${accent ? 1.3 : 0.6}" fill="none"/>`);
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:100%;display:block">${lines.join('')}</svg>`;
+}
+
+const canvas = document.getElementById('kw-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+
+function resize() {
+  const r = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  W = r.width; H = r.height;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+
+/* ── build a denser node pool: each keyword repeated 2-4x with varied size tiers ── */
+let nodes = [];
+function initNodes() {
+  nodes = [];
+  const REPEATS = 3;
+  UNIQUE_KEYWORDS.forEach(k => {
+    for (let r = 0; r < REPEATS; r++) {
+      const tier = Math.random();
+      let size;
+      if (tier < 0.45) size = 11 + Math.random()*3;
+      else if (tier < 0.8) size = 15 + Math.random()*5;
+      else size = 21 + Math.random()*8;
+
+      nodes.push({
+        text: k, type: 'keyword',
+        x: 70 + Math.random() * (W - 360), y: 100 + Math.random() * (H - 280),
+        vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.42,
+        size: size,
+        baseOpacity: 0.22 + Math.random() * 0.36,
+        selected: false,
+        popTimer: 800 + Math.random()*2400,
+        popping: false,
+        popProgress: 0
+      });
+    }
+  });
+}
+
+resize();
+initNodes();
+window.addEventListener('resize', () => {
+  const oldW = W, oldH = H;
+  resize();
+  nodes.forEach(n => {
+    n.x = n.x * (W / oldW);
+    n.y = n.y * (H / oldH);
+  });
+});
+
+const isNight = false;
+const stage = document.getElementById('stage');
+
+let mouseX = -999, mouseY = -999, hoveredNode = null;
+const hoverCard = document.getElementById('hover-card');
+
+/* dedupe selected text so we only select ONE representative node per unique keyword */
+function isKeywordSelected(text) {
+  return nodes.some(n => n.text === text && n.selected);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
+  const lineColorActive = '#D85A30';
+  const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
+  const textColorSel = '#D85A30';
+  const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
+
+  const selectedReps = nodes.filter(n => n.selected);
+  selectedReps.sort((a,b) => (a.selOrder||0) - (b.selOrder||0));
+
+  /* layout constants for the right-hand reserved columns */
+  const selSpacing = 56;
+  const selColX = W - 400 - 50;
+  const selColY0 = 96;
+  const candSpacing = 28;
+  const candColGap = 150;
+
+  /* compute candidate columns FIRST (so we know exclusion zones before moving free words) */
+  let candidateNodes = [];
+  const exclusionRects = [];
+  if (selectedReps.length > 0) {
+    exclusionRects.push({x0: selColX-70, x1: W, y0:0, y1:H});
+  }
+
+  selectedReps.forEach((selNode, level) => {
+    const relatedWords = UNIQUE_KEYWORDS.filter(w => w !== selNode.text && relatedness(selNode.text, w) > 0 && !selectedReps.some(s => s.text === w));
+    const colX = selColX - candColGap * (level+1);
+    const totalH = (relatedWords.length>0 ? (relatedWords.length-1) * candSpacing : 0);
+    const startY = selColY0 + level*selSpacing - totalH/2;
+
+    relatedWords.forEach((w, i) => {
+      /* reuse a REAL existing node with this text (not selected, not already a candidate elsewhere) */
+      let cand = nodes.find(n => n.text === w && !n.selected && !n._isCandidate && !n._hiddenByWord);
+      if (!cand) cand = nodes.find(n => n.text === w && n._isCandidate && n._candFor === selNode.text);
+      if (!cand) return;
+
+      /* hide all OTHER instances of this word so only this one shows, in the column */
+      nodes.forEach(n => {
+        if (n.text === w && n !== cand) n._hiddenByWord = true;
+      });
+
+      cand._isCandidate = true;
+      cand._candFor = selNode.text;
+      cand._candAnchor = selNode;
+      cand._hiddenByWord = false;
+      const tx = colX, ty = startY + i*candSpacing;
+      cand.x += (tx - cand.x) * 0.07;
+      cand.y += (ty - cand.y) * 0.07;
+      candidateNodes.push(cand);
+    });
+
+    if (relatedWords.length > 0) {
+      exclusionRects.push({x0: colX-65, x1: colX+65, y0:0, y1:H});
+    }
+  });
+
+  /* release hidden-duplicate flags for words that are no longer candidates anywhere
+     and no longer selected (so they rejoin the free float) */
+  const activeWords = new Set([...selectedReps.map(n=>n.text), ...candidateNodes.map(n=>n.text)]);
+  nodes.forEach(n => {
+    if (n._hiddenByWord && !activeWords.has(n.text)) {
+      n._hiddenByWord = false;
+      n._isCandidate = false;
+    }
+    if (!n.selected && n._isCandidate && !candidateNodes.includes(n)) {
+      n._isCandidate = false;
+    }
+  });
+
+  function inExclusion(x,y){
+    for (const r of exclusionRects) {
+      if (x > r.x0 && x < r.x1 && y > r.y0 && y < r.y1) return true;
+    }
+    if (hoverExclusionCircle) {
+      const dx = x - hoverExclusionCircle.x, dy = y - hoverExclusionCircle.y;
+      if (Math.sqrt(dx*dx+dy*dy) < hoverExclusionCircle.r) return true;
+    }
+    return false;
+  }
+
+  /* the hover cluster (orbiting related words around the hovered node) is itself a
+     no-fly zone for unrelated free-floating words */
+  let hoverExclusionCircle = null;
+  if (hoveredNode && !hoveredNode.selected && !hoveredNode._isCandidate) {
+    const clusterCount = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0).length;
+    if (clusterCount > 0) {
+      hoverExclusionCircle = { x: hoveredNode.x, y: hoveredNode.y, r: 110 + Math.min(clusterCount,4)*38 + 50 };
+    }
+  }
+
+  const playW = selectedReps.length > 0 ? selColX - candColGap*selectedReps.length - 80 : W * 0.98;
+
+  nodes.forEach(n => {
+    if (n.selected || n._hiddenByWord || n._isCandidate) return;
+
+    /* occasional "pop up" — sudden brief size pulse while still drifting */
+    n.popTimer -= 1;
+    if (n.popTimer <= 0 && !n.popping) {
+      n.popping = true;
+      n.popProgress = 0;
+      n.popTimer = 2500 + Math.random()*3500;
+    }
+    let popScale = 1;
+    if (n.popping) {
+      n.popProgress += 0.035;
+      if (n.popProgress >= 1) { n.popping = false; n.popProgress = 0; }
+      else {
+        const t = n.popProgress;
+        popScale = 1 + Math.sin(t*Math.PI) * 0.55;
+      }
+    }
+    n._popScale = popScale;
+
+    if (n === hoveredNode) {
+      /* pinned in place while hovered — no drift, no exclusion bounce */
+      return;
+    }
+
+    let tx = null, ty = null;
+    if (hoveredNode && hoveredNode !== n && !n.selected && !hoveredNode._isCandidate) {
+      const rel = relatedness(hoveredNode.text, n.text);
+      if (rel > 0 && n.text !== hoveredNode.text) {
+        const others = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0);
+        const idx = others.indexOf(n);
+        const angle = idx * 1.15 + 0.5;
+        const orbitR = 110 + (idx % 4) * 38;
+        tx = hoveredNode.x + Math.cos(angle) * orbitR;
+        ty = hoveredNode.y + Math.sin(angle) * orbitR;
+      }
+    }
+
+    if (tx !== null) {
+      n.x += (tx - n.x) * 0.02;
+      n.y += (ty - n.y) * 0.02;
+    } else {
+      /* only rein in abnormal burst speed (from deselect/clear) — leave normal
+         calm drift speeds completely untouched so words travel the full canvas */
+      const curSpeed = Math.hypot(n.vx, n.vy);
+      const calmMax = 0.65;
+      if (curSpeed > calmMax) {
+        n.vx *= 0.94;
+        n.vy *= 0.94;
+      }
+
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 60) { n.x = 60; n.vx = Math.abs(n.vx); }
+      if (n.x > playW - 40) { n.x = playW - 40; n.vx = -Math.abs(n.vx); }
+      if (n.y < 80) { n.y = 80; n.vy = Math.abs(n.vy); }
+      if (n.y > H - 110) { n.y = H - 110; n.vy = -Math.abs(n.vy); }
+      /* bounce off any exclusion column rect we might still be drifting into */
+      if (inExclusion(n.x, n.y)) {
+        n.x -= n.vx*3; n.vx = -n.vx;
+      }
+    }
+  });
+
+  /* selected nodes: slow magnetic pull into a spaced right column, ordered by selection time */
+  selectedReps.forEach((n, i) => {
+    const tx = selColX, ty = selColY0 + i * selSpacing;
+    n.x += (tx - n.x) * 0.045;
+    n.y += (ty - n.y) * 0.045;
+  });
+
+  /* connecting lines: candidates to their anchor selected word, and hover-cluster lines */
+  candidateNodes.forEach(cand => {
+    ctx.beginPath();
+    ctx.moveTo(cand.x, cand.y);
+    ctx.lineTo(cand._candAnchor.x, cand._candAnchor.y);
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  nodes.forEach(a => {
+    if (a._hiddenByWord || a._isCandidate) return;
+    nodes.forEach(b => {
+      if (a === b || b._hiddenByWord || b._isCandidate) return;
+      const rel = relatedness(a.text, b.text);
+      if (rel === 0) return;
+      const bothVisible = (hoveredNode === a || hoveredNode === b);
+      if (!bothVisible) return;
+      if (a.selected || b.selected) return;
+      if (a.text === b.text) return;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+  });
+
+  nodes.forEach(n => {
+    if (n._hiddenByWord) { n._w = 0; n._h = 0; return; }
+    const isHover = n === hoveredNode;
+    const popMul = n._popScale || 1;
+    const fs = n._isCandidate ? (isHover ? 14.5 : 12.5) : (n.selected ? 14 : (isHover ? n.size*1.5 : n.size * popMul));
+    ctx.font = (n.selected || isHover ? '500 ' : '400 ') + fs.toFixed(1) + "px 'Space Grotesk', sans-serif";
+    let col;
+    if (n.selected) {
+      col = textColorSel;
+    } else if (n._isCandidate) {
+      const [r,g,b] = baseTextColor;
+      col = isHover ? textColorHover : `rgba(${r},${g},${b},0.62)`;
+    } else if (isHover) {
+      col = textColorHover;
+    } else {
+      const [r, g, b] = baseTextColor;
+      let op = n.baseOpacity;
+      if (n.popping) op = Math.min(0.85, op + (n._popScale-1)*0.5);
+      col = `rgba(${r},${g},${b},${op.toFixed(2)})`;
+    }
+    ctx.fillStyle = col;
+    ctx.textAlign = (n.selected || n._isCandidate) ? 'right' : 'center';
+    ctx.textBaseline = 'middle';
+    const displayText = ((isHover && !n.selected) || n.selected) ? n.text.toUpperCase() : n.text;
+    ctx.fillText(displayText, n.x, n.y);
+    n._w = ctx.measureText(displayText).width;
+    n._h = fs + 8;
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+canvas.addEventListener('mousemove', e => {
+  const r = canvas.getBoundingClientRect();
+  mouseX = e.clientX - r.left; mouseY = e.clientY - r.top;
+  let found = null;
+  nodes.forEach(n => {
+    const cx = (n.selected || n._isCandidate) ? n.x - n._w / 2 : n.x;
+    if (Math.abs(mouseX - cx) < n._w / 2 + 10 && Math.abs(mouseY - n.y) < n._h / 2 + 6) found = n;
+  });
+  if (found !== hoveredNode) {
+    hoveredNode = found;
+    if (found && !found.selected && !found._isCandidate) {
+      const def = KEYWORD_DEFS[found.text] || '';
+      const rel = projectsWith(found.text);
+      document.getElementById('hc-word').textContent = found.text;
+      document.getElementById('hc-def').textContent = def;
+      document.getElementById('hc-list').innerHTML = rel.map(p =>
+        `<div style="font-size:11px;color:${isNight?'#999':'#666'};display:flex;align-items:center;gap:7px"><span style="width:5px;height:5px;border-radius:50%;background:${p.color};flex-shrink:0"></span>${p.title}</div>`
+      ).join('');
+      const wordHalfW = found._w/2;
+      const wordHalfH = found._h/2;
+      const cardW = 220;
+      const cardH = 215;
+      const gap = 22;
+      let hx, hy;
+
+      /* horizontal: keep card near the word but never overlapping it horizontally either,
+         by placing it to whichever side has more room */
+      const roomRight = W - (found.x + wordHalfW);
+      const roomLeft = found.x - wordHalfW;
+      if (roomRight > cardW + gap || roomRight > roomLeft) {
+        hx = found.x + wordHalfW + gap;
+      } else {
+        hx = found.x - wordHalfW - gap - cardW;
+      }
+      hx = Math.max(16, Math.min(W - cardW - 16, hx));
+
+      /* vertical: place the whole card fully above or fully below the word, never straddling it */
+      const roomAbove = found.y - wordHalfH - 70;
+      const roomBelow = H - (found.y + wordHalfH) - 30;
+      if (roomAbove > cardH) {
+        hy = found.y - wordHalfH - gap - cardH;
+      } else if (roomBelow > cardH) {
+        hy = found.y + wordHalfH + gap;
+      } else {
+        hy = Math.max(70, Math.min(H - cardH - 16, found.y - cardH/2));
+      }
+      hoverCard.style.left = hx + 'px';
+      hoverCard.style.top = hy + 'px';
+      hoverCard.style.display = 'block';
+    } else {
+      hoverCard.style.display = 'none';
+    }
+  }
+  canvas.style.cursor = found ? 'pointer' : 'default';
+});
+
+canvas.addEventListener('mouseleave', () => {
+  hoveredNode = null;
+  hoverCard.style.display = 'none';
+});
+
+let selectionCounter = 0;
+
+canvas.addEventListener('click', () => {
+  if (!hoveredNode) return;
+  const word = hoveredNode.text;
+  const clicked = hoveredNode;
+
+  if (clicked._isCandidate) {
+    /* promote candidate to a real selected node, appended after its anchor in the chain */
+    nodes.forEach(n => {
+      if (n.text === word && n !== clicked) n._hiddenByWord = true;
+    });
+    clicked.selected = true;
+    clicked._isCandidate = false;
+    clicked.selOrder = ++selectionCounter;
+    hoverCard.style.display = 'none';
+    updateResults();
+    return;
+  }
+
+  const willSelect = !clicked.selected;
+
+  if (willSelect) {
+    nodes.forEach(n => {
+      if (n === clicked) {
+        n.selected = true;
+        n._isDupe = false;
+        n.selOrder = ++selectionCounter;
+      } else if (n.text === word) {
+        n._hiddenByWord = true;
+      }
+    });
+  } else {
+    /* deselecting: also release any candidates anchored to this word */
+    nodes.forEach(n => {
+      if (n.text === word) {
+        n.selected = false;
+        n._isDupe = false;
+        n._hiddenByWord = false;
+        n.selOrder = 0;
+        const angle = Math.random() * Math.PI * 2;
+        const burst = 2.2 + Math.random()*1.2;
+        n.vx = Math.cos(angle) * burst;
+        n.vy = Math.sin(angle) * burst;
+      }
+    });
+  }
+  hoverCard.style.display = 'none';
+  updateResults();
+});
+
+document.getElementById('clear-btn').addEventListener('click', () => {
+  nodes.forEach(n => {
+    if (n.selected || n._isCandidate || n._hiddenByWord) {
+      n.selected = false;
+      n._isDupe = false;
+      n._hiddenByWord = false;
+      n._isCandidate = false;
+      n.selOrder = 0;
+      const angle = Math.random() * Math.PI * 2;
+      const burst = 2.2 + Math.random()*1.2;
+      n.vx = Math.cos(angle) * burst;
+      n.vy = Math.sin(angle) * burst;
+    }
+  });
+  selectionCounter = 0;
+  updateResults();
+});
+
+function projectsRelatedToAny(selected) {
+  if (selected.length === 0) return [];
+  return PROJECTS.filter(p => selected.some(k => p.kw.includes(k)));
+}
+
+function updateResults() {
+  const selectedWords = [...new Set(nodes.filter(n => n.selected).map(n => n.text))];
+  const panel = document.getElementById('results-panel');
+  const kwDiv = document.getElementById('results-keywords');
+  const listDiv = document.getElementById('results-list');
+  const noMatch = document.getElementById('no-match');
+
+  if (selectedWords.length === 0) {
+    panel.style.opacity = '0';
+    return;
+  }
+  panel.style.opacity = '1';
+  kwDiv.textContent = selectedWords.join(' + ').toUpperCase();
+
+  const matches = projectsFor(selectedWords);
+  listDiv.innerHTML = '';
+  if (matches.length === 0) {
+    noMatch.style.display = 'block';
+
+    const suggested = projectsRelatedToAny(selectedWords);
+    if (suggested.length > 0) {
+      const spacer = document.createElement('div');
+      spacer.style.height = '38px';
+      listDiv.appendChild(spacer);
+
+      const label = document.createElement('div');
+      label.style.fontFamily = "'Space Grotesk', sans-serif";
+      label.style.fontSize = '9.5px';
+      label.style.letterSpacing = '.1em';
+      label.style.textTransform = 'uppercase';
+      label.style.color = '#bbb';
+      label.style.marginBottom = '14px';
+      label.textContent = 'Suggested projects';
+      listDiv.appendChild(label);
+
+      suggested.forEach((p, i) => {
+        const d = document.createElement('div');
+        d.className = 'result-item';
+        d.style.marginBottom = '20px';
+        d.innerHTML = `
+          <div class="result-thumb">${thumbSVG(p, i)}</div>
+          <div class="result-title">${p.title}</div>
+          <div class="result-kw">${p.kw.join(' · ')}</div>
+        `;
+        d.onclick = () => { window.location.href = '#project-' + i; };
+        listDiv.appendChild(d);
+      });
+    }
+  } else {
+    noMatch.style.display = 'none';
+    matches.forEach((p, i) => {
+      const d = document.createElement('div');
+      d.className = 'result-item';
+      d.innerHTML = `
+        <div class="result-thumb">${thumbSVG(p, i)}</div>
+        <div class="result-title">${p.title}</div>
+        <div class="result-kw">${p.kw.join(' · ')}</div>
+      `;
+      d.onclick = () => { window.location.href = '#project-' + i; };
+      listDiv.appendChild(d);
+    });
+  }
+}
+</script>
+</body>
+</html>
