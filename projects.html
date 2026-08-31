@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Field Notes Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ── TIME-BASED THEME ── */
+:root{
+  --bg:#ffffff;
+  --ink:#111111;
+  --mid:#aaaaaa;
+  --faint:#f0f0f0;
+  --faint2:#f8f8f8;
+  --fog:#cccccc;
+  --land:#e2e0db;
+  --ocean:#f8f8f8;
+  --globe-border:rgba(0,0,0,0.06);
+  --grid:rgba(0,0,0,0.04);
+}
+body.dark{
+  --bg:#0e0e0e;
+  --ink:#e8e4dc;
+  --mid:#666666;
+  --faint:#1a1a1a;
+  --faint2:#151515;
+  --fog:#444444;
+  --land:#2a2824;
+  --ocean:#141414;
+  --globe-border:rgba(255,255,255,0.08);
+  --grid:rgba(255,255,255,0.04);
+}
+
+body{background:var(--bg);font-family:'Space Grotesk',sans-serif;color:var(--ink);font-size:14px;overflow-x:hidden;transition:background .8s,color .8s}
+
+#nav{height:54px;display:flex;justify-content:space-between;align-items:center;padding:0 40px;border-bottom:1px solid var(--faint);background:var(--bg);position:fixed;top:0;left:0;right:0;z-index:200}
+.nlogo{font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+.nlinks{display:flex;gap:32px}
+.nlink{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);cursor:pointer;transition:color .2s}
+.nlink:hover,.nlink.active{color:var(--ink)}
+
+/* ══ GLOBE SECTION — sticky scroll container ══ */
+#globe-scroll-container{
+  height:100vh; /* scroll space for the zoom interaction */
+  position:relative;
+}
+#globe-sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  display:grid;
+  grid-template-columns:300px 1fr 300px;
+  align-items:center;
+  overflow:hidden;
+  padding-top:54px;
+}
+
+#globe-left{padding:0 0 0 48px;display:flex;flex-direction:column;gap:12px;transition:opacity .4s}
+.globe-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
+.globe-count{font-size:2.2rem;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.globe-sub{font-size:11px;color:var(--fog);letter-spacing:.06em;margin-top:4px}
+
+/* scroll hint shown at start */
+#scroll-hint-globe{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#ccc;pointer-events:none;transition:opacity .4s}
+.sh-line{width:1px;height:28px;background:var(--fog);animation:shpulse 2s ease-in-out infinite}
+@keyframes shpulse{0%,100%{opacity:.2;transform:scaleY(.5)}50%{opacity:.7;transform:scaleY(1)}}
+
+/* globe center */
+#globe-center{display:flex;align-items:center;justify-content:center;position:relative}
+#globe-wrap{position:relative;display:inline-block}
+#globe-canvas{display:block;cursor:grab;transition:transform .1s ease-out}
+#globe-tip{display:none;position:absolute;background:var(--bg);border:1px solid var(--faint);padding:10px 14px;pointer-events:none;z-index:10;min-width:160px}
+.gt-title{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.gt-sub{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.gt-hint{font-size:10px;color:var(--fog);margin-top:4px}
+
+/* right panel — shows either list OR scroll-preview */
+#globe-right{
+  padding:0 32px 0 24px;
+  height:calc(100vh - 54px);
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+
+/* project list */
+#plist-wrap{position:absolute;inset:0;padding:0 32px 0 24px;display:flex;flex-direction:column;justify-content:center;transition:opacity .4s,transform .4s}
+.plist-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--faint)}
+#plist-scroll{overflow-y:auto;flex:1;max-height:460px;scrollbar-width:none}
+#plist-scroll::-webkit-scrollbar{display:none}
+.plist-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--faint2);cursor:pointer;transition:opacity .3s}
+.plist-item:last-child{border-bottom:none}
+.plist-item.dimmed{opacity:.18}
+.plist-item.selected .pli-title{color:#e03030}
+.plist-item.selected .pli-dot{background:#e03030!important;transform:scale(1.4)}
+.plist-item.selected .pli-num{color:#e03030}
+.plist-item.selected .pli-arrow{color:#e03030;opacity:1;transform:translateX(3px)}
+.pli-num{font-size:10px;color:var(--fog);letter-spacing:.06em;min-width:20px;flex-shrink:0;transition:color .3s}
+.pli-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;transition:background .3s,transform .3s}
+.pli-body{flex:1;min-width:0}
+.pli-title{font-size:13px;font-weight:600;letter-spacing:-.01em;color:#111;line-height:1.2;margin-bottom:2px;transition:color .3s}
+.pli-meta{font-size:10px;color:#bbb;letter-spacing:.05em}
+.pli-arrow{font-size:11px;color:#ddd;flex-shrink:0;opacity:0;transition:color .3s,transform .3s,opacity .3s}
+.plist-scroll-cue{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fog);text-align:center;padding-top:12px;cursor:pointer}
+.plist-scroll-cue:hover{color:var(--mid)}
+
+/* scroll-preview panel (replaces list during zoom) */
+#scroll-preview{
+  position:absolute;inset:0;padding:0 32px 0 24px;
+  display:flex;flex-direction:column;justify-content:center;gap:20px;
+  opacity:0;transform:translateX(20px);
+  transition:opacity .5s,transform .5s;
+  pointer-events:none;
+}
+#scroll-preview.visible{opacity:1;transform:translateX(0)}
+.sp-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+.sp-title{font-size:1.5rem;font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.sp-type{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#e03030;display:flex;align-items:center;gap:8px}
+.sp-type-dot{width:7px;height:7px;border-radius:50%}
+.sp-loc{font-size:11px;color:var(--mid)}
+.sp-desc{font-size:12px;line-height:1.75;color:var(--mid);border-left:2px solid var(--faint);padding-left:14px}
+.sp-progress{margin-top:8px}
+.sp-progress-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fog);margin-bottom:6px}
+.sp-bar{width:100%;height:2px;background:var(--faint);position:relative}
+.sp-bar-fill{height:100%;background:#e03030;width:0%;transition:width .1s}
+.sp-continue{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fog);margin-top:4px}
+
+/* ── ZOOM OVERLAY ── */
+#zoom-overlay{position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:0}
+#zoom-circle{position:absolute;border-radius:50%;background:#e03030;transform:translate(-50%,-50%) scale(0);pointer-events:none}
+#zoom-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.zl-title{font-size:1.8rem;font-weight:700;letter-spacing:-.03em;color:#fff;margin-bottom:6px}
+.zl-meta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+
+/* ── GRID BELOW ── */
+#projects-section{padding-top:0}
+.filter-bar{position:sticky;top:54px;z-index:100;background:var(--bg);border-bottom:1px solid var(--faint);display:flex;align-items:stretch;padding:0 40px;border-top:1px solid var(--faint)}
+.ftab{font-size:11px;letter-spacing:.09em;text-transform:uppercase;padding:16px 20px;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--mid);white-space:nowrap;font-family:'Space Grotesk',sans-serif;transition:all .15s;margin-bottom:-1px}
+.ftab:hover{color:var(--ink)}.ftab.on{color:var(--ink);border-bottom-color:var(--ink)}
+#proj-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.pcard{border-right:1px solid var(--faint);border-bottom:1px solid var(--faint);cursor:pointer;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.pcard:nth-child(3n){border-right:none}
+.pcard:hover{opacity:.75}
+.pcard-img{width:100%;aspect-ratio:3/2;overflow:hidden;flex-shrink:0;background:var(--faint)}
+.pcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.pcard:hover .pcard-img img{transform:scale(1.03)}
+.pcard-body{padding:22px 24px 28px;flex:1;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.pcard-meta{display:flex;justify-content:space-between;align-items:center}
+.pcard-type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:6px}
+.type-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.pcard-year{font-size:10px;color:var(--fog);letter-spacing:.06em}
+.pcard-title{font-size:1.05rem;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--ink);margin-top:2px}
+.pcard-loc{font-size:11px;color:var(--mid)}
+footer{border-top:1px solid var(--faint);padding:24px 40px;display:flex;justify-content:space-between;font-size:10px;color:var(--fog);letter-spacing:.07em}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nlogo">Field Notes Studio</div>
+  <div class="nlinks">
+    <span class="nlink active">Projects</span>
+    <span class="nlink">About</span>
+    <span class="nlink">Thoughts</span>
+    <span class="nlink">Contact</span>
+  </div>
+</nav>
+
+<!-- tall scroll container so globe sticks -->
+<div id="globe-scroll-container">
+  <div id="globe-sticky">
+
+    <div id="globe-left">
+      <div class="globe-eyebrow">Our Work</div>
+      <div class="globe-count" id="globe-count">9</div>
+      <div class="globe-sub">Projects worldwide</div>
+    </div>
+
+    <div id="globe-center">
+      <div id="globe-wrap">
+        <canvas id="globe-canvas" width="440" height="440"></canvas>
+        <div id="globe-tip">
+          <div class="gt-title" id="gt-title"></div>
+          <div class="gt-sub" id="gt-sub"></div>
+          <div class="gt-hint" id="gt-hint">Hover · Click · Scroll to zoom</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="globe-right">
+      <!-- normal list -->
+      <div id="plist-wrap">
+        <div class="plist-label">All Projects</div>
+        <div id="plist-scroll"></div>
+        <div class="plist-scroll-cue" id="plist-down">View all ↓</div>
+      </div>
+      <!-- scroll-zoom preview -->
+      <div id="scroll-preview">
+        <div class="sp-eyebrow" id="sp-eyebrow">Project</div>
+        <div class="sp-title" id="sp-title"></div>
+        <div class="sp-type"><span class="sp-type-dot" id="sp-dot"></span><span id="sp-type"></span></div>
+        <div class="sp-loc" id="sp-loc"></div>
+        <div class="sp-desc" id="sp-desc"></div>
+        <div class="sp-progress">
+          <div class="sp-progress-label">Zooming in</div>
+          <div class="sp-bar"><div class="sp-bar-fill" id="sp-fill"></div></div>
+          <div class="sp-continue" id="sp-continue">Keep scrolling to enter →</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="scroll-hint-globe">
+      <span>Scroll to explore</span>
+      <span class="sh-line"></span>
+    </div>
+  </div>
+</div>
+
+<div id="projects-section">
+  <div class="filter-bar" id="filter-bar"></div>
+  <div id="proj-grid"></div>
+</div>
+<footer>
+  <span>© 2025 Field Notes Studio</span>
+  <span>Landscape · Ecology · Research</span>
+  <span>Copenhagen — Shenzhen</span>
+</footer>
+
+<!-- zoom overlay -->
+<div id="zoom-overlay">
+  <div id="zoom-circle"></div>
+  <div id="zoom-label">
+    <div class="zl-title" id="zl-title"></div>
+    <div class="zl-meta" id="zl-meta"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+const PROJECTS=[
+  {id:0,title:"The Tidal Garden",    type:"Public Realm",   loc:"Shenzhen, CN",   year:2023,color:"#4a8fa8",coords:[114.06,22.54], img:"P_Page_28.png",    desc:"A living edge between city and mangrove, designed to flood and recover with the tides."},
+  {id:1,title:"Trail for Healing",   type:"Cultural",       loc:"California, US", year:2023,color:"#b08050",coords:[-120.5,37.5],  img:"P_Page_04.png",    desc:"An interpretation trail reading fire ecology and post-burn forest recovery."},
+  {id:2,title:"Seeds' Ark",          type:"Urban Strategy", loc:"Global",          year:2024,color:"#7aaa50",coords:[2.35,48.85],   img:"image.png",        desc:"A mobile seed bank tracing the routes of colonized plant species across continents."},
+  {id:3,title:"Flood Plain Commons", type:"Public Realm",   loc:"Rotterdam, NL",  year:2024,color:"#5b8fa0",coords:[4.90,52.37],   img:"Final.jpg",        desc:"Productive floodplain designed as neighbourhood commons — useful in dry years and wet."},
+  {id:4,title:"Dormant Meadow",      type:"Residential",    loc:"Copenhagen, DK", year:2022,color:"#7aaa50",coords:[12.57,55.68],  img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", desc:"Three years of rewilding a suburban estate — in year one, almost nothing was visible."},
+  {id:5,title:"Ridge Walk",          type:"Public Realm",   loc:"Wellington, NZ", year:2021,color:"#8c6aaa",coords:[174.78,-41.28],img:"https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80", desc:"An interpretation trail reading volcanic strata through gradient, material and species."},
+  {id:6,title:"The Slow Courtyard",  type:"Institutional",  loc:"Kyoto, JP",      year:2024,color:"#a07878",coords:[135.77,35.01], img:"https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80",  desc:"Silence choreographed through material weight, seasonal moss, and the speed of water."},
+  {id:7,title:"Estuary Terrace",     type:"Residential",    loc:"Portland, OR",   year:2023,color:"#5a9070",coords:[-122.68,45.52],img:"https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80",  desc:"Cascading rain gardens stepping from house to tidal inlet — nothing is wasted."},
+  {id:8,title:"Nomadic Nursery",     type:"Installation",   loc:"São Paulo, BR",  year:2022,color:"#c09040",coords:[-46.63,-23.55],img:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",  desc:"A mobile seed bank and social gathering space that moved through the city for six months."},
+];
+const TYPES=["All","Public Realm","Residential","Cultural","Institutional","Urban Strategy","Installation"];
+document.getElementById('globe-count').textContent=PROJECTS.length;
+
+/* ══ GLOBE ══ */
+const canvas=document.getElementById('globe-canvas');
+const ctx=canvas.getContext('2d');
+let mouseOverGlobe=false;
+canvas.addEventListener('mouseenter',()=>mouseOverGlobe=true);
+canvas.addEventListener('mouseleave',()=>{ mouseOverGlobe=false; });
+const GW=canvas.width,GH=canvas.height;
+let GR=GW*.44; // will grow during scroll zoom
+const tip=document.getElementById('globe-tip');
+
+const gproj=d3.geoOrthographic().scale(GR).translate([GW/2,GH/2]).clipAngle(90);
+const gpath=d3.geoPath().projection(gproj).context(ctx);
+const graticule=d3.geoGraticule()();
+
+let rot=[15,-25,0],world=null,hovDot=-1,selDot=-1;
+let dragging=false,lastMouse=null,spinId=null;
+let zoomProgress=0; // 0→1 during scroll zoom
+let zoomTarget=-1;  // which project we're zooming into
+let scrollZoomActive=false;
+
+function drawGlobe(scale){
+  const R=scale||GR;
+  gproj.scale(R).translate([GW/2,GH/2]);
+  gproj.rotate(rot);
+  ctx.clearRect(0,0,GW,GH);
+
+  // read theme from CSS vars
+  const st=getComputedStyle(document.documentElement);
+  const cOcean=getComputedStyle(document.body).getPropertyValue('--ocean').trim()||'#f8f8f8';
+  const cLand=getComputedStyle(document.body).getPropertyValue('--land').trim()||'#e2e0db';
+  const cBorder=getComputedStyle(document.body).getPropertyValue('--globe-border').trim()||'rgba(0,0,0,0.06)';
+  const cGrid=getComputedStyle(document.body).getPropertyValue('--grid').trim()||'rgba(0,0,0,0.04)';
+  const isDarkMode=document.body.classList.contains('dark');
+
+  // ocean
+  ctx.beginPath();ctx.arc(GW/2,GH/2,R,0,2*Math.PI);
+  ctx.fillStyle=cOcean;ctx.fill();
+  ctx.strokeStyle=cBorder;ctx.lineWidth=1;ctx.stroke();
+
+  // graticule
+  ctx.beginPath();gpath(graticule);
+  ctx.strokeStyle=cGrid;ctx.lineWidth=.4;ctx.stroke();
+
+  // land
+  if(world){
+    ctx.beginPath();gpath(topojson.feature(world,world.objects.land));
+    ctx.fillStyle=cLand;ctx.fill();
+    ctx.strokeStyle=isDarkMode?'#3a3830':'#ccc';ctx.lineWidth=.5;ctx.stroke();
+  }
+
+  // dots
+  PROJECTS.forEach((p,i)=>{
+    const vis=d3.geoDistance(p.coords,[-rot[0],-rot[1]])<Math.PI/2;
+    if(!vis)return;
+    const pos=gproj(p.coords);if(!pos)return;
+    const[cx,cy]=pos;
+    const isSel=selDot===i,isHov=hovDot===i&&selDot<0,isZoom=zoomTarget===i;
+    const r=isZoom?(5+zoomProgress*14):isSel?8:isHov?7:5;
+    const col=isSel||isHov||isZoom?'#e03030':'#111';
+
+    if(isSel||isZoom){
+      const pulse=isZoom?zoomProgress:1;
+      ctx.beginPath();ctx.arc(cx,cy,r+8*pulse,0,2*Math.PI);
+      ctx.strokeStyle=`rgba(224,48,48,${.2*pulse})`;ctx.lineWidth=1.5;ctx.stroke();
+      ctx.beginPath();ctx.arc(cx,cy,r+16*pulse,0,2*Math.PI);
+      ctx.strokeStyle=`rgba(224,48,48,${.08*pulse})`;ctx.lineWidth=1;ctx.stroke();
+    } else if(isHov){
+      ctx.beginPath();ctx.arc(cx,cy,r+6,0,2*Math.PI);
+      ctx.fillStyle='rgba(224,48,48,0.1)';ctx.fill();
+    }
+    ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);
+    ctx.fillStyle=col;ctx.fill();
+  });
+}
+
+fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json')
+  .then(r=>r.json()).then(d=>{world=d;drawGlobe();});
+drawGlobe();
+
+function spin(){if(dragging||selDot>=0||scrollZoomActive)return;rot[0]+=0.08;drawGlobe();spinId=requestAnimationFrame(spin);}
+spinId=requestAnimationFrame(spin);
+
+/* drag */
+canvas.addEventListener('mousedown',e=>{dragging=true;lastMouse=[e.clientX,e.clientY];canvas.style.cursor='grabbing';cancelAnimationFrame(spinId);});
+window.addEventListener('mouseup',()=>{if(!dragging)return;dragging=false;canvas.style.cursor='grab';if(selDot<0&&!scrollZoomActive)spinId=requestAnimationFrame(spin);});
+window.addEventListener('mousemove',e=>{
+  if(!dragging||!lastMouse)return;
+  rot[0]+=(e.clientX-lastMouse[0])*.4;rot[1]-=(e.clientY-lastMouse[1])*.4;
+  rot[1]=Math.max(-85,Math.min(85,rot[1]));lastMouse=[e.clientX,e.clientY];drawGlobe();
+});
+
+/* hover */
+canvas.addEventListener('mousemove',e=>{
+  if(dragging||scrollZoomActive)return;
+  const rect=canvas.getBoundingClientRect();
+  const sx=GW/rect.width,sy=GH/rect.height;
+  const mx=(e.clientX-rect.left)*sx,my=(e.clientY-rect.top)*sy;
+  let found=-1;
+  PROJECTS.forEach((p,i)=>{
+    if(d3.geoDistance(p.coords,[-rot[0],-rot[1]])>=Math.PI/2)return;
+    const pos=gproj(p.coords);if(!pos)return;
+    if(Math.hypot(pos[0]-mx,pos[1]-my)<16)found=i;
+  });
+  if(found!==hovDot){hovDot=found;drawGlobe();}
+  if(found>=0){
+    const p=PROJECTS[found];
+    const pos=gproj(p.coords);
+    const tx=(pos[0]/sx)+(pos[0]>GW*.6?-185:18);
+    tip.style.display='block';tip.style.left=tx+'px';tip.style.top=Math.max(0,(pos[1]/sy)-14)+'px';
+    document.getElementById('gt-title').textContent=p.title;
+    document.getElementById('gt-sub').textContent=p.type+' · '+p.loc;
+    document.getElementById('gt-hint').textContent=selDot===found?'Click again to open':'Click to select · Scroll to zoom in';
+    canvas.style.cursor='pointer';
+  } else {tip.style.display='none';canvas.style.cursor='grab';}
+});
+canvas.addEventListener('mouseleave',()=>{tip.style.display='none';hovDot=-1;drawGlobe();});
+
+/* click — select / open */
+canvas.addEventListener('click',e=>{
+  if(scrollZoomActive||hovDot<0)return;
+  const rect=canvas.getBoundingClientRect();
+  if(selDot===hovDot){
+    const pos=gproj(PROJECTS[hovDot].coords);
+    const sx=GW/rect.width,sy=GH/rect.height;
+    triggerZoom(hovDot,rect.left+pos[0]/sx,rect.top+pos[1]/sy);
+    return;
+  }
+  selDot=hovDot;cancelAnimationFrame(spinId);drawGlobe();selectProject(selDot);
+  const item=document.querySelector(`.plist-item[data-id="${selDot}"]`);
+  if(item)item.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+
+/* ══ SCROLL-DRIVEN ZOOM ══ */
+const scrollContainer=document.getElementById('globe-scroll-container');
+const globeSticky=document.getElementById('globe-sticky');
+const scrollHint=document.getElementById('scroll-hint-globe');
+const plistWrap=document.getElementById('plist-wrap');
+const scrollPreview=document.getElementById('scroll-preview');
+
+// find nearest VISIBLE project to globe center when scroll starts
+function findNearestProject(){
+  let best=-1,bestD=9999;
+  PROJECTS.forEach((p,i)=>{
+    const vis=d3.geoDistance(p.coords,[-rot[0],-rot[1]])<Math.PI/2;
+    if(!vis)return;
+    const pos=gproj(p.coords);if(!pos)return;
+    const d=Math.hypot(pos[0]-GW/2,pos[1]-GH/2);
+    if(d<bestD){bestD=d;best=i;}
+  });
+  return best;
+}
+
+let enteringProject=false;
+
+/* wheel forward (deltaY<0) = zoom in, backward (deltaY>0) = zoom out */
+const WHEEL_SENS=0.003;
+
+document.getElementById('globe-scroll-container').addEventListener('wheel',e=>{
+  // only trigger when a project has been selected (dot clicked red) OR already zooming
+  if(selDot<0&&!scrollZoomActive)return;
+  // and mouse must be over globe or zoom is already in progress
+  if(!mouseOverGlobe&&!scrollZoomActive)return;
+
+  // prevent page scroll while in zoom mode or zooming in
+  if(scrollZoomActive||e.deltaY<0) e.preventDefault();
+
+  // forward wheel (deltaY<0) increases zoomProgress; backward decreases
+  const delta=-e.deltaY*WHEEL_SENS;
+  const newProg=Math.max(0,Math.min(1,zoomProgress+delta));
+
+  if(newProg<=0&&scrollZoomActive){
+    scrollZoomActive=false;zoomTarget=-1;zoomProgress=0;
+    GR=GW*.44;drawGlobe();
+    plistWrap.style.opacity='1';plistWrap.style.transform='';
+    scrollPreview.classList.remove('visible');
+    scrollHint.style.opacity='1';
+    if(selDot<0)spinId=requestAnimationFrame(spin);
+    return;
+  }
+
+  if(newProg>0){
+    if(!scrollZoomActive){
+      scrollZoomActive=true;cancelAnimationFrame(spinId);
+      if(selDot>=0)zoomTarget=selDot;else zoomTarget=findNearestProject();
+      if(zoomTarget<0){scrollZoomActive=false;return;}
+      const p=PROJECTS[zoomTarget];
+      rot[0]=-p.coords[0];rot[1]=-p.coords[1];
+      scrollHint.style.opacity='0';
+    }
+    zoomProgress=newProg;
+    const zp=zoomProgress;
+
+    const scale=GW*.44*(1+zp*3.5);
+    drawGlobe(scale);
+
+    const listOp=Math.max(0,1-zp*4);
+    plistWrap.style.opacity=listOp;
+    plistWrap.style.transform=`translateX(${-zp*20}px)`;
+
+    if(zp>.15&&zoomTarget>=0){
+      const p=PROJECTS[zoomTarget];
+      document.getElementById('sp-eyebrow').textContent=p.type;
+      document.getElementById('sp-title').textContent=p.title;
+      document.getElementById('sp-dot').style.background=p.color;
+      document.getElementById('sp-type').textContent=p.type;
+      document.getElementById('sp-loc').textContent=p.loc+' · '+p.year;
+      document.getElementById('sp-desc').textContent=p.desc;
+      document.getElementById('sp-fill').style.width=(zp*100)+'%';
+      const remaining=Math.round((1-zp)*100);
+      document.getElementById('sp-continue').textContent=
+        zp>.85?'Almost there — keep scrolling →':`${remaining}% — keep scrolling →`;
+      scrollPreview.classList.add('visible');
+    }
+
+    if(zoomTarget>=0&&selDot!==zoomTarget){selDot=zoomTarget;selectProject(selDot);}
+
+    if(zp>=1&&!enteringProject&&zoomTarget>=0){
+      enteringProject=true;
+      triggerZoom(zoomTarget,window.innerWidth/2,window.innerHeight/2);
+    }
+  }
+},{passive:false});
+
+/* ══ CLICK SELECT + LIST ══ */
+function selectProject(idx){
+  document.querySelectorAll('.plist-item').forEach((el,i)=>{
+    el.classList.toggle('selected',i===idx);
+    el.classList.toggle('dimmed',i!==idx);
+  });
+}
+function clearSelection(){
+  selDot=-1;scrollZoomActive=false;zoomTarget=-1;zoomProgress=0;enteringProject=false;
+  document.querySelectorAll('.plist-item').forEach(el=>el.classList.remove('selected','dimmed'));
+  spinId=requestAnimationFrame(spin);
+  drawGlobe();
+  plistWrap.style.opacity='1';plistWrap.style.transform='';
+  scrollPreview.classList.remove('visible');
+}
+document.addEventListener('click',e=>{
+  if(selDot<0)return;
+  if(!document.getElementById('globe-scroll-container').contains(e.target))clearSelection();
+});
+
+function buildList(){
+  const scroll=document.getElementById('plist-scroll');scroll.innerHTML='';
+  PROJECTS.forEach((p,i)=>{
+    const item=document.createElement('div');
+    item.className='plist-item';item.dataset.id=i;
+    item.innerHTML=`
+      <div class="pli-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="pli-title">${p.title}</div>`;
+    item.addEventListener('click',()=>{
+      if(selDot===i){triggerZoom(i,window.innerWidth/2,window.innerHeight/2);return;}
+      selDot=i;cancelAnimationFrame(spinId);
+      rot[0]=-p.coords[0];rot[1]=-p.coords[1];
+      drawGlobe();selectProject(i);
+    });
+    scroll.appendChild(item);
+  });
+  document.getElementById('plist-down').onclick=()=>{
+    document.getElementById('projects-section').scrollIntoView({behavior:'smooth'});
+  };
+}
+buildList();
+
+/* ══ ZOOM TRANSITION ══ */
+const overlay=document.getElementById('zoom-overlay');
+const circle=document.getElementById('zoom-circle');
+
+function triggerZoom(idx,ox,oy){
+  const p=PROJECTS[idx];
+  const maxR=Math.max(window.innerWidth,window.innerHeight)*2.2;
+  circle.style.transition='none';
+  circle.style.width=maxR*2+'px';circle.style.height=maxR*2+'px';
+  circle.style.left=ox+'px';circle.style.top=oy+'px';
+  circle.style.transform='translate(-50%,-50%) scale(0)';circle.style.opacity='1';
+  overlay.style.opacity='1';overlay.style.pointerEvents='all';
+  document.getElementById('zl-title').textContent=p.title;
+  document.getElementById('zl-meta').textContent=p.type+' · '+p.loc+' · '+p.year;
+  circle.offsetWidth;
+  circle.style.transition='transform .7s cubic-bezier(.4,0,.2,1)';
+  circle.style.transform='translate(-50%,-50%) scale(1)';
+  setTimeout(()=>{document.getElementById('zoom-label').style.opacity='1';},380);
+  setTimeout(()=>{
+    // real site: window.location.href = 'project-'+p.id+'.html';
+    document.getElementById('zoom-label').style.opacity='0';
+    setTimeout(()=>{
+      circle.style.transition='transform .5s cubic-bezier(.4,0,.2,1),opacity .4s';
+      circle.style.transform='translate(-50%,-50%) scale(0)';circle.style.opacity='0';
+      setTimeout(()=>{
+        overlay.style.opacity='0';overlay.style.pointerEvents='none';
+        enteringProject=false;clearSelection();
+      },520);
+    },300);
+  },1800);
+}
+
+/* ══ FILTER + GRID ══ */
+let activeType="All";
+function rr(s,n,m){return((s*23+n*41)%m+m)%m;}
+function thumbSVG(p){
+  const W=400,H=266,seed=p.id,lines=[],lc=8;
+  for(let i=0;i<lc;i++){const y=H*.1+i*(H*.82/lc),xo=rr(seed,i,18)-9;const c1x=W*.16+rr(seed,i*2,W*.14),c1y=y-10+rr(seed,i*3,20);const c2x=W*.55+rr(seed,i*4,W*.16),c2y=y+rr(seed,i*5,14)-7;const acc=i===3;lines.push(`<path d="M${xo+5},${y} C${c1x},${c1y} ${c2x},${c2y} ${W-xo-4},${y+rr(seed,i,7)-3}" stroke="${acc?p.color:'#d8d8d8'}" stroke-width="${acc?1.6:.65}" fill="none"/>`);}
+  const stems=[];for(let i=0;i<4;i++){const x=W*.1+rr(seed,i+10,W*.8),h=H*.2+rr(seed,i+20,H*.25);stems.push(`<line x1="${x}" y1="${H}" x2="${x+rr(seed,i,8)-4}" y2="${H-h}" stroke="#e4e4e4" stroke-width="0.6"/>`);}
+  return`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${lines.join('')}${stems.join('')}</svg>`;
+}
+function buildFilter(){
+  const bar=document.getElementById('filter-bar');bar.innerHTML='';
+  TYPES.forEach(t=>{const b=document.createElement('button');b.className='ftab'+(t===activeType?' on':'');b.textContent=t;b.onclick=()=>{activeType=t;render();};bar.appendChild(b);});
+}
+function render(){
+  buildFilter();
+  const list=PROJECTS.filter(p=>activeType==='All'||p.type===activeType);
+  const grid=document.getElementById('proj-grid');grid.innerHTML='';
+  list.forEach(p=>{
+    const card=document.createElement('div');card.className='pcard';card.id='proj-'+p.id;
+    card.innerHTML=`
+      <div class="pcard-img"><img src="${p.img}" alt="${p.title}" loading="lazy"></div>
+      <div class="pcard-body">
+        <div class="pcard-meta">
+          <div class="pcard-type"><span class="type-dot" style="background:${p.color}"></span>${p.type}</div>
+          <div class="pcard-year">${p.year}</div>
+        </div>
+        <div class="pcard-title">${p.title}</div>
+        <div class="pcard-loc">${p.loc}</div>
+      </div>`;
+    card.onclick=()=>triggerZoom(p.id,window.innerWidth/2,window.innerHeight*.4);
+    grid.appendChild(card);
+  });
+}
+render();
+
+/* ══ TIME-BASED THEME ══ */
+function applyTheme(){
+  const h=new Date().getHours();
+  const isDark=h>=20||h<6; // dark: 20:00–06:00
+  document.body.classList.toggle('dark',isDark);
+  // redraw globe with new palette
+  drawGlobe();
+}
+applyTheme();
+</script>
+</body>
+</html>
