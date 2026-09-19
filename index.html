@@ -226,7 +226,7 @@ window.addEventListener('resize', () => {
   });
 });
 
-let isNight = true; window.addEventListener("site-theme",e=>{isNight=e.detail==="night"});
+let isNight = !document.documentElement.classList.contains("day"); window.addEventListener("site-theme",e=>{isNight=e.detail==="night"});
 const stage = document.getElementById('stage');
 
 let mouseX = -999, mouseY = -999, hoveredNode = null;
