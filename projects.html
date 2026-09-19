@@ -325,11 +325,13 @@ html:not(.day){color-scheme:dark}
 
 <footer><span>Scroll to travel</span><span>Founded 2014</span></footer>
 
+<script src="assets/project-content.js"></script>
 <script>
-(function(){
+(async function(){
 
   var projects = [{"name":"The Tidal Garden","city":"Shenzhen","country":"CN","type":"Public Realm","lon":114.06,"lat":22.54,"seed":"tidal-garden","img":"https://picsum.photos/seed/tidal-1/1600/1000","slug":"tidal-garden"},{"name":"Trail for Healing","city":"California","country":"US","type":"Cultural","lon":-120.5,"lat":37.5,"seed":"trail-for-healing","img":"https://picsum.photos/seed/trail-1/1600/1000","slug":"trail-for-healing"},{"name":"Seeds' Ark","city":"Global","country":"","type":"Urban Strategy","lon":2.35,"lat":48.85,"seed":"seeds-ark","img":"https://picsum.photos/seed/seeds-1/1600/1000","slug":"seeds-ark"},{"name":"Flood Plain Commons","city":"Rotterdam","country":"NL","type":"Public Realm","lon":4.9,"lat":52.37,"seed":"flood-plain-commons","img":"https://picsum.photos/seed/flood-1/1600/1000","slug":"flood-plain-commons"},{"name":"Dormant Meadow","city":"Copenhagen","country":"DK","type":"Residential","lon":12.57,"lat":55.68,"seed":"dormant-meadow","img":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80","slug":"dormant-meadow"},{"name":"Ridge Walk","city":"Wellington","country":"NZ","type":"Public Realm","lon":174.78,"lat":-41.28,"seed":"ridge-walk","img":"https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80","slug":"ridge-walk"},{"name":"The Slow Courtyard","city":"Kyoto","country":"JP","type":"Institutional","lon":135.77,"lat":35.01,"seed":"slow-courtyard","img":"https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80","slug":"slow-courtyard"},{"name":"Estuary Terrace","city":"Portland","country":"OR","type":"Residential","lon":-122.68,"lat":45.52,"seed":"estuary-terrace","img":"https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80","slug":"estuary-terrace"},{"name":"Nomadic Nursery","city":"São Paulo","country":"BR","type":"Installation","lon":-46.63,"lat":-23.55,"seed":"nomadic-nursery","img":"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80","slug":"nomadic-nursery"}];
 
+  projects.unshift(...(await window.loadStudioProjects()).map(p=>({name:p.shortTitle,city:p.city,country:p.country,type:p.type,lon:p.coords[0],lat:p.coords[1],seed:p.slug,img:p.img,slug:p.slug})));
   var track = document.getElementById('track');
 
   var capName = document.getElementById('capName');

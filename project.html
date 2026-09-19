@@ -97,7 +97,7 @@
     transition:opacity .08s linear;
   }
   #proj-desc-wrap p{
-    font-size:12.5px; line-height:1.65; color:#444;
+    font-size:12.5px; line-height:1.65; color:var(--ink-dim);
   }
 
   .sidebar .share{
@@ -138,7 +138,7 @@
     font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);
     flex-shrink:0; width:140px;
   }
-  .layout-caption .caption p{ font-size:13px; line-height:1.6; color:#444; max-width:520px; }
+  .layout-caption .caption p{ font-size:13px; line-height:1.6; color:var(--ink-dim); max-width:520px; }
 
   .layout-quote{ position:relative; }
   .layout-quote .quote{ padding:60px 0; max-width:640px; }
@@ -175,6 +175,7 @@
     .layout-quote .quote{ padding:40px 0; }
     .project-end{ padding:60px 0 90px; }
   }
+.project-story{padding:48px 0 64px;max-width:760px}.project-story h3{font-size:20px;font-weight:500;margin-bottom:24px}.project-story p{font-size:14px;line-height:1.85;margin:0 0 22px;color:var(--ink)}
 </style>
 <link rel="stylesheet" href="assets/site.css"></head>
 <body data-page="project">
@@ -222,7 +223,9 @@
      for sending a single page to someone; use the shared-folder version
      (project.html + projects-data.js) for the real, linked-up site.
      ============================================================================ -->
+<script src="assets/project-content.js"></script>
 <script>
+(async()=>{
 const PROJECTS = [
   {
     id: 0, slug: "tidal-garden",
@@ -371,6 +374,7 @@ const TYPES = ["All", "Public Realm", "Residential", "Cultural", "Institutional"
    - offset   : one smaller, indented image with extra breathing room
    ========================================================================= */
 
+PROJECTS.unshift(...await window.loadStudioProjects());
 const slug = new URLSearchParams(location.search).get('slug') || PROJECTS[0].slug;
 const record = PROJECTS.find(p => p.slug === slug) || PROJECTS[0];
 const idx = PROJECTS.findIndex(p => p.slug === record.slug);
@@ -388,7 +392,8 @@ const project = {
     { label: "Year",         value: record.year },
     { label: "Keyword",      value: record.kw.join(" / ") }
   ],
-  description: record.description || record.teaser,
+  description: record.teaser || record.description,
+  story: record.story,
   blocks: [
     { type: "hero", src: heroSrc },
     ...(record.blocks && record.blocks.length ? record.blocks.slice(1) : [{ type: "full", src: record.img }])
@@ -417,7 +422,7 @@ function renderBlock(b){
       </div>`;
     case "caption":
       return `<div class="block layout-caption">
-        <img src="${b.src}" alt="">
+        <img src="${b.src}" alt="${b.alt || ''}" loading="lazy">
         <div class="caption">
           <div class="cap-label">${b.label}</div>
           <p>${b.text}</p>
@@ -449,6 +454,14 @@ function renderProject(p){
     `<div class="project-end" onclick="location.href='project.html?slug=${p.nextSlug}'">
        <div class="next-label">Next Project</div><h3>${p.next}</h3>
      </div>`;
+  if(p.story){
+    document.querySelector('.layout-hero .img-wrap').style.aspectRatio='auto';
+    const hero=document.querySelector('.layout-hero img'); hero.style.height='auto'; hero.alt=record.heroAlt;
+    const story=document.createElement('section'); story.className='project-story';
+    const h=document.createElement('h3'); h.textContent='An unfinished ecological performance'; story.append(h);
+    p.story.forEach(text=>{const paragraph=document.createElement('p');paragraph.textContent=text;story.append(paragraph)});
+    document.querySelector('.project-end').before(story);
+  }
   document.title = p.title + " — Field Notes Studio";
 }
 
@@ -466,6 +479,7 @@ function onScroll(){
 }
 window.addEventListener('scroll', onScroll, { passive:true });
 onScroll();
+})();
 </script>
 <script src="assets/site.js"></script></body>
 </html>
