@@ -47,6 +47,7 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
 #no-match{display:none;font-family:'Space Grotesk',sans-serif;font-size:12px;color:#bbb;line-height:1.75;margin-bottom:4px}
 
 
+a{text-decoration:none;color:inherit}@media(max-width:600px){nav{padding:0 15px}.nav-links{gap:12px}.nav-link{font-size:10px}}
 </style>
 </head>
 <body>
@@ -57,10 +58,10 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
   <nav>
     <div class="nav-logo" id="nav-logo">Field Notes Studio</div>
     <div class="nav-links">
-      <a class="nav-link" href="projects.html">Projects</a>
-      <span class="nav-link">About</span>
-      <span class="nav-link">Thoughts</span>
-      <span class="nav-link">Contact</span>
+      <a class="nav-link" style="text-decoration:none" href="projects.html">Projects</a><a class="nav-link" style="text-decoration:none" href="awards.html">Awards</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="jupi.html">Jupi</a>
+      <a class="nav-link" href="about.html#office-title">Contact</a>
     </div>
   </nav>
 
@@ -612,7 +613,7 @@ function updateResults() {
           <div class="result-title">${p.title}</div>
           <div class="result-kw">${p.kw.join(' · ')}</div>
         `;
-        d.onclick = () => { window.location.href = '#project-' + i; };
+        d.onclick = () => { window.location.href = 'orbit-project-' + i + '.html'; };
         listDiv.appendChild(d);
       });
     }
@@ -626,7 +627,7 @@ function updateResults() {
         <div class="result-title">${p.title}</div>
         <div class="result-kw">${p.kw.join(' · ')}</div>
       `;
-      d.onclick = () => { window.location.href = '#project-' + i; };
+      d.onclick = () => { window.location.href = 'orbit-project-' + i + '.html'; };
       listDiv.appendChild(d);
     });
   }
