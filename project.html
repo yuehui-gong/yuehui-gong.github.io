@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — Field Notes Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --paper:#ffffff;
+    --grey:#8a8a8a;
+    --line:#e4e4e4;
+    --sidebar-w: 460px;
+    --gutter: 48px;
+    --nav-h: 54px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Inter', -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  /* ---------- top nav ---------- */
+  #proj-nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    height:var(--nav-h); display:flex; align-items:center; justify-content:space-between;
+    padding:0 32px; background:rgba(255,255,255,.9); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  #proj-nav .back{ cursor:pointer; color:var(--grey); }
+  #proj-nav .back:hover{ color:var(--ink); }
+  #proj-nav .studio{ cursor:pointer; font-weight:600; letter-spacing:.04em; }
+
+  /* ============ NO SEPARATE "FIRST SCREEN" ANYMORE ============
+     One layout for the whole page: a sticky left info column that
+     never moves once you start scrolling, and a right column that
+     scrolls normally, starting with the hero image as its first block. */
+  .project-body{
+    display:grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    align-items:start;
+    padding-top:var(--nav-h);
+  }
+
+  .sidebar{
+    position:sticky;
+    top:var(--nav-h);
+    height:calc(100vh - var(--nav-h));
+    padding:40px 64px 32px 48px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    text-align:right;
+    border-right:1px solid var(--line);
+  }
+  .sidebar .mark-small{
+    width:28px; height:28px; background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px;
+  }
+  .sidebar .mark-small svg{ width:14px; height:14px; }
+
+  .sidebar h2{
+    font-size:22px; font-weight:600; letter-spacing:-.01em; line-height:1.2; margin-bottom:8px;
+  }
+  .sidebar .eyebrow{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:8px;
+  }
+  .sidebar .loc{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:24px;
+  }
+
+  .meta-list{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+  .meta-item{ display:flex; flex-direction:column; align-items:flex-end; }
+  .meta-item .label{
+    font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:3px;
+  }
+  .meta-item .value{ font-size:11.5px; font-weight:500; }
+
+  /* the 200-word intro — lives in the sidebar, right below the meta list.
+     It fades out as the page scrolls (opacity tied to scroll position),
+     staying in its own space the whole time so nothing else in the
+     sidebar ever moves into it or overlaps it while it fades. */
+  #proj-desc-wrap{
+    max-width:320px;
+    padding-top:32px;
+    transition:opacity .08s linear;
+  }
+  #proj-desc-wrap p{
+    font-size:12.5px; line-height:1.65; color:#444;
+  }
+
+  .sidebar .share{
+    display:flex; gap:14px; padding-top:24px; margin-top:auto;
+    font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey);
+  }
+  .sidebar .share span{ cursor:pointer; }
+  .sidebar .share span:hover{ color:var(--ink); }
+
+  /* ---------- RIGHT COLUMN: flexible media stack ---------- */
+  .content{
+    display:flex;
+    flex-direction:column;
+    padding:0 var(--gutter);
+  }
+  .block{ padding-top:2px; padding-bottom:2px; }
+  .block img{ width:100%; display:block; }
+  .layout-full img{ height:auto; }
+
+  /* hero — the first block of every project, a 4:3 image with equal
+     side gutters, replacing what used to be a separate full-screen section */
+  .layout-hero{ padding-top:40px; }
+  .layout-hero .img-wrap{ width:100%; aspect-ratio:4/3; overflow:hidden; }
+  .layout-hero .img-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .media-grid{ display:grid; gap:10px; }
+  .media-grid.cols-1{ grid-template-columns:1fr; }
+  .media-grid.cols-2{ grid-template-columns:repeat(2,1fr); }
+  .media-grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+  .media-grid.cols-4{ grid-template-columns:repeat(4,1fr); }
+  .media-grid img{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/3; }
+
+  .layout-caption .caption{
+    display:flex; justify-content:space-between; gap:40px;
+    padding:22px 0 60px; border-bottom:1px solid var(--line);
+  }
+  .layout-caption .caption .cap-label{
+    font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);
+    flex-shrink:0; width:140px;
+  }
+  .layout-caption .caption p{ font-size:13px; line-height:1.6; color:#444; max-width:520px; }
+
+  .layout-quote{ position:relative; }
+  .layout-quote .quote{ padding:60px 0; max-width:640px; }
+  .layout-quote .quote p{ font-size:22px; line-height:1.45; font-weight:500; letter-spacing:-.01em; }
+  .layout-quote .quote .attr{
+    margin-top:16px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey);
+  }
+
+  .layout-offset{ padding:60px 0 60px 18%; }
+
+  .spacer-sm{ height:2px; background:var(--line); margin:0 calc(var(--gutter) * -1); }
+
+  .project-end{ padding:80px 0 120px; border-top:1px solid var(--line); }
+  .project-end .next-label{
+    font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:10px;
+  }
+  .project-end h3{ font-size:32px; font-weight:600; letter-spacing:-.01em; cursor:pointer; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px){
+    :root{ --sidebar-w: 100%; --gutter: 24px; }
+    .project-body{ grid-template-columns:1fr; }
+    .sidebar{
+      position:relative; height:auto; top:auto;
+      border-right:none; border-bottom:1px solid var(--line);
+      padding:32px 24px;
+    }
+    #proj-desc-wrap{ opacity:1 !important; max-width:100%; }
+    .layout-hero{ padding-top:0; }
+    .media-grid.cols-2, .media-grid.cols-3, .media-grid.cols-4{ grid-template-columns:1fr; }
+    .layout-caption .caption{ flex-direction:column; gap:10px; padding:18px 0 40px; }
+    .layout-offset{ padding:40px 0; }
+    .layout-quote .quote{ padding:40px 0; }
+    .project-end{ padding:60px 0 90px; }
+  }
+</style>
+<link rel="stylesheet" href="assets/site.css"></head>
+<body data-page="project">
+
+  <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
+
+  <div class="project-body">
+
+    <!-- ONE sidebar, sticky from the very top of the page. Everything in
+         it except #proj-desc-wrap stays put for the entire scroll. -->
+    <aside class="sidebar">
+      <div class="mark-small" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 22h20L12 2z" fill="white"/></svg>
+      </div>
+
+      <div class="eyebrow" id="proj-eyebrow"></div>
+      <h2 id="proj-title"></h2>
+      <div class="loc" id="proj-loc"></div>
+      <div class="meta-list" id="proj-meta"></div>
+
+      <div id="proj-desc-wrap"><p id="proj-desc"></p></div>
+
+      <div class="share">
+        <span>Email</span>
+        <span>LinkedIn</span>
+        <span>X</span>
+      </div>
+    </aside>
+
+    <!-- the media stack — first block is always the hero image,
+         the rest come from `record.blocks` -->
+    <div class="content" id="proj-content"></div>
+
+  </div>
+
+<!-- ============================================================================
+     STANDALONE VERSION: the project data is embedded directly below instead
+     of being loaded from projects-data.js. This file works on its own —
+     double-click it, email it, it doesn't need any other file next to it.
+
+     Trade-off: this is now its OWN copy of the data, separate from the one
+     landing-page.html / projects-page.html read from projects-data.js. If
+     you edit a project here, that edit won't show up on those other pages
+     (and vice versa) unless you copy the change over by hand. Use this file
+     for sending a single page to someone; use the shared-folder version
+     (project.html + projects-data.js) for the real, linked-up site.
+     ============================================================================ -->
+<script>
+const PROJECTS = [
+  {
+    id: 0, slug: "tidal-garden",
+    title: "The Tidal Garden", type: "Public Realm", loc: "Shenzhen, CN", year: 2023,
+    color: "#4a8fa8", coords: [114.06, 22.54], img: "https://picsum.photos/seed/tidal-1/1600/1000",
+    teaser: "A living edge between city and mangrove, designed to flood and recover with the tides.",
+    kw: ["water", "ecology", "community"],
+    collaborator: "Shenzhen Mangrove Trust, Atelier Ren",
+    award: "ASLA Honor Award, Analysis & Planning",
+    description: "The Tidal Garden reclaims a stretch of hardened seawall as a living, flooding edge between the city and its mangrove fringe. Rather than fighting the tide, the design gives it room: boardwalks lift and settle with the water, planting bands are sequenced by salt tolerance, and a public terrace doubles as a flood basin during the wet season. It is a park that looks different every day, and is meant to.",
+    blocks: [
+      { type: "full", src: "https://picsum.photos/seed/tidal-1/1600/1000" },
+      { type: "caption", src: "https://picsum.photos/seed/tidal-2/1600/900",
+        label: "Boardwalk / Low tide",
+        text: "Timber boardwalks are set on adjustable piers, tracking a 1.8m tidal range across the site." },
+      { type: "grid", cols: 3, images: [
+          "https://picsum.photos/seed/tidal-3/700/700",
+          "https://picsum.photos/seed/tidal-4/700/700",
+          "https://picsum.photos/seed/tidal-5/700/700"
+      ]},
+      { type: "quote", src: "https://picsum.photos/seed/tidal-6/1600/900",
+        text: "We stopped drawing a line between land and water and started drawing a gradient instead.",
+        attr: "Project Lead, Atelier Ren" },
+      { type: "full", src: "https://picsum.photos/seed/tidal-7/1600/1000" }
+    ]
+  },
+  {
+    id: 1, slug: "trail-for-healing",
+    title: "Trail for Healing", type: "Cultural", loc: "California, US", year: 2023,
+    color: "#b08050", coords: [-120.5, 37.5], img: "https://picsum.photos/seed/trail-1/1600/1000",
+    teaser: "An interpretation trail reading fire ecology and post-burn forest recovery.",
+    kw: ["heritage", "native species", "slow design"],
+    collaborator: "US Forest Service, local fire ecologists",
+    award: "",
+    description: "Cut through a stand of forest three seasons after a wildfire, the Trail for Healing reads recovery rather than damage. Interpretive markers are placed where regrowth is most visible, not where the burn was worst, and the path itself is built from salvaged char-black timber. It asks visitors to sit with a landscape mid-recovery, not to mourn one that's finished.",
+    blocks: [
+      { type: "full", src: "https://picsum.photos/seed/trail-1/1600/1000" },
+      { type: "offset", src: "https://picsum.photos/seed/trail-2/1100/1300" },
+      { type: "grid", cols: 2, images: [
+          "https://picsum.photos/seed/trail-3/900/1100",
+          "https://picsum.photos/seed/trail-4/900/1100"
+      ]}
+    ]
+  },
+  {
+    id: 2, slug: "seeds-ark",
+    title: "Seeds' Ark", type: "Urban Strategy", loc: "Global", year: 2024,
+    color: "#7aaa50", coords: [2.35, 48.85], img: "https://picsum.photos/seed/seeds-1/1600/1000",
+    teaser: "A mobile seed bank tracing the routes of colonized plant species across continents.",
+    kw: ["native species", "community", "art"],
+    collaborator: "", award: "",
+    description: "Seeds' Ark is a traveling seed bank and exhibition that follows the historical trade routes along which colonized plant species moved. Each stop adds a new set of seeds and a new set of stories, so the collection itself becomes a record of botanical migration rather than a fixed archive.",
+    blocks: [ { type: "full", src: "https://picsum.photos/seed/seeds-1/1600/1000" } ]
+  },
+  {
+    id: 3, slug: "flood-plain-commons",
+    title: "Flood Plain Commons", type: "Public Realm", loc: "Rotterdam, NL", year: 2024,
+    color: "#5b8fa0", coords: [4.90, 52.37], img: "https://picsum.photos/seed/flood-1/1600/1000",
+    teaser: "Productive floodplain designed as neighbourhood commons — useful in dry years and wet.",
+    kw: ["water", "community", "resilience"],
+    collaborator: "Gemeente Rotterdam", award: "",
+    description: "Flood Plain Commons turns a designated overflow basin into everyday neighbourhood ground: allotment plots, a football pitch, and an orchard occupy the space in dry years, and all of it is designed to go quietly underwater in wet ones. Nothing on site is precious about getting wet — that was the only way the budget and the hydrology both worked.",
+    blocks: [ { type: "full", src: "https://picsum.photos/seed/flood-1/1600/1000" } ]
+  },
+  {
+    id: 4, slug: "dormant-meadow",
+    title: "Dormant Meadow", type: "Residential", loc: "Copenhagen, DK", year: 2022,
+    color: "#7aaa50", coords: [12.57, 55.68],
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    teaser: "Three years of rewilding a suburban estate — in year one, almost nothing was visible.",
+    kw: ["meadow", "native species", "slow design"],
+    collaborator: "", award: "Nordic Landscape Prize, Shortlist",
+    description: "Dormant Meadow documents three years of deliberately doing very little: a mown suburban lawn was left to its own devices, seeded only with species already dormant in the soil. Year one looked like neglect. Year three is a meadow. The project is as much a record of patience as it is a planting plan.",
+    blocks: [
+      { type: "full", src: "https://picsum.photos/seed/meadow-1/1600/1000" },
+      { type: "caption", src: "https://picsum.photos/seed/meadow-2/1600/900",
+        label: "Year One / Spring", text: "Nothing to see yet — the point being made was that nothing needed to be." },
+      { type: "grid", cols: 4, images: [
+          "https://picsum.photos/seed/meadow-3/700/700",
+          "https://picsum.photos/seed/meadow-4/700/700",
+          "https://picsum.photos/seed/meadow-5/700/700",
+          "https://picsum.photos/seed/meadow-6/700/700"
+      ]}
+    ]
+  },
+  {
+    id: 5, slug: "ridge-walk",
+    title: "Ridge Walk", type: "Public Realm", loc: "Wellington, NZ", year: 2021,
+    color: "#8c6aaa", coords: [174.78, -41.28],
+    img: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80",
+    teaser: "An interpretation trail reading volcanic strata through gradient, material and species.",
+    kw: ["topography", "paths", "native species"],
+    collaborator: "", award: "",
+    description: "Ridge Walk traces a volcanic ridgeline where every material choice — the gradient of the path, the paving stone, the plant palette — is keyed to the strata underfoot. Walking it end to end is meant to read like paging through a geological cross-section, at the pace of a footpath.",
+    blocks: [ { type: "full", src: "https://picsum.photos/seed/ridge-1/1600/1000" } ]
+  },
+  {
+    id: 6, slug: "slow-courtyard",
+    title: "The Slow Courtyard", type: "Institutional", loc: "Kyoto, JP", year: 2024,
+    color: "#a07878", coords: [135.77, 35.01],
+    img: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80",
+    teaser: "Silence choreographed through material weight, seasonal moss, and the speed of water.",
+    kw: ["contemplative", "stone", "ecology", "materiality"],
+    collaborator: "", award: "",
+    description: "The Slow Courtyard sits inside an institutional campus but asks visitors to move at a different pace than the buildings around it. Stone paving is set unevenly on purpose, moss is left uncleared between the joints, and a single channel of water is pitched just steep enough to be audible. Nothing here is meant to be crossed quickly.",
+    blocks: [ { type: "full", src: "https://picsum.photos/seed/courtyard-1/1600/1000" } ]
+  },
+  {
+    id: 7, slug: "estuary-terrace",
+    title: "Estuary Terrace", type: "Residential", loc: "Portland, OR", year: 2023,
+    color: "#5a9070", coords: [-122.68, 45.52],
+    img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80",
+    teaser: "Cascading rain gardens stepping from house to tidal inlet — nothing is wasted.",
+    kw: ["water", "topography", "native species", "materiality"],
+    collaborator: "", award: "",
+    description: "Estuary Terrace steps a series of rain gardens down a steep residential lot toward a tidal inlet, so that every roof, path, and patio drains into the next planted terrace rather than a pipe. By the time water reaches the inlet it has been filtered through four separate beds.",
+    blocks: [ { type: "full", src: "https://picsum.photos/seed/estuary-1/1600/1000" } ]
+  },
+  {
+    id: 8, slug: "nomadic-nursery",
+    title: "Nomadic Nursery", type: "Installation", loc: "São Paulo, BR", year: 2022,
+    color: "#c09040", coords: [-46.63, -23.55],
+    img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
+    teaser: "A mobile seed bank and social gathering space that moved through the city for six months.",
+    kw: ["native species", "community", "art"],
+    collaborator: "", award: "",
+    description: "For six months, Nomadic Nursery moved between eight neighbourhoods on a modified flatbed cart: part mobile seed bank, part gathering space, part street furniture. Each stop's residents added seeds and stories from their own gardens before the cart moved on to the next site.",
+    blocks: [ { type: "full", src: "https://picsum.photos/seed/nomadic-1/1600/1000" } ]
+  }
+];
+
+const TYPES = ["All", "Public Realm", "Residential", "Cultural", "Institutional", "Urban Strategy", "Installation"];
+
+/* =========================================================================
+   Reads `?slug=...` from the URL and looks it up in the shared PROJECTS
+   array (e.g. project.html?slug=tidal-garden). That param is exactly what
+   becomes a Next.js dynamic route segment later ( /work/[slug]/page.jsx ) —
+   only how `record` gets fetched changes, not the renderer below.
+
+   Block types:
+   - hero     : the 4:3 image every project opens with (auto-inserted first)
+   - full     : one full-width image
+   - grid     : a row of N images (cols: 2, 3, or 4)
+   - caption  : one image + a short caption line to its right
+   - quote    : one image + a large pull-quote
+   - offset   : one smaller, indented image with extra breathing room
+   ========================================================================= */
+
+const slug = new URLSearchParams(location.search).get('slug') || PROJECTS[0].slug;
+const record = PROJECTS.find(p => p.slug === slug) || PROJECTS[0];
+const idx = PROJECTS.findIndex(p => p.slug === record.slug);
+const nextRecord = PROJECTS[(idx + 1) % PROJECTS.length];
+
+const heroSrc = (record.blocks && record.blocks[0] && record.blocks[0].src) || record.img;
+
+const project = {
+  title: record.title,
+  eyebrow: record.type,
+  location: record.loc,
+  meta: [
+    { label: "Collaborator", value: record.collaborator || "—" },
+    { label: "Award",        value: record.award || "—" },
+    { label: "Year",         value: record.year },
+    { label: "Keyword",      value: record.kw.join(" / ") }
+  ],
+  description: record.description || record.teaser,
+  blocks: [
+    { type: "hero", src: heroSrc },
+    ...(record.blocks && record.blocks.length ? record.blocks.slice(1) : [{ type: "full", src: record.img }])
+  ],
+  next: nextRecord.title,
+  nextSlug: nextRecord.slug
+};
+
+function renderMeta(list){
+  return list.map(m => `
+    <div class="meta-item">
+      <div class="label">${m.label}</div>
+      <div class="value">${m.value}</div>
+    </div>`).join("");
+}
+
+function renderBlock(b){
+  switch(b.type){
+    case "hero":
+      return `<div class="block layout-hero"><div class="img-wrap"><img src="${b.src}" alt=""></div></div>`;
+    case "full":
+      return `<div class="block layout-full"><img src="${b.src}" alt=""></div>`;
+    case "grid":
+      return `<div class="block media-grid cols-${b.cols}">
+        ${b.images.map(src => `<img src="${src}" alt="">`).join("")}
+      </div>`;
+    case "caption":
+      return `<div class="block layout-caption">
+        <img src="${b.src}" alt="">
+        <div class="caption">
+          <div class="cap-label">${b.label}</div>
+          <p>${b.text}</p>
+        </div>
+      </div>`;
+    case "quote":
+      return `<div class="block layout-quote">
+        <img src="${b.src}" alt="">
+        <div class="quote">
+          <p>"${b.text}"</p>
+          <div class="attr">${b.attr}</div>
+        </div>
+      </div>`;
+    case "offset":
+      return `<div class="block layout-offset"><img src="${b.src}" alt=""></div>`;
+    default:
+      return "";
+  }
+}
+
+function renderProject(p){
+  document.getElementById("proj-eyebrow").textContent = p.eyebrow;
+  document.getElementById("proj-title").textContent = p.title;
+  document.getElementById("proj-loc").textContent = p.location;
+  document.getElementById("proj-desc").textContent = p.description;
+  document.getElementById("proj-meta").innerHTML = renderMeta(p.meta);
+  document.getElementById("proj-content").innerHTML =
+    p.blocks.map(renderBlock).join("") +
+    `<div class="project-end" onclick="location.href='project.html?slug=${p.nextSlug}'">
+       <div class="next-label">Next Project</div><h3>${p.next}</h3>
+     </div>`;
+  document.title = p.title + " — Field Notes Studio";
+}
+
+renderProject(project);
+
+/* fade the 200-word description out as the page scrolls, so it never
+   sits there competing with, or overlapping, the meta info above it */
+const descWrap = document.getElementById('proj-desc-wrap');
+const FADE_DISTANCE = 220; // px of scroll over which it fully disappears
+function onScroll(){
+  const y = window.scrollY || document.documentElement.scrollTop;
+  const opacity = Math.max(0, 1 - y / FADE_DISTANCE);
+  descWrap.style.opacity = opacity;
+  descWrap.style.pointerEvents = opacity < 0.05 ? 'none' : 'auto';
+}
+window.addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+</script>
+<script src="assets/site.js"></script></body>
+</html>
