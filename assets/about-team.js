@@ -13,15 +13,14 @@
  profiles.forEach(({id,p},i)=>{
  const base='content/about/team/'+id+'/';const card=document.createElement('article');card.className='team-card';
  const button=document.createElement('button');button.className='portrait-trigger';button.type='button';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','b-'+id);button.setAttribute('aria-label','Discover the B-side of '+p.name);
- const portrait=new Image();portrait.src=base+p.portraitA;portrait.alt=p.portraitAlt||p.name;portrait.width=600;portrait.height=600;portrait.loading='lazy';button.append(portrait,text('span','B-SIDE ↗','portrait-tag'));
+ const portrait=new Image();portrait.src=base+p.portraitA;portrait.alt=p.portraitAlt||p.name;portrait.width=600;portrait.height=600;portrait.loading='lazy';button.append(portrait);
  const bio=document.createElement('div');bio.className='team-bio';(Array.isArray(p.bio)?p.bio:[p.bio]).forEach(paragraph=>bio.append(text('p',paragraph)));
- const idx=document.createElement('div');idx.className='team-index';idx.append(text('span',String(i+1).padStart(2,'0')+' / A-SIDE'),text('span','FIELD NOTES'));
  const panel=document.createElement('section');panel.className='b-panel';panel.id='b-'+id;panel.hidden=true;panel.setAttribute('aria-label',p.name+' — B-side');
  const top=document.createElement('div');top.className='b-top';const dismiss=text('button','×','b-close');dismiss.type='button';dismiss.setAttribute('aria-label','Close B-side');top.append(text('span',String(i+1).padStart(2,'0')+' / '+p.bLabel.toUpperCase()),dismiss);
  const bImage=new Image();bImage.src=base+p.portraitB;bImage.alt=p.bAlt;bImage.width=700;bImage.height=600;bImage.loading='lazy';
  const bottom=document.createElement('div');bottom.className='b-bottom';bottom.append(text('span',p.name),text('span','B / PERSONAL'));
  panel.append(top,bImage,text('p',p.bCaption));
- card.append(button,idx,text('h3',p.name),text('p',p.role,'team-role'),bio,panel);field.append(card);
+ card.append(button,text('h3',p.name),text('p',p.role,'team-role'),bio,panel);field.append(card);
  button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&innerWidth>700)open(card)});
  card.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')timer=setTimeout(()=>{if(active===card)close()},180)});
  panel.addEventListener('pointerenter',()=>clearTimeout(timer));
