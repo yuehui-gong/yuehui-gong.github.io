@@ -478,7 +478,7 @@ function draw() {
     ctx.textBaseline = 'middle';
     const displayText = n.text.toUpperCase();
     const photosVisible = photoLayer.classList.contains('visible');
-    if (photosVisible && !n.selected) ctx.fillStyle = '#fff';
+    if (photosVisible && !n.selected) ctx.fillStyle = isNight ? '#fff' : '#202522';
     ctx.fillText(displayText, n.x, n.y);
     n._w = ctx.measureText(displayText).width;
     n._h = fs + 8;
