@@ -1,0 +1,14 @@
+{
+  "studio": {
+    "image": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1800&q=85",
+    "alt": "Placeholder landscape photograph of mountain ridges",
+    "caption": "Reading the landscape",
+    "credit": "Studio image to follow"
+  },
+  "members": [
+    "member-01",
+    "member-02",
+    "member-03",
+    "member-04"
+  ]
+}

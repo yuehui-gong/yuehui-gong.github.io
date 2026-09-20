@@ -1,0 +1,16 @@
+{
+  "id": "member-03",
+  "name": "Team Member Three",
+  "role": "Material & spatial practice",
+  "bio": [
+    "This profile introduces a designer who explores how a landscape is experienced through movement, touch, and material. Their work within the studio moves between the scale of a route and the detail of an edge, considering how small decisions shape the character of a larger place. Drawing, model making, and material tests are central to their process.",
+    "They are currently interested in the reuse of existing site materials and in construction approaches that leave room for repair and adaptation. They value the knowledge shared by craftspeople, collaborators, and communities, and see design as an ongoing conversation between intention and use. A finished biography would add their education, practice history, built work, and the particular experiences that inform their approach."
+  ],
+  "portraitA": "a.svg",
+  "portraitAlt": "Portrait to follow",
+  "portraitB": "b.svg",
+  "bTitle": "Outside the frame",
+  "bCaption": "A personal interest, a field note, or an unexpected side. More to follow.",
+  "bLabel": "Personal archive",
+  "bAlt": "B-side image placeholder"
+}
