@@ -20,7 +20,7 @@
  const top=document.createElement('div');top.className='b-top';const dismiss=text('button','×','b-close');dismiss.type='button';dismiss.setAttribute('aria-label','Close B-side');top.append(text('span',String(i+1).padStart(2,'0')+' / '+p.bLabel.toUpperCase()),dismiss);
  const bImage=new Image();bImage.src=base+p.portraitB;bImage.alt=p.bAlt;bImage.width=700;bImage.height=600;bImage.loading='lazy';
  const bottom=document.createElement('div');bottom.className='b-bottom';bottom.append(text('span',p.name),text('span','B / PERSONAL'));
- panel.append(top,bImage,text('h4',p.bTitle),text('p',p.bCaption),bottom);
+ panel.append(top,bImage,text('p',p.bCaption));
  card.append(button,idx,text('h3',p.name),text('p',p.role,'team-role'),bio,panel);field.append(card);
  button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&innerWidth>700)open(card)});
  card.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')timer=setTimeout(()=>{if(active===card)close()},180)});

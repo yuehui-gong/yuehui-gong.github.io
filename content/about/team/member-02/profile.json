@@ -3,13 +3,11 @@
   "name": "Team Member Two",
   "role": "Ecology & planting",
   "bio": [
-    "This profile introduces a designer interested in the relationships between plants, people, and changing environmental conditions. Their contribution to the studio brings ecological questions into the design process from the beginning, considering soil, habitat, and maintenance alongside spatial character. They enjoy translating complex research into planting strategies that can be discussed, tested, and adapted with others.",
-    "Current interests include native plant communities, the productive edges of urban sites, and landscapes that become richer as they mature. They work through seasonal observations, planting studies, and conversations with the people who will care for a place. A finished biography would include their training, professional experience, research interests, and a selection of projects that illustrate how this thinking becomes tangible."
+    "This profile introduces a designer interested in the relationships between plants, people, and changing environmental conditions. Their contribution to the studio brings ecological questions into the design process from the beginning, considering soil, habitat, and maintenance alongside spatial character. They enjoy translating complex research into planting strategies that can be discussed, tested, and adapted with others."
   ],
   "portraitA": "a.svg",
   "portraitAlt": "Portrait to follow",
   "portraitB": "b.svg",
-  "bTitle": "Outside the frame",
   "bCaption": "A personal interest, a field note, or an unexpected side. More to follow.",
   "bLabel": "Personal archive",
   "bAlt": "B-side image placeholder"
