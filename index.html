@@ -34,17 +34,8 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
 .hc-divider-label{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb}
 #hc-list{display:flex;flex-direction:column;gap:5px;font-family:'Space Grotesk',sans-serif}
 
-#results-panel{position:absolute;top:0;right:0;width:400px;height:100%;background:#fff;opacity:0;transition:opacity .35s,background .6s;padding:70px 32px 24px;display:flex;flex-direction:column;overflow-y:auto;z-index:15;box-shadow:-1px 0 0 #f0f0f0}
-#results-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
-#results-keywords{font-family:'Space Grotesk',sans-serif;font-size:10px;color:#aaa;line-height:1.6;letter-spacing:.03em}
-#clear-btn{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#D85A30;cursor:pointer;flex-shrink:0;margin-left:10px;transition:opacity .2s;font-weight:500;opacity:.75}
+#clear-btn{position:absolute;right:32px;bottom:36px;z-index:30;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#D85A30;cursor:pointer;padding:10px;background:var(--bg);border:1px solid var(--line);transition:opacity .2s;font-weight:500;opacity:.75}
 #clear-btn:hover{opacity:1}
-#results-list{display:flex;flex-direction:column;gap:20px}
-.result-item{cursor:pointer}
-.result-thumb{width:100%;aspect-ratio:16/9;background:#f5f5f5;border-radius:2px;overflow:hidden;margin-bottom:9px}
-.result-title{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:500;color:#111;line-height:1.3;margin-bottom:4px}
-.result-kw{font-family:'Space Grotesk',sans-serif;font-size:10px;color:#aaa;letter-spacing:.03em}
-#no-match{display:none;font-family:'Space Grotesk',sans-serif;font-size:12px;color:#bbb;line-height:1.75;margin-bottom:4px}
 
 
 
@@ -52,12 +43,12 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
 .project-photo{position:absolute;margin:0;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .4s;background:#eee;box-shadow:0 8px 32px #0002}
 #project-photos.visible .project-photo{opacity:1;transform:translateY(0)}
 .project-photo img{width:100%;height:100%;display:block;object-fit:cover}
+.project-photo a{display:block;width:100%;height:100%;color:inherit;pointer-events:none}
+#project-photos.visible .project-photo a{pointer-events:auto}
 .project-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:24px 12px 10px;background:linear-gradient(transparent,#0009);color:white;font-size:10px}
-#results-panel{pointer-events:none}#results-panel.is-open{pointer-events:auto}
 @media(prefers-reduced-motion:reduce){.project-photo{transition:none}}
-/* Keep floating keywords above the non-interactive photo layer. */
-#kw-canvas{z-index:21}
-#results-panel{z-index:22}
+/* Keywords draw above photos; the stage handles word hits before following links. */
+#kw-canvas{z-index:21;pointer-events:none}
 /* Softer photography keeps dark keywords legible without text outlines. */
 .project-photo{background:#fff}
 .project-photo img{opacity:.68}
@@ -65,26 +56,18 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
 .nav-logo,#headline h1,#hc-word{font-family:'Space Grotesk',sans-serif;font-weight:700;font-style:normal}
 #headline h1 em{font-style:normal}
 
-.result-thumb{position:relative}
-.result-thumb img{display:block;width:100%;height:100%;object-fit:cover}
-.result-thumb img[hidden]{display:none}
-.photo-unavailable{padding:24px;color:#999;font-size:11px}
-.photo-unavailable:not([hidden]){display:block}
-
 /* Black theme */
 html,body,#stage{background:#000;color:#eee}
-.nav-logo,#headline h1,#hc-word,.result-title{color:#f3f3f3}
+.nav-logo,#headline h1,#hc-word{color:#f3f3f3}
 .nav-link{color:#aaa}.nav-link:hover{color:#fff}
-#headline p,#hc-def,.result-kw,#results-keywords{color:#aaa}
+#headline p,#hc-def{color:#aaa}
 #hover-card{background:#141414;border-color:#333;box-shadow:0 6px 28px #0006}
 .hc-divider-line{background:#444}.hc-divider-label{color:#999}
-#results-panel{background:#0b0b0b;box-shadow:-1px 0 0 #292929}
-.result-thumb{background:#191919}
-#no-match{color:#aaa}
 .project-photo{background:#000}
 .project-photo img{opacity:.55}
 </style>
-<link rel="stylesheet" href="assets/site.css"></head>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/home-cursor.css"></head>
 <body data-page="home">
 
 <div id="stage">
@@ -97,7 +80,7 @@ html,body,#stage{background:#000;color:#eee}
     <p id="hl-p">Landscape design &nbsp;·&nbsp; Ecology &nbsp;·&nbsp; Research</p>
   </div>
 
-  <div id="project-photos" aria-hidden="true"></div>
+  <div id="project-photos" aria-label="Matching projects" inert></div>
   <div id="hover-card">
     <div id="hc-word"></div>
     <div id="hc-def"></div>
@@ -108,17 +91,11 @@ html,body,#stage{background:#000;color:#eee}
     <div id="hc-list"></div>
   </div>
 
-  <div id="results-panel">
-    <div id="results-header">
-      <div id="results-keywords"></div>
-      <div id="clear-btn">Clear</div>
-    </div>
-    <div id="no-match">No projects match this combination.<br>Try removing a keyword.</div>
-    <div id="results-list"></div>
-  </div>
+  <button id="clear-btn" type="button" hidden>Clear</button>
 </div>
 
 <script src="assets/project-content.js"></script>
+<script src="assets/keyword-layout.js"></script>
 <script>
 (async()=>{
 const PROJECTS = [{"id":0,"slug":"tidal-garden","title":"The Tidal Garden","type":"Public Realm","loc":"Shenzhen, CN","year":2023,"color":"#4a8fa8","coords":[114.06,22.54],"img":"https://picsum.photos/seed/tidal-1/1600/1000","teaser":"A living edge between city and mangrove, designed to flood and recover with the tides.","kw":["water","ecology","community"],"collaborator":"Shenzhen Mangrove Trust, Atelier Ren","award":"ASLA Honor Award, Analysis & Planning","description":"The Tidal Garden reclaims a stretch of hardened seawall as a living, flooding edge between the city and its mangrove fringe. Rather than fighting the tide, the design gives it room: boardwalks lift and settle with the water, planting bands are sequenced by salt tolerance, and a public terrace doubles as a flood basin during the wet season. It is a park that looks different every day, and is meant to.","blocks":[{"type":"full","src":"https://picsum.photos/seed/tidal-1/1600/1000"},{"type":"caption","src":"https://picsum.photos/seed/tidal-2/1600/900","label":"Boardwalk / Low tide","text":"Timber boardwalks are set on adjustable piers, tracking a 1.8m tidal range across the site."},{"type":"grid","cols":3,"images":["https://picsum.photos/seed/tidal-3/700/700","https://picsum.photos/seed/tidal-4/700/700","https://picsum.photos/seed/tidal-5/700/700"]},{"type":"quote","src":"https://picsum.photos/seed/tidal-6/1600/900","text":"We stopped drawing a line between land and water and started drawing a gradient instead.","attr":"Project Lead, Atelier Ren"},{"type":"full","src":"https://picsum.photos/seed/tidal-7/1600/1000"}]},{"id":1,"slug":"trail-for-healing","title":"Trail for Healing","type":"Cultural","loc":"California, US","year":2023,"color":"#b08050","coords":[-120.5,37.5],"img":"https://picsum.photos/seed/trail-1/1600/1000","teaser":"An interpretation trail reading fire ecology and post-burn forest recovery.","kw":["heritage","native species","slow design"],"collaborator":"US Forest Service, local fire ecologists","award":"","description":"Cut through a stand of forest three seasons after a wildfire, the Trail for Healing reads recovery rather than damage. Interpretive markers are placed where regrowth is most visible, not where the burn was worst, and the path itself is built from salvaged char-black timber. It asks visitors to sit with a landscape mid-recovery, not to mourn one that's finished.","blocks":[{"type":"full","src":"https://picsum.photos/seed/trail-1/1600/1000"},{"type":"offset","src":"https://picsum.photos/seed/trail-2/1100/1300"},{"type":"grid","cols":2,"images":["https://picsum.photos/seed/trail-3/900/1100","https://picsum.photos/seed/trail-4/900/1100"]}]},{"id":2,"slug":"seeds-ark","title":"Seeds' Ark","type":"Urban Strategy","loc":"Global","year":2024,"color":"#7aaa50","coords":[2.35,48.85],"img":"https://picsum.photos/seed/seeds-1/1600/1000","teaser":"A mobile seed bank tracing the routes of colonized plant species across continents.","kw":["native species","community","art"],"collaborator":"","award":"","description":"Seeds' Ark is a traveling seed bank and exhibition that follows the historical trade routes along which colonized plant species moved. Each stop adds a new set of seeds and a new set of stories, so the collection itself becomes a record of botanical migration rather than a fixed archive.","blocks":[{"type":"full","src":"https://picsum.photos/seed/seeds-1/1600/1000"}]},{"id":3,"slug":"flood-plain-commons","title":"Flood Plain Commons","type":"Public Realm","loc":"Rotterdam, NL","year":2024,"color":"#5b8fa0","coords":[4.9,52.37],"img":"https://picsum.photos/seed/flood-1/1600/1000","teaser":"Productive floodplain designed as neighbourhood commons — useful in dry years and wet.","kw":["water","community","resilience"],"collaborator":"Gemeente Rotterdam","award":"","description":"Flood Plain Commons turns a designated overflow basin into everyday neighbourhood ground: allotment plots, a football pitch, and an orchard occupy the space in dry years, and all of it is designed to go quietly underwater in wet ones. Nothing on site is precious about getting wet — that was the only way the budget and the hydrology both worked.","blocks":[{"type":"full","src":"https://picsum.photos/seed/flood-1/1600/1000"}]},{"id":4,"slug":"dormant-meadow","title":"Dormant Meadow","type":"Residential","loc":"Copenhagen, DK","year":2022,"color":"#7aaa50","coords":[12.57,55.68],"img":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80","teaser":"Three years of rewilding a suburban estate — in year one, almost nothing was visible.","kw":["meadow","native species","slow design"],"collaborator":"","award":"Nordic Landscape Prize, Shortlist","description":"Dormant Meadow documents three years of deliberately doing very little: a mown suburban lawn was left to its own devices, seeded only with species already dormant in the soil. Year one looked like neglect. Year three is a meadow. The project is as much a record of patience as it is a planting plan.","blocks":[{"type":"full","src":"https://picsum.photos/seed/meadow-1/1600/1000"},{"type":"caption","src":"https://picsum.photos/seed/meadow-2/1600/900","label":"Year One / Spring","text":"Nothing to see yet — the point being made was that nothing needed to be."},{"type":"grid","cols":4,"images":["https://picsum.photos/seed/meadow-3/700/700","https://picsum.photos/seed/meadow-4/700/700","https://picsum.photos/seed/meadow-5/700/700","https://picsum.photos/seed/meadow-6/700/700"]}]},{"id":5,"slug":"ridge-walk","title":"Ridge Walk","type":"Public Realm","loc":"Wellington, NZ","year":2021,"color":"#8c6aaa","coords":[174.78,-41.28],"img":"https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80","teaser":"An interpretation trail reading volcanic strata through gradient, material and species.","kw":["topography","paths","native species"],"collaborator":"","award":"","description":"Ridge Walk traces a volcanic ridgeline where every material choice — the gradient of the path, the paving stone, the plant palette — is keyed to the strata underfoot. Walking it end to end is meant to read like paging through a geological cross-section, at the pace of a footpath.","blocks":[{"type":"full","src":"https://picsum.photos/seed/ridge-1/1600/1000"}]},{"id":6,"slug":"slow-courtyard","title":"The Slow Courtyard","type":"Institutional","loc":"Kyoto, JP","year":2024,"color":"#a07878","coords":[135.77,35.01],"img":"https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80","teaser":"Silence choreographed through material weight, seasonal moss, and the speed of water.","kw":["contemplative","stone","ecology","materiality"],"collaborator":"","award":"","description":"The Slow Courtyard sits inside an institutional campus but asks visitors to move at a different pace than the buildings around it. Stone paving is set unevenly on purpose, moss is left uncleared between the joints, and a single channel of water is pitched just steep enough to be audible. Nothing here is meant to be crossed quickly.","blocks":[{"type":"full","src":"https://picsum.photos/seed/courtyard-1/1600/1000"}]},{"id":7,"slug":"estuary-terrace","title":"Estuary Terrace","type":"Residential","loc":"Portland, OR","year":2023,"color":"#5a9070","coords":[-122.68,45.52],"img":"https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80","teaser":"Cascading rain gardens stepping from house to tidal inlet — nothing is wasted.","kw":["water","topography","native species","materiality"],"collaborator":"","award":"","description":"Estuary Terrace steps a series of rain gardens down a steep residential lot toward a tidal inlet, so that every roof, path, and patio drains into the next planted terrace rather than a pipe. By the time water reaches the inlet it has been filtered through four separate beds.","blocks":[{"type":"full","src":"https://picsum.photos/seed/estuary-1/1600/1000"}]},{"id":8,"slug":"nomadic-nursery","title":"Nomadic Nursery","type":"Installation","loc":"São Paulo, BR","year":2022,"color":"#c09040","coords":[-46.63,-23.55],"img":"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80","teaser":"A mobile seed bank and social gathering space that moved through the city for six months.","kw":["native species","community","art"],"collaborator":"","award":"","description":"For six months, Nomadic Nursery moved between eight neighbourhoods on a modified flatbed cart: part mobile seed bank, part gathering space, part street furniture. Each stop's residents added seeds and stories from their own gardens before the cart moved on to the next site.","blocks":[{"type":"full","src":"https://picsum.photos/seed/nomadic-1/1600/1000"}]}];
@@ -145,6 +122,7 @@ const KEYWORD_DEFS = {
 };
 
 const UNIQUE_KEYWORDS = [...new Set(PROJECTS.flatMap(p => p.kw))];
+const MAX_KEYWORD_LEVELS = 4;
 
 function projectsFor(selected) {
   if (selected.length === 0) return [];
@@ -157,21 +135,6 @@ function relatedness(a, b) {
 }
 function projectsWith(kw) {
   return PROJECTS.filter(p => p.kw.includes(kw));
-}
-function projectThumbnail(p) {
-  return '<img src="' + p.image + '" alt="' + p.title + ' — illustrative landscape photo" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="photo-unavailable" hidden>Image unavailable</span>';
-}
-function thumbSVG(p, seed) {
-  const W = 200, H = 110;
-  const r = (n, m) => ((seed * 23 + n * 41) % m + m) % m;
-  const lines = [];
-  const lc = 6;
-  for (let i = 0; i < lc; i++) {
-    const y = H * 0.12 + i * (H * 0.78 / lc);
-    const accent = i === Math.floor(lc / 2);
-    lines.push(`<path d="M3,${y} Q${W*0.4},${y-5+r(i,10)} ${W-3},${y+r(i,5)-2}" stroke="${accent ? p.color : '#d8d8d8'}" stroke-width="${accent ? 1.3 : 0.6}" fill="none"/>`);
-  }
-  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:100%;display:block">${lines.join('')}</svg>`;
 }
 
 const canvas = document.getElementById('kw-canvas');
@@ -201,11 +164,13 @@ function initNodes() {
       else size = 21 + Math.random()*4;
 
       nodes.push({
+        layoutId: nodes.length,
         text: k, type: 'keyword',
         x: 70 + Math.random() * (W - 360), y: 100 + Math.random() * (H - 280),
         vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.42,
         size: size,
         baseOpacity: 0.22 + Math.random() * 0.36,
+        _fade: 1,
         selected: false,
         popTimer: 800 + Math.random()*2400,
         popping: false,
@@ -234,107 +199,178 @@ const hoverCard = document.getElementById('hover-card');
 
 const photoLayer=document.getElementById('project-photos');
 let photoGeneration=0;
-function hidePhotos(){photoGeneration++;photoLayer.classList.remove('visible');}
+let photoKey='';
+function hidePhotos(){photoGeneration++;photoKey='';photoLayer.inert=true;photoLayer.classList.remove('visible');}
 function showPhotos(n){
+ const path=selectedPath();
+ const key=path.length?path.map(node=>node.layoutId).join(','):'hover:'+n.layoutId;
+ if(key===photoKey) return;
+ photoKey=key;
  const generation=++photoGeneration;
- photoLayer.classList.remove('visible');photoLayer.replaceChildren();
- const projects=projectsWith(n.text);
- const aw=nodes.some(n=>n.selected)?W-400:W;
+ photoLayer.inert=true;photoLayer.classList.remove('visible');photoLayer.replaceChildren();
+ const projects=projectsFor(path.length?path.map(node=>node.text):[n.text]);
+ n=path[path.length-1]||n;
+ const aw=W;
  const width=Math.max(160,Math.min(W*.54,aw-24)),height=Math.max(120,Math.min(H*.56,H-88));
  projects.forEach((p,i)=>{
   const f=document.createElement('figure');f.className='project-photo';
   const w=width*(i%2?.82:1),h=height*(i%2?.90:1);
-  const right=n.x<aw/2;
-  let x=right?n.x+n._w/2+36:n.x-n._w/2-36-w;
+  const centerX=n.selected?n.x-n._w/2:n.x;
+  const right=centerX<aw/2;
+  let x=right?centerX+n._w/2+36:centerX-n._w/2-36-w;
   x+=(right?1:-1)*(i%2)*width*.30;
   const y=n.y-h/2+(i-(projects.length-1)/2)*height*.53;
   Object.assign(f.style,{left:Math.max(12,Math.min(aw-w-12,x))+'px',top:Math.max(68,Math.min(H-h-16,y))+'px',width:w+'px',height:h+'px',transitionDelay:i*45+'ms'});
-  const img=new Image();img.alt=p.title+' — illustrative landscape';img.src=p.image;img.onerror=()=>f.remove();
-  const c=document.createElement('figcaption');c.textContent=p.title+' · Preview image';
-  f.append(img,c);photoLayer.append(f);
+  const link=document.createElement('a');link.href='project.html?slug='+encodeURIComponent(p.slug);link.setAttribute('aria-label','View '+p.title);
+  const img=new Image();img.alt=p.heroAlt||p.title+' — illustrative landscape';img.src=p.image;
+  img.onerror=()=>{img.hidden=true;};
+  const c=document.createElement('figcaption');c.textContent=p.title+' · View project ↗';
+  link.append(img);f.append(link,c);c.style.pointerEvents='none';photoLayer.append(f);
  });
- requestAnimationFrame(()=>requestAnimationFrame(()=>{if(generation===photoGeneration)photoLayer.classList.add('visible');}));
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{if(generation===photoGeneration){photoLayer.inert=false;photoLayer.classList.add('visible');}}));
 }
-window.addEventListener('resize',hidePhotos);
-/* dedupe selected text so we only select ONE representative node per unique keyword */
-function isKeywordSelected(text) {
-  return nodes.some(n => n.text === text && n.selected);
+window.addEventListener('resize',()=>{
+ const path=selectedPath();
+ hidePhotos();
+ if(path.length) showPhotos(path[path.length-1]);
+});
+function selectedPath() {
+  return nodes.filter(n => n.selected).sort((a,b) => a.selOrder - b.selOrder);
 }
 
-function draw() {
+const reducedKeywordMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let lastDrawTime = performance.now();
+let focusLayoutKey = '';
+let candidateStageKey = '';
+let candidateRevealAt = 0;
+let pendingStageReveal = false;
+const stageCandidates = new Map();
+
+function arrangeFocusedKeywords(candidates, selected) {
+  if (!candidates.length) return;
+  const canvasRect = canvas.getBoundingClientRect();
+  const headerRect = document.querySelector('.site-header').getBoundingClientRect();
+  const headlineRect = document.getElementById('headline').getBoundingClientRect();
+  const obstacles = [{
+    x: headlineRect.left - canvasRect.left + headlineRect.width / 2,
+    y: headlineRect.top - canvasRect.top + headlineRect.height / 2,
+    width: headlineRect.width + 32, height: headlineRect.height + 32
+  }];
+  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  const selectedCenters = new Map();
+  selected.forEach(n => {
+    const width = ctx.measureText(n.text.toUpperCase()).width;
+    const center = { x: n.x - width / 2, y: n.y };
+    selectedCenters.set(n, center);
+    obstacles.push({ ...center, width: width + 32, height: 46 });
+  });
+  const items = candidates.map(n => {
+    const size = n.size * 1.2;
+    ctx.font = `400 ${size.toFixed(1)}px 'Space Grotesk', sans-serif`;
+    return {
+      id: n.layoutId, x: n.x, y: n.y,
+      width: ctx.measureText(n.text.toUpperCase()).width + 24, height: size + 20,
+      anchorX: selectedCenters.get(n._candAnchor).x, anchorY: n._candAnchor.y
+    };
+  });
+  const bounds = {
+    left: 24, right: W - 24,
+    top: headerRect.bottom - canvasRect.top + 24, bottom: H - 28,
+    obstacles
+  };
+  // Keep the next level near the most recently selected word, with room to breathe.
+  const anchor = selectedCenters.get(selected[selected.length - 1]);
+  const span = Math.sqrt(items.reduce((area, item) => area + item.width * item.height, 0) * 4);
+  const cloudWidth = Math.min(bounds.right - bounds.left, Math.max(380, span * 1.5));
+  const cloudHeight = Math.min(bounds.bottom - bounds.top, Math.max(260, span));
+  const left = Math.max(bounds.left, Math.min(bounds.right - cloudWidth, anchor.x - cloudWidth / 2));
+  const top = Math.max(bounds.top, Math.min(bounds.bottom - cloudHeight, anchor.y - cloudHeight / 2));
+  let positions = window.scatterKeywordLayout(items, {
+    ...bounds, left, right: left + cloudWidth, top, bottom: top + cloudHeight
+  });
+  const boxes = positions.map((p,i) => ({ ...items[i], ...p }));
+  const overlaps = (a,b) => Math.abs(a.x-b.x) < (a.width+b.width)/2 && Math.abs(a.y-b.y) < (a.height+b.height)/2;
+  if (boxes.some((box,i) => [...boxes.slice(i+1), ...obstacles].some(other => overlaps(box,other)))) {
+    positions = window.scatterKeywordLayout(items, bounds);
+  }
+  const targets = new Map(positions.map(p => [p.id, p]));
+  candidates.forEach(n => {
+    const target = targets.get(n.layoutId);
+    n._layoutX = target.x;
+    n._layoutY = target.y;
+  });
+}
+
+function draw(now = performance.now()) {
+  const elapsed = Math.max(0, Math.min(now - lastDrawTime, 50));
+  lastDrawTime = now;
+  const fadeStep = reducedKeywordMotion.matches ? 1 : 1 - Math.exp(-elapsed / 120);
   ctx.clearRect(0, 0, W, H);
   const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
-  const lineColorActive = '#D85A30';
   const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
   const textColorSel = '#D85A30';
   const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
 
-  const selectedReps = nodes.filter(n => n.selected);
-  selectedReps.sort((a,b) => (a.selOrder||0) - (b.selOrder||0));
+  const selectedReps = selectedPath();
 
-  /* layout constants for the right-hand reserved columns */
-  const selSpacing = 56;
-  const selColX = W - 400 - 50;
-  const selColY0 = 96;
-  const candSpacing = 28;
-  const candColGap = 150;
-
-  /* compute candidate columns FIRST (so we know exclusion zones before moving free words) */
-  let candidateNodes = [];
-  const exclusionRects = [];
-  if (selectedReps.length > 0) {
-    exclusionRects.push({x0: selColX-70, x1: W, y0:0, y1:H});
-  }
-
-  selectedReps.forEach((selNode, level) => {
-    const relatedWords = UNIQUE_KEYWORDS.filter(w => w !== selNode.text && relatedness(selNode.text, w) > 0 && !selectedReps.some(s => s.text === w));
-    const colX = selColX - candColGap * (level+1);
-    const totalH = (relatedWords.length>0 ? (relatedWords.length-1) * candSpacing : 0);
-    const startY = selColY0 + level*selSpacing - totalH/2;
-
-    relatedWords.forEach((w, i) => {
-      /* reuse a REAL existing node with this text (not selected, not already a candidate elsewhere) */
-      let cand = nodes.find(n => n.text === w && !n.selected && !n._isCandidate && !n._hiddenByWord);
-      if (!cand) cand = nodes.find(n => n.text === w && n._isCandidate && n._candFor === selNode.text);
-      if (!cand) return;
-
-      /* hide all OTHER instances of this word so only this one shows, in the column */
-      nodes.forEach(n => {
-        if (n.text === w && n !== cand) n._hiddenByWord = true;
-      });
-
-      cand._isCandidate = true;
-      cand._candFor = selNode.text;
-      cand._candAnchor = selNode;
-      cand._hiddenByWord = false;
-      const tx = colX, ty = startY + i*candSpacing;
-      cand.x += (tx - cand.x) * 0.07;
-      cand.y += (ty - cand.y) * 0.07;
-      candidateNodes.push(cand);
+  // Each level must be compatible with the entire selected path, not just one word.
+  const selectedWords = new Set(selectedReps.map(n => n.text));
+  const nextWords = new Set(selectedReps.length < MAX_KEYWORD_LEVELS
+    ? projectsFor([...selectedWords]).flatMap(p => p.kw).filter(word => !selectedWords.has(word)) : []);
+  const latest = selectedReps[selectedReps.length - 1];
+  const stageKey = selectedReps.map(n => n.layoutId).join(',');
+  if (stageKey !== candidateStageKey) {
+    const previousCandidates = new Map(stageCandidates);
+    stageCandidates.clear();
+    nextWords.forEach(word => {
+      const previous = previousCandidates.get(word);
+      const candidate = previous && !previous.selected ? previous : nodes
+        .filter(n => n.text === word && !n.selected)
+        .sort((a,b) => Math.hypot(a.x-latest.x,a.y-latest.y) - Math.hypot(b.x-latest.x,b.y-latest.y))[0];
+      if (candidate) stageCandidates.set(word,candidate);
     });
-
-    if (relatedWords.length > 0) {
-      exclusionRects.push({x0: colX-65, x1: colX+65, y0:0, y1:H});
-    }
+    pendingStageReveal = !!candidateStageKey && !!stageKey && !reducedKeywordMotion.matches;
+    candidateRevealAt = pendingStageReveal ? now + 220 : now;
+    candidateStageKey = stageKey;
+  }
+  const stageReady = now >= candidateRevealAt;
+  const opacityStep = pendingStageReveal ? 1 - Math.exp(-elapsed / 40) : fadeStep;
+  const candidateNodes = [];
+  nodes.forEach(n => {
+    n._hiddenByWord = false;
+    n._isCandidate = stageCandidates.get(n.text) === n;
+    n._candAnchor = n._isCandidate ? latest : null;
+    if (n._isCandidate) candidateNodes.push(n);
+    else n._lineEmphasis = 0;
+    if (n._selectionParent && !n._selectionParent.selected) n._selectionParent = null;
+    n._interactive = !selectedReps.length || n.selected || (n._isCandidate && stageReady);
+    const targetOpacity = n._interactive ? 1 : 0;
+    n._fade += (targetOpacity - n._fade) * opacityStep;
+    if (Math.abs(n._fade - targetOpacity) < .005) n._fade = targetOpacity;
   });
 
-  /* release hidden-duplicate flags for words that are no longer candidates anywhere
-     and no longer selected (so they rejoin the free float) */
-  const activeWords = new Set([...selectedReps.map(n=>n.text), ...candidateNodes.map(n=>n.text)]);
-  nodes.forEach(n => {
-    if (n._hiddenByWord && !activeWords.has(n.text)) {
-      n._hiddenByWord = false;
-      n._isCandidate = false;
-    }
-    if (!n.selected && n._isCandidate && !candidateNodes.includes(n)) {
-      n._isCandidate = false;
-    }
+  const layoutKey = selectedReps.length ? `${W}:${H}:${selectedReps.map(n => n.layoutId).join(',')}` : '';
+  if (layoutKey !== focusLayoutKey) {
+    if (selectedReps.length) arrangeFocusedKeywords(candidateNodes, selectedReps);
+    focusLayoutKey = layoutKey;
+  }
+  if (pendingStageReveal && stageReady) {
+    candidateNodes.forEach(n => {
+      n.x = n._layoutX;
+      n.y = n._layoutY;
+      n._fade = 0;
+    });
+    pendingStageReveal = false;
+  }
+  const layoutStep = reducedKeywordMotion.matches ? 1 : 1 - Math.exp(-elapsed / 170);
+  candidateNodes.forEach(n => {
+    if (pendingStageReveal || n === hoveredNode) return;
+    const dx = n._layoutX - n.x, dy = n._layoutY - n.y;
+    n.x = Math.abs(dx) < .2 ? n._layoutX : n.x + dx * layoutStep;
+    n.y = Math.abs(dy) < .2 ? n._layoutY : n.y + dy * layoutStep;
   });
 
   function inExclusion(x,y){
-    for (const r of exclusionRects) {
-      if (x > r.x0 && x < r.x1 && y > r.y0 && y < r.y1) return true;
-    }
     if (hoverExclusionCircle) {
       const dx = x - hoverExclusionCircle.x, dy = y - hoverExclusionCircle.y;
       if (Math.sqrt(dx*dx+dy*dy) < hoverExclusionCircle.r) return true;
@@ -345,17 +381,18 @@ function draw() {
   /* the hover cluster (orbiting related words around the hovered node) is itself a
      no-fly zone for unrelated free-floating words */
   let hoverExclusionCircle = null;
-  if (hoveredNode && !hoveredNode.selected && !hoveredNode._isCandidate) {
+  if (!selectedReps.length && hoveredNode && !hoveredNode.selected && !hoveredNode._isCandidate) {
     const clusterCount = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0).length;
     if (clusterCount > 0) {
       hoverExclusionCircle = { x: hoveredNode.x, y: hoveredNode.y, r: 110 + Math.min(clusterCount,4)*38 + 50 };
     }
   }
 
-  const playW = selectedReps.length > 0 ? selColX - candColGap*selectedReps.length - 80 : W * 0.98;
+  const playW = W * 0.98;
 
   nodes.forEach(n => {
-    if (n.selected || n._hiddenByWord || n._isCandidate) return;
+    // The focused layout settles once; drifting resumes when selection is cleared.
+    if (selectedReps.length) return;
 
     /* occasional "pop up" — sudden brief size pulse while still drifting */
     n.popTimer -= 1;
@@ -381,7 +418,7 @@ function draw() {
     }
 
     let tx = null, ty = null;
-    if (hoveredNode && hoveredNode !== n && !n.selected && !hoveredNode._isCandidate) {
+    if (!selectedReps.length && hoveredNode && hoveredNode !== n && !hoveredNode._isCandidate) {
       const rel = relatedness(hoveredNode.text, n.text);
       if (rel > 0 && n.text !== hoveredNode.text) {
         const others = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0);
@@ -411,28 +448,36 @@ function draw() {
       if (n.x > playW - 40) { n.x = playW - 40; n.vx = -Math.abs(n.vx); }
       if (n.y < 80) { n.y = 80; n.vy = Math.abs(n.vy); }
       if (n.y > H - 110) { n.y = H - 110; n.vy = -Math.abs(n.vy); }
-      /* bounce off any exclusion column rect we might still be drifting into */
+      /* Keep the unselected hover cluster clear while the background drifts. */
       if (inExclusion(n.x, n.y)) {
         n.x -= n.vx*3; n.vx = -n.vx;
       }
     }
   });
 
-  /* selected nodes: slow magnetic pull into a spaced right column, ordered by selection time */
-  selectedReps.forEach((n, i) => {
-    const tx = selColX, ty = selColY0 + i * selSpacing;
-    n.x += (tx - n.x) * 0.045;
-    n.y += (ty - n.y) * 0.045;
+  // Selected keywords stay at their click coordinates, even after the pointer leaves.
+
+  function drawFocusedConnection(from, to, emphasis) {
+    const opacity = ((isNight ? .06 : .04) + emphasis * .5) * Math.min(from._fade, to._fade);
+    ctx.beginPath();
+    ctx.moveTo(from.selected ? from.x - from._w / 2 : from.x, from.y);
+    ctx.lineTo(to.selected ? to.x - to._w / 2 : to.x, to.y);
+    ctx.strokeStyle = isNight ? `rgba(255,255,255,${opacity})` : `rgba(32,37,34,${opacity})`;
+    ctx.lineWidth = 1 + emphasis * 1.25;
+    ctx.stroke();
+  }
+
+  // A clicked relationship remains emphasized until either endpoint is deselected.
+  selectedReps.forEach(n => {
+    if (n._selectionParent) drawFocusedConnection(n, n._selectionParent, 1);
   });
 
   /* connecting lines: candidates to their anchor selected word, and hover-cluster lines */
   candidateNodes.forEach(cand => {
-    ctx.beginPath();
-    ctx.moveTo(cand.x, cand.y);
-    ctx.lineTo(cand._candAnchor.x, cand._candAnchor.y);
-    ctx.strokeStyle = lineColor;
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    const active = hoveredNode === cand;
+    const previous = cand._lineEmphasis || 0;
+    cand._lineEmphasis = previous + ((active ? 1 : 0) - previous) * fadeStep;
+    drawFocusedConnection(cand, cand._candAnchor, cand._lineEmphasis);
   });
 
   nodes.forEach(a => {
@@ -454,17 +499,17 @@ function draw() {
   });
 
   nodes.forEach(n => {
-    if (n._hiddenByWord) { n._w = 0; n._h = 0; return; }
+    if (n._fade === 0) { n._w = 0; n._h = 0; return; }
     const isHover = n === hoveredNode;
     const popMul = n._popScale || 1;
-    const fs = n._isCandidate ? (isHover ? 19 : 17) : (n.selected ? 18 : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2)));
+    const fs = n.selected ? 18 : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2));
     ctx.font = '400 ' + fs.toFixed(1) + "px 'Space Grotesk', sans-serif";
+    const photosVisible = photoLayer.classList.contains('visible');
     let col;
     if (n.selected) {
       col = textColorSel;
     } else if (n._isCandidate) {
-      const [r,g,b] = baseTextColor;
-      col = isHover ? textColorHover : `rgba(${r},${g},${b},0.62)`;
+      col = isHover ? textColorSel : (isNight ? '#fff' : '#202522');
     } else if (isHover) {
       col = textColorHover;
     } else {
@@ -474,12 +519,13 @@ function draw() {
       col = `rgba(${r},${g},${b},${op.toFixed(2)})`;
     }
     ctx.fillStyle = col;
-    ctx.textAlign = (n.selected || n._isCandidate) ? 'right' : 'center';
+    ctx.textAlign = n.selected ? 'right' : 'center';
     ctx.textBaseline = 'middle';
     const displayText = n.text.toUpperCase();
-    const photosVisible = photoLayer.classList.contains('visible');
-    if (photosVisible && !n.selected) ctx.fillStyle = isNight ? '#fff' : '#202522';
+    if (photosVisible && !selectedReps.length) ctx.fillStyle = isNight ? '#fff' : '#202522';
+    ctx.globalAlpha = n._fade;
     ctx.fillText(displayText, n.x, n.y);
+    ctx.globalAlpha = 1;
     n._w = ctx.measureText(displayText).width;
     n._h = fs + 8;
   });
@@ -488,18 +534,30 @@ function draw() {
 }
 draw();
 
-canvas.addEventListener('mousemove', e => {
+function nodeAt(x, y, includeBackground = false) {
+  const focused = nodes.some(n => n.selected);
+  let found = null;
+  let background = null;
+  nodes.forEach(n => {
+    if(n._hiddenByWord || !n._w || n._fade < .05 || (n._isCandidate && !n._interactive)) return;
+    const cx = n.selected ? n.x - n._w / 2 : n.x;
+    if (Math.abs(x - cx) < n._w / 2 + 10 && Math.abs(y - n.y) < n._h / 2 + 6) {
+      if (!focused || n.selected || n._isCandidate) found = n;
+      else if (includeBackground) background = n;
+    }
+  });
+  // Foreground words take priority when a drifting background word crosses them.
+  return found || background;
+}
+
+stage.addEventListener('mousemove', e => {
   const r = canvas.getBoundingClientRect();
   mouseX = e.clientX - r.left; mouseY = e.clientY - r.top;
-  let found = null;
-  nodes.forEach(n => {
-    if(n._hiddenByWord || !n._w) return;
-    const cx = (n.selected || n._isCandidate) ? n.x - n._w / 2 : n.x;
-    if (Math.abs(mouseX - cx) < n._w / 2 + 10 && Math.abs(mouseY - n.y) < n._h / 2 + 6) found = n;
-  });
+  const overControl = e.target.closest('.site-header, #clear-btn');
+  const found = overControl ? null : nodeAt(mouseX, mouseY);
   if (found !== hoveredNode) {
     hoveredNode = found;
-    if(found) showPhotos(found); else hidePhotos();
+    if(found) showPhotos(found);
     if (found && !found.selected && !found._isCandidate) {
       const def = KEYWORD_DEFS[found.text] || '';
       const rel = projectsWith(found.text);
@@ -543,53 +601,68 @@ canvas.addEventListener('mousemove', e => {
       hoverCard.style.display = 'none';
     }
   }
-  canvas.style.cursor = found ? 'pointer' : 'default';
+  if (!found && !nodes.some(n => n.selected) && !e.target.closest('.project-photo')) hidePhotos();
+  stage.style.cursor = found ? 'pointer' : 'default';
 });
 
-canvas.addEventListener('mouseleave', () => {
+stage.addEventListener('mouseleave', () => {
   hoveredNode = null;
-  hidePhotos();
+  if (!nodes.some(n => n.selected)) hidePhotos();
   hoverCard.style.display = 'none';
 });
 
 let selectionCounter = 0;
 
-canvas.addEventListener('click', () => {
-  hidePhotos();
-  if (!hoveredNode) return;
-  const word = hoveredNode.text;
-  const clicked = hoveredNode;
+function selectKeyword(node, parent = null) {
+  const path = selectedPath();
+  if (node.selected || path.length >= MAX_KEYWORD_LEVELS ||
+      path.some(n => n.text === node.text) ||
+      !projectsFor([...path.map(n => n.text), node.text]).length) return false;
+  if (path.length) parent = path[path.length - 1];
+  // Selected labels are right-aligned; preserve their visible center on promotion.
+  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  node._w = ctx.measureText(node.text.toUpperCase()).width;
+  node._h = 26;
+  node.x += node._w / 2;
+  node._selectionParent = parent;
+  node.selected = true;
+  node._isCandidate = false;
+  node.selOrder = ++selectionCounter;
+  return true;
+}
 
+stage.addEventListener('click', e => {
+  if (e.target.closest('.site-header, #clear-btn')) return;
+  const rect = canvas.getBoundingClientRect();
+  const clicked = nodeAt(e.clientX - rect.left, e.clientY - rect.top, true);
+  if (!clicked) return;
+  e.preventDefault();
+  if (nodes.some(n => n.selected) && !clicked.selected && !clicked._isCandidate) {
+    clearSelection();
+    return;
+  }
+  hoveredNode = clicked;
   if (clicked._isCandidate) {
-    /* promote candidate to a real selected node, appended after its anchor in the chain */
-    nodes.forEach(n => {
-      if (n.text === word && n !== clicked) n._hiddenByWord = true;
-    });
-    clicked.selected = true;
-    clicked._isCandidate = false;
-    clicked.selOrder = ++selectionCounter;
+    /* Keep the emphasized connection when a related word becomes selected. */
+    if (!selectKeyword(clicked, clicked._candAnchor)) return;
     hoverCard.style.display = 'none';
-    updateResults();
+    updateSelectionControls();
+    showPhotos(clicked);
     return;
   }
 
   const willSelect = !clicked.selected;
 
   if (willSelect) {
-    nodes.forEach(n => {
-      if (n === clicked) {
-        n.selected = true;
-        n._isDupe = false;
-        n.selOrder = ++selectionCounter;
-      } else if (n.text === word) {
-        n._hiddenByWord = true;
-      }
-    });
+    selectKeyword(clicked);
   } else {
-    /* deselecting: also release any candidates anchored to this word */
+    // Removing a level also removes its descendants, returning to the prior level.
+    const removedOrder = clicked.selOrder;
     nodes.forEach(n => {
-      if (n.text === word) {
+      if (n.selected && n.selOrder >= removedOrder) {
+        n.x -= n._w / 2;
         n.selected = false;
+        n._selectionParent = null;
         n._isDupe = false;
         n._hiddenByWord = false;
         n.selOrder = 0;
@@ -599,13 +672,27 @@ canvas.addEventListener('click', () => {
         n.vy = Math.sin(angle) * burst;
       }
     });
+    hoveredNode = null;
   }
   hoverCard.style.display = 'none';
-  updateResults();
+  updateSelectionControls();
+  const path = selectedPath();
+  const focus = path[path.length - 1];
+  if (focus) showPhotos(focus);
+  else {
+    hoveredNode = null;
+    hidePhotos();
+  }
 });
 
-document.getElementById('clear-btn').addEventListener('click', () => {
+function clearSelection() {
+  hoveredNode = null;
+  hoverCard.style.display = 'none';
+  hidePhotos();
   nodes.forEach(n => {
+    if (n.selected) n.x -= n._w / 2;
+    n._selectionParent = null;
+    n._lineEmphasis = 0;
     if (n.selected || n._isCandidate || n._hiddenByWord) {
       n.selected = false;
       n._isDupe = false;
@@ -619,81 +706,22 @@ document.getElementById('clear-btn').addEventListener('click', () => {
     }
   });
   selectionCounter = 0;
-  updateResults();
+  updateSelectionControls();
+}
+document.getElementById('clear-btn').addEventListener('click', e => {
+  e.stopPropagation();
+  clearSelection();
+});
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') clearSelection();
 });
 
-function projectsRelatedToAny(selected) {
-  if (selected.length === 0) return [];
-  return PROJECTS.filter(p => selected.some(k => p.kw.includes(k)));
+function updateSelectionControls() {
+  document.getElementById('clear-btn').hidden = selectedPath().length === 0;
 }
 
-function updateResults() {
-  const selectedWords = [...new Set(nodes.filter(n => n.selected).map(n => n.text))];
-  const panel = document.getElementById('results-panel');
-  const kwDiv = document.getElementById('results-keywords');
-  const listDiv = document.getElementById('results-list');
-  const noMatch = document.getElementById('no-match');
-
-  if (selectedWords.length === 0) {
-    panel.style.opacity = '0';
-    panel.classList.remove('is-open');
-    return;
-  }
-  panel.style.opacity = '1';
-  panel.classList.add('is-open');
-  kwDiv.textContent = selectedWords.join(' + ').toUpperCase();
-
-  const matches = projectsFor(selectedWords);
-  listDiv.innerHTML = '';
-  if (matches.length === 0) {
-    noMatch.style.display = 'block';
-
-    const suggested = projectsRelatedToAny(selectedWords);
-    if (suggested.length > 0) {
-      const spacer = document.createElement('div');
-      spacer.style.height = '38px';
-      listDiv.appendChild(spacer);
-
-      const label = document.createElement('div');
-      label.style.fontFamily = "'Space Grotesk', sans-serif";
-      label.style.fontSize = '9.5px';
-      label.style.letterSpacing = '.1em';
-      label.style.textTransform = 'uppercase';
-      label.style.color = '#bbb';
-      label.style.marginBottom = '14px';
-      label.textContent = 'Suggested projects';
-      listDiv.appendChild(label);
-
-      suggested.forEach((p, i) => {
-        const d = document.createElement('div');
-        d.className = 'result-item';
-        d.style.marginBottom = '20px';
-        d.innerHTML = `
-          <div class="result-thumb">${projectThumbnail(p)}</div>
-          <div class="result-title">${p.title}</div>
-          <div class="result-kw">${p.kw.join(' · ')}</div>
-        `;
-        d.onclick = () => { window.location.href = 'project.html?slug=' + p.slug; };
-        listDiv.appendChild(d);
-      });
-    }
-  } else {
-    noMatch.style.display = 'none';
-    matches.forEach((p, i) => {
-      const d = document.createElement('div');
-      d.className = 'result-item';
-      d.innerHTML = `
-        <div class="result-thumb">${projectThumbnail(p)}</div>
-        <div class="result-title">${p.title}</div>
-        <div class="result-kw">${p.kw.join(' · ')}</div>
-      `;
-      d.onclick = () => { window.location.href = 'project.html?slug=' + p.slug; };
-      listDiv.appendChild(d);
-    });
-  }
-}
 })();
 </script>
-<script src="assets/site.js"></script></body>
+<script src="assets/site.js"></script>
+<script src="assets/home-cursor.js"></script></body>
 </html>
-
