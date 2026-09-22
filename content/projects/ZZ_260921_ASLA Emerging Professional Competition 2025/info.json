@@ -130,16 +130,11 @@
   "color": "#8a9b91",
   "layout": [
     {
-      "kind": "plan",
-      "files": [
-        "web/02-site-plan.webp"
-      ]
-    },
-    {
-      "kind": "perspectives",
+      "kind": "plan-composition",
       "files": [
         "web/03-perspective-2.webp",
-        "web/04-perspective-3.webp"
+        "web/04-perspective-3.webp",
+        "web/02-site-plan.webp"
       ]
     },
     {
@@ -169,5 +164,6 @@
         "web/12-material-timeline.webp"
       ]
     }
-  ]
+  ],
+  "narrativePlacement": "sidebar"
 }
