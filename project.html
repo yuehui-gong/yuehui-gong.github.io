@@ -176,6 +176,23 @@
     .project-end{ padding:60px 0 90px; }
   }
 .project-story{padding:48px 0 64px;max-width:760px}.project-story h3{font-size:20px;font-weight:500;margin-bottom:24px}.project-story p{font-size:14px;line-height:1.85;margin:0 0 22px;color:var(--ink)}
+
+  .project-collection{width:90%;align-self:center;padding:40px 0;display:grid;gap:22px;}
+  .project-collection figure{margin:0;min-width:0;}
+  .project-collection img{width:100%;height:auto;display:block;}
+  .project-collection figcaption{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);padding-top:12px;}
+  .collection-perspectives{width:82%;gap:36px;}
+  .collection-concepts{width:82%;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 16px;padding:28px 0 44px;}
+  .collection-materials{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px;padding-bottom:12px;}
+  .collection-timeline{padding-top:16px;}
+  @media(max-width:860px){
+    .project-collection{width:100%;padding:24px 0;gap:16px;}
+    .collection-perspectives{width:92%;gap:24px;}
+    .collection-concepts{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .collection-materials{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .collection-timeline{padding-top:8px;}
+    .project-collection figcaption{font-size:9px;letter-spacing:.05em;}
+  }
 </style>
 <link rel="stylesheet" href="assets/site.css"></head>
 <body data-page="project">
@@ -414,6 +431,8 @@ function renderMeta(list){
 
 function renderBlock(b){
   switch(b.type){
+    case "collection":
+      return `<section class="block project-collection collection-${b.kind}">${b.images.map(image=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="lazy"><figcaption>${image.caption || ''}</figcaption></figure>`).join('')}</section>`;
     case "hero":
       return `<div class="block layout-hero"><div class="img-wrap"><img src="${b.src}" alt=""></div></div>`;
     case "full":

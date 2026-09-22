@@ -1,7 +1,7 @@
 {
   "slug": "ZZ_260921_ASLA Emerging Professional Competition 2025",
-  "title": "Harmony Circle",
-  "shortTitle": "Harmony Circle",
+  "title": "From Separation to Ambiguity",
+  "shortTitle": "From Separation to Ambiguity",
   "location": {
     "site": "Harmony Circle",
     "city": "New Orleans, Louisiana",
@@ -23,7 +23,7 @@
     "materiality"
   ],
   "summary": "A proposal for Harmony Circle in New Orleans that brings layered cultural memories into dialogue through monument fragments, tactile materials, and shifting gradients of wetness.",
-  "storyTitle": "From separation to ambiguity",
+  "storyTitle": "Project narrative",
   "description": [
     "New Orleans and the Mississippi River exist in a state of perpetual liminality—neither fully land nor water, neither defined by a single culture or race. But over time, levees rose, drawing harder lines between water and land. Social and environmental divides converged, pushing many underserved communities into the city’s most flood-prone areas. What was once fluid—ecologically and socially—began to harden into separation. The site, located at the threshold between racially diverse neighborhoods, was once envisioned as a civic common. Over time, it became a stage for political symbolism, reinforcing a singular and exclusionary narrative.",
     "This project proposes a shift—from separation to ambiguity. Socially, it does not seek resolution through a single narrative of unity but instead holds space for tension to be seen and shared. The design creates a platform for multiple stories to coexist, using materials with distinct cultural references to reflect the layered identities of New Orleans. Fragments of the removed monument are redistributed—not as objects of reverence, but as participatory surfaces for community expression, as reflections of evolving social temperament. As James Baldwin reminds us, “Not everything that is faced can be changed. But nothing can be changed until it is faced.” Our proposal invites multiplicity, dialogue and confrontation.",
@@ -127,5 +127,47 @@
     }
   ],
   "imageCredits": "",
-  "color": "#8a9b91"
+  "color": "#8a9b91",
+  "layout": [
+    {
+      "kind": "plan",
+      "files": [
+        "web/02-site-plan.webp"
+      ]
+    },
+    {
+      "kind": "perspectives",
+      "files": [
+        "web/03-perspective-2.webp",
+        "web/04-perspective-3.webp"
+      ]
+    },
+    {
+      "kind": "concepts",
+      "files": [
+        "web/05-topographic-cut.webp",
+        "web/06-circulation.webp",
+        "web/07-column.webp",
+        "web/08-edge.webp",
+        "web/09-tree-grove.webp",
+        "web/10-wetness.webp",
+        "web/11-materiality.webp"
+      ]
+    },
+    {
+      "kind": "materials",
+      "files": [
+        "web/13-material-study-1.webp",
+        "web/14-material-study-2.webp",
+        "web/15-material-study-3.webp",
+        "web/16-material-study-4.webp"
+      ]
+    },
+    {
+      "kind": "timeline",
+      "files": [
+        "web/12-material-timeline.webp"
+      ]
+    }
+  ]
 }
