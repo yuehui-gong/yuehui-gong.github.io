@@ -60,12 +60,6 @@
       "description": ""
     },
     {
-      "file": "web/06-circulation.webp",
-      "caption": "Circulation",
-      "alt": "Circulation for the Harmony Circle landscape proposal in New Orleans",
-      "description": ""
-    },
-    {
       "file": "web/07-column.webp",
       "caption": "Column",
       "alt": "Column for the Harmony Circle landscape proposal in New Orleans",
@@ -141,7 +135,6 @@
       "kind": "concepts",
       "files": [
         "web/05-topographic-cut.webp",
-        "web/06-circulation.webp",
         "web/07-column.webp",
         "web/08-edge.webp",
         "web/09-tree-grove.webp",
