@@ -6,7 +6,7 @@ window.loadStudioProjects = async function () {
     return await Promise.all(slugs.map(async (slug,i)=>{
       const base='content/projects/'+encodeURIComponent(slug)+'/';
       const p=await read(base+'info.json');
-      return {id:100+i,slug:p.slug,title:p.title,shortTitle:p.shortTitle||p.title,type:p.type,city:p.location.city,country:p.location.country,loc:p.location.city+', '+p.location.country,coords:p.location.coordinates,year:p.year,color:p.color||'#8a9b78',kw:p.keywords,img:base+p.hero.file,heroAlt:p.hero.alt,teaser:p.summary,description:p.description.join('\n\n'),story:p.description,collaborator:p.collaborators.join(', '),award:p.awards.map(a=>a.name+' '+a.year+' — '+a.distinction).join('; '),awards:p.awards,blocks:[{type:'hero',src:base+p.hero.file},...p.images.map(image=>({type:'caption',src:base+image.file,alt:image.alt,label:image.caption,text:image.description||''}))]};
+      return {id:100+i,slug:p.slug,title:p.title,shortTitle:p.shortTitle||p.title,type:p.type,city:p.location.city,country:p.location.country,loc:p.location.city+', '+p.location.country,coords:p.location.coordinates,year:p.year,color:p.color||'#8a9b78',kw:p.keywords,img:base+p.hero.file,heroAlt:p.hero.alt,teaser:p.summary,description:p.description.join('\n\n'),story:p.description,storyTitle:p.storyTitle,competition:p.competition,collaborator:p.collaborators.join(', '),award:p.awards.map(a=>a.name+' '+a.year+' — '+a.distinction).join('; '),awards:p.awards,blocks:[{type:'hero',src:base+p.hero.file},...p.images.map(image=>({type:'caption',src:base+image.file,alt:image.alt,label:image.caption,text:image.description||''}))]};
     }));
   } catch(error) { console.error('Project content could not load',error); return []; }
 };

@@ -1,0 +1,131 @@
+{
+  "slug": "ZZ_260921_ASLA Emerging Professional Competition 2025",
+  "title": "Harmony Circle",
+  "shortTitle": "Harmony Circle",
+  "location": {
+    "site": "Harmony Circle",
+    "city": "New Orleans, Louisiana",
+    "country": "United States",
+    "coordinates": [
+      -90.07247,
+      29.94333
+    ]
+  },
+  "year": 2025,
+  "type": "Landscape competition proposal",
+  "competition": "ASLA Emerging Professional Competition 2025",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [
+    "liminality",
+    "memory",
+    "wetness",
+    "materiality"
+  ],
+  "summary": "A proposal for Harmony Circle in New Orleans that brings layered cultural memories into dialogue through monument fragments, tactile materials, and shifting gradients of wetness.",
+  "storyTitle": "From separation to ambiguity",
+  "description": [
+    "New Orleans and the Mississippi River exist in a state of perpetual liminality—neither fully land nor water, neither defined by a single culture or race. But over time, levees rose, drawing harder lines between water and land. Social and environmental divides converged, pushing many underserved communities into the city’s most flood-prone areas. What was once fluid—ecologically and socially—began to harden into separation. The site, located at the threshold between racially diverse neighborhoods, was once envisioned as a civic common. Over time, it became a stage for political symbolism, reinforcing a singular and exclusionary narrative.",
+    "This project proposes a shift—from separation to ambiguity. Socially, it does not seek resolution through a single narrative of unity but instead holds space for tension to be seen and shared. The design creates a platform for multiple stories to coexist, using materials with distinct cultural references to reflect the layered identities of New Orleans. Fragments of the removed monument are redistributed—not as objects of reverence, but as participatory surfaces for community expression, as reflections of evolving social temperament. As James Baldwin reminds us, “Not everything that is faced can be changed. But nothing can be changed until it is faced.” Our proposal invites multiplicity, dialogue and confrontation.",
+    "Environmentally, the project treats land and water not as opposites, but as varying degrees of wetness. Subtle topographic modulation allows the site to hold water during rain and release it during dry periods. Materials are chosen for their capacity to absorb, retain, or repel moisture, creating gradients of wet and dry that shift with the weather. Rather than a hard edge, the threshold between land and water is felt bodily—through pooled water, filtered mist, and softened ground. Visitors encounter the site through the skin, through atmospheric change. Amid heat, water connects across age, race, and background with moments of shared bodily relief.",
+    "By revealing tension rather than erasing it, the site becomes a space where information is exchanged, contradictions emerge, and meanings are continually deposited. Here, ambiguity becomes the medium through which memory, climate, and culture coalesce—unfinished, alive, and open to encounter."
+  ],
+  "hero": {
+    "file": "web/01-perspective-1.webp",
+    "alt": "Perspective 1 for the Harmony Circle landscape proposal in New Orleans"
+  },
+  "images": [
+    {
+      "file": "web/02-site-plan.webp",
+      "caption": "Site plan",
+      "alt": "Site plan for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/03-perspective-2.webp",
+      "caption": "Perspective 2",
+      "alt": "Perspective 2 for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/04-perspective-3.webp",
+      "caption": "Perspective 3",
+      "alt": "Perspective 3 for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/05-topographic-cut.webp",
+      "caption": "Topographic cut",
+      "alt": "Topographic cut for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/06-circulation.webp",
+      "caption": "Circulation",
+      "alt": "Circulation for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/07-column.webp",
+      "caption": "Column",
+      "alt": "Column for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/08-edge.webp",
+      "caption": "Edge",
+      "alt": "Edge for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/09-tree-grove.webp",
+      "caption": "Tree grove",
+      "alt": "Tree grove for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/10-wetness.webp",
+      "caption": "Wetness",
+      "alt": "Wetness for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/11-materiality.webp",
+      "caption": "Materiality",
+      "alt": "Materiality for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/12-material-timeline.webp",
+      "caption": "Material timeline",
+      "alt": "Material timeline for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/13-material-study-1.webp",
+      "caption": "Material study 1",
+      "alt": "Material study 1 for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/14-material-study-2.webp",
+      "caption": "Material study 2",
+      "alt": "Material study 2 for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/15-material-study-3.webp",
+      "caption": "Material study 3",
+      "alt": "Material study 3 for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    },
+    {
+      "file": "web/16-material-study-4.webp",
+      "caption": "Material study 4",
+      "alt": "Material study 4 for the Harmony Circle landscape proposal in New Orleans",
+      "description": ""
+    }
+  ],
+  "imageCredits": "",
+  "color": "#8a9b91"
+}

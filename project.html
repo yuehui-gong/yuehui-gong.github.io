@@ -390,10 +390,12 @@ const project = {
     { label: "Collaborator", value: record.collaborator || "—" },
     { label: "Award",        value: record.award || "—" },
     { label: "Year",         value: record.year },
+    ...(record.competition ? [{ label: "Competition", value: record.competition }] : []),
     { label: "Keyword",      value: record.kw.join(" / ") }
   ],
   description: record.teaser || record.description,
   story: record.story,
+  storyTitle: record.storyTitle,
   blocks: [
     { type: "hero", src: heroSrc },
     ...(record.blocks && record.blocks.length ? record.blocks.slice(1) : [{ type: "full", src: record.img }])
@@ -458,7 +460,7 @@ function renderProject(p){
     document.querySelector('.layout-hero .img-wrap').style.aspectRatio='auto';
     const hero=document.querySelector('.layout-hero img'); hero.style.height='auto'; hero.alt=record.heroAlt;
     const story=document.createElement('section'); story.className='project-story';
-    const h=document.createElement('h3'); h.textContent='An unfinished ecological performance'; story.append(h);
+    const h=document.createElement('h3'); h.textContent=p.storyTitle || 'Project narrative'; story.append(h);
     p.story.forEach(text=>{const paragraph=document.createElement('p');paragraph.textContent=text;story.append(paragraph)});
     document.querySelector('.project-end').before(story);
   }
