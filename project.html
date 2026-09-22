@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="day">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -248,10 +248,21 @@
     .reference-sheet .collection-material-board{grid-template-columns:minmax(0,2.6fr) repeat(2,minmax(0,1fr));}
   }
 </style>
-<link rel="stylesheet" href="assets/site.css"></head>
-<body data-page="project">
+<link rel="stylesheet" href="assets/site.css"><style>
+:root{--sidebar-w:clamp(480px,38vw,640px)}
+.project-body{grid-template-columns:var(--sidebar-w) minmax(0,1fr)}
+.sidebar{padding-left:40px;padding-right:48px}
+#proj-desc-wrap{max-width:100%}
+.content{min-width:0}
+.content img{max-height:min(760px,80vh);object-fit:contain}
+.layout-hero .img-wrap{aspect-ratio:auto;overflow:visible}
+.layout-hero .img-wrap img{height:auto;max-height:min(760px,80vh);object-fit:contain}
+.media-grid img{height:auto;aspect-ratio:auto;object-fit:contain}
+@media(max-width:860px){.project-body{grid-template-columns:minmax(0,1fr)}.sidebar{padding:32px 24px}.content img,.layout-hero .img-wrap img{max-height:75svh}}
+</style></head>
+<body data-page="project" class="day">
 
-  <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
+  <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a></div></header>
 
   <div class="project-body">
 
@@ -564,5 +575,5 @@ window.addEventListener('scroll', onScroll, { passive:true });
 onScroll();
 })();
 </script>
-<script src="assets/site.js"></script></body>
+<script src="assets/site.js?v=project-day"></script></body>
 </html>
