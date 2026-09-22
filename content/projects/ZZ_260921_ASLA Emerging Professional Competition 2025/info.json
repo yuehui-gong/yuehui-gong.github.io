@@ -124,39 +124,35 @@
   "color": "#8a9b91",
   "layout": [
     {
-      "kind": "plan-composition",
+      "kind": "paired-views",
       "files": [
         "web/03-perspective-2.webp",
-        "web/04-perspective-3.webp",
+        "web/04-perspective-3.webp"
+      ]
+    },
+    {
+      "kind": "concept-plan",
+      "files": [
+        "web/05-topographic-cut.webp",
+        "web/11-materiality.webp",
+        "web/10-wetness.webp",
+        "web/07-column.webp",
+        "web/08-edge.webp",
+        "web/09-tree-grove.webp",
         "web/02-site-plan.webp"
       ]
     },
     {
-      "kind": "concepts",
+      "kind": "material-board",
       "files": [
-        "web/05-topographic-cut.webp",
-        "web/07-column.webp",
-        "web/08-edge.webp",
-        "web/09-tree-grove.webp",
-        "web/10-wetness.webp",
-        "web/11-materiality.webp"
-      ]
-    },
-    {
-      "kind": "materials",
-      "files": [
-        "web/13-material-study-1.webp",
-        "web/14-material-study-2.webp",
+        "web/12-material-timeline.webp",
         "web/15-material-study-3.webp",
-        "web/16-material-study-4.webp"
-      ]
-    },
-    {
-      "kind": "timeline",
-      "files": [
-        "web/12-material-timeline.webp"
+        "web/16-material-study-4.webp",
+        "web/13-material-study-1.webp",
+        "web/14-material-study-2.webp"
       ]
     }
   ],
-  "narrativePlacement": "sidebar"
+  "narrativePlacement": "sidebar",
+  "presentation": "reference-sheet"
 }

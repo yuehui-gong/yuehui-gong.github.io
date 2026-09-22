@@ -220,6 +220,33 @@
     .collection-plan-composition figure:nth-child(3){grid-column:1 / span 2;grid-row:2;}
     .collection-concepts{width:88%;grid-template-columns:repeat(2,minmax(0,1fr));}
   }
+
+  /* Compact composition based on the supplied project sheet. */
+  .content.reference-sheet{width:100%;max-width:1080px;justify-self:center;min-width:0;}
+  .reference-sheet .project-collection{width:100%;max-width:none;padding:0;margin-top:32px;gap:16px;}
+  .reference-sheet .layout-hero{padding-bottom:0;}
+  .reference-sheet .collection-paired-views{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:16px;}
+  .reference-sheet .collection-concept-plan{grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,2.5fr);align-items:center;gap:10px 14px;}
+  .collection-concept-plan figure:nth-child(1){grid-area:1 / 1;}
+  .collection-concept-plan figure:nth-child(2){grid-area:1 / 2;}
+  .collection-concept-plan figure:nth-child(3){grid-area:2 / 1;}
+  .collection-concept-plan figure:nth-child(4){grid-area:2 / 2;}
+  .collection-concept-plan figure:nth-child(5){grid-area:3 / 1;}
+  .collection-concept-plan figure:nth-child(6){grid-area:3 / 2;}
+  .collection-concept-plan figure:nth-child(7){grid-area:1 / 3 / span 3 / 4;}
+  .reference-sheet .collection-material-board{grid-template-columns:minmax(0,3.2fr) repeat(2,minmax(0,1fr));align-items:center;gap:12px; margin:40px 0 48px;}
+  .collection-material-board figure:nth-child(1){grid-area:1 / 1 / span 2 / 2;}
+  .collection-material-board figure:nth-child(2){grid-area:1 / 2;}
+  .collection-material-board figure:nth-child(3){grid-area:1 / 3;}
+  .collection-material-board figure:nth-child(4){grid-area:2 / 2;}
+  .collection-material-board figure:nth-child(5){grid-area:2 / 3;}
+  .reference-sheet figcaption{font-size:9px;padding-top:7px;letter-spacing:.04em;}
+  @media(max-width:520px){
+    .reference-sheet .project-collection{gap:8px;margin-top:22px;}
+    .reference-sheet figcaption{font-size:8px;}
+    .reference-sheet .collection-concept-plan{grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,2.5fr);}
+    .reference-sheet .collection-material-board{grid-template-columns:minmax(0,2.6fr) repeat(2,minmax(0,1fr));}
+  }
 </style>
 <link rel="stylesheet" href="assets/site.css"></head>
 <body data-page="project">
@@ -493,6 +520,7 @@ function renderBlock(b){
 }
 
 function renderProject(p){
+  if(record.presentation==='reference-sheet') document.getElementById('proj-content').classList.add('reference-sheet');
   document.getElementById("proj-eyebrow").textContent = p.eyebrow;
   document.getElementById("proj-title").textContent = p.title;
   document.getElementById("proj-loc").textContent = p.location;
