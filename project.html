@@ -17,7 +17,8 @@
     --nav-h: 54px;
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; color-scheme:light; }
+  html:not(.day){ color-scheme:dark; }
   body{
     font-family:'Inter', -apple-system, "Helvetica Neue", Arial, sans-serif;
     color:var(--ink);
@@ -226,6 +227,7 @@
   .reference-sheet .project-collection{width:100%;max-width:none;padding:0;margin-top:32px;gap:16px;}
   .reference-sheet .layout-hero{padding-bottom:0;}
   .reference-sheet .collection-paired-views{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:16px;}
+  .reference-sheet .collection-paired-views + .collection-paired-views{margin-top:40px;}
   .reference-sheet .collection-concept-plan{grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,2.5fr);align-items:center;gap:10px 14px;}
   .collection-concept-plan figure:nth-child(1){grid-area:1 / 1;}
   .collection-concept-plan figure:nth-child(2){grid-area:1 / 2;}
@@ -240,6 +242,18 @@
   .collection-material-board figure:nth-child(3){grid-area:1 / 3;}
   .collection-material-board figure:nth-child(4){grid-area:2 / 2;}
   .collection-material-board figure:nth-child(5){grid-area:2 / 3;}
+  .reference-sheet .project-collection.collection-concept-study{grid-template-columns:minmax(0,1fr);justify-items:center;margin-top:clamp(-32px,-3vw,-10px);}
+  .collection-concept-study figure{width:84%;}
+  .reference-sheet .collection-concept-study + .collection-paired-views{margin-top:4px;}
+  .reference-sheet .collection-material-and-panorama{grid-template-columns:minmax(0,1.3fr) minmax(0,3.2fr);align-items:center;margin:20px 0 0;}
+  .reference-sheet.materiality-stacked .collection-material-and-panorama{grid-template-columns:minmax(0,1fr);justify-items:center;gap:32px;}
+  /* Show source rows 576–2496: retain all four studies, omit blank borders and the embedded caption. */
+  .materiality-stacked .collection-material-and-panorama figure:first-child{width:40%;max-width:350px;aspect-ratio:2265 / 1920;position:relative;overflow:hidden;}
+  .materiality-stacked .collection-material-and-panorama figure:first-child img{position:absolute;top:-30%;left:0;width:100%;height:auto;max-height:none;}
+  .materiality-stacked .collection-material-and-panorama figure:last-child{width:100%;}
+  .reference-sheet .collection-closing-plan{justify-items:center;margin:24px 0 32px;}
+  .reference-sheet.materiality-stacked .collection-closing-plan{margin-top:72px;}
+  .collection-closing-plan figure{width:72%;max-width:680px;}
   .reference-sheet figcaption{font-size:9px;padding-top:7px;letter-spacing:.04em;}
   @media(max-width:520px){
     .reference-sheet .project-collection{gap:8px;margin-top:22px;}
@@ -305,7 +319,7 @@
      for sending a single page to someone; use the shared-folder version
      (project.html + projects-data.js) for the real, linked-up site.
      ============================================================================ -->
-<script src="assets/project-content.js"></script>
+<script src="assets/project-content.js?v=leaving-traces-20260927"></script>
 <script>
 (async()=>{
 const PROJECTS = [
@@ -459,6 +473,8 @@ const TYPES = ["All", "Public Realm", "Residential", "Cultural", "Institutional"
 PROJECTS.unshift(...await window.loadStudioProjects());
 const slug = new URLSearchParams(location.search).get('slug') || PROJECTS[0].slug;
 const record = PROJECTS.find(p => p.slug === slug) || PROJECTS[0];
+document.body.dataset.projectTheme = record.pageTheme === 'night' ? 'night' : 'day';
+window.dispatchEvent(new CustomEvent('project-theme'));
 const idx = PROJECTS.findIndex(p => p.slug === record.slug);
 const nextRecord = PROJECTS[(idx + 1) % PROJECTS.length];
 
@@ -498,7 +514,7 @@ function renderMeta(list){
 function renderBlock(b){
   switch(b.type){
     case "collection":
-      return `<section class="block project-collection collection-${b.kind}">${b.images.map(image=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="lazy"><figcaption>${image.caption || ''}</figcaption></figure>`).join('')}</section>`;
+      return `<section class="block project-collection collection-${b.kind}">${b.images.map(image=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="lazy">${image.caption ? `<figcaption>${image.caption}</figcaption>` : ''}</figure>`).join('')}</section>`;
     case "hero":
       return `<div class="block layout-hero"><div class="img-wrap"><img src="${b.src}" alt=""></div></div>`;
     case "full":
@@ -532,6 +548,7 @@ function renderBlock(b){
 
 function renderProject(p){
   if(record.presentation==='reference-sheet') document.getElementById('proj-content').classList.add('reference-sheet');
+  if((new URLSearchParams(location.search).get('layout') || record.layoutVariant)==='stacked-materiality') document.getElementById('proj-content').classList.add('materiality-stacked');
   document.getElementById("proj-eyebrow").textContent = p.eyebrow;
   document.getElementById("proj-title").textContent = p.title;
   document.getElementById("proj-loc").textContent = p.location;
@@ -575,5 +592,5 @@ window.addEventListener('scroll', onScroll, { passive:true });
 onScroll();
 })();
 </script>
-<script src="assets/site.js?v=project-day"></script></body>
+<script src="assets/site.js?v=project-theme"></script></body>
 </html>

@@ -325,13 +325,30 @@ html:not(.day){color-scheme:dark}
 
 <footer><span>Scroll to travel</span><span>Founded 2014</span></footer>
 
-<script src="assets/project-content.js"></script>
+<script src="assets/project-content.js?v=leaving-traces-20260927"></script>
 <script>
 (async function(){
 
   var projects = [{"name":"The Tidal Garden","city":"Shenzhen","country":"CN","type":"Public Realm","lon":114.06,"lat":22.54,"seed":"tidal-garden","img":"https://picsum.photos/seed/tidal-1/1600/1000","slug":"tidal-garden"},{"name":"Trail for Healing","city":"California","country":"US","type":"Cultural","lon":-120.5,"lat":37.5,"seed":"trail-for-healing","img":"https://picsum.photos/seed/trail-1/1600/1000","slug":"trail-for-healing"},{"name":"Seeds' Ark","city":"Global","country":"","type":"Urban Strategy","lon":2.35,"lat":48.85,"seed":"seeds-ark","img":"https://picsum.photos/seed/seeds-1/1600/1000","slug":"seeds-ark"},{"name":"Flood Plain Commons","city":"Rotterdam","country":"NL","type":"Public Realm","lon":4.9,"lat":52.37,"seed":"flood-plain-commons","img":"https://picsum.photos/seed/flood-1/1600/1000","slug":"flood-plain-commons"},{"name":"Dormant Meadow","city":"Copenhagen","country":"DK","type":"Residential","lon":12.57,"lat":55.68,"seed":"dormant-meadow","img":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80","slug":"dormant-meadow"},{"name":"Ridge Walk","city":"Wellington","country":"NZ","type":"Public Realm","lon":174.78,"lat":-41.28,"seed":"ridge-walk","img":"https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80","slug":"ridge-walk"},{"name":"The Slow Courtyard","city":"Kyoto","country":"JP","type":"Institutional","lon":135.77,"lat":35.01,"seed":"slow-courtyard","img":"https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80","slug":"slow-courtyard"},{"name":"Estuary Terrace","city":"Portland","country":"OR","type":"Residential","lon":-122.68,"lat":45.52,"seed":"estuary-terrace","img":"https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80","slug":"estuary-terrace"},{"name":"Nomadic Nursery","city":"São Paulo","country":"BR","type":"Installation","lon":-46.63,"lat":-23.55,"seed":"nomadic-nursery","img":"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80","slug":"nomadic-nursery"}];
 
-  projects.unshift(...(await window.loadStudioProjects()).map(p=>({name:p.shortTitle,city:p.city,country:p.country,type:p.type,lon:p.coords[0],lat:p.coords[1],seed:p.slug,img:p.img,slug:p.slug})));
+  function hasCoordinates(p){
+    return p && Number.isFinite(p.lon) && Number.isFinite(p.lat) && Math.abs(p.lon)<=180 && Math.abs(p.lat)<=90;
+  }
+  projects.unshift(...(await window.loadStudioProjects()).map(p=>{
+    var coordinates=Array.isArray(p.coords)?p.coords:[];
+    var position={lon:coordinates[0],lat:coordinates[1]};
+    if(!hasCoordinates(position)) position={lon:null,lat:null};
+    return {name:p.shortTitle,city:p.city,country:p.country,loc:p.loc,type:p.type,...position,seed:p.slug,img:p.img,slug:p.slug};
+  }));
+  function cameraPosition(index){
+    if(hasCoordinates(projects[index])) return projects[index];
+    // Borrow only a camera view; projects without coordinates get no map marker.
+    for(var distance=1;distance<projects.length;distance++){
+      if(hasCoordinates(projects[index-distance])) return projects[index-distance];
+      if(hasCoordinates(projects[index+distance])) return projects[index+distance];
+    }
+    return null;
+  }
   var track = document.getElementById('track');
 
   var capName = document.getElementById('capName');
@@ -422,6 +439,7 @@ html:not(.day){color-scheme:dark}
     if(gl) gl.viewport(0,0,canvas.width,canvas.height);
     var layer = document.getElementById('earthMarkers'); layer.innerHTML=''; markers=[];
     projects.forEach(function(p){
+      if(!hasCoordinates(p)){markers.push(null);return;}
       var m=document.createElement('div'); m.className='marker';
       m.innerHTML='<span class="ring"></span><span class="core"></span><span class="marker-label">'+p.city.toUpperCase()+'</span>';
       layer.appendChild(m); markers.push(m);
@@ -433,6 +451,7 @@ html:not(.day){color-scheme:dark}
     earthLon=lon;
     if(gl && earthReady){gl.uniform1f(angle,lon*Math.PI/180);gl.uniform1f(tilt,cameraLat);gl.drawArrays(gl.TRIANGLES,0,6);}
     projects.forEach(function(p,i){
+      if(!markers[i]) return;
       var lat=p.lat*Math.PI/180, delta=(p.lon-lon)*Math.PI/180;
       var x=Math.cos(lat)*Math.sin(delta), wy=Math.sin(lat), wz=Math.cos(lat)*Math.cos(delta);
       var y=wy*Math.cos(cameraLat)-wz*Math.sin(cameraLat), z=wy*Math.sin(cameraLat)+wz*Math.cos(cameraLat);
@@ -460,22 +479,26 @@ html:not(.day){color-scheme:dark}
     var hi = Math.min(projects.length-1, lo+1);
     var frac = clamped - lo;
 
-    var longitudeDelta = ((projects[hi].lon - projects[lo].lon + 540) % 360) - 180;
-    drawEarth(projects[lo].lon + longitudeDelta * frac - 110*(1-entranceEase(introProgress)), projects[lo].lat + (projects[hi].lat-projects[lo].lat)*frac - 35);
+    var from=cameraPosition(lo), to=cameraPosition(hi);
+    if(from && to){
+      var longitudeDelta = ((to.lon - from.lon + 540) % 360) - 180;
+      drawEarth(from.lon + longitudeDelta * frac - 110*(1-entranceEase(introProgress)), from.lat + (to.lat-from.lat)*frac - 35);
+    } else drawEarth(earthLon,earthTilt);
 
     var nearest = Math.round(clamped);
     if(nearest !== current){
       current = nearest;
-      markers.forEach(function(m, i){ m.classList.toggle('active', i === current); });
+      markers.forEach(function(m, i){ if(m) m.classList.toggle('active', i === current); });
       var p = projects[current];
       capName.textContent = p.name; document.getElementById("open-project").href="project.html?slug="+p.slug;
-      capLoc.textContent = p.city + ', ' + p.country + ' — ' + p.type;
+      var place=p.loc || [p.city,p.country].filter(value=>value && value!=='-' && value!=='—').join(', ') || '-';
+      capLoc.textContent = place + ' — ' + p.type;
       countEl.textContent = String(current+1).padStart(2,'0') + ' / ' + String(projects.length).padStart(2,'0');
       hudCountry.textContent = p.country.toUpperCase();
       hudSite.textContent = '\u203A ' + p.name.toUpperCase();
-      hudGps.textContent = 'GPS: ' + p.lat.toFixed(6) + ', ' + p.lon.toFixed(6);
-      locationName.textContent = p.city + ', ' + p.country;
-      locationGps.textContent = 'GPS  ' + Math.abs(p.lat).toFixed(4) + '° ' + (p.lat>=0?'N':'S') + '  /  ' + Math.abs(p.lon).toFixed(4) + '° ' + (p.lon>=0?'E':'W');
+      hudGps.textContent = hasCoordinates(p) ? 'GPS: ' + p.lat.toFixed(6) + ', ' + p.lon.toFixed(6) : 'GPS: -';
+      locationName.textContent = place;
+      locationGps.textContent = hasCoordinates(p) ? 'GPS  ' + Math.abs(p.lat).toFixed(4) + '° ' + (p.lat>=0?'N':'S') + '  /  ' + Math.abs(p.lon).toFixed(4) + '° ' + (p.lon>=0?'E':'W') : 'GPS  -';
     }
 
     document.getElementById('earthMarkers').style.opacity = clamp((introProgress-.45)/.55,0,1);

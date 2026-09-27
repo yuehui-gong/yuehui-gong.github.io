@@ -1,0 +1,124 @@
+{
+  "slug": "JH_260927_Leaving Traces",
+  "title": "Leaving Traces",
+  "shortTitle": "Leaving Traces",
+  "location": {
+    "site": "-",
+    "city": "-",
+    "country": "-",
+    "coordinates": null
+  },
+  "year": "-",
+  "type": "-",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [
+    "process",
+    "memory",
+    "trauma-informed",
+    "materiality"
+  ],
+  "summary": "Leaving Traces proposes ecological restoration as a living practice of remembrance.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "In Chester County, the history of the Underground Railroad runs through a landscape of fields, wooded slopes, and creek valleys. For people escaping slavery, these environments could offer concealment, expose movement, or influence where and when they could travel. Their journeys depended on a close reading of the land and networks of mutual aid. Today, this history meets a changing landscape, where erosion, flooding, and habitat degradation call for renewed collective care.",
+    "Leaving Traces proposes ecological restoration as a living practice of remembrance. With ChesLen Preserve as a pilot for the Brandywine Greenway, the project brings residents, students, historians, and land stewards together to care for the places through which these histories are understood. Together, they would restore serpentine grasslands, create stormwater basins that support birds, and build woody structures that slow runoff, capture sediment, and improve firefly habitat. Shared labor becomes a way to carry the legacy of mutual aid into the present landscape.",
+    "Memory is encountered through the body: in the movement between open fields and wooded slopes, the sound of an owl beyond the trees, or the changing visibility of a woodland at dusk. Guided walks bring these encounters into conversation with documented accounts of movement, concealment, and survival. Seasonal change gives each return a different character, allowing historical interpretation and ecological observation to unfold together.",
+    "Over time, the work leaves traces of its own. A tended grassland, a planted slope, or a pool that holds water records acts of care that others will inherit. Seasonal stewardship and commemorative gatherings invite each generation to return, learn, and contribute. Remembrance takes shape through this repeated exchange between people and place, carrying the Underground Railroad’s legacy of mutual aid into the care of future landscapes."
+  ],
+  "hero": {
+    "file": "web/perspective-1.webp",
+    "alt": "Owl habitat and the shadowed ditch in the Leaving Traces landscape proposal"
+  },
+  "images": [
+    {
+      "file": "web/concept-choreography.webp",
+      "caption": "",
+      "alt": "Choreography concept for Leaving Traces",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-2.webp",
+      "caption": "",
+      "alt": "Perspective 2 for Leaving Traces",
+      "description": ""
+    },
+    {
+      "file": "web/sequential-section-2.webp",
+      "caption": "",
+      "alt": "Sequential section 2 for Leaving Traces",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-3.webp",
+      "caption": "",
+      "alt": "Perspective 3 for Leaving Traces",
+      "description": ""
+    },
+    {
+      "file": "web/sequential-section-3.webp",
+      "caption": "",
+      "alt": "Sequential section 3 for Leaving Traces",
+      "description": ""
+    },
+    {
+      "file": "web/concept-materiality.webp",
+      "caption": "",
+      "alt": "Wax, heat, and light material studies for Leaving Traces",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-4.webp",
+      "caption": "",
+      "alt": "Panoramic perspective 4 for Leaving Traces",
+      "description": ""
+    },
+    {
+      "file": "web/plan.webp",
+      "caption": "",
+      "alt": "Site plan of the Leaving Traces landscape proposal",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "concept-study",
+      "files": [
+        "web/concept-choreography.webp"
+      ]
+    },
+    {
+      "kind": "paired-views",
+      "files": [
+        "web/perspective-2.webp",
+        "web/sequential-section-2.webp"
+      ]
+    },
+    {
+      "kind": "paired-views",
+      "files": [
+        "web/perspective-3.webp",
+        "web/sequential-section-3.webp"
+      ]
+    },
+    {
+      "kind": "material-and-panorama",
+      "files": [
+        "web/concept-materiality.webp",
+        "web/perspective-4.webp"
+      ]
+    },
+    {
+      "kind": "closing-plan",
+      "files": [
+        "web/plan.webp"
+      ]
+    }
+  ],
+  "imageCredits": "-",
+  "color": "#b08050",
+  "narrativePlacement": "sidebar",
+  "presentation": "reference-sheet",
+  "pageTheme": "night",
+  "layoutVariant": "stacked-materiality"
+}
