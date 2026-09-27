@@ -4,15 +4,31 @@
   "shortTitle": "Water Afterlife",
   "location": {
     "site": "",
-    "city": "",
-    "country": "",
+    "city": "Tianjin",
+    "country": "China",
     "coordinates": null
   },
-  "year": "",
-  "type": "",
-  "collaborators": [],
-  "awards": [],
-  "keywords": [],
+  "year": 2022,
+  "type": "Urban Infrastructure, Landscape Design",
+  "collaborators": ["Yanhao Chai"],
+  "awards": [
+    {
+      "name": "Muse Design Award",
+      "year": 2024,
+      "distinction": "Silver Winner"
+    },
+    {
+      "name": "New York Architectural Design Award",
+      "year": 2024,
+      "distinction": "Silver Winner"
+    },
+    {
+      "name": "London Design Awards",
+      "year": 2024,
+      "distinction": "Silver Winner"
+    }
+  ],
+  "keywords": ["Water", "Heat", "Topography"],
   "summary": "",
   "description": [],
   "hero": {
