@@ -1,0 +1,115 @@
+{
+  "slug": "JH_260927_From Ruins to Roots",
+  "title": "From Ruins to Roots",
+  "shortTitle": "From Ruins to Roots",
+  "location": {
+    "site": "Akademika Pavlova Station, Saltivskyi District",
+    "city": "Kharkiv",
+    "country": "Ukraine",
+    "coordinates": null
+  },
+  "year": "-",
+  "type": "Landscape design",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [
+    "resilience",
+    "community",
+    "materiality",
+    "recovery"
+  ],
+  "summary": "From Ruins to Roots reimagines vacant land around Kharkiv’s Akademika Pavlova Station as flexible public space for shelter, community connection, and long-term recovery.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Russia’s war in Ukraine has devastated cities and frayed social trust. Modern conflict targets minds as well as infrastructure, using misinformation to polarize communities. Meeting basic needs is urgent, yet cohesion must be rebuilt in parallel—and landscape architects are central to that work. Drawing on Operation Enduring Freedom, where park upgrades and reforestation helped stabilize daily life, this project reimagines metro stations as dual-purpose hubs for shelter and connection, fostering resilience during conflict and laying the groundwork for postwar recovery through adaptive, community-led interventions. In Kharkiv, metro stations have become lifelines during the ongoing conflict, providing 24/7 humanitarian aid. These deeply buried spaces offer safety, but prolonged confinement can heighten isolation and anxiety. Despite their protection, people still need access to outdoor public spaces. With many typical gathering places destroyed, the vacant areas surrounding metro stations offer opportunities for daylight, fresh air, and safe social interaction.",
+    "This project centers on Akademika Pavlova Station along the Saltivska Metro Line, located in Saltivskyi District—one of Kharkiv’s largest and most heavily damaged residential areas, marked by limited public space and fragmented commercial activity. The station lies near low-rise housing with insufficient access to shelter and ongoing humanitarian support. Its surroundings, dominated by expansive parking lots, present great potential for redevelopment.",
+    "These vacant lots offer opportunities for surgical interventions that can transform them into public amenities, fostering community connection and resilience during conflict. Community-driven recovery is essential for both individual healing and rebuilding social bonds. Empowering residents in the rebuilding process fosters a sense of control and purpose amid instability. Even small-scale actions—like creating temporary green spaces—carry profound meaning. Activities such as community gardening or public art workshops offer stability and help restore normalcy. Spaces for expression—like murals or storytelling events—help residents to process trauma and reconnect with others. Initiatives such as community seed banks, aimed at restoring war-torn ecosystems by propagating phytoremediation seeds and raising awareness of the conflict’s environmental impact, can also foster a sense of purpose and agency. These “quick and dirty” interventions build collaboration, solidarity, and belonging, evolving into lasting spaces that preserve community resilience.",
+    "The design begins with material exploration, inspired by initiatives like Zero Waste Kharkiv that reframe war debris as a valuable resource. Cataloging available materials and using photo collages to study spatial and formal relationships embeds material thinking into the design process. A clear circulation framework then organizes the site, linking public, semi-private, and private spaces. A north-south pedestrian axis connects the metro station to Barabashovo Market, while an east-west route links to the Kharkiv River—embedding the project into broader urban and ecological systems. Flexible spaces support a range of uses, from aid distribution to public celebrations. Features like a community lawn that doubles as a helicopter landing zone and a multipurpose center ensure long-term preparedness. A local seed bank, integrated into the community garden, supports both ecological restoration and food security.",
+    "The vacant land around Akademika Pavlova Station—serving as both shelter and transit hub—can be reimagined as a flexible public space that addresses immediate needs while laying the groundwork for long-term recovery. It transforms war-induced devastation into an opportunity for more resilient community. At the regional scale, its position along a potential commercial spine and near the Kharkiv River allows it to link economic and ecological systems. Quick-win projects like this can catalyze broader development, delivering visible impact, creating jobs, and rebuilding trust over time."
+  ],
+  "hero": {
+    "file": "web/concept-materiality.webp",
+    "alt": "Material palette and collage studies exploring the reuse of war debris in From Ruins to Roots"
+  },
+  "images": [
+    {
+      "file": "web/concept-phasing.webp",
+      "caption": "",
+      "alt": "Phasing diagram showing community activities during war and postwar recovery",
+      "description": ""
+    },
+    {
+      "file": "web/plan.webp",
+      "caption": "",
+      "alt": "Site plan for public space and community amenities around Akademika Pavlova Station",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-1.webp",
+      "caption": "",
+      "alt": "Wartime aid distribution and postwar community gathering around Akademika Pavlova Station",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-2.webp",
+      "caption": "",
+      "alt": "Community market, healing woods, and seed bank perspectives with a landscape section",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-3.webp",
+      "caption": "",
+      "alt": "Evening community gathering around a fire in the postwar landscape",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-4.webp",
+      "caption": "",
+      "alt": "Public landscape adapted to provide shelter and humanitarian support during future conflict",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "project-sequence",
+      "files": [
+        "web/concept-phasing.webp"
+      ]
+    },
+    {
+      "kind": "project-sequence",
+      "files": [
+        "web/plan.webp"
+      ]
+    },
+    {
+      "kind": "project-sequence",
+      "files": [
+        "web/perspective-1.webp"
+      ]
+    },
+    {
+      "kind": "project-sequence",
+      "files": [
+        "web/perspective-2.webp"
+      ]
+    },
+    {
+      "kind": "project-sequence",
+      "files": [
+        "web/perspective-3.webp"
+      ]
+    },
+    {
+      "kind": "project-sequence",
+      "files": [
+        "web/perspective-4.webp"
+      ]
+    }
+  ],
+  "imageCredits": "-",
+  "color": "#8a9b78",
+  "narrativePlacement": "sidebar",
+  "presentation": "reference-sheet",
+  "pageTheme": "day"
+}
