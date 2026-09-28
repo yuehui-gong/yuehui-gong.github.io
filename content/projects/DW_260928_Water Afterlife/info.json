@@ -93,5 +93,6 @@
   ],
   "imageCredits": "",
   "color": "#8a9b78",
-  "storyTitle": "Project Narrative"
+  "storyTitle": "Project Narrative",
+  "narrativePlacement": "sidebar"
 }

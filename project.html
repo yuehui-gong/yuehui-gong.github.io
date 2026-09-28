@@ -87,6 +87,7 @@
     margin-bottom:3px;
   }
   .meta-item .value{ font-size:11.5px; font-weight:500; }
+  .award-entry + .award-entry{ margin-top:8px; }
 
   /* the 200-word intro — lives in the sidebar, right below the meta list.
      It fades out as the page scrolls (opacity tied to scroll position),
@@ -486,7 +487,7 @@ const project = {
   location: record.loc,
   meta: [
     { label: "Collaborator", value: record.collaborator || "—" },
-    { label: "Award",        value: record.award || "—" },
+    { label: "Award",        value: record.awards?.length ? record.awards.map(a => `${a.name} ${a.year} — ${a.distinction}`) : record.award || "—" },
     { label: "Year",         value: record.year },
     ...(record.competition ? [{ label: "Competition", value: record.competition }] : []),
     { label: "Keyword",      value: record.kw.join(" / ") }
@@ -507,7 +508,7 @@ function renderMeta(list){
   return list.map(m => `
     <div class="meta-item">
       <div class="label">${m.label}</div>
-      <div class="value">${m.value}</div>
+      <div class="value">${Array.isArray(m.value) ? m.value.map(value => `<div class="award-entry">${value}</div>`).join('') : m.value}</div>
     </div>`).join("");
 }
 
