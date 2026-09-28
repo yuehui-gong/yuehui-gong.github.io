@@ -515,7 +515,7 @@ function renderMeta(list){
 function renderBlock(b){
   switch(b.type){
     case "collection":
-      return `<section class="block project-collection collection-${b.kind}">${b.images.map(image=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="lazy">${image.caption ? `<figcaption>${image.caption}</figcaption>` : ''}</figure>`).join('')}</section>`;
+      return `<section class="block project-collection collection-${b.kind}">${b.images.map((image,index)=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="${b.kind==='material-and-panorama' && index===0 ? 'eager' : 'lazy'}">${image.caption ? `<figcaption>${image.caption}</figcaption>` : ''}</figure>`).join('')}</section>`;
     case "hero":
       return `<div class="block layout-hero"><div class="img-wrap"><img src="${b.src}" alt=""></div></div>`;
     case "full":
