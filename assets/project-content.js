@@ -1,7 +1,7 @@
 // Published project records live in content/projects/<slug>/info.json.
 window.loadStudioProjects = async function () {
   try {
-    const read = async url => { const r=await fetch(url); if(!r.ok) throw new Error(url+': '+r.status); return r.json(); };
+    const read = async url => { const r=await fetch(url, {cache:'no-cache'}); if(!r.ok) throw new Error(url+': '+r.status); return r.json(); };
     const slugs=await read('content/projects/index.json');
     return await Promise.all(slugs.map(async (slug,i)=>{
       const base='content/projects/'+encodeURIComponent(slug)+'/';
