@@ -35,8 +35,8 @@
     "Sunlight no longer simply appears; it leaves a taste on the air. As the leaves dance in the wind, can you hear all the voices of the plants now?"
   ],
   "hero": {
-    "file": "web/cover.webp",
-    "alt": "Whispers Beyond the Looking Glass cover with project title and narrative over a garden perspective"
+    "file": "web/axon.webp",
+    "alt": "Axonometric for Whispers Beyond the Looking Glass"
   },
   "images": [
     {
@@ -46,9 +46,9 @@
       "description": ""
     },
     {
-      "file": "web/axon.webp",
-      "alt": "Axonometric for Whispers Beyond the Looking Glass",
-      "caption": "Axonometric",
+      "file": "web/cover.webp",
+      "alt": "Whispers Beyond the Looking Glass cover with project title and narrative over a garden perspective",
+      "caption": "Project cover",
       "description": ""
     },
     {
@@ -80,7 +80,7 @@
     {
       "kind": "garden-sheet",
       "files": [
-        "web/axon.webp"
+        "web/cover.webp"
       ]
     },
     {
