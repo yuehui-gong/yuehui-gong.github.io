@@ -1,0 +1,104 @@
+{
+  "slug": "ZZ_260928_Domaine de Chaumont Competition 2025",
+  "title": "Whispers Beyond the Looking Glass",
+  "shortTitle": "Whispers Beyond the Looking Glass",
+  "location": {
+    "city": "Chaumont-sur-Loire",
+    "country": "France",
+    "site": "Domaine de Chaumont-sur-Loire",
+    "coordinates": [
+      1.18266,
+      47.47811
+    ]
+  },
+  "year": 2025,
+  "type": "Garden competition proposal",
+  "competition": "International Garden Festival of Chaumont-sur-Loire 2025",
+  "collaborators": [
+    "Jiewen Hu",
+    "Kwan Yu (Lillian) Chung",
+    "Wei Xia"
+  ],
+  "awards": [],
+  "keywords": [
+    "plant agency",
+    "perception",
+    "sound",
+    "artificiality"
+  ],
+  "summary": "An invitation to listen to plants: artificial topiaries, distorted perspectives, and a singing tree lead visitors through a looking glass into a secret garden, questioning how we perceive living nature.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Once upon a time, there was a singing tree deep in the forest…",
+    "From afar, it appears to be an ordinary garden — lush and well-tended. Yet the illusion fractures the moment your fingers graze the surface of the disproportionate topiaries at the entrance — the odd rubbery texture and the unchanging greenness unsettle your expectations. Mismatched scales, peculiar textures, and warped spatial perspectives confuse your sense of space. In this disoriented garden, sporadic hums from trees become the only guide, beckoning you deeper into the Secret Garden beyond the portals of the Looking Glass.",
+    "This garden is a quest for vegetal agency. Often viewed as passive or mere resources, plants are frequently undervalued for their intrinsic complexity. By playfully amplifying the contrast between the “artificial and living” and “static and unpredictable”, the garden invites visitors to reconsider their tendency to oversimplify nature to fit within human cognitive limits and aesthetic preference. The personified singing tree becomes a portal — an invitation to transcend anthropocentric perceptions and recognize plants as expressive beings in the world.",
+    "Sunlight no longer simply appears; it leaves a taste on the air. As the leaves dance in the wind, can you hear all the voices of the plants now?"
+  ],
+  "hero": {
+    "file": "web/cover.webp",
+    "alt": "Whispers Beyond the Looking Glass cover with project title and narrative over a garden perspective"
+  },
+  "images": [
+    {
+      "file": "web/hand-drawn-render.webp",
+      "alt": "Garden perspective for Whispers Beyond the Looking Glass",
+      "caption": "Garden perspective",
+      "description": ""
+    },
+    {
+      "file": "web/axon.webp",
+      "alt": "Axonometric for Whispers Beyond the Looking Glass",
+      "caption": "Axonometric",
+      "description": ""
+    },
+    {
+      "file": "web/plan.webp",
+      "alt": "Garden plan for Whispers Beyond the Looking Glass",
+      "caption": "Garden plan",
+      "description": ""
+    },
+    {
+      "file": "web/section.webp",
+      "alt": "Garden section for Whispers Beyond the Looking Glass",
+      "caption": "Garden section",
+      "description": ""
+    },
+    {
+      "file": "web/planting-list.webp",
+      "alt": "Planting palette for Whispers Beyond the Looking Glass",
+      "caption": "Planting palette",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "garden-view",
+      "files": [
+        "web/hand-drawn-render.webp"
+      ]
+    },
+    {
+      "kind": "paired-views",
+      "files": [
+        "web/axon.webp",
+        "web/plan.webp"
+      ]
+    },
+    {
+      "kind": "garden-section",
+      "files": [
+        "web/section.webp"
+      ]
+    },
+    {
+      "kind": "garden-planting",
+      "files": [
+        "web/planting-list.webp"
+      ]
+    }
+  ],
+  "narrativePlacement": "sidebar",
+  "presentation": "reference-sheet",
+  "imageCredits": "",
+  "color": "#839976"
+}
