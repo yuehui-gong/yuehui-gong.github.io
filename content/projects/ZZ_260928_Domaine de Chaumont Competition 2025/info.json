@@ -40,21 +40,15 @@
   },
   "images": [
     {
-      "file": "web/hand-drawn-render.webp",
-      "alt": "Garden perspective for Whispers Beyond the Looking Glass",
-      "caption": "Garden perspective",
+      "file": "web/plan.webp",
+      "alt": "Garden plan for Whispers Beyond the Looking Glass",
+      "caption": "Garden plan",
       "description": ""
     },
     {
       "file": "web/axon.webp",
       "alt": "Axonometric for Whispers Beyond the Looking Glass",
       "caption": "Axonometric",
-      "description": ""
-    },
-    {
-      "file": "web/plan.webp",
-      "alt": "Garden plan for Whispers Beyond the Looking Glass",
-      "caption": "Garden plan",
       "description": ""
     },
     {
@@ -68,32 +62,43 @@
       "alt": "Planting palette for Whispers Beyond the Looking Glass",
       "caption": "Planting palette",
       "description": ""
+    },
+    {
+      "file": "web/hand-drawn-render.webp",
+      "alt": "Garden perspective for Whispers Beyond the Looking Glass",
+      "caption": "Garden perspective",
+      "description": ""
     }
   ],
   "layout": [
     {
-      "kind": "garden-view",
+      "kind": "garden-sheet",
       "files": [
-        "web/hand-drawn-render.webp"
-      ]
-    },
-    {
-      "kind": "paired-views",
-      "files": [
-        "web/axon.webp",
         "web/plan.webp"
       ]
     },
     {
-      "kind": "garden-section",
+      "kind": "garden-sheet",
+      "files": [
+        "web/axon.webp"
+      ]
+    },
+    {
+      "kind": "garden-sheet",
       "files": [
         "web/section.webp"
       ]
     },
     {
-      "kind": "garden-planting",
+      "kind": "garden-sheet",
       "files": [
         "web/planting-list.webp"
+      ]
+    },
+    {
+      "kind": "garden-sheet",
+      "files": [
+        "web/hand-drawn-render.webp"
       ]
     }
   ],
