@@ -320,7 +320,7 @@
      for sending a single page to someone; use the shared-folder version
      (project.html + projects-data.js) for the real, linked-up site.
      ============================================================================ -->
-<script src="assets/project-content.js?v=20260928-cache"></script>
+<script src="assets/project-content.js?v=20261002-wildfire"></script>
 <script>
 (async()=>{
 const PROJECTS = [
@@ -471,6 +471,8 @@ const TYPES = ["All", "Public Realm", "Residential", "Cultural", "Institutional"
    - offset   : one smaller, indented image with extra breathing room
    ========================================================================= */
 
+const retiredTrail = PROJECTS.findIndex(p=>p.slug==='trail-for-healing');
+if(retiredTrail>=0) PROJECTS.splice(retiredTrail,1);
 PROJECTS.unshift(...await window.loadStudioProjects());
 const slug = new URLSearchParams(location.search).get('slug') || PROJECTS[0].slug;
 const record = PROJECTS.find(p => p.slug === slug) || PROJECTS[0];
@@ -555,6 +557,18 @@ function renderProject(p){
   document.getElementById("proj-loc").textContent = p.location;
   document.getElementById("proj-desc").textContent = p.description;
   document.getElementById("proj-meta").innerHTML = renderMeta(p.meta);
+  if(record.webLink?.url){
+    try {
+      const url=new URL(record.webLink.url);
+      if(['https:','http:'].includes(url.protocol)){
+        const item=document.createElement('div');item.className='meta-item';
+        const label=document.createElement('div');label.className='label';label.textContent='Web link';
+        const link=document.createElement('a');link.className='value';link.href=url.href;
+        link.target='_blank';link.rel='noopener noreferrer';link.textContent=(record.webLink.label || 'Project publication')+' ↗';
+        item.append(label,link);document.getElementById('proj-meta').append(item);
+      }
+    } catch(error){console.warn('Invalid project web link');}
+  }
   document.getElementById("proj-content").innerHTML =
     p.blocks.map(renderBlock).join("") +
     `<div class="project-end" onclick="location.href='project.html?slug=${p.nextSlug}'">

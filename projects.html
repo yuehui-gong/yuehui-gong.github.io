@@ -325,7 +325,7 @@ html:not(.day){color-scheme:dark}
 
 <footer><span>Scroll to travel</span><span>Founded 2014</span></footer>
 
-<script src="assets/project-content.js?v=20260928-cache"></script>
+<script src="assets/project-content.js?v=20261002-wildfire"></script>
 <script>
 (async function(){
 
@@ -334,6 +334,7 @@ html:not(.day){color-scheme:dark}
   function hasCoordinates(p){
     return p && Number.isFinite(p.lon) && Number.isFinite(p.lat) && Math.abs(p.lon)<=180 && Math.abs(p.lat)<=90;
   }
+  projects=projects.filter(p=>p.slug!=='trail-for-healing');
   projects.unshift(...(await window.loadStudioProjects()).map(p=>{
     var coordinates=Array.isArray(p.coords)?p.coords:[];
     var position={lon:coordinates[0],lat:coordinates[1]};

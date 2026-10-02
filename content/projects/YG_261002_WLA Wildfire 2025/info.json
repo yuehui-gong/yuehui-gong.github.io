@@ -1,0 +1,92 @@
+{
+  "slug": "YG_261002_WLA Wildfire 2025",
+  "title": "Trail for Healing the Burn: An Interpretive Network Supporting Post-Fire Recovery",
+  "shortTitle": "Trail for Healing the Burn",
+  "location": {
+    "city": "Plumas County, California",
+    "country": "United States",
+    "coordinates": [
+      -120.951,
+      40.139
+    ]
+  },
+  "year": 2025,
+  "type": "Analysis & Planning",
+  "collaborators": [
+    "Ziyu Huang"
+  ],
+  "awards": [
+    {
+      "name": "WLA Awards",
+      "year": 2025,
+      "distinction": "Award of Excellence — Concept – Analysis & Planning"
+    }
+  ],
+  "webLink": {
+    "label": "Read on World Landscape Architecture",
+    "url": "https://worldlandscapearchitect.com/trail-for-healing-the-burn-an-interpretive-network-supporting-post-fire-recovery-yuehui-gong-ziyu-huang/"
+  },
+  "keywords": [
+    "Wildfire",
+    "Resilience",
+    "Trail",
+    "Time"
+  ],
+  "summary": "A trail network in Plumas County connects forest restoration with public learning, making the changing landscapes of post-fire recovery accessible over time.",
+  "description": [
+    "Following the Dixie Fire, this proposal uses an expanded Sierra Buttes trail network to connect restoration work across fragmented land ownership in Plumas County. Walking becomes a way to understand recovery and participate in a changing forest landscape.",
+    "Around Greenville, routes follow terrain and parcel boundaries, linking areas at different stages of treatment. Logging, vegetation management and replanting become visible along the journey. A recovery calendar explains why repeated intervention matters as fuel builds up over time.",
+    "Lookouts, interpretive markers and environmental monitoring connect recreation with forest stewardship. Reused biomass helps protect the ground, while trail corridors support ongoing management. The proposal presents recovery as a shared, long-term responsibility rather than a single completed intervention."
+  ],
+  "hero": {
+    "file": "forest-recovery.jpg",
+    "alt": "Perspective of a regenerating forest with visitors and interpretive infrastructure"
+  },
+  "images": [
+    {
+      "file": "regional-framework.jpg",
+      "alt": "Regional mapping of the Dixie Fire landscape and proposed trail network",
+      "caption": "Regional framework",
+      "description": ""
+    },
+    {
+      "file": "post-fire-calendar.jpg",
+      "alt": "Timeline of fire risk, forest treatment and regeneration",
+      "caption": "Post-fire calendar",
+      "description": ""
+    },
+    {
+      "file": "trail-as-scaffold.jpg",
+      "alt": "Aerial drawing of a trail network through forest treatment units",
+      "caption": "Trail as scaffold",
+      "description": ""
+    },
+    {
+      "file": "trail-sections.jpg",
+      "alt": "Sections showing trail relationships with forest management",
+      "caption": "Trail sections",
+      "description": ""
+    },
+    {
+      "file": "prescribed-fire.jpg",
+      "alt": "Perspective of visitors observing forest treatment from a raised trail",
+      "caption": "Prescribed fire",
+      "description": ""
+    },
+    {
+      "file": "salvage-landscape.jpg",
+      "alt": "Perspective of a trail through a burned forest during salvage operations",
+      "caption": "Salvage landscape",
+      "description": ""
+    },
+    {
+      "file": "adaptive-management.jpg",
+      "alt": "Perspective of forest management and public interpretation along a trail",
+      "caption": "Adaptive management",
+      "description": ""
+    }
+  ],
+  "imageCredits": "Yuehui Gong, Ziyu Huang",
+  "color": "#a48364",
+  "storyTitle": "Recovery as a shared process"
+}
