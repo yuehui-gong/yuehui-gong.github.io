@@ -88,5 +88,6 @@
   ],
   "imageCredits": "Yuehui Gong, Ziyu Huang",
   "color": "#a48364",
-  "storyTitle": "Recovery as a shared process"
+  "storyTitle": "Recovery as a shared process",
+  "narrativePlacement": "sidebar"
 }
