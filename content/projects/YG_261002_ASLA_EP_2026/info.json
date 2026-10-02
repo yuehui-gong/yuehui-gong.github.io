@@ -1,0 +1,79 @@
+{
+  "slug": "YG_261002_ASLA_EP_2026",
+  "title": "Folding Angel’s Knoll",
+  "shortTitle": "Folding Angel’s Knoll",
+  "location": {
+    "city": "Angel’s Knoll, Los Angeles, California",
+    "country": "United States",
+    "coordinates": [
+      -118.2509,
+      34.0513
+    ]
+  },
+  "year": 2026,
+  "type": "Landscape design",
+  "collaborators": [],
+  "awards": [
+    {
+      "name": "ASLA Emerging Professionals Design Competition",
+      "year": 2026,
+      "distinction": "First Place"
+    }
+  ],
+  "webLink": {
+    "label": "Read on ASLA",
+    "url": "https://www.asla.org/news-insights/land/(clone)-reimagining-angel-s-knoll-celebrating-the-2026-emerging-professionals-design-competition"
+  },
+  "keywords": [
+    "Memory",
+    "Process",
+    "Ecology",
+    "Time",
+    "Stewardship",
+    "Succession"
+  ],
+  "summary": "A living archive of time, ecology, and collective memory: folds, patches, and markers reconnect Angel’s Knoll with its layered histories and open it to ecological change and public life.",
+  "description": [
+    "Angel’s Knoll is a folded hill. Its earliest folds were geological, uplifted, tilted, and incised by the tectonic forces that shaped the Los Angeles Basin. Later folds were urban and cultural. The Bunker Hill neighborhood once thrived here before mid-twentieth-century redevelopment erased Clay Street, relocated Angels Flight, and transformed it into a vacant park later reimagined through cinema. The site’s meaning has never been fixed. It has been continually rewritten through occupation and collective memory.",
+    "Folding Angel’s Knoll understands the hill as a wrinkle in time, where different temporal layers remain physically compressed together. The proposal frames the site as a living landscape shaped by ecological succession, stewardship, and public occupation through three interconnected devices: folds, patches, and markers.",
+    "Folds become temporal catchments that reveal and accumulate traces of the site: a Clay Street alignment, log edges, geological rock outcrops, seasonal seed basins, and viewing terraces. They reveal historical traces, capture water and seeds, and allow the landscape to acquire new layers of history.",
+    "Patches guide the working landscape in phases, from managed guerrilla gardening, to wind-, water-, wildlife- and landform-assisted dispersal, then to stewarded working plots. Through mowing, thinning, seed collection, and selective subtraction, the community works alongside natural processes, allowing the landscape to expand westward.",
+    "Markers, Almost Benches, act as unfinished civic objects. Inspired by the cultural afterlife of the (500) Days of Summer bench, they are made from site-derived materials. Part bench, part threshold, part marker, and part future artifact, they do not prescribe meaning. Instead, they invite encounters, reorient visitors toward the city skyline, ecological patches, and hidden histories, while allowing future events to redefine their significance.",
+    "Together, they cultivate an ever-changing civic landscape where ecological processes, historical traces, and public life remain in continuous negotiation, maintained, reinterpreted, and folded into one another over time."
+  ],
+  "narrativePlacement": "sidebar",
+  "pageTheme": "day",
+  "storyTitle": "A Living Archive of Time, Ecology, and Collective Memory",
+  "hero": {
+    "file": "plan.jpg",
+    "alt": "Landscape plan of Folding Angel’s Knoll showing paths, planted patches and gathering spaces"
+  },
+  "images": [
+    {
+      "file": "diagram.jpg",
+      "alt": "Concept diagrams explaining folds, patches, markers and landscape phases",
+      "caption": "Folded temporalities",
+      "description": ""
+    },
+    {
+      "file": "section.jpg",
+      "alt": "Landscape sections and perspectives showing the phased development of Angel’s Knoll",
+      "caption": "Phasing and succession",
+      "description": ""
+    },
+    {
+      "file": "view.jpg",
+      "alt": "Almost Benches studies and a perspective overlooking the planted hillside and city",
+      "caption": "Markers: Almost Benches",
+      "description": ""
+    },
+    {
+      "file": "sketch.jpg",
+      "alt": "Design sketches exploring existing trees, topography, historic traces and view corridors",
+      "caption": "Design iterations",
+      "description": ""
+    }
+  ],
+  "imageCredits": "Yuehui Gong",
+  "color": "#858947"
+}
