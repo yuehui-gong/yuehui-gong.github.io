@@ -262,6 +262,9 @@
     .reference-sheet .collection-concept-plan{grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,2.5fr);}
     .reference-sheet .collection-material-board{grid-template-columns:minmax(0,2.6fr) repeat(2,minmax(0,1fr));}
   }
+
+.content .plan-enlarged img{max-height:min(1520px,160vh)}
+@media(max-width:860px){.content .plan-enlarged img{max-height:150svh}}
 </style>
 <link rel="stylesheet" href="assets/site.css"><style>
 :root{--sidebar-w:clamp(480px,38vw,640px)}
@@ -320,7 +323,7 @@
      for sending a single page to someone; use the shared-folder version
      (project.html + projects-data.js) for the real, linked-up site.
      ============================================================================ -->
-<script src="assets/project-content.js?v=20261002-berlin"></script>
+<script src="assets/project-content.js?v=20261002-plan-size"></script>
 <script>
 (async()=>{
 const PROJECTS = [
@@ -527,7 +530,7 @@ function renderBlock(b){
         ${b.images.map(src => `<img src="${src}" alt="">`).join("")}
       </div>`;
     case "caption":
-      return `<div class="block layout-caption">
+      return `<div class="block layout-caption${b.displayScale===2 ? ' plan-enlarged' : ''}">
         <img src="${b.src}" alt="${b.alt || ''}" loading="lazy">
         <div class="caption">
           <div class="cap-label">${b.label}</div>

@@ -45,7 +45,8 @@
       "file": "master-plan.jpg",
       "caption": "Master plan",
       "alt": "Updated master plan of Tilla-Durieux-Park and its surrounding connections",
-      "description": ""
+      "description": "",
+      "displayScale": 2
     },
     {
       "file": "ecology-diagram.jpg",
@@ -81,7 +82,8 @@
       "file": "site-plan.jpg",
       "alt": "Detailed site plan of Tilla-Durieux-Park",
       "caption": "Site plan",
-      "description": ""
+      "description": "",
+      "displayScale": 2
     }
   ],
   "imageCredits": "",
