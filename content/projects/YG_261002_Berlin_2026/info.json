@@ -1,5 +1,5 @@
 {
-  "slug": "the-latent-ground",
+  "slug": "YG_261002_Berlin_2026",
   "title": "The Latent Ground: Restaging Tilla-Durieux Park for Ecological Emergence",
   "shortTitle": "The Latent Ground — Tilla-Durieux Park",
   "location": {
@@ -43,12 +43,46 @@
   "images": [
     {
       "file": "master-plan.jpg",
-      "alt": "Master plan of the reimagined Tilla-Durieux-Park from Potsdamer Platz to the Landwehr Canal",
       "caption": "Master plan",
-      "description": "Changing ground, water, and planting connect the park’s northern plaza to the Landwehr Canal."
+      "alt": "Updated master plan of Tilla-Durieux-Park and its surrounding connections",
+      "description": ""
+    },
+    {
+      "file": "design-diagram.jpg",
+      "caption": "Design strategy",
+      "alt": "Diagrams of landform, gradient, connectivity and soil heterogeneity",
+      "description": ""
+    },
+    {
+      "file": "ecology-diagram.jpg",
+      "caption": "Ecological emergence",
+      "alt": "Ecological succession, dispersal and pollination corridor diagrams",
+      "description": ""
+    },
+    {
+      "file": "planting-strategies.jpg",
+      "caption": "Adaptive planting",
+      "alt": "Planting palettes and sections for adaptive and spontaneous planting patches",
+      "description": ""
+    },
+    {
+      "file": "enlarged-plans.jpg",
+      "caption": "Plaza and bridge details",
+      "alt": "Enlarged plans of Potsdamer Platz and the proposed pedestrian bridge",
+      "description": ""
+    },
+    {
+      "file": "transportation-diagram.jpg",
+      "caption": "Transportation and connectivity",
+      "alt": "Diagrams of tram integration, street reconfiguration and pedestrian connections",
+      "description": ""
     }
   ],
   "imageCredits": "",
   "color": "#8a9b78",
-  "storyTitle": "An unfinished ecological performance"
+  "storyTitle": "An unfinished ecological performance",
+  "aliases": [
+    "the-latent-ground"
+  ],
+  "narrativePlacement": "sidebar"
 }
