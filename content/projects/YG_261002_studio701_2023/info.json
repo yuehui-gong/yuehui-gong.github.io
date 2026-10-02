@@ -14,9 +14,6 @@
   "type": "Academic project",
   "collaborators": [],
   "awards": [],
-  "instructor": "James Andrew Billingsley",
-  "studio": "Penn Design · Studio 701",
-  "authorship": "Individual work",
   "keywords": [
     "Emotion",
     "Simulation",
@@ -32,8 +29,8 @@
   "pageTheme": "day",
   "storyTitle": "A Limestone Quarry Landscape Lifecycle with Emotional Sedimentation",
   "hero": {
-    "file": "quarry-perspectives.jpg",
-    "alt": "Perspectives of paths, planting and structures within the quarry"
+    "file": "hero.jpg",
+    "alt": "Landscape perspective of Sentiment – Sedimentation in the limestone quarry"
   },
   "images": [
     {
@@ -52,6 +49,12 @@
       "file": "quarry-section.jpg",
       "alt": "Quarry landscape section with architectural and landscape views",
       "caption": "Quarry section",
+      "description": ""
+    },
+    {
+      "file": "quarry-perspectives.jpg",
+      "alt": "Perspectives of paths, planting and structures within the quarry",
+      "caption": "Quarry perspectives",
       "description": ""
     },
     {
