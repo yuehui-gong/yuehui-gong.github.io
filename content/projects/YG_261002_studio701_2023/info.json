@@ -1,0 +1,66 @@
+{
+  "slug": "YG_261002_studio701_2023",
+  "title": "Sentiment – Sedimentation",
+  "shortTitle": "Sentiment – Sedimentation",
+  "location": {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "coordinates": [
+      -9.1393,
+      38.7223
+    ]
+  },
+  "year": 2022,
+  "type": "Academic project",
+  "collaborators": [],
+  "awards": [],
+  "instructor": "James Andrew Billingsley",
+  "studio": "Penn Design · Studio 701",
+  "authorship": "Individual work",
+  "keywords": [
+    "Emotion",
+    "Simulation",
+    "Time",
+    "Sedimentation"
+  ],
+  "summary": "An abandoned limestone quarry in Lisbon becomes an emotional landscape, shaped over a century through simulated encounters, accumulated feelings, and the changing relationship between people and place.",
+  "description": [
+    "The project is located in an abandoned limestone quarry pit in Lisbon, Portugal. It takes inspiration from the formation of rock layers in the quarry pit and seeks to explore how emotional agents can help understand the accumulation of feelings and how to shape a landscape over time.",
+    "The project is based on a counterfactual narrative dating back to the 1950s and considers 100-year scenarios from the 1950s to 2050s, taking into account political and social changes that have occurred in Lisbon and how people’s emotions have been associated with these events. To achieve this, the project uses Unity to run 10 iterations for each 10-year period. These iterations are controlled by a first-person player and the “emotional agents,” which follow rules to perform “avoid” or “connect” actions based on anchor objects placed in each iteration. After each iteration, the results are interpreted and modeled as an emotional landscape."
+  ],
+  "narrativePlacement": "sidebar",
+  "pageTheme": "day",
+  "storyTitle": "A Limestone Quarry Landscape Lifecycle with Emotional Sedimentation",
+  "hero": {
+    "file": "quarry-perspectives.jpg",
+    "alt": "Perspectives of paths, planting and structures within the quarry"
+  },
+  "images": [
+    {
+      "file": "emotional-agents.jpg",
+      "alt": "Emotional-agent research and quarry landscape diagrams",
+      "caption": "Emotional agents",
+      "description": ""
+    },
+    {
+      "file": "landscape-iterations.jpg",
+      "alt": "Iterative landscape models and simulated emotional-agent patterns",
+      "caption": "Landscape iterations",
+      "description": ""
+    },
+    {
+      "file": "quarry-section.jpg",
+      "alt": "Quarry landscape section with architectural and landscape views",
+      "caption": "Quarry section",
+      "description": ""
+    },
+    {
+      "file": "landscape-simulation.jpg",
+      "alt": "Agent-based landscape simulation, models and virtual environments",
+      "caption": "Landscape simulation",
+      "description": ""
+    }
+  ],
+  "imageCredits": "Yuehui Gong",
+  "color": "#8b8175"
+}

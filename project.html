@@ -323,7 +323,7 @@
      for sending a single page to someone; use the shared-folder version
      (project.html + projects-data.js) for the real, linked-up site.
      ============================================================================ -->
-<script src="assets/project-content.js?v=20261002-plan-size"></script>
+<script src="assets/project-content.js?v=20261002-studio701"></script>
 <script>
 (async()=>{
 const PROJECTS = [
@@ -494,6 +494,9 @@ const project = {
     { label: "Collaborator", value: record.collaborator || "—" },
     { label: "Award",        value: record.awards?.length ? record.awards.map(a => `${a.name} ${a.year} — ${a.distinction}`) : record.award || "—" },
     { label: "Year",         value: record.year },
+    ...(record.instructor ? [{label:"Instructor",value:record.instructor}] : []),
+    ...(record.studio ? [{label:"Studio",value:record.studio}] : []),
+    ...(record.authorship ? [{label:"Authorship",value:record.authorship}] : []),
     ...(record.competition ? [{ label: "Competition", value: record.competition }] : []),
     { label: "Keyword",      value: record.kw.join(" / ") }
   ],
