@@ -48,21 +48,15 @@
       "description": ""
     },
     {
-      "file": "design-diagram.jpg",
-      "caption": "Design strategy",
-      "alt": "Diagrams of landform, gradient, connectivity and soil heterogeneity",
-      "description": ""
-    },
-    {
       "file": "ecology-diagram.jpg",
       "caption": "Ecological emergence",
       "alt": "Ecological succession, dispersal and pollination corridor diagrams",
       "description": ""
     },
     {
-      "file": "planting-strategies.jpg",
-      "caption": "Adaptive planting",
-      "alt": "Planting palettes and sections for adaptive and spontaneous planting patches",
+      "file": "transportation-diagram.jpg",
+      "caption": "Transportation and connectivity",
+      "alt": "Diagrams of tram integration, street reconfiguration and pedestrian connections",
       "description": ""
     },
     {
@@ -72,9 +66,21 @@
       "description": ""
     },
     {
-      "file": "transportation-diagram.jpg",
-      "caption": "Transportation and connectivity",
-      "alt": "Diagrams of tram integration, street reconfiguration and pedestrian connections",
+      "file": "design-diagram.jpg",
+      "caption": "Design strategy",
+      "alt": "Diagrams of landform, gradient, connectivity and soil heterogeneity",
+      "description": ""
+    },
+    {
+      "file": "planting-strategies.jpg",
+      "caption": "Adaptive planting",
+      "alt": "Planting palettes and sections for adaptive and spontaneous planting patches",
+      "description": ""
+    },
+    {
+      "file": "site-plan.jpg",
+      "alt": "Detailed site plan of Tilla-Durieux-Park",
+      "caption": "Site plan",
       "description": ""
     }
   ],
