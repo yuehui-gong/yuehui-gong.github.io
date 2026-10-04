@@ -31,20 +31,20 @@
     "These interventions are choreographed to foster new modes of noticing and sharing space with birds. Some elements sit low enough to encounter while sitting in the grass; others align at eye level; others draw attention upward to perching points above. These shifts in height and distance change how visitors move, pause, and look—briefly asking people to experience the Parkway from a non-human perspective. By doing so, the installation proposes a subtle reorientation of the parkway's identity. Rather than dissolving its historical grandeur, the project introduces a layer of ecological vitality that softens its rigidity. It reframes the Parkway not as a perfected image to be defended, but as a living public landscape capable of holding multiple species, multiple publics, and a more expansive idea of belonging."
   ],
   "hero": {
-    "file": "web/perspective.webp",
-    "alt": "Perspective of bird-oriented sculptural installations and visitors on the Benjamin Franklin Parkway"
+    "file": "web/axon.webp",
+    "alt": "Axonometric drawing of the proposed bird infrastructure"
   },
   "images": [
+    {
+      "file": "web/perspective.webp",
+      "alt": "Perspective of bird-oriented sculptural installations and visitors on the Benjamin Franklin Parkway",
+      "caption": "Perspective",
+      "description": ""
+    },
     {
       "file": "web/plan.webp",
       "alt": "Plan of Not Quite Order at Maja Park, Benjamin Franklin Parkway",
       "caption": "Plan",
-      "description": ""
-    },
-    {
-      "file": "web/axon.webp",
-      "alt": "Axonometric drawing of the proposed bird infrastructure",
-      "caption": "Axonometric",
       "description": ""
     }
   ],
@@ -52,13 +52,13 @@
     {
       "kind": "parkway-sheet",
       "files": [
-        "web/plan.webp"
+        "web/perspective.webp"
       ]
     },
     {
       "kind": "parkway-sheet",
       "files": [
-        "web/axon.webp"
+        "web/plan.webp"
       ]
     }
   ],
