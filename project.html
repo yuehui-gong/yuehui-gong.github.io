@@ -281,7 +281,7 @@
 /* Ground in Friction: project-specific reference composition. */
 .content.reference-sheet.ground-friction{max-width:1600px;width:100%;}
 .ground-friction .layout-hero{display:none;}
-.ground-friction .project-collection{margin-top:14px;gap:14px;padding:0;}
+.ground-friction .project-collection{margin-top:clamp(36px,5vw,100px);gap:clamp(14px,1.2vw,24px);padding:0;}
 .ground-friction .project-collection:first-of-type{margin-top:0;}
 .ground-friction .project-collection figure{margin:0;min-width:0;}
 .ground-friction .project-collection img{display:block;width:100%;height:auto;max-height:none;}
@@ -294,7 +294,7 @@
 .collection-ground-plan figure:first-child{grid-column:1;grid-row:1 / span 2;}
 .ground-friction .collection-ground-ecology{grid-template-columns:minmax(0,1fr);}
 @media(max-width:600px){
- .ground-friction .project-collection{gap:8px;margin-top:12px;}
+ .ground-friction .project-collection{gap:12px;margin-top:36px;}
  .ground-friction .collection-ground-opening,.ground-friction .collection-ground-plan{grid-template-columns:repeat(2,minmax(0,1fr));}
  .ground-friction .collection-ground-opening figure:first-child,.ground-friction .collection-ground-plan figure:first-child{grid-column:1 / -1;grid-row:auto;}
  .ground-friction .collection-ground-opening figure:first-child img{height:auto;}
