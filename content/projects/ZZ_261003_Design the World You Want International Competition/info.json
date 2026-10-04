@@ -43,8 +43,8 @@
     "Ultimately, this is neither a nostalgic restoration of the swamp nor the fabrication of a unified identity. The project reconfigures the site as contested ground, holding competing attitudes toward land in confrontation. Acting as a provocation rather than a finished destination, it poses a critical question: what kind of relationship to land should shape Docklands next?"
   ],
   "hero": {
-    "file": "web/perspective-1.webp",
-    "alt": "Perspective 1 of Ground in Friction at Victoria Harbour, Melbourne"
+    "file": "web/perspective-6.webp",
+    "alt": "Tidal waterfront landscape at Victoria Harbour"
   },
   "images": [
     {
@@ -100,66 +100,49 @@
       "alt": "Perspective 6 of Ground in Friction at Victoria Harbour, Melbourne",
       "caption": "Perspective 6",
       "description": ""
+    },
+    {
+      "file": "web/perspective-1.webp",
+      "alt": "Perspective 1 of Ground in Friction at Victoria Harbour, Melbourne",
+      "caption": "Perspective 1",
+      "description": ""
     }
   ],
   "layout": [
     {
-      "kind": "parkway-sheet",
+      "kind": "ground-opening",
       "files": [
-        "web/plan.webp"
-      ]
-    },
-    {
-      "kind": "parkway-sheet",
-      "files": [
-        "web/axon.webp"
-      ]
-    },
-    {
-      "kind": "parkway-sheet",
-      "files": [
-        "web/ecology-diagram.webp"
-      ]
-    },
-    {
-      "kind": "parkway-sheet",
-      "files": [
-        "web/material-diagram.webp"
-      ]
-    },
-    {
-      "kind": "parkway-sheet",
-      "files": [
-        "web/perspective-2.webp"
-      ]
-    },
-    {
-      "kind": "parkway-sheet",
-      "files": [
-        "web/perspective-3.webp"
-      ]
-    },
-    {
-      "kind": "parkway-sheet",
-      "files": [
-        "web/perspective-4.webp"
-      ]
-    },
-    {
-      "kind": "parkway-sheet",
-      "files": [
+        "web/perspective-6.webp",
+        "web/perspective-4.webp",
         "web/perspective-5.webp"
       ]
     },
     {
-      "kind": "parkway-sheet",
+      "kind": "ground-views",
       "files": [
-        "web/perspective-6.webp"
+        "web/perspective-2.webp",
+        "web/perspective-1.webp",
+        "web/perspective-3.webp"
+      ]
+    },
+    {
+      "kind": "ground-plan",
+      "files": [
+        "web/plan.webp",
+        "web/axon.webp",
+        "web/material-diagram.webp"
+      ]
+    },
+    {
+      "kind": "ground-ecology",
+      "files": [
+        "web/ecology-diagram.webp"
       ]
     }
   ],
   "narrativePlacement": "sidebar",
   "presentation": "reference-sheet",
   "color": "#8c9473",
-  "imageCredits": ""
+  "imageCredits": "",
+  "layoutVariant": "ground-friction"
 }

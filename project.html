@@ -277,6 +277,29 @@
 .layout-hero .img-wrap img{height:auto;max-height:min(760px,80vh);object-fit:contain}
 .media-grid img{height:auto;aspect-ratio:auto;object-fit:contain}
 @media(max-width:860px){.project-body{grid-template-columns:minmax(0,1fr)}.sidebar{padding:32px 24px}.content img,.layout-hero .img-wrap img{max-height:75svh}}
+
+/* Ground in Friction: project-specific reference composition. */
+.content.reference-sheet.ground-friction{max-width:1600px;width:100%;}
+.ground-friction .layout-hero{display:none;}
+.ground-friction .project-collection{margin-top:14px;gap:14px;padding:0;}
+.ground-friction .project-collection:first-of-type{margin-top:0;}
+.ground-friction .project-collection figure{margin:0;min-width:0;}
+.ground-friction .project-collection img{display:block;width:100%;height:auto;max-height:none;}
+.ground-friction figcaption{display:none;}
+.ground-friction .collection-ground-opening{grid-template-columns:minmax(0,3.5fr) minmax(0,1fr);align-items:stretch;}
+.collection-ground-opening figure:first-child{grid-column:1;grid-row:1 / span 2;}
+.ground-friction .collection-ground-opening figure:first-child img{height:100%;object-fit:cover;}
+.ground-friction .collection-ground-views{grid-template-columns:repeat(3,minmax(0,1fr));}
+.ground-friction .collection-ground-plan{grid-template-columns:minmax(0,2.4fr) minmax(0,1fr);align-items:center;}
+.collection-ground-plan figure:first-child{grid-column:1;grid-row:1 / span 2;}
+.ground-friction .collection-ground-ecology{grid-template-columns:minmax(0,1fr);}
+@media(max-width:600px){
+ .ground-friction .project-collection{gap:8px;margin-top:12px;}
+ .ground-friction .collection-ground-opening,.ground-friction .collection-ground-plan{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .ground-friction .collection-ground-opening figure:first-child,.ground-friction .collection-ground-plan figure:first-child{grid-column:1 / -1;grid-row:auto;}
+ .ground-friction .collection-ground-opening figure:first-child img{height:auto;}
+ .ground-friction .collection-ground-views{grid-template-columns:minmax(0,1fr);}
+}
 </style></head>
 <body data-page="project" class="day">
 
@@ -556,6 +579,7 @@ function renderBlock(b){
 }
 
 function renderProject(p){
+  if(record.layoutVariant==='ground-friction') document.getElementById('proj-content').classList.add('ground-friction');
   if(record.presentation==='reference-sheet') document.getElementById('proj-content').classList.add('reference-sheet');
   if((new URLSearchParams(location.search).get('layout') || record.layoutVariant)==='stacked-materiality') document.getElementById('proj-content').classList.add('materiality-stacked');
   document.getElementById("proj-eyebrow").textContent = p.eyebrow;
