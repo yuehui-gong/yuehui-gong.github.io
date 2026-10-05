@@ -1,0 +1,68 @@
+{
+  "slug": "ZZ_261005_Garden of Anthropogenic Wonders",
+  "title": "Garden of Anthropogenic Wonders",
+  "shortTitle": "Garden of Anthropogenic Wonders",
+  "location": {
+    "city": "Paris",
+    "country": "France",
+    "site": "Forecourt of the Muséum national d’Histoire naturelle, Jardin des Plantes",
+    "coordinates": [
+      2.3563,
+      48.8422
+    ]
+  },
+  "year": 2023,
+  "type": "Garden design proposal",
+  "collaborators": [
+    "Michelle Chan Syl Yeng",
+    "Lillian Chung Kwan Yu"
+  ],
+  "awards": [],
+  "keywords": [
+    "exoticism",
+    "algae",
+    "waste",
+    "micro-ecosystems"
+  ],
+  "summary": "Algae-tile walls and bio-incubator panels transform daily waste into an evolving micro-ecosystem, reimagining the museum forecourt as a garden of the Anthropocene.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "The perception of exoticism is in constant flux based on power dynamics and market trends. The thirst for unique experiences, products, and aesthetics often fuels exoticism. Discarded remnants, a byproduct of our consumer-centric culture, have left a lasting impact on our ecosystems, giving rise to a new form of exoticism marked by nature's adaptability, such as the troubling discovery of “plastiglomerate” in Hawaii. Setting up an experimental ground for exoticism in the Anthropocene, this scheme employs a series of walls composed of algae tiles. Daily waste is collected, classified, and processed to feed into “bio-incubator” panels. Over time and under the influence of sunlight, these tiles gradually break down various remnants and release solutions into the ponds, nurturing the formation of a novel micro-ecosystem. As visitors venture through these algae-laden walls, they step into the dynamic realm of this micro-ecosystem, marked by a spectrum of green hues reflecting the diverse stages of algae development. It is a captivating journey that underscores the intricate interplay between human waste, nature's resilience, and the evolution of life in our modern era. Foregrounding global issues instead of specificity and uniqueness, the plaza is reinvented as a symbol for the Anthropocene: a new world blooms from the obsolete, forming a common ground to remind us of our collective responsibilities regarding waste and to reflect upon our colonized relationship to our environment."
+  ],
+  "hero": {
+    "file": "web/perspective.webp",
+    "alt": "Perspective — Garden of Anthropogenic Wonders"
+  },
+  "images": [
+    {
+      "file": "web/plan.webp",
+      "alt": "Plan — Garden of Anthropogenic Wonders",
+      "caption": "Plan",
+      "description": ""
+    },
+    {
+      "file": "web/perspective-section.webp",
+      "alt": "Perspective Section — Garden of Anthropogenic Wonders",
+      "caption": "Perspective Section",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "anthropogenic-sheet",
+      "files": [
+        "web/plan.webp"
+      ]
+    },
+    {
+      "kind": "anthropogenic-sheet",
+      "files": [
+        "web/perspective-section.webp"
+      ]
+    }
+  ],
+  "narrativePlacement": "sidebar",
+  "presentation": "reference-sheet",
+  "color": "#748e79",
+  "imageCredits": ""
+}
