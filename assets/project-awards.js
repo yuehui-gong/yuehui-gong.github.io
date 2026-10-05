@@ -39,11 +39,6 @@
         link.className='project-link';
         link.href='project.html?slug='+encodeURIComponent(project.slug);
         link.textContent=project.shortTitle || project.title;
-        const arrow=document.createElement('span');
-        arrow.className='project-arrow';
-        arrow.textContent='↗';
-        arrow.setAttribute('aria-hidden','true');
-        link.append(arrow);
         row.append(name,link);
         entries.append(row);
       }
