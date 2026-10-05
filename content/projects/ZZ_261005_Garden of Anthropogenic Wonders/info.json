@@ -17,7 +17,13 @@
     "Michelle Chan Syl Yeng",
     "Lillian Chung Kwan Yu"
   ],
-  "awards": [],
+  "awards": [
+    {
+      "name": "LA+ EXOTIQUE",
+      "year": 2023,
+      "distinction": "Third Prize"
+    }
+  ],
   "keywords": [
     "exoticism",
     "algae",
@@ -64,5 +70,6 @@
   "narrativePlacement": "sidebar",
   "presentation": "reference-sheet",
   "color": "#748e79",
-  "imageCredits": ""
+  "imageCredits": "",
+  "competition": "LA+ EXOTIQUE"
 }
