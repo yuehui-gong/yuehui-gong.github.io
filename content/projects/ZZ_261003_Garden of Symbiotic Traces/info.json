@@ -47,7 +47,7 @@
       "description": ""
     },
     {
-      "file": "web/experiment.webp",
+      "file": "web/experiment-updated.webp",
       "alt": "Experiment — Garden of Symbiotic Traces",
       "caption": "Experiment",
       "description": ""
@@ -63,37 +63,34 @@
       "alt": "Sequential Section — Garden of Symbiotic Traces",
       "caption": "Sequential Section",
       "description": ""
+    },
+    {
+      "file": "web/collage.webp",
+      "alt": "Collage — Garden of Symbiotic Traces",
+      "caption": "Collage",
+      "description": ""
     }
   ],
   "layout": [
     {
-      "kind": "garden-sheet",
+      "kind": "garden-top",
       "files": [
-        "web/mapping.webp"
+        "web/mapping.webp",
+        "web/mushroom-catalog.webp",
+        "web/sequential-section.webp"
       ]
     },
     {
-      "kind": "garden-sheet",
+      "kind": "garden-pair",
       "files": [
-        "web/mushroom-catalog.webp"
+        "web/experiment-updated.webp",
+        "web/collage.webp"
       ]
     },
     {
-      "kind": "garden-sheet",
-      "files": [
-        "web/experiment.webp"
-      ]
-    },
-    {
-      "kind": "garden-sheet",
+      "kind": "garden-bottom",
       "files": [
         "web/section.webp"
-      ]
-    },
-    {
-      "kind": "garden-sheet",
-      "files": [
-        "web/sequential-section.webp"
       ]
     }
   ],

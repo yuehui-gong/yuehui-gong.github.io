@@ -302,8 +302,22 @@
 }
 
 .content.reference-sheet.symbiotic-garden{max-width:1400px;}
-.symbiotic-garden .collection-garden-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(36px,5vw,80px);}
-.symbiotic-garden .collection-garden-sheet img{width:100%;height:auto;max-height:none;}
+.symbiotic-garden .layout-hero{display:none;}
+.symbiotic-garden .project-collection{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 32px;margin-top:32px;padding:0;}
+.symbiotic-garden .project-collection:first-of-type{margin-top:0;}
+.symbiotic-garden .project-collection figure{min-width:0;margin:0;}
+.symbiotic-garden .project-collection img{width:100%;height:auto;max-height:none;}
+.symbiotic-garden figcaption{display:none;}
+.symbiotic-garden .collection-garden-top{gap:12px 32px;align-items:center;}
+.collection-garden-top figure:nth-child(1){grid-column:1;grid-row:1;}
+.collection-garden-top figure:nth-child(2){grid-column:1;grid-row:2;}
+.collection-garden-top figure:nth-child(3){grid-column:2;grid-row:1 / span 2;}
+.symbiotic-garden .collection-garden-pair{align-items:center;}
+.symbiotic-garden .collection-garden-bottom{grid-template-columns:minmax(0,1fr);}
+@media(max-width:600px){
+ .symbiotic-garden .project-collection{gap:12px;margin-top:24px;}
+ .symbiotic-garden .collection-garden-pair{grid-template-columns:minmax(0,1fr);}
+}
 </style></head>
 <body data-page="project" class="day">
 
