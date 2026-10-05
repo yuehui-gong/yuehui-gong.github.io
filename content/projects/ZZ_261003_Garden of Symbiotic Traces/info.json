@@ -1,0 +1,105 @@
+{
+  "slug": "ZZ_261003_Garden of Symbiotic Traces",
+  "title": "Garden of Symbiotic Traces",
+  "shortTitle": "Garden of Symbiotic Traces",
+  "location": {
+    "city": "Philadelphia",
+    "country": "United States",
+    "site": "Fairmount Park",
+    "coordinates": [
+      -75.197,
+      39.987
+    ]
+  },
+  "year": 2021,
+  "type": "Garden design",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [
+    "fungi",
+    "decomposition",
+    "symbiosis",
+    "fairy rings"
+  ],
+  "summary": "A garden in Fairmount Park reveals the ecological role of fungi through varied substrates, framed habitats, and landforms that collect runoff and support decomposition.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Through previous site exploration and exercises, I found mushrooms particularly appealing. I was impressed by the diversity of mushrooms across the site and intrigued by their growing conditions. After some research, I learned that the majority of those I saw were wood-decaying fungi. They usually grow on fallen logs and occasionally on living trees. Hollow tree trunks and cavities are also an indication of this decaying process. Mushrooms have a unique ecological role as principal decomposers of the forest. However, due to their ephemeral characteristics and cryptic lifestyle, mushrooms are often overlooked. With the decline of self-sustaining natural forests and a stronger desire for manicured landscapes, I want to highlight the subtle existence of mushrooms and spark people's curiosity about their profound impact on the natural world.",
+    "The form of the garden interprets the growth process of mushrooms through origin, expansion, connection, and formation. As the origin points expand and connect to other expanding forms, new shapes and relationships emerge, offering new layers of unexpectedness and encounters.",
+    "More specifically, I decided to showcase and amplify the interaction between fungi and decomposition through a variety of substrates and spatial framing methods. Through research, I found that the majority of mushrooms on site depend on hardwoods such as oak, aspen, and maple, and occasionally on softwood. I also discovered that mulch and straw are ideal substrates for many mushrooms to grow. Different materials can support different fungi, which may occupy their substrates differently and cause different kinds of rotting.",
+    "I decided to create a series of concave and convex features to facilitate decomposition and mushroom growth with different substrates. White concrete and metal edging frame each habitat, creating a sharp contrast between their cleanliness and the messiness of the mushrooms. The site is situated at the foot of a hill. Each concave feature can capture varying amounts of runoff water, contributing to a variety of growing conditions. Because the ephemeral qualities of mushrooms make them difficult to work with, I focused attention on one specific type: the fairy ring mushroom. Fairy ring mushrooms are common in the eastern United States and can be identified by the rings of growth they create in the forest. I hope to use these clear forms in several ways in the garden, including within frames and in areas of cleared forest beyond, where they can be seen only at a distance."
+  ],
+  "hero": {
+    "file": "web/collage.webp",
+    "alt": "Collage — Garden of Symbiotic Traces"
+  },
+  "images": [
+    {
+      "file": "web/mapping.webp",
+      "alt": "Mapping — Garden of Symbiotic Traces",
+      "caption": "Mapping",
+      "description": ""
+    },
+    {
+      "file": "web/mushroom-catalog.webp",
+      "alt": "Mushroom Catalog — Garden of Symbiotic Traces",
+      "caption": "Mushroom Catalog",
+      "description": ""
+    },
+    {
+      "file": "web/experiment.webp",
+      "alt": "Experiment — Garden of Symbiotic Traces",
+      "caption": "Experiment",
+      "description": ""
+    },
+    {
+      "file": "web/section.webp",
+      "alt": "Section — Garden of Symbiotic Traces",
+      "caption": "Section",
+      "description": ""
+    },
+    {
+      "file": "web/sequential-section.webp",
+      "alt": "Sequential Section — Garden of Symbiotic Traces",
+      "caption": "Sequential Section",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "garden-sheet",
+      "files": [
+        "web/mapping.webp"
+      ]
+    },
+    {
+      "kind": "garden-sheet",
+      "files": [
+        "web/mushroom-catalog.webp"
+      ]
+    },
+    {
+      "kind": "garden-sheet",
+      "files": [
+        "web/experiment.webp"
+      ]
+    },
+    {
+      "kind": "garden-sheet",
+      "files": [
+        "web/section.webp"
+      ]
+    },
+    {
+      "kind": "garden-sheet",
+      "files": [
+        "web/sequential-section.webp"
+      ]
+    }
+  ],
+  "presentation": "reference-sheet",
+  "layoutVariant": "symbiotic-garden",
+  "narrativePlacement": "sidebar",
+  "color": "#887980",
+  "imageCredits": ""
+}

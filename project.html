@@ -300,6 +300,10 @@
  .ground-friction .collection-ground-opening figure:first-child img{height:auto;}
  .ground-friction .collection-ground-views{grid-template-columns:minmax(0,1fr);}
 }
+
+.content.reference-sheet.symbiotic-garden{max-width:1400px;}
+.symbiotic-garden .collection-garden-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(36px,5vw,80px);}
+.symbiotic-garden .collection-garden-sheet img{width:100%;height:auto;max-height:none;}
 </style></head>
 <body data-page="project" class="day">
 
@@ -579,6 +583,7 @@ function renderBlock(b){
 }
 
 function renderProject(p){
+  if(record.layoutVariant==='symbiotic-garden') document.getElementById('proj-content').classList.add('symbiotic-garden');
   if(record.layoutVariant==='ground-friction') document.getElementById('proj-content').classList.add('ground-friction');
   if(record.presentation==='reference-sheet') document.getElementById('proj-content').classList.add('reference-sheet');
   if((new URLSearchParams(location.search).get('layout') || record.layoutVariant)==='stacked-materiality') document.getElementById('proj-content').classList.add('materiality-stacked');
