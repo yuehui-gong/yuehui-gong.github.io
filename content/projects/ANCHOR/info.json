@@ -1,0 +1,58 @@
+{
+  "slug": "ANCHOR",
+  "title": "ANCHOR",
+  "shortTitle": "ANCHOR",
+  "location": {
+    "site": "",
+    "city": "",
+    "country": "",
+    "coordinates": null
+  },
+  "year": "",
+  "type": "",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [],
+  "summary": "",
+  "description": [],
+  "hero": {
+    "file": "",
+    "alt": ""
+  },
+  "images": [
+    {
+      "file": "01 CONTEXT.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "02 STRATEGY.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "03 PLAN.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "04 MODEL.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "05 MOMENTS.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    }
+  ],
+  "imageCredits": "",
+  "color": "#8a9b78",
+  "storyTitle": "Project Narrative",
+  "narrativePlacement": "sidebar"
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "LIVING WITH THE COAST",
+  "title": "LIVING WITH THE COAST",
+  "shortTitle": "LIVING WITH THE COAST",
+  "location": {
+    "site": "",
+    "city": "",
+    "country": "",
+    "coordinates": null
+  },
+  "year": "",
+  "type": "",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [],
+  "summary": "",
+  "description": [],
+  "hero": {
+    "file": "",
+    "alt": ""
+  },
+  "images": [
+    {
+      "file": "01 CONTEXT.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "02 MAPPING.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "03 MASTER PLAN.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "04 MATERIAL CIRCULATION.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "05 PLAN.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "06 RENDER.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    }
+  ],
+  "imageCredits": "",
+  "color": "#8a9b78",
+  "storyTitle": "Project Narrative",
+  "narrativePlacement": "sidebar"
+}

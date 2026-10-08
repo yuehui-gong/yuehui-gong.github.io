@@ -1,0 +1,58 @@
+{
+  "slug": "POLLUTION",
+  "title": "POLLUTION",
+  "shortTitle": "POLLUTION",
+  "location": {
+    "site": "",
+    "city": "",
+    "country": "",
+    "coordinates": null
+  },
+  "year": "",
+  "type": "",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [],
+  "summary": "",
+  "description": [],
+  "hero": {
+    "file": "",
+    "alt": ""
+  },
+  "images": [
+    {
+      "file": "0.png",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "1.png",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "2.png",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "3.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "4.jpg",
+      "alt": "",
+      "caption": "",
+      "description": ""
+    }
+  ],
+  "imageCredits": "",
+  "color": "#8a9b78",
+  "storyTitle": "Project Narrative",
+  "narrativePlacement": "sidebar"
+}
