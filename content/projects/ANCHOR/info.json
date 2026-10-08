@@ -1,20 +1,31 @@
 {
   "slug": "ANCHOR",
-  "title": "ANCHOR",
-  "shortTitle": "ANCHOR",
+  "title": "Anchor",
+  "shortTitle": "Anchor",
   "location": {
     "site": "",
-    "city": "",
-    "country": "",
+    "city": "Wroclaw",
+    "country": "Poland",
     "coordinates": null
   },
-  "year": "",
-  "type": "",
-  "collaborators": [],
-  "awards": [],
-  "keywords": [],
+  "year": 2019,
+  "type": "Affordable Housing",
+  "collaborators": [
+    "Dingwen Wu",
+    "Bo Pan",
+    "Dea Baze"
+  ],
+  "awards": [
+
+  ],
+  "keywords": [
+
+  ],
   "summary": "",
-  "description": [],
+  "description": [
+    "The gentrification process in neighborhood is usually indicated as the rising of house prices and an increase in median household income. As the fourth biggest city in Poland, Wroclaw is under gentrification and see a loss of low-income households.",
+    "To build resilience to the gentrifying neighborhood, we designed an affordable house for mix-income residences. By providing multiple plans for different households, we want to explore a way to anchor the low-income people and enhance community life."
+  ],
   "hero": {
     "file": "",
     "alt": ""
