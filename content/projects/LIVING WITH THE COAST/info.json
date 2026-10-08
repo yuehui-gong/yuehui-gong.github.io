@@ -1,20 +1,32 @@
 {
   "slug": "LIVING WITH THE COAST",
-  "title": "LIVING WITH THE COAST",
-  "shortTitle": "LIVING WITH THE COAST",
+  "title": "Living With The Coast",
+  "shortTitle": "Living With The Coast",
   "location": {
     "site": "",
-    "city": "",
-    "country": "",
+    "city": "New York",
+    "country": "United States",
     "coordinates": null
   },
-  "year": "",
+  "year": 2021,
   "type": "",
-  "collaborators": [],
-  "awards": [],
-  "keywords": [],
+  "collaborators": [
+    "Yuan Tian"
+  ],
+  "awards": [
+
+  ],
+  "keywords": [
+    "Resilience",
+    "Restoration",
+    "Circularity"
+  ],
   "summary": "",
-  "description": [],
+  "description": [
+    "Due to climate change, storms of the future are likely to be more intense and frequent, and they certainly will be more costly. So under these extreme climate circumstances, How do we keep citizens safe in the face of future extreme weather events and sea level rise? What can we do to make living with the coastal area not only safe but also healthy, fun, and accessible to everyone?",
+    "This project is about reorganizing the coastal area partly through restoring natural process while partly creating safer area, according to 2 principles: the one is to regenerate dynamic landscape, the other one is to rethink material flow in a circular way.",
+    "The design has proposed three main strategies. Shoreline restoration, living with the landscape and circular community. The strategy of shoreline restoration is about using landscape to heal the land, as well as creating natural based solutions for safe coast zones. Living with landscape is to bring human access to the coasable areas, developing floating and elevated architecture. And circular community is to build a shared community based on a circular economy."
+  ],
   "hero": {
     "file": "",
     "alt": ""
