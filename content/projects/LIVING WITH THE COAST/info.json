@@ -6,7 +6,10 @@
     "site": "Ocean Avenue and Belt Parkway, Sheepshead Bay, Brooklyn",
     "city": "New York",
     "country": "United States",
-    "coordinates": null
+    "coordinates": [
+      -73.953539,
+      40.582699
+    ]
   },
   "year": 2021,
   "type": "",
