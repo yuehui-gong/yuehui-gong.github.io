@@ -1,5 +1,5 @@
-# LIVING WITH THE COAST
+# Living With The Coast
 
-Project metadata awaits completion. Images retain their original filenames and are listed in numerical order in `info.json`. Choose the cover in `hero.file`; if it is also in `images`, remove that entry when publishing to avoid duplication.
+Published in ../index.json. Cover: cover.webp, a web-size copy of the user-provided cover.png. Images follow 01–06 in numerical order. Project Narrative appears in the sidebar.
 
-The project is not yet in `../index.json`. Add it after metadata and cover are confirmed. The narrative is configured for the sidebar.
+Location: Ocean Avenue and Belt Parkway, Sheepshead Bay, Brooklyn, New York. Coordinates await the user's confirmation.
