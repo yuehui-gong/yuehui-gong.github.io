@@ -6,7 +6,10 @@
     "site": "",
     "city": "Wroclaw",
     "country": "Poland",
-    "coordinates": null
+    "coordinates": [
+      17.049704,
+      51.114311
+    ]
   },
   "year": 2019,
   "type": "Affordable Housing",

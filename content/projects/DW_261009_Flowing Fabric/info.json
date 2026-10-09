@@ -6,7 +6,10 @@
     "site": "",
     "city": "",
     "country": "",
-    "coordinates": null
+    "coordinates": [
+      121.493737,
+      31.240803
+    ]
   },
   "year": "",
   "type": "",
