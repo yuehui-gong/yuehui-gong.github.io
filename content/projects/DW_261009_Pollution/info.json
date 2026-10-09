@@ -1,7 +1,7 @@
 {
-  "slug": "FLOWING FABRIC",
-  "title": "FLOWING FABRIC",
-  "shortTitle": "FLOWING FABRIC",
+  "slug": "DW_261009_Pollution",
+  "title": "POLLUTION",
+  "shortTitle": "POLLUTION",
   "location": {
     "site": "",
     "city": "",
@@ -10,42 +10,50 @@
   },
   "year": "",
   "type": "",
-  "collaborators": [],
-  "awards": [],
-  "keywords": [],
+  "collaborators": [
+
+  ],
+  "awards": [
+
+  ],
+  "keywords": [
+
+  ],
   "summary": "",
-  "description": [],
+  "description": [
+
+  ],
   "hero": {
     "file": "",
     "alt": ""
   },
   "images": [
     {
-      "file": "01 CONTEXT.jpg",
+      "file": "0.png",
       "alt": "",
       "caption": "",
       "description": ""
     },
     {
-      "file": "02 ISSUE.jpg",
+      "file": "1.png",
       "alt": "",
       "caption": "",
       "description": ""
     },
     {
-      "file": "03 STRATEGY.jpg",
+      "file": "2.png",
       "alt": "",
       "caption": "",
       "description": ""
     },
     {
-      "file": "04 MODEL.jpg",
+      "file": "3.jpg",
       "alt": "",
       "caption": "",
       "description": ""
     },
     {
-      "file": "05 MOMENTS.jpg",
+      "file": "4.jpg",
       "alt": "",
       "caption": "",
       "description": ""
