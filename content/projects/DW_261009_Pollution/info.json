@@ -10,51 +10,37 @@
   },
   "year": "",
   "type": "",
-  "collaborators": [
-
-  ],
-  "awards": [
-
-  ],
-  "keywords": [
-
-  ],
+  "collaborators": [],
+  "awards": [],
+  "keywords": [],
   "summary": "",
-  "description": [
-
-  ],
+  "description": [],
   "hero": {
-    "file": "",
-    "alt": ""
+    "file": "0.png",
+    "alt": "POLLUTION — global mapping study"
   },
   "images": [
     {
-      "file": "0.png",
-      "alt": "",
-      "caption": "",
-      "description": ""
-    },
-    {
       "file": "1.png",
-      "alt": "",
+      "alt": "POLLUTION — project sheet 2",
       "caption": "",
       "description": ""
     },
     {
       "file": "2.png",
-      "alt": "",
+      "alt": "POLLUTION — project sheet 3",
       "caption": "",
       "description": ""
     },
     {
       "file": "3.jpg",
-      "alt": "",
+      "alt": "POLLUTION — project sheet 4",
       "caption": "",
       "description": ""
     },
     {
       "file": "4.jpg",
-      "alt": "",
+      "alt": "POLLUTION — project sheet 5",
       "caption": "",
       "description": ""
     }

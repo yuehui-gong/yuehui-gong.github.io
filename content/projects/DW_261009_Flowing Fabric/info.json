@@ -13,51 +13,37 @@
   },
   "year": "",
   "type": "",
-  "collaborators": [
-
-  ],
-  "awards": [
-
-  ],
-  "keywords": [
-
-  ],
+  "collaborators": [],
+  "awards": [],
+  "keywords": [],
   "summary": "",
-  "description": [
-
-  ],
+  "description": [],
   "hero": {
-    "file": "",
-    "alt": ""
+    "file": "01 CONTEXT.jpg",
+    "alt": "FLOWING FABRIC — site context and analysis"
   },
   "images": [
     {
-      "file": "01 CONTEXT.jpg",
-      "alt": "",
-      "caption": "",
-      "description": ""
-    },
-    {
       "file": "02 ISSUE.jpg",
-      "alt": "",
+      "alt": "FLOWING FABRIC — project sheet 2",
       "caption": "",
       "description": ""
     },
     {
       "file": "03 STRATEGY.jpg",
-      "alt": "",
+      "alt": "FLOWING FABRIC — project sheet 3",
       "caption": "",
       "description": ""
     },
     {
       "file": "04 MODEL.jpg",
-      "alt": "",
+      "alt": "FLOWING FABRIC — project sheet 4",
       "caption": "",
       "description": ""
     },
     {
       "file": "05 MOMENTS.jpg",
-      "alt": "",
+      "alt": "FLOWING FABRIC — project sheet 5",
       "caption": "",
       "description": ""
     }

@@ -18,9 +18,7 @@
     "Bo Pan",
     "Dea Baze"
   ],
-  "awards": [
-
-  ],
+  "awards": [],
   "keywords": [
     "Affordability",
     "Community"
@@ -31,37 +29,31 @@
     "To build resilience to the gentrifying neighborhood, we designed an affordable house for mix-income residences. By providing multiple plans for different households, we want to explore a way to anchor the low-income people and enhance community life."
   ],
   "hero": {
-    "file": "",
-    "alt": ""
+    "file": "01 CONTEXT.jpg",
+    "alt": "Anchor — site context and analysis"
   },
   "images": [
     {
-      "file": "01 CONTEXT.jpg",
-      "alt": "",
-      "caption": "",
-      "description": ""
-    },
-    {
       "file": "02 STRATEGY.jpg",
-      "alt": "",
+      "alt": "Anchor — project sheet 2",
       "caption": "",
       "description": ""
     },
     {
       "file": "03 PLAN.jpg",
-      "alt": "",
+      "alt": "Anchor — project sheet 3",
       "caption": "",
       "description": ""
     },
     {
       "file": "04 MODEL.jpg",
-      "alt": "",
+      "alt": "Anchor — project sheet 4",
       "caption": "",
       "description": ""
     },
     {
       "file": "05 MOMENTS.jpg",
-      "alt": "",
+      "alt": "Anchor — project sheet 5",
       "caption": "",
       "description": ""
     }
