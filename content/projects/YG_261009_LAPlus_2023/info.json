@@ -27,7 +27,8 @@
     "Seeds",
     "Biodiversity",
     "Decolonization",
-    "Dispersal"
+    "Dispersal",
+    "Exoticism"
   ],
   "summary": "An underground seed vault and living garden at the Jardin des Plantes reframe exoticism through biodiversity, conservation and the dispersal of plants beyond the vault.",
   "description": [
@@ -57,5 +58,9 @@
     }
   ],
   "imageCredits": "",
-  "color": "#a2a17c"
+  "color": "#a2a17c",
+  "webLink": {
+    "label": "LA+ EXOTIQUE competition results",
+    "url": "https://laplusjournal.com/LA-EXOTIQUE_RESULTS"
+  }
 }
