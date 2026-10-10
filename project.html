@@ -330,6 +330,15 @@
 .collection-anthropogenic-sheet img{width:100%;height:auto;max-height:none;}
 .reference-sheet .collection-root-city-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(40px,5vw,80px);}
 .collection-root-city-sheet img{width:100%;height:auto;max-height:none;}
+
+.root-city-page .project-body{grid-template-columns:clamp(300px,26vw,420px) minmax(0,1fr);}
+.root-city-page .content.reference-sheet{max-width:none;width:100%;padding:0 24px;}
+.root-city-page .layout-hero .img-wrap img{max-height:none;height:auto;width:100%;}
+.root-city-page .collection-root-city-sheet{width:100%;max-width:none;}
+@media(max-width:860px){
+ .root-city-page .project-body{grid-template-columns:minmax(0,1fr);}
+ .root-city-page .content.reference-sheet{padding:0 12px;}
+}
 </style></head>
 <body data-page="project" class="day">
 
@@ -480,6 +489,7 @@ function renderBlock(b){
 }
 
 function renderProject(p){
+  if(record.slug==='ZZ_261005_Root City') document.body.classList.add('root-city-page');
   if(record.heroDisplay==='viewport') document.getElementById('proj-content').classList.add('viewport-hero');
   if(record.layoutVariant==='symbiotic-garden') document.getElementById('proj-content').classList.add('symbiotic-garden');
   if(record.layoutVariant==='ground-friction') document.getElementById('proj-content').classList.add('ground-friction');
