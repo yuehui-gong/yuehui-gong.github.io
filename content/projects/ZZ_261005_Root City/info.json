@@ -1,0 +1,74 @@
+{
+  "slug": "ZZ_261005_Root City",
+  "title": "Root City",
+  "shortTitle": "Root City",
+  "year": 2022,
+  "location": {
+    "city": "Las Vegas",
+    "country": "United States",
+    "site": "Las Vegas Strip",
+    "coordinates": [
+      -115.172,
+      36.1147
+    ]
+  },
+  "type": "Speculative urban design",
+  "collaborators": [
+    "Lillian Chung Kwan Yu (Hong Kong)",
+    "Wong Oi Ling Ellena (Hong Kong)",
+    "Zicheng Kai Zhao (China)"
+  ],
+  "awards": [],
+  "keywords": [
+    "water scarcity",
+    "underground infrastructure",
+    "autonomy",
+    "symbiosis"
+  ],
+  "summary": "A speculative underground city beneath the Las Vegas Strip turns water infrastructure into a framework for collective ownership, autonomy, and interdependence with the city above.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "To grow up, a city must root down.",
+    "Imagining the city as a tree, while it thrives for economic growth, it needs nutrients and resources. Infrastructure construction and resource extraction has always been a top-down controlled operation. Cities have been conventionally growing skyward and determined by market. What if a city’s roots can also grow organically and spontaneously downward to form the city’s operational backbone?",
+    "Root city emerges as Las Vegas faces water scarcity, urban sprawl, and wealth disparity. Located beneath the gambler’s city, root city is superimposed onto the existing water lines underneath the Las Vegas Strip as a way to interrupt both the capitalistic system and physical configuration of a future city. It calls for bottom-up autonomy, co-ownership and co-development.",
+    "Since 2000, Las Vegas’s main source of drinking water - Lake Mead, has dropped more than 150 feet of its water level. Meanwhile, the surge in Vegas' homeless population skyrocketed due to extreme capitalism, giving rise to a new community who seek refuge in the forgotten system of underground tunnels - mole people. In light of this, root city features a dystopian scenario in 2120 with a looming water crisis and homelessness. When money cannot buy water, capital of which the rich accumulated was useless. The city decided to initiate an underground water diversion project. Mole people of Las Vegas became the opportunistic labor for water diversion.",
+    "Mole people and the government would co-work and expand the underground infrastructure network. Empowerment of the mole people during construction of the infrastructure also induced a makeshift self-evolved autonomous underground settlement. Gradually, the once marginalized population became the major force operating the most important source of life - water for the upper city, accelerating their social bargaining power.",
+    "The upper city and the underground city manifested as symbiosis. The upper rich depended on ‘nutrients’ from the underground for survival; the underground also needed resources from the upper city. A dynamic counterweight hence formed to capitalism."
+  ],
+  "hero": {
+    "file": "web/axon.webp",
+    "alt": "Axonometric view of Root City"
+  },
+  "images": [
+    {
+      "file": "web/concept-image.webp",
+      "alt": "Concept Image — Root City",
+      "caption": "Concept Image",
+      "description": ""
+    },
+    {
+      "file": "web/plan.webp",
+      "alt": "Plan — Root City",
+      "caption": "Plan",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "root-city-sheet",
+      "files": [
+        "web/concept-image.webp"
+      ]
+    },
+    {
+      "kind": "root-city-sheet",
+      "files": [
+        "web/plan.webp"
+      ]
+    }
+  ],
+  "presentation": "reference-sheet",
+  "narrativePlacement": "sidebar",
+  "color": "#748b8d",
+  "imageCredits": ""
+}
