@@ -277,11 +277,7 @@ html:not(.day){color-scheme:dark}
 .day .globe-wrap .marker .core,.day .globe-wrap .marker.active .core{background:#202522;border-color:#fff;box-shadow:0 0 0 1px #20252280}.day .globe-wrap .marker .ring{border-color:#202522;box-shadow:none}.day .marker-label{background:#fffffff0;color:#202522;border-color:#20252235}
 @media(hover:hover) and (pointer:fine){html.day,html.day body,html.day body *{cursor:auto!important}html.day button,html.day a,html.day .card{cursor:pointer!important}}
 @media(max-width:640px){header{padding:20px 18px}.brand{font-size:11px}.nav-icons{gap:10px}#appearanceToggle{font-size:10px;padding:8px}.nav-icons>svg{display:none}}
-.globe-stage{z-index:16;clip-path:circle(50%);pointer-events:auto}
-.globe-wrap{touch-action:none;cursor:grab!important}.globe-wrap.dragging{cursor:grabbing!important}
-.globe-wrap .marker{width:28px;height:28px;padding:0;border:0;background:none;pointer-events:auto;color:inherit;cursor:pointer!important}
-.marker-label{pointer-events:none;left:30px;top:3px}.marker:focus-visible{outline:1px solid var(--ink);outline-offset:3px;border-radius:50%}
-.marker:hover .ring{opacity:1;transform:translate(-50%,-50%) scale(1)}</style>
+</style>
 <link rel="stylesheet" href="assets/site.css"></head>
 <body data-page="projects">
 
@@ -297,7 +293,7 @@ html:not(.day){color-scheme:dark}
   </div>
   <div class="caption">
     <p class="name" id="capName">—</p>
-    <p class="loc"><span class="dot"></span><span id="capLoc">—</span></p><a id="open-project" href="projects.html" style="display:inline-block;pointer-events:auto;color:inherit;font:10px var(--mono);margin-top:10px">View project ↗</a>
+    <p class="loc"><span class="dot"></span><span id="capLoc">—</span></p><a id="open-project" href="project.html?slug=tidal-garden" style="display:inline-block;pointer-events:auto;color:inherit;font:10px var(--mono);margin-top:10px">View project ↗</a>
   </div>
 </section>
 
@@ -321,13 +317,13 @@ html:not(.day){color-scheme:dark}
 </div>
 
 <div class="globe-stage">
-  <div class="globe-wrap" id="globeWrap" tabindex="0" role="group" aria-label="Project globe. Drag or use arrow keys to rotate; select a dot to browse its project.">
-    <canvas id="earthCanvas" aria-label="Earth with project locations"></canvas><div id="earthMarkers"></div>
+  <div class="globe-wrap" id="globeWrap">
+    <canvas id="earthCanvas" aria-label="Photorealistic monochrome Earth"></canvas><div id="earthMarkers"></div>
     <div class="globe-shade"></div>
   </div>
 </div>
 
-<footer><span>Scroll projects · Drag Earth · Select a dot</span><span>Founded 2014</span></footer>
+<footer><span>Scroll to travel</span><span>Founded 2014</span></footer>
 
 <script src="assets/project-content.js?v=20261009-hero"></script>
 <script>
@@ -376,7 +372,7 @@ html:not(.day){color-scheme:dark}
       '<p class="card-name">'+p.name+'</p>' +
       '<p class="card-type">'+p.type+'</p>' +
       '<span class="card-frame"><img src="'+img+'" alt="'+p.name+'" loading="lazy"></span>';
-    card.addEventListener('click', function(e){ if(!didDrag || e.detail===0) {finishEntrance();clearTimeout(snapTimer); followList=true; targetScroll = i*STEP;} });
+    card.addEventListener('click', function(e){ if(!didDrag || e.detail===0) {finishEntrance();clearTimeout(snapTimer); targetScroll = i*STEP;} });
     track.appendChild(card);
   });
 
@@ -442,18 +438,9 @@ html:not(.day){color-scheme:dark}
     canvas.width = canvas.height = Math.round(D*Math.min(window.devicePixelRatio||1,2));
     if(gl) gl.viewport(0,0,canvas.width,canvas.height);
     var layer = document.getElementById('earthMarkers'); layer.innerHTML=''; markers=[];
-    projects.forEach(function(p,i){
+    projects.forEach(function(p){
       if(!hasCoordinates(p)){markers.push(null);return;}
-      var m=document.createElement('button'); m.className='marker';m.type='button';
-      m.setAttribute('aria-label',p.name+', '+p.city);m.title=p.name;
-      m.addEventListener('click',function(e){e.stopPropagation();if(globeMoved&&e.detail!==0)return;
-        finishEntrance();clearTimeout(snapTimer);followList=false;
-        var nearby=markers.map(function(marker,index){return {marker:marker,index:index};}).filter(function(item){
-          return item.marker&&item.marker.style.display!=='none'&&Math.hypot(parseFloat(item.marker.style.left)-parseFloat(m.style.left),parseFloat(item.marker.style.top)-parseFloat(m.style.top))*D/100<14;
-        }).map(function(item){return item.index;});
-        var selected=nearby.indexOf(Math.round(targetScroll/STEP));
-        targetScroll=(e.detail===0?i:nearby[(selected+1)%nearby.length])*STEP;
-      });
+      var m=document.createElement('div'); m.className='marker';
       m.innerHTML='<span class="ring"></span><span class="core"></span><span class="marker-label">'+p.city.toUpperCase()+'</span>';
       layer.appendChild(m); markers.push(m);
     });
@@ -462,7 +449,6 @@ html:not(.day){color-scheme:dark}
     if(latitude !== undefined) earthTilt=latitude;
     var cameraLat = earthTilt*Math.PI/180;
     earthLon=lon;
-    globeWrap.dataset.longitude=String(lon);globeWrap.dataset.latitude=String(earthTilt);
     if(gl && earthReady){gl.uniform1f(angle,lon*Math.PI/180);gl.uniform1f(tilt,cameraLat);gl.drawArrays(gl.TRIANGLES,0,6);}
     projects.forEach(function(p,i){
       if(!markers[i]) return;
@@ -474,9 +460,6 @@ html:not(.day){color-scheme:dark}
       markers[i].classList.toggle('active',i===Math.round(currentScroll/STEP));
     });
   }
-  var globeWrap=document.getElementById('globeWrap');
-  var followList=true,cameraLon=earthLon,cameraLat=earthTilt;
-  var globeDragging=false,globeMoved=false,globeX=0,globeY=0,startX=0,startY=0,spinX=0,spinY=0,globeTime=0;
   var current = -1;
   var targetScroll = 0;
   var currentScroll = 0;
@@ -497,11 +480,10 @@ html:not(.day){color-scheme:dark}
     var frac = clamped - lo;
 
     var from=cameraPosition(lo), to=cameraPosition(hi);
-    if(followList && from && to){
+    if(from && to){
       var longitudeDelta = ((to.lon - from.lon + 540) % 360) - 180;
-      cameraLon=from.lon+longitudeDelta*frac-110*(1-entranceEase(introProgress));
-      cameraLat=clamp(from.lat+(to.lat-from.lat)*frac-35,-80,80);
-    }
+      drawEarth(from.lon + longitudeDelta * frac - 110*(1-entranceEase(introProgress)), from.lat + (to.lat-from.lat)*frac - 35);
+    } else drawEarth(earthLon,earthTilt);
 
     var nearest = Math.round(clamped);
     if(nearest !== current){
@@ -559,18 +541,10 @@ html:not(.day){color-scheme:dark}
     var previousScroll=currentScroll;
     currentScroll += (targetScroll-currentScroll) * (reducedMotion?1:1-Math.exp(-dt/(dragging?35:100)));
     if(Math.abs(targetScroll-currentScroll)<.05) currentScroll=targetScroll;
-    if(introWasActive || currentScroll!==previousScroll) render();
-    if(!followList&&!globeDragging){cameraLon+=spinX*dt;cameraLat=clamp(cameraLat+spinY*dt,-80,80);
-      spinX*=Math.exp(-dt/180);spinY*=Math.exp(-dt/180);
-      if(Math.abs(spinX)<.0001)spinX=0;if(Math.abs(spinY)<.0001)spinY=0;}
-    var deltaLon=((cameraLon-earthLon)%360+540)%360-180;
-    var ease=reducedMotion||globeDragging?1:1-Math.exp(-dt/120);
-    if(Math.abs(deltaLon)>.0001||Math.abs(cameraLat-earthTilt)>.0001||currentScroll!==previousScroll||introWasActive)
-      drawEarth(earthLon+deltaLon*ease,earthTilt+(cameraLat-earthTilt)*ease);
-    requestAnimationFrame(loop);
+    if(introWasActive || currentScroll!==previousScroll) render(); requestAnimationFrame(loop);
   }
   track.addEventListener('wheel',function(e){
-    e.preventDefault(); finishEntrance(); followList=true; clearTimeout(snapTimer);
+    e.preventDefault(); finishEntrance(); clearTimeout(snapTimer);
     var d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
     d*=e.deltaMode===1?16:e.deltaMode===2?track.clientWidth:1;
     targetScroll=clamp(targetScroll+d*.8,0,maxScroll);
@@ -579,7 +553,7 @@ html:not(.day){color-scheme:dark}
   track.addEventListener('pointerdown',function(e){
     if(e.button!==0) return;
     finishEntrance();
-    followList=true;clearTimeout(snapTimer); dragging=true;didDrag=false;velocity=0;
+    clearTimeout(snapTimer); dragging=true;didDrag=false;velocity=0;
     dragStartX=lastX=e.clientX;dragStartTarget=currentScroll;targetScroll=currentScroll;lastMoveTime=performance.now();
   });
   track.addEventListener('pointermove',function(e){
@@ -600,36 +574,10 @@ html:not(.day){color-scheme:dark}
   track.addEventListener('lostpointercapture',endDrag);
   track.addEventListener('keydown',function(e){
     if(['ArrowRight','ArrowLeft','Home','End'].indexOf(e.key)<0)return;
-    e.preventDefault();finishEntrance();followList=true;clearTimeout(snapTimer);didDrag=false;
+    e.preventDefault();finishEntrance();clearTimeout(snapTimer);didDrag=false;
     targetScroll=e.key==='Home'?0:e.key==='End'?maxScroll:clamp((Math.round(targetScroll/STEP)+(e.key==='ArrowRight'?1:-1))*STEP,0,maxScroll);
   });
 
-  globeWrap.addEventListener('pointerdown',function(e){
-    if(e.button!==0||globeDragging)return;
-    finishEntrance();followList=false;cameraLon=earthLon;cameraLat=earthTilt;spinX=spinY=0;
-    globeDragging=true;globeMoved=false;startX=globeX=e.clientX;startY=globeY=e.clientY;globeTime=performance.now();
-  });
-  globeWrap.addEventListener('pointermove',function(e){
-    if(!globeDragging)return;
-    if(Math.hypot(e.clientX-startX,e.clientY-startY)>5){globeMoved=true;globeWrap.setPointerCapture(e.pointerId);globeWrap.classList.add('dragging');}
-    var now=performance.now(),dt=Math.max(8,now-globeTime),factor=140/D;
-    if(globeMoved){var dx=-(e.clientX-globeX)*factor,dy=(e.clientY-globeY)*factor;
-      cameraLon+=dx;cameraLat=clamp(cameraLat+dy,-80,80);spinX=.5*spinX+.5*dx/dt;spinY=.5*spinY+.5*dy/dt;}
-    globeX=e.clientX;globeY=e.clientY;globeTime=now;
-  });
-  function releaseGlobe(e){
-    if(!globeDragging)return;globeDragging=false;globeWrap.classList.remove('dragging');
-    if(e.type==='pointercancel'||performance.now()-globeTime>100||reducedMotion)spinX=spinY=0;
-    if(globeWrap.hasPointerCapture(e.pointerId))globeWrap.releasePointerCapture(e.pointerId);
-  }
-  window.addEventListener('pointerup',releaseGlobe);window.addEventListener('pointercancel',releaseGlobe);
-  globeWrap.addEventListener('lostpointercapture',releaseGlobe);
-  globeWrap.addEventListener('keydown',function(e){
-    if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;
-    e.preventDefault();finishEntrance();followList=false;spinX=spinY=0;
-    cameraLon+=e.key==='ArrowLeft'?-12:e.key==='ArrowRight'?12:0;
-    cameraLat=clamp(cameraLat+(e.key==='ArrowUp'?12:e.key==='ArrowDown'?-12:0),-80,80);
-  });
   function init(){
     layoutPadding();
     buildGlobe();
@@ -641,7 +589,7 @@ html:not(.day){color-scheme:dark}
   window.addEventListener('resize', function(){
     layoutPadding();
     buildGlobe();
-    render();drawEarth(earthLon,earthTilt);
+    render();
   });
 
   init();
