@@ -339,6 +339,22 @@
  .root-city-page .project-body{grid-template-columns:minmax(0,1fr);}
  .root-city-page .content.reference-sheet{padding:0 12px;}
 }
+
+.hemp-page .content.reference-sheet{max-width:1600px;padding:0 24px;}
+.hemp-page .layout-hero img{max-height:none;}
+.reference-sheet .collection-hemp-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(40px,5vw,80px);}
+.collection-hemp-sheet img{width:100%;height:auto;max-height:none;}
+
+.hemp-page .layout-hero{display:none;}
+.hemp-page figcaption{display:none;}
+.hemp-page .project-collection:first-of-type{margin-top:24px;}
+.hemp-page .collection-hemp-composition{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px 32px;align-items:center;margin-top:clamp(40px,5vw,80px);}
+.collection-hemp-composition figure:nth-child(1){grid-area:1 / 1;}
+.collection-hemp-composition figure:nth-child(2){grid-area:2 / 1;}
+.collection-hemp-composition figure:nth-child(3){grid-area:3 / 1;}
+.collection-hemp-composition figure:nth-child(4){grid-area:1 / 2 / span 3 / 3;}
+.hemp-page .collection-hemp-composition img{width:100%;height:auto;max-height:none;}
+@media(max-width:600px){.hemp-page .content.reference-sheet{padding:0 12px;}.hemp-page .collection-hemp-composition{gap:14px;}}
 </style></head>
 <body data-page="project" class="day">
 
@@ -489,6 +505,7 @@ function renderBlock(b){
 }
 
 function renderProject(p){
+  if(record.slug==='ZZ_261010_Hemp For Water') document.body.classList.add('hemp-page');
   if(record.slug==='ZZ_261005_Root City') document.body.classList.add('root-city-page');
   if(record.heroDisplay==='viewport') document.getElementById('proj-content').classList.add('viewport-hero');
   if(record.layoutVariant==='symbiotic-garden') document.getElementById('proj-content').classList.add('symbiotic-garden');

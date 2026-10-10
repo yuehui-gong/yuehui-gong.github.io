@@ -1,0 +1,131 @@
+{
+  "slug": "ZZ_261010_Hemp For Water",
+  "title": "Hemp For Water",
+  "shortTitle": "Hemp For Water",
+  "year": 2022,
+  "location": {
+    "city": "Chester County, Pennsylvania",
+    "country": "United States",
+    "coordinates": [
+      -75.75,
+      39.97
+    ]
+  },
+  "type": "Landscape design",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [
+    "hemp",
+    "water quality",
+    "biochar",
+    "riparian buffers"
+  ],
+  "summary": "Hemp crop rotations, harvestable buffers, and a regional processing network connect agricultural production with improved water quality in Chester County, Pennsylvania.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Nitrogen, Phosphorus, and sediments pollute 90% of streams in Chester County. 72% of contaminants are contributed by the agriculture sector, with 40 percent of agricultural land use. Existing buffers play a limited role.",
+    "Hemp is a high-value cash crop with enormous environmental potential. I propose adding hemp to farmers’ rotation lists and utilizing its cleaning ability as a bio-accumulator and its potential to turn into environmental byproducts such as biochar, geotextile, etc., to strengthen the existing and build layers of the buffer. Meanwhile, a new supply chain centered on hemp byproducts arose as a new industry in Chester County.",
+    "Hemp was grown in Pennsylvania for over 260 years as a cash crop. Banned after 1930s, hemp production became legal in 2018. Hemp is known for its thousand uses. However, its environmental benefits are often overlooked. Compared to conventional cash crops such as corn and soybean, hemp uses half the water and fertilizer and pays twice as much. Based on suitability analysis, the piedmont region is one of the few ideal growing habitats on the east coast, and hemp can grow without irrigation due to abundant rainfall. Furthermore, hemp has a much faster growth period and far deeper roots as a bio-accumulator.",
+    "Hemp demonstration plots are planned through phasing based on analysis of land use, ownership, and existing farming practices. The first phase includes agricultural land owned by conservation groups and County, and the second phase includes pilot projects collaboration between private farmers and the Stroud water center. Even though hemp is legalized, there is a strict requirement regarding THC levels. Hemp is usually disposed of through a set of procedures that bring significant losses to farmers. I propose repurposing an existing abandoned facility in Coatesville as a processing and testing facility that utilizes failing crops, converts them into environmental products, and applies them back to farmland.",
+    "The demonstration site along the Brandywine River is one of the first-phase sites. It embodies the typical character of the undulating hills of Chester County, with forests, meadows, corn and soybean fields, and stream valleys. Besides river pollution, it also suffers from low income. Incorporating hemp into the planting schedule could benefit both. By analyzing optimal PH level, drainage, slope, land cover, etc., determine the ideal production area. Hemp’s low demand for fertilizers and its ability as a bio-accumulator can reduce the amount of nutrient pollutants carried to adjacent streams. The help of current conservation practices, such as intercropping companion plants and contour farming, etc., can further contribute to reducing pollutants. Environmental products such as biochar made from the processing facility in Coatesville can help increase the infiltration of the surface runoff. The second layer of buffer focus on the farmer’s edge condition. Following a previous site investigation, choose locations that match all other requirements except slope. Edge conditions are typically steep. By grading, the ideal environment is created for the growth of hemp and other plants. The new buffer improvement of the buffer is further divided into three layers harvestable buffer, meadows, and existing riparian buffer. Harvestable buffer didn’t require high management intensity and was used to take up nutrient pollutants as a source of fertilizer. At the end of the season, they are harvested in order to remove the pollutants permanently and provide additional income. The other two layers don’t require management and usually consist of fast-growing species. A series of sketch planting models and site-less topology models cross combine with environmental products to the iteration of typology implemented throughout the site, which creates a different way to filtrate or capture water and different emerging experience."
+  ],
+  "hero": {
+    "file": "web/render.webp",
+    "alt": "Render — Hemp For Water"
+  },
+  "images": [
+    {
+      "file": "web/map-2.webp",
+      "alt": "Map 2 — Hemp For Water",
+      "caption": "Map 2",
+      "description": ""
+    },
+    {
+      "file": "web/map-1.webp",
+      "alt": "Map 1 — Hemp For Water",
+      "caption": "Map 1",
+      "description": ""
+    },
+    {
+      "file": "web/hemp-plant.webp",
+      "alt": "Hemp Plant — Hemp For Water",
+      "caption": "Hemp Plant",
+      "description": ""
+    },
+    {
+      "file": "web/plan.webp",
+      "alt": "Plan — Hemp For Water",
+      "caption": "Plan",
+      "description": ""
+    },
+    {
+      "file": "web/axon-typology.webp",
+      "alt": "Axon Typology — Hemp For Water",
+      "caption": "Axon Typology",
+      "description": ""
+    },
+    {
+      "file": "web/hemp-growth-sequence.webp",
+      "alt": "Hemp Growth Sequence — Hemp For Water",
+      "caption": "Hemp Growth Sequence",
+      "description": ""
+    },
+    {
+      "file": "web/planting-list.webp",
+      "alt": "Planting List — Hemp For Water",
+      "caption": "Planting List",
+      "description": ""
+    },
+    {
+      "file": "web/sequential-sections.webp",
+      "alt": "Sequential Sections — Hemp For Water",
+      "caption": "Sequential Sections",
+      "description": ""
+    },
+    {
+      "file": "web/render.webp",
+      "alt": "Render — Hemp For Water",
+      "caption": "Render",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "hemp-sheet",
+      "files": [
+        "web/hemp-plant.webp"
+      ]
+    },
+    {
+      "kind": "hemp-sheet",
+      "files": [
+        "web/map-2.webp"
+      ]
+    },
+    {
+      "kind": "hemp-sheet",
+      "files": [
+        "web/map-1.webp"
+      ]
+    },
+    {
+      "kind": "hemp-composition",
+      "files": [
+        "web/axon-typology.webp",
+        "web/planting-list.webp",
+        "web/render.webp",
+        "web/plan.webp"
+      ]
+    },
+    {
+      "kind": "hemp-sheet",
+      "files": [
+        "web/sequential-sections.webp"
+      ]
+    }
+  ],
+  "presentation": "reference-sheet",
+  "narrativePlacement": "sidebar",
+  "color": "#879b71",
+  "imageCredits": ""
+}
