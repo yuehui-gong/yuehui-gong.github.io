@@ -265,6 +265,10 @@
 
 .content .plan-enlarged img{max-height:min(1520px,160vh)}
 @media(max-width:860px){.content .plan-enlarged img{max-height:150svh}}
+
+.collection-candelo-single,.collection-candelo-pair{width:100%;padding:24px 0;}
+.collection-candelo-pair{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center;}
+@media(max-width:600px){.collection-candelo-pair{grid-template-columns:minmax(0,1fr);}}
 </style>
 <link rel="stylesheet" href="assets/site.css"><style>
 :root{--sidebar-w:clamp(480px,38vw,640px)}

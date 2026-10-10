@@ -1,0 +1,116 @@
+{
+  "slug": "YG_261009_Candelo_2026",
+  "title": "Growing Affordances",
+  "shortTitle": "Growing Affordances",
+  "location": {
+    "city": "Candelo",
+    "country": "Italy",
+    "coordinates": [
+      8.107,
+      45.545
+    ]
+  },
+  "year": 2026,
+  "type": "Public space",
+  "collaborators": [
+    "Zicheng (Kai) Zhao",
+    "Yuehui Gong"
+  ],
+  "awards": [],
+  "keywords": [
+    "Climbers",
+    "Growth",
+    "Care",
+    "Play",
+    "Seasonality",
+    "Community"
+  ],
+  "summary": "Climber plants transform a school-adjacent asphalt space in Candelo into an evolving landscape of shade, play, gathering, and collective care.",
+  "description": [
+    "Climber plants have long shaped Candelo’s landscape, particularly through viticulture, where cultivation practices established spatial orders, seasonal rhythms, and forms of collective labor inseparable from everyday life. Building on this legacy, this project extends attention from viticulture to climber plants more broadly. Although these species remain widespread in Candelo, their role in contemporary urban space is often limited to surface treatment, buffering edge or background greenery.",
+    "This proposal reframes climber plants as living material history—systems that carry inherited knowledge, operate through present-day use, and evolve through growth, care, and seasonal change. Rather than using plants to decorate or conceal architecture, the project explores how relationships between people and climber plants in Candelo today can be reconfigured as spatial, adaptive, and participatory.",
+    "The site, adjacent to a school, is currently dominated by asphalt and lacks ecological presence or social definition. The project introduces climber plants as a low-impact spatial framework supported by lightweight, reversible structures—mesh, poles, and tensioned strings. Together, these elements form a flexible armature that reclaims ground conditions while enabling new forms of social and ecological activity. The framework does not prescribe fixed programs; instead, it establishes a field of affordances that supports play, waiting, observation, and informal gathering. For children, porous planting volumes invite movement, hiding, touch, and sensory exploration. For parents and neighbors, the planted framework supports lingering and everyday social exchange.",
+    "The project unfolds gradually. Initial interventions selectively depave asphalt to introduce soil, crushed stone, and vertical supports, foregrounding cultivation, learning, and care as the first phase. As climber plants establish themselves, planted elements extend laterally, softening boundaries and forming continuous green surfaces. The ground is progressively reshaped by growth, attracting birds and other species while opening new opportunities for children’s interaction. Furniture is introduced in response to emerging patterns of use. Over time, thickened planting surfaces form spatial enclosures through living volume capable of supporting informal education, waiting, and seasonal community activities without prescribing them.",
+    "Accessibility is treated as a shared spatial condition. On a site with limited ground, dedicating discrete space solely to a ramp would be spatially inefficient and reinforce functional segregation. Instead, changes in level are resolved through a continuous ground plane in which gentle slopes below five percent and steps are interwoven. Gentle walkways run alongside and between stair flights, articulated through material transitions rather than physical separation. Seat walls are embedded at key level changes, particularly along the edge facing the sports field, providing places to sit, watch, and gather. Above, a lightweight canopy frame supports climber growth that gradually develops into shade—an evolving structure shaped by time rather than delivered as a finished object.",
+    "By working with climber plants, the project does not introduce a new material but repositions a familiar one. A historically embedded planting system becomes an active spatial framework—organizing movement, shaping enclosure, and transforming ground conditions through growth. In doing so, the project provides a shared platform for everyday gathering, reinforcing Candelo’s long-standing sense of community through cultivation, use, and care."
+  ],
+  "storyTitle": "Climber plants as living framework for evolving public space",
+  "narrativePlacement": "sidebar",
+  "pageTheme": "day",
+  "hero": {
+    "file": "hero.jpg",
+    "alt": "Perspective of children and neighbors gathering beneath a climber-planted canopy in Candelo"
+  },
+  "images": [
+    {
+      "file": "plan.jpg",
+      "caption": "Site plan",
+      "alt": "Plan of the school-adjacent public space in Candelo",
+      "description": ""
+    },
+    {
+      "file": "section-enlargement.jpg",
+      "caption": "Sloped walkway",
+      "alt": "Enlarged plan and section of the integrated sloped walkway and steps",
+      "description": ""
+    },
+    {
+      "file": "view-small.jpg",
+      "caption": "Garden perspective",
+      "alt": "Perspective of planted public space and climber supports",
+      "description": ""
+    },
+    {
+      "file": "axonometric.jpg",
+      "caption": "Living framework",
+      "alt": "Axonometric view of the planted canopy, seating and sports-field edge",
+      "description": ""
+    },
+    {
+      "file": "climber-plant-phenology.jpg",
+      "caption": "Climber plant phenology",
+      "alt": "Seasonal growth diagrams for petiole, twining and tendril climbers",
+      "description": ""
+    },
+    {
+      "file": "phasing-diagram.jpg",
+      "caption": "From pioneer to established",
+      "alt": "Phasing diagrams showing growth and adaptable community uses",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "candelo-single",
+      "files": [
+        "plan.jpg"
+      ]
+    },
+    {
+      "kind": "candelo-single",
+      "files": [
+        "section-enlargement.jpg"
+      ]
+    },
+    {
+      "kind": "candelo-pair",
+      "files": [
+        "view-small.jpg",
+        "axonometric.jpg"
+      ]
+    },
+    {
+      "kind": "candelo-single",
+      "files": [
+        "climber-plant-phenology.jpg"
+      ]
+    },
+    {
+      "kind": "candelo-single",
+      "files": [
+        "phasing-diagram.jpg"
+      ]
+    }
+  ],
+  "color": "#9a9b63"
+}
