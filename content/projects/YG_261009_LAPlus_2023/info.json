@@ -1,0 +1,61 @@
+{
+  "slug": "YG_261009_LAPlus_2023",
+  "title": "Seeds’ Ark",
+  "shortTitle": "Seeds’ Ark",
+  "location": {
+    "city": "Paris",
+    "country": "France",
+    "coordinates": [
+      2.3564,
+      48.8439
+    ]
+  },
+  "year": 2023,
+  "type": "Academic project",
+  "collaborators": [
+    "Ling Zhang",
+    "Yining Zhang"
+  ],
+  "awards": [
+    {
+      "name": "LA+ EXOTIQUE Design Ideas Competition",
+      "year": 2023,
+      "distinction": "Second Prize"
+    }
+  ],
+  "keywords": [
+    "Seeds",
+    "Biodiversity",
+    "Decolonization",
+    "Dispersal"
+  ],
+  "summary": "An underground seed vault and living garden at the Jardin des Plantes reframe exoticism through biodiversity, conservation and the dispersal of plants beyond the vault.",
+  "description": [
+    "The Jardin des Plantes de Paris is home to numerous exotic species brought back from various voyages, including places like Senegal, Madagascar, India, North America, and Brazil. Only species with medicinal or economic value were collected and reproduced in the garden, helping establish French colonial power and the order of nature. With decolonization and the rise of globalism, what was historically considered exotic hardly exists anymore.",
+    "Seeds’ Ark reimagines exoticism as diverse and nature-centric, challenging colonial ideologies by creating an underground seed vault library that preserves plants from all biomes, emphasizing places with high concentrations of endangered species. Unlike a seed vault that functions as a secure facility for “backing up” agriculturally significant plants, the redesign of the Museum forecourt is organized to allow living plants—“escapees” from those planted in the vault below—to germinate.",
+    "In plan, the geometry follows the historic grid form; in section, glass openings in the ground allow ample sunlight to the underground vault, which includes gallery spaces that invite visitors to experience the progression of a living species from lab, to seed wall, to plant, to above-ground exterior spaces, where the plants grow vertically out of the bounds of the vault. With the help of angular landforms, the seeds from the plants that poke above the forecourt can germinate through wind, eventually sowing a ground condition that is a more fertile and biodiverse representation of the planet’s future."
+  ],
+  "storyTitle": "A Seed Vault Garden Redefining Exoticism for a Biodiverse Future",
+  "narrativePlacement": "sidebar",
+  "pageTheme": "day",
+  "hero": {
+    "file": "biomes-and-seeds.jpg",
+    "alt": "Global biomes and seed dispersal research illustrated with botanical studies"
+  },
+  "images": [
+    {
+      "file": "seed-studies.jpg",
+      "alt": "Botanical illustrations of seeds and seed pods for Seeds’ Ark",
+      "caption": "Seed studies",
+      "description": ""
+    },
+    {
+      "file": "seed-vault-garden.jpg",
+      "alt": "Axonometric of the seed vault garden and perspectives of its above-ground garden and underground library",
+      "caption": "A seed vault garden",
+      "description": ""
+    }
+  ],
+  "imageCredits": "",
+  "color": "#a2a17c"
+}
