@@ -39,7 +39,8 @@
   "pageTheme": "day",
   "hero": {
     "file": "hero.jpg",
-    "alt": "Perspective of children and neighbors gathering beneath a climber-planted canopy in Candelo"
+    "alt": "Perspective of children and neighbors gathering beneath a climber-planted canopy in Candelo",
+    "display": "viewport"
   },
   "images": [
     {
