@@ -18,7 +18,13 @@
     "Wong Oi Ling Ellena (Hong Kong)",
     "Zicheng Kai Zhao (China)"
   ],
-  "awards": [],
+  "awards": [
+    {
+      "name": "LA+ Interruption",
+      "year": 2022,
+      "distinction": "Honorable Mention"
+    }
+  ],
   "keywords": [
     "water scarcity",
     "underground infrastructure",
