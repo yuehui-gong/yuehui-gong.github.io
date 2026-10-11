@@ -1,0 +1,47 @@
+{
+  "slug": "JH_261011_Back to Roots",
+  "title": "Back to Roots",
+  "shortTitle": "Back to Roots",
+  "location": {
+    "site": "Lake Okeechobee",
+    "city": "Florida",
+    "country": "United States",
+    "coordinates": null
+  },
+  "year": 2024,
+  "type": "Academic Studio",
+  "collaborators": ["Wei Xia"],
+  "awards": [],
+  "keywords": ["memory", "counterfactual", "cultural continuity", "ecology"],
+  "summary": "A landscape proposal told through a graphic novel, imagining cultural continuity and renewed relations with land around Lake Okeechobee.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Back to Roots is a speculative landscape design project presented as a graphic novel. Historical research grounds the story, while fictional characters and proposed interventions explore how a landscape marked by displacement might be transformed into a place that sustains memory and cultural continuity.",
+    "The comic follows Osceola, a fictional Seminole elder, as he revisits memories of his grandmother and childhood. His story connects the loss of home and language with changing relationships to land and water. In conversation with landscape architect Allison, these memories become the starting point for a proposed preserve, where planting, gathering, and the changing forest allow people to encounter different layers of history.",
+    "Within the existing forest, the preserve brings together a memorial garden, an experimental planting field, and a medicine wheel garden. Annual digging and flooding would expose the ground and cause trees to die, giving material form to displacement. Fallen trees would then become compost for cultivated plants. This uneasy cycle places an expression of loss alongside the possibility of renewal, connecting remembrance with the ongoing practice and transmission of plant knowledge.",
+    "Through collage, dialogue, maps, and successive landscape scenes, the book makes time part of the design. Its final chapter extends the imagined initiative into landscapes shaped by sugarcane cultivation, while leaving its economic consequences unresolved. Back to Roots asks how cultural continuity might be sustained within a changing landscape, and what responsibilities arise when remembrance becomes a continuing practice of care."
+  ],
+  "hero": {
+    "file": "comic-cover.jpg",
+    "alt": "Back to Roots graphic novel cover, with a red landscape strip against black"
+  },
+  "images": [],
+  "book": {
+    "mode": "spreads",
+    "pages": [
+      {"file": "comic-cover.jpg", "kind": "cover", "label": "Cover", "width": 2063, "height": 3225, "alt": "Back to Roots cover"},
+      {"file": "comic-spread1.jpg", "kind": "spread", "label": "Two Generations", "width": 4125, "height": 3225, "alt": "Spread 1: Osceola remembers his grandmother and stories of displacement"},
+      {"file": "comic-spread2.jpg", "kind": "spread", "label": "Land and Memory", "width": 4125, "height": 3225, "alt": "Spread 2: archival collage and an imagined elder reflect on removal, boarding schools, and land and water"},
+      {"file": "comic-spread3.jpg", "kind": "spread", "label": "Back to Roots", "width": 4125, "height": 3225, "alt": "Spread 3: Osceola at ages five and ninety-two, with a map of Lake Okeechobee"},
+      {"file": "comic-spread4.jpg", "kind": "spread", "label": "The Preserve", "width": 4125, "height": 3225, "alt": "Spread 4: Osceola and landscape architect Allison discuss the preserve and plant gardens"},
+      {"file": "comic-spread5.jpg", "kind": "spread", "label": "Landscape in Time", "width": 4125, "height": 3225, "alt": "Spread 5: four forest scenes trace flooding, tree death, loss, and renewal"},
+      {"file": "comic-spread6.jpg", "kind": "spread", "label": "Expansion", "width": 4125, "height": 3225, "alt": "Spread 6: an imagined expansion toward Miccosukee lands and a question about economic consequences"},
+      {"file": "comic-spread7.jpg", "kind": "spread", "label": "Appendix", "width": 4125, "height": 3225, "alt": "Spread 7: preserve plan with memorial, plant and medicine wheel gardens and visitor center"},
+      {"file": "comic-backcover.jpg", "kind": "backcover", "label": "Back cover", "width": 2063, "height": 3225, "alt": "Back to Roots back cover"}
+    ]
+  },
+  "color": "#bd3b32",
+  "pageTheme": "night",
+  "presentation": "comic-book",
+  "narrativePlacement": "sidebar"
+}
