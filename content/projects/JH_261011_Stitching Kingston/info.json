@@ -10,7 +10,9 @@
   },
   "year": 2024,
   "type": "Urban design",
-  "collaborators": [],
+  "collaborators": [
+    "Zicheng Zhao"
+  ],
   "awards": [
     {
       "name": "ASLA Student Awards",
