@@ -311,7 +311,7 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
   </div>
   <div class="caption">
     <p class="name" id="capName">—</p>
-    <p class="loc"><span class="dot"></span><span id="capLoc">—</span></p><a id="open-project" href="project.html?slug=tidal-garden" style="display:inline-block;pointer-events:auto;color:inherit;font:10px var(--mono);margin-top:10px">View project ↗</a>
+    <p class="loc"><span class="dot"></span><span id="capLoc">—</span></p>
   </div>
 </section>
 
@@ -390,7 +390,7 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
       '<p class="card-name">'+p.name+'</p>' +
       '<p class="card-type">'+p.type+'</p>' +
       '<span class="card-frame"><img src="'+img+'" alt="'+p.name+'" loading="lazy"></span>';
-    card.addEventListener('click', function(e){ if(!didDrag || e.detail===0) {finishEntrance();clearTimeout(snapTimer); targetScroll = i*STEP;} });
+    card.addEventListener('click', function(e){ if(!didDrag || e.detail===0) { location.href='project.html?slug='+encodeURIComponent(p.slug); } });
     track.appendChild(card);
   });
 
@@ -519,7 +519,7 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
       current = nearest;
       markers.forEach(function(m, i){ if(m) m.classList.toggle('active', i === current); });
       var p = projects[current];
-      capName.textContent = p.name; document.getElementById("open-project").href="project.html?slug="+p.slug;
+      capName.textContent = p.name;
       var place=p.loc || [p.city,p.country].filter(value=>value && value!=='-' && value!=='—').join(', ') || '-';
       capLoc.textContent = place + ' — ' + p.type;
       countEl.textContent = String(current+1).padStart(2,'0') + ' / ' + String(projects.length).padStart(2,'0');
