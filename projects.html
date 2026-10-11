@@ -532,21 +532,20 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
 
     document.getElementById('earthMarkers').style.opacity = clamp((introProgress-.45)/.55,0,1);
     var cards = track.children;
+    var cardHeight = Math.max.apply(null, Array.from(cards, function(card){ return card.offsetHeight; })) || CARD_W*1.25+42;
+    var globeGap = window.innerWidth<=640 ? 46 : 76;
+    var innerRadius = D/2 + globeGap;
+    var radius = innerRadius + cardHeight/2;
+    var angleStep = 2*Math.atan((CARD_W/2+GAP/2)/innerRadius);
     for(var i=0; i<cards.length; i++){
       var delta = i - clamped;
-      var cardHeight = cards[i].offsetHeight || CARD_W*1.25+42;
-      var globeGap = window.innerWidth<=640 ? 46 : 76;
-      var innerRadius = D/2 + globeGap;
-      var radius = innerRadius + cardHeight/2;
-      // Space by the inner corners, where tangent cards are closest together.
-      var angleStep = 2*Math.atan((CARD_W/2+18)/innerRadius);
       var arcAngle = delta * angleStep;
       var visible = Math.abs(arcAngle)<1.5;
       var abs = Math.min(Math.abs(delta),3.2);
-      var scale = Math.max(.82,1-abs*.055);
+      var scale = 1;
       var op = Math.max(.42,1-abs*.18);
-      var spread=entranceEase((introProgress-i*.035)/.755);
-      var spreadAngle=clamp(arcAngle,-1.5,1.5)*spread;
+      var spread=entranceEase(introProgress);
+      var spreadAngle=arcAngle;
       var centerY=(window.innerHeight || track.clientHeight || 800)+D*.08;
       var x=radius*Math.sin(spreadAngle);
       var y=centerY-radius*Math.cos(spreadAngle)+26*(1-spread);
