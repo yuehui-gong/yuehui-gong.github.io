@@ -277,6 +277,12 @@ html:not(.day){color-scheme:dark}
 .day .globe-wrap .marker .core,.day .globe-wrap .marker.active .core{background:#202522;border-color:#fff;box-shadow:0 0 0 1px #20252280}.day .globe-wrap .marker .ring{border-color:#202522;box-shadow:none}.day .marker-label{background:#fffffff0;color:#202522;border-color:#20252235}
 @media(hover:hover) and (pointer:fine){html.day,html.day body,html.day body *{cursor:auto!important}html.day button,html.day a,html.day .card{cursor:pointer!important}}
 @media(max-width:640px){header{padding:20px 18px}.brand{font-size:11px}.nav-icons{gap:10px}#appearanceToggle{font-size:10px;padding:8px}.nav-icons>svg{display:none}}
+/* Only project dots intercept input; the existing carousel gestures remain unchanged. */
+.globe-stage{z-index:16}
+.globe-wrap .marker{width:28px;height:28px;padding:0;border:0;background:none;color:inherit;pointer-events:auto;cursor:pointer}
+.marker-label{pointer-events:none;left:30px;top:3px}
+.marker:focus-visible{outline:1px solid var(--ink);outline-offset:3px;border-radius:50%}
+.marker:hover .ring{opacity:1;transform:translate(-50%,-50%) scale(1)}
 </style>
 <link rel="stylesheet" href="assets/site.css"><style>
 /* Keep project locations visible against the globe in both themes. */
@@ -446,9 +452,20 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
     canvas.width = canvas.height = Math.round(D*Math.min(window.devicePixelRatio||1,2));
     if(gl) gl.viewport(0,0,canvas.width,canvas.height);
     var layer = document.getElementById('earthMarkers'); layer.innerHTML=''; markers=[];
-    projects.forEach(function(p){
+    projects.forEach(function(p,i){
       if(!hasCoordinates(p)){markers.push(null);return;}
-      var m=document.createElement('div'); m.className='marker';
+      var m=document.createElement('button'); m.className='marker';m.type='button';
+      m.setAttribute('aria-label','Select '+p.name+', '+p.city);m.title=p.name;
+      m.addEventListener('click',function(e){
+        finishEntrance();clearTimeout(snapTimer);didDrag=false;
+        // Nearby dots can overlap at globe scale: repeated clicks cycle those projects.
+        var nearby=markers.map(function(marker,index){return {marker:marker,index:index};}).filter(function(item){
+          return item.marker && item.marker.style.display!=='none' && Math.hypot(parseFloat(item.marker.style.left)-parseFloat(m.style.left),parseFloat(item.marker.style.top)-parseFloat(m.style.top))*D/100<14;
+        }).map(function(item){return item.index;});
+        var selected=nearby.indexOf(Math.round(targetScroll/STEP));
+        targetScroll=(e.detail===0?i:nearby[(selected+1)%nearby.length])*STEP;
+      });
+      m.addEventListener('wheel',function(e){e.preventDefault();track.dispatchEvent(new WheelEvent('wheel',{deltaX:e.deltaX,deltaY:e.deltaY,deltaMode:e.deltaMode,cancelable:true}));},{passive:false});
       m.innerHTML='<span class="ring"></span><span class="core"></span><span class="marker-label">'+p.city.toUpperCase()+'</span>';
       layer.appendChild(m); markers.push(m);
     });
