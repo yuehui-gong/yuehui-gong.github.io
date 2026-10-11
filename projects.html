@@ -287,6 +287,8 @@ html:not(.day){color-scheme:dark}
 .gallery-section{z-index:auto}
 .caption{z-index:25}
 .caption .loc,.card-type,.hud-location{display:none!important}
+/* Crop the triptych gutters out of this project's portrait preview only. */
+.card[data-project="YG_261002_Berlin_2026"] .card-frame img{transform:scale(1.24);transform-origin:center}
 </style>
 <link rel="stylesheet" href="assets/site.css"><style>
 /* Keep project locations visible against the globe in both themes. */
@@ -383,6 +385,7 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
   projects.forEach(function(p, i){
     var card = document.createElement('button');
     card.className = 'card';
+    card.dataset.project = p.slug;
     card.type = 'button';
     card.setAttribute('aria-label', p.name + ', ' + p.city);
     var img = p.img;
