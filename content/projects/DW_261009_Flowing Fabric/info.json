@@ -1,28 +1,47 @@
 {
   "slug": "DW_261009_Flowing Fabric",
-  "title": "FLOWING FABRIC",
-  "shortTitle": "FLOWING FABRIC",
+  "title": "Flowing Fabric",
+  "shortTitle": "Flowing Fabric",
   "location": {
     "site": "",
-    "city": "",
-    "country": "",
+    "city": "Shanghai",
+    "country": "China",
     "coordinates": [
       121.493737,
       31.240803
     ]
   },
-  "year": "",
+  "year": 2019,
   "type": "",
-  "collaborators": [],
-  "awards": [],
-  "keywords": [],
+  "collaborators": [
+    "Dingwen Wu",
+    "Haixin Yin",
+    "Yanjie Shen",
+    "Chen Fei"
+  ],
+  "awards": [
+
+  ],
+  "keywords": [
+    "Connectivity",
+    "Mobility"
+  ],
   "summary": "",
-  "description": [],
+  "description": [
+    "Shanghai is one of the biggest cities in China with important social and cultural value. However, the development of Shanghai was uneven especially along Huangpu River. The high-rises in Lujiazui CBD shows agreat contract with the neo-classic buildings and high density Lilong residence in west bank.",
+    "In this design, we want to explore a new dimension of urban design-reconnecting the city without demolishing. By creating two new urban layers parallel to the existing context, a connected urban space reorganize the city and bringing a new possibility of urban life."
+  ],
   "hero": {
-    "file": "01 CONTEXT.jpg",
-    "alt": "FLOWING FABRIC — site context and analysis"
+    "file": "cover.webp",
+    "alt": "Flowing Fabric — project cover"
   },
   "images": [
+    {
+      "file": "01 CONTEXT.jpg",
+      "alt": "Flowing Fabric — site context and analysis",
+      "caption": "",
+      "description": ""
+    },
     {
       "file": "02 ISSUE.jpg",
       "alt": "FLOWING FABRIC — project sheet 2",

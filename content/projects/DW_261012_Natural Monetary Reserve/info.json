@@ -1,0 +1,64 @@
+{
+  "slug": "DW_261012_Natural Monetary Reserve",
+  "title": "Natural Monetary Reserve",
+  "shortTitle": "Natural Monetary Reserve",
+  "location": {
+    "site": "",
+    "city": "Global",
+    "country": "",
+    "coordinates": [
+      -88.414851,
+      40.860372
+    ]
+  },
+  "year": 2022,
+  "type": "Academic Study / Research",
+  "collaborators": [
+    "Dingwen Wu",
+    "Jin Huang",
+    "Yue Hu"
+  ],
+  "awards": [
+
+  ],
+  "keywords": [
+
+  ],
+  "summary": "",
+  "description": [
+    "Have you ever paused to consider the subtle connections embedded within the words we use daily? \"Cash flow,\" \"groundwater banking,\" and even \"stock\" seem to hint at links between water and money.",
+    "Curiously, economists have borrowed the essence of water to depict the movement of funds. Back in 1948, Paul Samuelson's circular flow diagram first used water flow to demonstrate cash flow. Shortly thereafter, in 1949, Bill Phillips crafted the Monetary National Income Analog Computer, a pioneering effort to simulate the economic trajectory of the United Kingdom.",
+    "Nature itself also provided us with an indication of the monetary value of water, a revelation dating back to as early as 1930. The era of the Dust Bowl, characterized by an intense drought and relentless dust storms, not only disrupted agricultural yields but also exacerbated the monumental crisis that was the Great Depression. Evidently intertwined, the Dust Bowl and the Great Depression shared an intricate bond as they posed concurrent ecological and economic challenges.",
+    "Perhaps the solution to galvanize a realization of the environment's worth in the face of ongoing climate change is to illuminate the monetary value of nature reserves. By appraising these reserves, we might inspire a collective awakening to the significance of our surroundings.",
+    "Notably, water has already silently exchanged hands as \"virtual water\" — that is, the water embodied in the production of the commodities. Indeed, water is an invisible thread woven throughout the tapestry of our existence.",
+    "Will the water be the new rule of the next generation? As humanity grapples with evolving challenges, water's underlying currency might emerge as a fundamental rule shaping the times ahead."
+  ],
+  "hero": {
+    "file": "cover.webp",
+    "alt": "Natural Monetary Reserve — project cover"
+  },
+  "images": [
+    {
+      "file": "0.webp",
+      "alt": "Natural Monetary Reserve — project sheet 0",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "1.webp",
+      "alt": "Natural Monetary Reserve — project sheet 1",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "4.webp",
+      "alt": "Natural Monetary Reserve — project sheet 4",
+      "caption": "",
+      "description": ""
+    }
+  ],
+  "imageCredits": "",
+  "color": "#8a9b78",
+  "storyTitle": "Project Narrative",
+  "narrativePlacement": "sidebar"
+}
