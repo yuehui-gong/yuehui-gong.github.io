@@ -1,0 +1,176 @@
+{
+  "slug": "ZZ_261011_Maurice River",
+  "title": "New sediment ground",
+  "shortTitle": "New sediment ground",
+  "year": 2022,
+  "location": {
+    "city": "Maurice River Estuary, New Jersey",
+    "country": "United States",
+    "coordinates": [
+      -75.39,
+      39.22
+    ]
+  },
+  "type": "Coastal landscape design",
+  "collaborators": [
+    "Lillian Chung Kwan Yu",
+    "Kyle Johnson",
+    "Zitong Huang"
+  ],
+  "awards": [],
+  "keywords": [
+    "sedimentation",
+    "salt marshes",
+    "biodiversity",
+    "coastal resilience"
+  ],
+  "summary": "Rock sills stabilize sediment in the Maurice River Estuary, supporting salt-marsh restoration, wildlife habitat, recreation, and natural flood defense.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "The design aims to restore New Jersey’s Maurice estuary salt marshes by using rock sills to stabilize sediment and create habitats for native plants and wildlife. This low-energy area will enhance sediment accumulation, promoting a resurgence of essential ecosystems. The project not only supports biodiversity, including migratory birds, but also provides recreational opportunities and natural flood defense, embodying a holistic approach to coastal and environmental resilience."
+  ],
+  "hero": {
+    "file": "web/plan.webp",
+    "alt": "Plan — New sediment ground"
+  },
+  "images": [
+    {
+      "file": "web/section.webp",
+      "alt": "Section — New sediment ground",
+      "caption": "Section",
+      "description": ""
+    },
+    {
+      "file": "web/mean-high-water.webp",
+      "alt": "Mean High Water (+1.99ft) — New sediment ground",
+      "caption": "Mean High Water (+1.99ft)",
+      "description": ""
+    },
+    {
+      "file": "web/mean-tidal-level.webp",
+      "alt": "Mean Tidal Level (-0.45ft) — New sediment ground",
+      "caption": "Mean Tidal Level (-0.45ft)",
+      "description": ""
+    },
+    {
+      "file": "web/mean-low-water.webp",
+      "alt": "Mean Low Water (-2.86ft) — New sediment ground",
+      "caption": "Mean Low Water (-2.86ft)",
+      "description": ""
+    },
+    {
+      "file": "web/baywatch-1.webp",
+      "alt": "BAYWATCH1 — New sediment ground",
+      "caption": "BAYWATCH1",
+      "description": ""
+    },
+    {
+      "file": "web/baywatch-2.webp",
+      "alt": "BAYWATCH2 — New sediment ground",
+      "caption": "BAYWATCH2",
+      "description": ""
+    },
+    {
+      "file": "web/baywatch-3.webp",
+      "alt": "BAYWATCH3 — New sediment ground",
+      "caption": "BAYWATCH3",
+      "description": ""
+    },
+    {
+      "file": "web/baywatch-4.webp",
+      "alt": "BAYWATCH4 — New sediment ground",
+      "caption": "BAYWATCH4",
+      "description": ""
+    },
+    {
+      "file": "web/baywatch-5.webp",
+      "alt": "BAYWATCH5 — New sediment ground",
+      "caption": "BAYWATCH5",
+      "description": ""
+    },
+    {
+      "file": "web/baywatch-6.webp",
+      "alt": "BAYWATCH6 — New sediment ground",
+      "caption": "BAYWATCH6",
+      "description": ""
+    },
+    {
+      "file": "web/baywatch-7.webp",
+      "alt": "BAYWATCH7 — New sediment ground",
+      "caption": "BAYWATCH7",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/section.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/mean-high-water.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/mean-tidal-level.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/mean-low-water.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/baywatch-1.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/baywatch-2.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/baywatch-3.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/baywatch-4.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/baywatch-5.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/baywatch-6.webp"
+      ]
+    },
+    {
+      "kind": "maurice-sheet",
+      "files": [
+        "web/baywatch-7.webp"
+      ]
+    }
+  ],
+  "presentation": "reference-sheet",
+  "narrativePlacement": "sidebar",
+  "color": "#64928c",
+  "imageCredits": ""
+}
