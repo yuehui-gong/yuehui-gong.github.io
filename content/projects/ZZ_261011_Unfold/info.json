@@ -20,7 +20,13 @@
     "Andreina Sojo",
     "Priyanjali Sinha"
   ],
-  "awards": [],
+  "awards": [
+    {
+      "name": "LAGI 2022 Mannheim",
+      "year": 2022,
+      "distinction": "Shortlisted and Exhibited at German National Garden Show (BUGA 23)"
+    }
+  ],
   "keywords": [
     "solar energy",
     "water harvesting",

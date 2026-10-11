@@ -14,7 +14,13 @@
   },
   "type": "Landscape design",
   "collaborators": [],
-  "awards": [],
+  "awards": [
+    {
+      "name": "ASLA PA-DE",
+      "year": 2023,
+      "distinction": "Honor Award"
+    }
+  ],
   "keywords": [
     "rewilding",
     "bird habitats",

@@ -34,7 +34,7 @@
         row.className='award-row';
         const name=document.createElement('span');
         name.className='award-name';
-        name.textContent=award.name;
+        name.textContent=[award.name,award.distinction].filter(value=>typeof value==='string' && value.trim() && value.trim()!=='-').join(' — ');
         const link=document.createElement('a');
         link.className='project-link';
         link.href='project.html?slug='+encodeURIComponent(project.slug);
