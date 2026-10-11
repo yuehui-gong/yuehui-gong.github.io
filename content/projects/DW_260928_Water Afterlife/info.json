@@ -20,17 +20,20 @@
     {
       "name": "Muse Design Award",
       "year": 2024,
-      "distinction": "Silver Winner"
+      "distinction": "Silver Winner",
+      "url": "https://design.museaward.com/winners-info.php?id=26061"
     },
     {
       "name": "New York Architectural Design Award",
       "year": 2024,
-      "distinction": "Silver Winner"
+      "distinction": "Silver Winner",
+      "url": "https://nyarchitectureawards.com/winner-info.php?id=526"
     },
     {
       "name": "London Design Awards",
       "year": 2024,
-      "distinction": "Silver Winner"
+      "distinction": "Silver Winner",
+      "url": "https://thelondondesignawards.com/winner-info.php?id=3949"
     }
   ],
   "keywords": [
