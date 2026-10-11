@@ -283,6 +283,10 @@ html:not(.day){color-scheme:dark}
 .marker-label{pointer-events:none;left:30px;top:3px}
 .marker:focus-visible{outline:1px solid var(--ink);outline-offset:3px;border-radius:50%}
 .marker:hover .ring{opacity:1;transform:translate(-50%,-50%) scale(1)}
+/* Allow caption and carousel to layer independently above the globe. */
+.gallery-section{z-index:auto}
+.caption{z-index:25}
+.caption .loc,.card-type,.hud-location{display:none!important}
 </style>
 <link rel="stylesheet" href="assets/site.css"><style>
 /* Keep project locations visible against the globe in both themes. */
