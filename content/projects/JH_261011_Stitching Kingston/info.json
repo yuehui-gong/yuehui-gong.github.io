@@ -1,0 +1,144 @@
+{
+  "slug": "JH_261011_Stitching Kingston",
+  "title": "Stitching Kingston, Community to Coast",
+  "shortTitle": "Stitching Kingston, Community to Coast",
+  "location": {
+    "site": "Barnes Gully and Parade Gardens",
+    "city": "Kingston",
+    "country": "Jamaica",
+    "coordinates": null
+  },
+  "year": 2024,
+  "type": "Urban design",
+  "collaborators": [],
+  "awards": [
+    {
+      "name": "ASLA Student Awards",
+      "year": 2024,
+      "distinction": "Honor Award: Urban Design",
+      "url": "https://www.asla.org/awards-events-main-landing/honors-awards/pro-student-awards/2024-student-awards/10936"
+    }
+  ],
+  "webLink": {
+    "label": "Read on ASLA",
+    "url": "https://www.asla.org/awards-events-main-landing/honors-awards/pro-student-awards/2024-student-awards/10936"
+  },
+  "keywords": [
+    "community",
+    "water",
+    "infrastructure",
+    "resilience"
+  ],
+  "summary": "Stitching Kingston connects communities to the harbourfront through a network of gullies, combining community-led waste management, public spaces, and decentralized water filtration along Barnes Gully.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Jamaica has long grappled with challenges in developing its harbourfront, primarily hindered by solid waste pollution and territorial mindset from surrounding communities. Our research indicates that for successful redevelopment, solutions must extend beyond the immediate harbourfront area to address these broader issues. Central to these challenges is the stormwater drainage system—gullies that cut through the city and channel waste directly to the harbourfront. Notably, approximately 50% of the communities along these gullies are informal settlements, which have become hotspots for illicit activities including illegal dumping, raw sewage discharge, and gang violence. These conditions reflect deeper systemic problems in these communities, such as inadequate waste management services, entrenched territorial mindsets, and limited economic opportunities.",
+    "Our vision aims to bridge community divisions by recognizing and enhancing existing community assets along sub-community boundaries and along the gullies, integrating essential public services. We propose using Barnes Gully as a pilot project. Strategically positioned through downtown Kingston and serving as a crucial access point from the airport and cruise ship terminals. We zoom into a part of the Barnes Gully intersecting with the Parade Gardens community, chosen for its critical location as a gateway community and its proximity to the harbourfront.",
+    "We plan to bridge internal community divisions by introducing a decentralized waste collection system and enhancing community assets along boundaries by proposing community-driven programs. Life Yard, an influential local organization, has demonstrated success in uniting the community by recycling waste, and urban farming, serving as a model for our community-led waste management efforts. Building on this, we plan to set up a community-led solid waste management organization. This will involve electing environmental representatives to manage waste collection, education, and maintenance, trained, and supported by the NSWMA and partners. Green incentives will enable residents to exchange recyclables for planting seeds, with the help of the National Tree Planting Initiative will enhance community green infrastructure. Furthermore, we intend to utilize vacant spaces around these community assets to create pocket spaces for waste management centers and community gardens, fostering interaction and knowledge exchange. Secondly, our strategy also includes transforming the areas around Barnes Gully into a shared community resource. We will identify community assets along the gully and enhance them through proposed programs. We plan to develop commercial plazas at key points along the gully and introduce compost sites and gardens around educational facilities to amplify their impact. Additionally, addressing sewage pollution, we propose implementing a series of decentralized filtration strategies starting within the community and extending to a filtration buffer along the gully edges, to treat sewage before it reaches the gully. We also advocate for periodic cleanup initiatives led by local communities at the end of each gully.",
+    "Our comprehensive approach transforms the perception of gullies from negative to positive, potentially creating an integrated green network across the city. This initiative will not only address the environmental and social challenges but also lay the groundwork for the successful redevelopment of Jamaica’s harbourfront."
+  ],
+  "hero": {
+    "file": "web/01-barnes-gully-existing-conditions.webp",
+    "alt": "Existing conditions along Barnes Gully, including solid waste and raw sewage entering Kingston Harbour"
+  },
+  "images": [
+    {
+      "file": "web/02-kingston-gully-network.webp",
+      "alt": "Map of Kingston’s gully network and its relationship to environmental and socioeconomic conditions",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/03-community-challenges.webp",
+      "alt": "Research on inadequate public services and territorial divisions in communities along Kingston’s gullies",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/04-parade-gardens-analysis.webp",
+      "alt": "Analysis of Barnes Gully, public services, community boundaries, and existing water quality in Parade Gardens",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/05-community-waste-management.webp",
+      "alt": "Community-led waste management organization and green incentives for recycling in Parade Gardens",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/06-waste-collection-system.webp",
+      "alt": "Decentralized waste collection centers, community gardens, and environmental representatives at different scales",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/07-barnes-gully-master-plan.webp",
+      "alt": "Barnes Gully master plan connecting community assets, filtration landscapes, and public spaces to the harbourfront",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/08-gully-filtration-strategies.webp",
+      "alt": "Gullyfront development combining community programs and decentralized sewage filtration strategies",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/09-commercial-plaza.webp",
+      "alt": "Proposed commercial plaza at Earlyfront with a landscape section and community activities",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/10-community-sports-field.webp",
+      "alt": "Community sports field at Reggae Park with planted gathering spaces and a landscape section",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/11-ecological-gateway.webp",
+      "alt": "Ecological gateway and filtration wetland with paths crossing the restored landscape along Barnes Gully",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/12-waterfront-festival.webp",
+      "alt": "Festival gathering at the Kingston harbourfront with public lawns, waterfront access, and community activities",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/13-sunset-walk.webp",
+      "alt": "Sunset walk along the planted Kingston harbourfront promenade",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/14-citywide-green-network.webp",
+      "alt": "Citywide green network linking restored gullies and communities to Kingston Harbour",
+      "caption": "",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {"kind": "kingston-sheet", "files": ["web/02-kingston-gully-network.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/03-community-challenges.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/04-parade-gardens-analysis.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/05-community-waste-management.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/06-waste-collection-system.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/07-barnes-gully-master-plan.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/08-gully-filtration-strategies.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/09-commercial-plaza.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/10-community-sports-field.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/11-ecological-gateway.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/12-waterfront-festival.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/13-sunset-walk.webp"]},
+    {"kind": "kingston-sheet", "files": ["web/14-citywide-green-network.webp"]}
+  ],
+  "imageCredits": "",
+  "presentation": "reference-sheet",
+  "narrativePlacement": "sidebar",
+  "pageTheme": "day",
+  "color": "#86a77c"
+}
