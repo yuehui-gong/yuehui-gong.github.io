@@ -8,10 +8,29 @@
     "country": "Ukraine",
     "coordinates": null
   },
-  "year": "-",
+  "year": 2025,
   "type": "Landscape design",
-  "collaborators": [],
-  "awards": [],
+  "collaborators": [
+    "Jiewen Hu"
+  ],
+  "awards": [
+    {
+      "name": "Streetlife Competition",
+      "year": 2025,
+      "distinction": "Finalist"
+    },
+    {
+      "name": "ASLA PA-DE",
+      "year": 2025,
+      "distinction": "Award of Excellence: Analysis & Planning",
+      "url": "https://www.padeasla.org/awards/award-archive/2025-student-awards/#c44434e7dc4ac238a"
+    },
+    {
+      "name": "National ASLA",
+      "year": 2025,
+      "distinction": "Honor Award: General Design"
+    }
+  ],
   "keywords": [
     "resilience",
     "community",
