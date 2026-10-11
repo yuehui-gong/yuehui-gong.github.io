@@ -8,7 +8,7 @@
  try{
  const config=await read('content/about/index.json');
  const studio=document.getElementById('studio-photo');studio.src=config.studio.image;studio.alt=config.studio.alt;
- document.getElementById('studio-caption').textContent=config.studio.caption;document.getElementById('studio-credit').textContent=config.studio.credit;
+
  const profiles=await Promise.all(config.members.map(async id=>({id,p:await read('content/about/team/'+id+'/profile.json')})));field.replaceChildren();
  profiles.forEach(({id,p},i)=>{
  const base='content/about/team/'+id+'/';const card=document.createElement('article');card.className='team-card';
