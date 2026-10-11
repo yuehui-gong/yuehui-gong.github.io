@@ -104,6 +104,12 @@
       "alt": "Render 4 — Rewilding: co-create with birds",
       "caption": "Render 4",
       "description": ""
+    },
+    {
+      "file": "web/axon.webp",
+      "alt": "Axonometric drawing — Rewilding: co-create with birds",
+      "caption": "Axon",
+      "description": ""
     }
   ],
   "layout": [
@@ -129,6 +135,12 @@
       "kind": "rewilding-sheet",
       "files": [
         "web/plan.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/axon.webp"
       ]
     },
     {
