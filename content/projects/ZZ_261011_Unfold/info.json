@@ -41,12 +41,6 @@
   },
   "images": [
     {
-      "file": "web/conceptual-idea.webp",
-      "alt": "Conceptual Idea — Unfold",
-      "caption": "Conceptual Idea",
-      "description": ""
-    },
-    {
       "file": "web/plan1.webp",
       "alt": "Plan1 — Unfold",
       "caption": "Plan1",
@@ -62,18 +56,6 @@
       "file": "web/facade.webp",
       "alt": "Facade — Unfold",
       "caption": "Facade",
-      "description": ""
-    },
-    {
-      "file": "web/component.webp",
-      "alt": "Component — Unfold",
-      "caption": "Component",
-      "description": ""
-    },
-    {
-      "file": "web/unfolding-process.webp",
-      "alt": "Unfolding Process — Unfold",
-      "caption": "Unfolding Process",
       "description": ""
     },
     {
@@ -99,48 +81,15 @@
     {
       "kind": "unfold-sheet",
       "files": [
-        "web/conceptual-idea.webp"
-      ]
-    },
-    {
-      "kind": "unfold-sheet",
-      "files": [
-        "web/plan1.webp"
-      ]
-    },
-    {
-      "kind": "unfold-sheet",
-      "files": [
-        "web/plan-2.webp"
-      ]
-    },
-    {
-      "kind": "unfold-sheet",
-      "files": [
         "web/facade.webp"
       ]
     },
     {
-      "kind": "unfold-sheet",
+      "kind": "unfold-drawings",
       "files": [
-        "web/component.webp"
-      ]
-    },
-    {
-      "kind": "unfold-sheet",
-      "files": [
-        "web/unfolding-process.webp"
-      ]
-    },
-    {
-      "kind": "unfold-sheet",
-      "files": [
-        "web/section-1.webp"
-      ]
-    },
-    {
-      "kind": "unfold-sheet",
-      "files": [
+        "web/plan-2.webp",
+        "web/section-1.webp",
+        "web/plan1.webp",
         "web/section-2.webp"
       ]
     },
