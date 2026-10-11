@@ -274,6 +274,9 @@
 .content.viewport-hero .layout-hero{margin-inline:calc(-1 * var(--gutter));padding:0;}
 .content.viewport-hero .layout-hero .img-wrap{height:calc(100svh - var(--nav-h));display:flex;justify-content:center;align-items:center;}
 .content.viewport-hero .layout-hero img{height:100% !important;max-height:none;width:100%;object-fit:contain;}
+.project-collection.collection-voice-sheet,.project-collection.collection-voice-pair{width:100%;max-width:none}
+.collection-voice-pair{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px}
+@media(max-width:600px){.collection-voice-pair{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="assets/site.css"><style>
 :root{--sidebar-w:clamp(480px,38vw,640px)}

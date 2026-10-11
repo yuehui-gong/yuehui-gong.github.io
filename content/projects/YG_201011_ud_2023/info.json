@@ -1,0 +1,124 @@
+{
+  "slug": "YG_201011_ud_2023",
+  "title": "Regain the Voice",
+  "shortTitle": "Regain the Voice",
+  "storyTitle": "Soundscape Design for Chinatown and Adjacencies",
+  "location": {
+    "city": "Philadelphia, Pennsylvania",
+    "country": "United States",
+    "coordinates": [
+      -75.156,
+      39.955
+    ]
+  },
+  "year": 2024,
+  "type": "Academic project",
+  "competition": "Edmund N. Bacon Urban Design Competition",
+  "collaborators": [
+    "Yan Wang",
+    "Yecheng Lang"
+  ],
+  "awards": [],
+  "keywords": [
+    "Soundscape",
+    "Infrastructure",
+    "Urban Ecology",
+    "Community"
+  ],
+  "summary": "Buffer, connect, and amplify: a soundscape strategy reconnects Philadelphia’s Chinatown through ecological buffers, cultural activity, and spaces for communal expression.",
+  "description": [
+    "“Regain the Voice” addresses the historical muting of minority voices in Chinatown and its adjacencies, areas impacted by the imposition of megastructures like highways.",
+    "This project reinterprets the concept of “voice” to encompass both the literal soundscapes and the figurative influence of the community. Applying three strategic approaches—buffer, connect, and amplify—the initiative transforms the traffic-heavy muted ground into pedestrian-friendly zones with ecological buffers and cultural activities. It enhances urban connectivity, fosters community interaction, and restores the area’s role as a vibrant public agora, offering a refuge from urban noise and a platform for communal expression."
+  ],
+  "hero": {
+    "file": "web/hero.webp",
+    "alt": "Perspective of Regain the Voice’s public space and elevated architectural framework"
+  },
+  "images": [
+    {
+      "file": "web/historical-context.webp",
+      "alt": "Historical context — Regain the Voice",
+      "caption": "Historical context",
+      "description": ""
+    },
+    {
+      "file": "web/sound-mapping.webp",
+      "alt": "Sound mapping — Regain the Voice",
+      "caption": "Sound mapping",
+      "description": ""
+    },
+    {
+      "file": "web/sound-room.webp",
+      "alt": "Sound room — Regain the Voice",
+      "caption": "Sound room",
+      "description": ""
+    },
+    {
+      "file": "web/quiet-garden.webp",
+      "alt": "Quiet garden — Regain the Voice",
+      "caption": "Quiet garden",
+      "description": ""
+    },
+    {
+      "file": "web/design-diagram.webp",
+      "alt": "Design diagram — Regain the Voice",
+      "caption": "Design diagram",
+      "description": ""
+    },
+    {
+      "file": "web/urban-section.webp",
+      "alt": "Urban section — Regain the Voice",
+      "caption": "Urban section",
+      "description": ""
+    },
+    {
+      "file": "web/sections.webp",
+      "alt": "Sections — Regain the Voice",
+      "caption": "Sections",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "voice-sheet",
+      "files": [
+        "web/historical-context.webp"
+      ]
+    },
+    {
+      "kind": "voice-sheet",
+      "files": [
+        "web/sound-mapping.webp"
+      ]
+    },
+    {
+      "kind": "voice-pair",
+      "files": [
+        "web/sound-room.webp",
+        "web/quiet-garden.webp"
+      ]
+    },
+    {
+      "kind": "voice-sheet",
+      "files": [
+        "web/design-diagram.webp"
+      ]
+    },
+    {
+      "kind": "voice-sheet",
+      "files": [
+        "web/urban-section.webp"
+      ]
+    },
+    {
+      "kind": "voice-sheet",
+      "files": [
+        "web/sections.webp"
+      ]
+    }
+  ],
+  "narrativePlacement": "sidebar",
+  "pageTheme": "day",
+  "imageCredits": "",
+  "color": "#c77e52"
+}
