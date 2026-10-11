@@ -1,5 +1,5 @@
 {
-  "slug": "ZZ_261011_Rewilding - co-create with birds",
+  "slug": "ZZ_261011_Rewilding - Co-Create With Birds",
   "title": "Rewilding: co-create with birds",
   "shortTitle": "Rewilding: co-create with birds",
   "year": 2022,
@@ -153,5 +153,8 @@
   "presentation": "reference-sheet",
   "narrativePlacement": "sidebar",
   "color": "#89936f",
-  "imageCredits": ""
+  "imageCredits": "",
+  "aliases": [
+    "ZZ_261011_Rewilding - co-create with birds"
+  ]
 }
