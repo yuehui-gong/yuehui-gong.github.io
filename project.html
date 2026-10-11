@@ -583,7 +583,7 @@ function renderProject(p){
   if(record.slug==='JH_261011_Stitching Kingston') document.body.classList.add('kingston-page');
   if(record.slug==='ZZ_261011_Unfold') document.body.classList.add('unfold-page');
   if(record.slug==='ZZ_261011_Maurice River') document.body.classList.add('maurice-page');
-  if(p.book) document.body.classList.add('comic-project');
+  if(p.book && record.presentation==='comic-book') document.body.classList.add('comic-project');
   if(record.slug==='ZZ_261011_Rewilding - Co-Create With Birds') document.body.classList.add('rewilding-page');
   if(record.slug==='ZZ_261010_Hemp For Water') document.body.classList.add('hemp-page');
   if(record.slug==='ZZ_261005_Root City') document.body.classList.add('root-city-page');
@@ -609,8 +609,9 @@ function renderProject(p){
       }
     } catch(error){console.warn('Invalid project web link');}
   }
-  document.getElementById("proj-content").innerHTML =
-    (p.book ? '<section id="project-book"></section>' : p.blocks.map(renderBlock).join("")) +
+  const bookMarkup=p.book ? '<section id="project-book"></section>' : '';
+  const mediaMarkup=!p.book || p.book.placement==='before-images' ? p.blocks.map(renderBlock).join("") : '';
+  document.getElementById("proj-content").innerHTML = bookMarkup + mediaMarkup +
     `<div class="project-end" onclick="location.href='project.html?slug=${p.nextSlug}'">
        <div class="next-label">Next Project</div><h3>${p.next}</h3>
      </div>`;
