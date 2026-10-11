@@ -365,6 +365,21 @@
 .rewilding-page .layout-hero img{max-height:none;}
 .reference-sheet .collection-rewilding-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(56px,6vw,96px);}
 .collection-rewilding-sheet img{display:block;width:100%;height:auto;max-height:none;}
+
+.rewilding-page .project-collection{width:100%;gap:28px;margin-top:48px;}
+.rewilding-page .project-collection img{display:block;width:100%;height:auto;max-height:none;}
+.rewilding-page figcaption{display:none;}
+.rewilding-page .layout-hero .img-wrap img{height:auto;max-height:none;}
+.rewilding-page .collection-rewilding-analysis{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:24px 40px;}
+.collection-rewilding-analysis figure:first-child{grid-column:1;grid-row:1 / span 2;}
+.collection-rewilding-analysis figure:nth-child(2){grid-column:2;grid-row:1;}
+.collection-rewilding-analysis figure:nth-child(3){grid-column:2;grid-row:2;}
+.rewilding-page .collection-rewilding-plans,.rewilding-page .collection-rewilding-renders{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:40px;}
+@media(max-width:600px){
+ .rewilding-page .content.reference-sheet{padding:0 12px;}
+ .rewilding-page .project-collection{margin-top:32px;gap:16px;}
+ .rewilding-page .collection-rewilding-analysis,.rewilding-page .collection-rewilding-plans,.rewilding-page .collection-rewilding-renders{gap:16px;}
+}
 </style></head>
 <body data-page="project" class="day">
 

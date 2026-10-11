@@ -29,8 +29,8 @@
     "Furthermore, plant selection adds intensity and unexpectedness to the scene. To attract a large number of birds, it is necessary to provide a variety of food sources, appropriate living conditions, and nesting habitats including strips of sunflower fields, trees that provide berries in the winter, grass that provides nesting locations, pollinator-attracting wildflowers, and so on. They’re organized into various frames, and various maintenance techniques are used to maintain the edge condition. The overlapping area between two different conditions or frames provides wildness platforms to escape the frame and generate unintended habitat. The edge effect and implementation of birdhouses and birdbaths will facilitate the new growth. Furthermore, the creation of habitats for birds attracts species from the lower food chain, as well as predators such as the bald eagle and a variety of other unexpected wild creatures, revealing the unpredictable side of wildness."
   ],
   "hero": {
-    "file": "web/render-2.webp",
-    "alt": "Render 2 — Rewilding: co-create with birds"
+    "file": "web/axon.webp",
+    "alt": "Axonometric overview — Rewilding: co-create with birds"
   },
   "images": [
     {
@@ -110,49 +110,28 @@
       "alt": "Axonometric drawing — Rewilding: co-create with birds",
       "caption": "Axon",
       "description": ""
+    },
+    {
+      "file": "web/render-2.webp",
+      "alt": "Render 2 — Rewilding: co-create with birds",
+      "caption": "Render 2",
+      "description": ""
     }
   ],
   "layout": [
     {
-      "kind": "rewilding-sheet",
+      "kind": "rewilding-analysis",
       "files": [
-        "web/overall-analysis.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
-        "web/bird-behavior-mapping.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
-        "web/intensity-mapping.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
-        "web/plan.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
-        "web/axon.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
+        "web/bird-behavior-mapping.webp",
+        "web/intensity-mapping.webp",
         "web/conceptual-sections.webp"
       ]
     },
     {
-      "kind": "rewilding-sheet",
+      "kind": "rewilding-plans",
       "files": [
-        "web/long-section.webp"
+        "web/overall-analysis.webp",
+        "web/plan.webp"
       ]
     },
     {
@@ -162,32 +141,11 @@
       ]
     },
     {
-      "kind": "rewilding-sheet",
+      "kind": "rewilding-renders",
       "files": [
-        "web/bird-blind-section.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
-        "web/pier-section.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
-        "web/render-1.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
-        "web/render-3.webp"
-      ]
-    },
-    {
-      "kind": "rewilding-sheet",
-      "files": [
+        "web/render-1.webp",
+        "web/render-3.webp",
+        "web/render-2.webp",
         "web/render-4.webp"
       ]
     }
