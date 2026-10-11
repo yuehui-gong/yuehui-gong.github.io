@@ -360,6 +360,11 @@
 .hemp-page .project-collection figure{width:100%;margin:0;min-width:0;}
 .hemp-page .project-collection img{display:block;width:100%;height:auto;max-height:none;}
 .hemp-page .project-end{margin-top:64px;}
+
+.rewilding-page .content.reference-sheet{max-width:1600px;padding:0 24px;}
+.rewilding-page .layout-hero img{max-height:none;}
+.reference-sheet .collection-rewilding-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(56px,6vw,96px);}
+.collection-rewilding-sheet img{display:block;width:100%;height:auto;max-height:none;}
 </style></head>
 <body data-page="project" class="day">
 
@@ -510,6 +515,7 @@ function renderBlock(b){
 }
 
 function renderProject(p){
+  if(record.slug==='ZZ_261011_Rewilding - co-create with birds') document.body.classList.add('rewilding-page');
   if(record.slug==='ZZ_261010_Hemp For Water') document.body.classList.add('hemp-page');
   if(record.slug==='ZZ_261005_Root City') document.body.classList.add('root-city-page');
   if(record.heroDisplay==='viewport') document.getElementById('proj-content').classList.add('viewport-hero');

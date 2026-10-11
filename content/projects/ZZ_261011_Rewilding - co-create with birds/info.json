@@ -1,0 +1,187 @@
+{
+  "slug": "ZZ_261011_Rewilding - co-create with birds",
+  "title": "Rewilding: co-create with birds",
+  "shortTitle": "Rewilding: co-create with birds",
+  "year": 2022,
+  "location": {
+    "city": "Philadelphia",
+    "country": "United States",
+    "site": "Post-industrial riverfront near Penn Treaty Park",
+    "coordinates": [
+      -75.128,
+      39.966
+    ]
+  },
+  "type": "Landscape design",
+  "collaborators": [],
+  "awards": [],
+  "keywords": [
+    "rewilding",
+    "bird habitats",
+    "wildness",
+    "coexistence"
+  ],
+  "summary": "Bird habitats, varied planting, and contrasting degrees of maintenance invite people and wildlife to co-create a changing post-industrial riverfront in Philadelphia.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Previous site visits revealed species thriving without human intervention, creating a striking contrast to manicured landscapes. This inspired me to explore the concept of wildness, a term with evolving meanings, from savage to sacred. Defining it remains difficult, but the nature-human dichotomy persists, with efforts to maintain the status quo, like walling off “pristine” wild areas. My project aims to foster interaction with wildness through diverse programs, offering a wild experience characterized by cataloging, contrast, intensity, and unexpectedness.",
+    "I propose re-wilding the post-industrial site by building habitats for birds. Philadelphia is an important stop of the Atlantic Flyway for migratory birds. However, it lacks ideal habitat for migratory birds to forage and nest. Besides the effort such as Light Out Philly to protect migratory birds from slamming into skyscrapers, the post-industrial riverfront, as one of the critical habitats for birds, has the potential. Besides, many birds, as keystone species, not only attract other wild animals and stabilize the food web but also can be pollinators to disperse seeds and facilitate the growth of spontaneous plants. To understand common bird species in Philadelphia, I pick the top five most sighted birds of the top ten bird watching hotspots that are organized by the Cornell Lab of Ornithology, and research their habitat, time of the appearance in Philadelphia, breeding habitats, food source, and so on. 28 species of birds are collected including European Starling, American Robin, Brown-headed Cowbird, etc. Six categories of habitat are generalized including manicured landscape, marsh, swamp, thicket, etc. Common food sources consist of berries, nuts, insects, aquatic life and plants, grass, and leftovers. In addition, I cataloged and visualized my interpretation of wildness in terms of hydrology, topography, activities, etc., and organized it from the least to most wild. To underline the contrast and bring forth the character of the wildness, I juxtapose these contrasting conditions labeled as domesticated, artificial, and order with abandoned, uncertain, and messy. Under varying conditions, programs are implemented to amplify the contrast and create different interactions between species and humans. The main entrance is located northwest of the site which is where people of the neighborhood access the riverfront. In addition, a well-manicured plaza serves as a continuation of the Penn Treaty Park. Programs are interweaved by the circulation, and visitors are slowed as they go horizontally across the site, yet they still have direct access to the waterfront.",
+    "Furthermore, plant selection adds intensity and unexpectedness to the scene. To attract a large number of birds, it is necessary to provide a variety of food sources, appropriate living conditions, and nesting habitats including strips of sunflower fields, trees that provide berries in the winter, grass that provides nesting locations, pollinator-attracting wildflowers, and so on. They’re organized into various frames, and various maintenance techniques are used to maintain the edge condition. The overlapping area between two different conditions or frames provides wildness platforms to escape the frame and generate unintended habitat. The edge effect and implementation of birdhouses and birdbaths will facilitate the new growth. Furthermore, the creation of habitats for birds attracts species from the lower food chain, as well as predators such as the bald eagle and a variety of other unexpected wild creatures, revealing the unpredictable side of wildness."
+  ],
+  "hero": {
+    "file": "web/render-2.webp",
+    "alt": "Render 2 — Rewilding: co-create with birds"
+  },
+  "images": [
+    {
+      "file": "web/overall-analysis.webp",
+      "alt": "Overall Analysis — Rewilding: co-create with birds",
+      "caption": "Overall Analysis",
+      "description": ""
+    },
+    {
+      "file": "web/bird-behavior-mapping.webp",
+      "alt": "Bird Behavior Mapping — Rewilding: co-create with birds",
+      "caption": "Bird Behavior Mapping",
+      "description": ""
+    },
+    {
+      "file": "web/intensity-mapping.webp",
+      "alt": "Intensity Mapping — Rewilding: co-create with birds",
+      "caption": "Intensity Mapping",
+      "description": ""
+    },
+    {
+      "file": "web/plan.webp",
+      "alt": "Plan — Rewilding: co-create with birds",
+      "caption": "Plan",
+      "description": ""
+    },
+    {
+      "file": "web/conceptual-sections.webp",
+      "alt": "Conceptual Sections — Rewilding: co-create with birds",
+      "caption": "Conceptual Sections",
+      "description": ""
+    },
+    {
+      "file": "web/long-section.webp",
+      "alt": "Long Section — Rewilding: co-create with birds",
+      "caption": "Long Section",
+      "description": ""
+    },
+    {
+      "file": "web/plant-copy.webp",
+      "alt": "Planting strategy — Rewilding: co-create with birds",
+      "caption": "Planting strategy",
+      "description": ""
+    },
+    {
+      "file": "web/bird-blind-section.webp",
+      "alt": "Bird Blind Section — Rewilding: co-create with birds",
+      "caption": "Bird Blind Section",
+      "description": ""
+    },
+    {
+      "file": "web/pier-section.webp",
+      "alt": "Pier Section — Rewilding: co-create with birds",
+      "caption": "Pier Section",
+      "description": ""
+    },
+    {
+      "file": "web/render-1.webp",
+      "alt": "Render 1 — Rewilding: co-create with birds",
+      "caption": "Render 1",
+      "description": ""
+    },
+    {
+      "file": "web/render-3.webp",
+      "alt": "Render 3 — Rewilding: co-create with birds",
+      "caption": "Render 3",
+      "description": ""
+    },
+    {
+      "file": "web/render-4.webp",
+      "alt": "Render 4 — Rewilding: co-create with birds",
+      "caption": "Render 4",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/overall-analysis.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/bird-behavior-mapping.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/intensity-mapping.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/plan.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/conceptual-sections.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/long-section.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/plant-copy.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/bird-blind-section.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/pier-section.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/render-1.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/render-3.webp"
+      ]
+    },
+    {
+      "kind": "rewilding-sheet",
+      "files": [
+        "web/render-4.webp"
+      ]
+    }
+  ],
+  "presentation": "reference-sheet",
+  "narrativePlacement": "sidebar",
+  "color": "#89936f",
+  "imageCredits": ""
+}
