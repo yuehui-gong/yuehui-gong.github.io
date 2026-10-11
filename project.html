@@ -508,7 +508,7 @@ const project = {
   location: record.loc,
   meta: [
     { label: "Collaborator", value: record.collaborator || "—" },
-    ...(!record.hideAward ? [{ label: "Award", value: record.awards?.length ? record.awards.map(a => `${a.name}${a.year ? ` ${a.year}` : ""} — ${a.distinction}`) : record.award || "—" }] : []),
+    ...(!record.hideAward ? [{ label: "Award", value: record.awards?.length ? record.awards.map(a => ({ text: `${a.name}${a.year ? ` ${a.year}` : ""} — ${a.distinction}`, url: a.url })) : record.award || "—" }] : []),
     { label: "Year",         value: record.year },
     ...(record.instructor ? [{label:"Instructor",value:record.instructor}] : []),
     ...(record.studio ? [{label:"Studio",value:record.studio}] : []),
@@ -533,12 +533,26 @@ function renderMeta(list){
   return list.map(m => `
     <div class="meta-item">
       <div class="label">${m.label}</div>
-      <div class="value">${Array.isArray(m.value) ? m.value.map(value => `<div class="award-entry">${value}</div>`).join('') : m.value}</div>
+      <div class="value">${Array.isArray(m.value) ? m.value.map(value => `<div class="award-entry">${renderAwardEntry(value)}</div>`).join('') : m.value}</div>
     </div>`).join("");
 }
 
 function escapeProjectText(value){
   return String(value ?? '').replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+}
+
+function renderAwardEntry(value){
+  const entry = value && typeof value === 'object' ? value : { text: value };
+  const text = escapeProjectText(entry.text);
+  if(entry.url){
+    try{
+      const url = new URL(entry.url);
+      if(url.protocol === 'https:' || url.protocol === 'http:'){
+        return `<a href="${escapeProjectText(url.href)}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+      }
+    }catch{}
+  }
+  return text;
 }
 
 function renderBlock(b){
