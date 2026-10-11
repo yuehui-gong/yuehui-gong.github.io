@@ -281,6 +281,13 @@
 .sidebar{padding-left:40px;padding-right:48px}
 #proj-desc-wrap{max-width:100%}
 .content{min-width:0}
+.comic-project{--sidebar-w:clamp(330px,28vw,440px)}
+.comic-project .content{padding:24px;}
+.comic-project .sidebar{padding:32px 28px;overflow-y:auto;}
+.comic-project .sidebar .project-story p{font-size:11px;line-height:1.75;}
+.comic-project #project-book{width:100%;min-width:0;}
+.comic-project .project-end{padding:48px 0 64px;margin-top:32px;}
+@media(max-width:860px){.comic-project .content{padding:24px 16px;}.comic-project .sidebar{overflow:visible;}}
 .content img{max-height:min(760px,80vh);object-fit:contain}
 .layout-hero .img-wrap{aspect-ratio:auto;overflow:visible}
 .layout-hero .img-wrap img{height:auto;max-height:min(760px,80vh);object-fit:contain}
@@ -412,7 +419,9 @@
 .unfold-page figcaption{display:none;}
 .unfold-page .collection-unfold-drawings{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}
 @media(max-width:600px){.unfold-page .project-collection{margin-top:24px;gap:12px;}}
-</style></head>
+</style>
+<link rel="stylesheet" href="assets/comic-reader.css?v=20261011-reader-layout-2">
+</head>
 <body data-page="project" class="day">
 
   <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></header>
@@ -453,7 +462,9 @@
      for sending a single page to someone; use the shared-folder version
      (project.html + projects-data.js) for the real, linked-up site.
      ============================================================================ -->
-<script src="assets/project-content.js?v=20261011-storytelling"></script>
+<script src="assets/vendor/page-flip-2.0.7.browser.js?v=20261011-physical-book-2"></script>
+<script src="assets/comic-reader.js?v=20261011-reader-layout-2"></script>
+<script src="assets/project-content.js?v=20261011-roots"></script>
 <script>
 (async()=>{
 const PROJECTS = await window.loadStudioProjects();
@@ -505,6 +516,7 @@ const project = {
   story: record.story,
   storyTitle: record.storyTitle,
   narrativePlacement: record.narrativePlacement,
+  book: record.book,
   blocks: [
     { type: "hero", src: heroSrc },
     ...(record.blocks && record.blocks.length ? record.blocks.slice(1) : [{ type: "full", src: record.img }])
@@ -566,6 +578,7 @@ function renderBlock(b){
 function renderProject(p){
   if(record.slug==='ZZ_261011_Unfold') document.body.classList.add('unfold-page');
   if(record.slug==='ZZ_261011_Maurice River') document.body.classList.add('maurice-page');
+  if(p.book) document.body.classList.add('comic-project');
   if(record.slug==='ZZ_261011_Rewilding - Co-Create With Birds') document.body.classList.add('rewilding-page');
   if(record.slug==='ZZ_261010_Hemp For Water') document.body.classList.add('hemp-page');
   if(record.slug==='ZZ_261005_Root City') document.body.classList.add('root-city-page');
@@ -592,13 +605,20 @@ function renderProject(p){
     } catch(error){console.warn('Invalid project web link');}
   }
   document.getElementById("proj-content").innerHTML =
-    p.blocks.map(renderBlock).join("") +
+    (p.book ? '<section id="project-book"></section>' : p.blocks.map(renderBlock).join("")) +
     `<div class="project-end" onclick="location.href='project.html?slug=${p.nextSlug}'">
        <div class="next-label">Next Project</div><h3>${p.next}</h3>
      </div>`;
+  if(p.book){
+    window.createComicReader(document.getElementById('project-book'),{
+      title:p.title,pages:p.book.pages,mode:p.book.mode || 'spreads'
+    });
+  }
   if(p.story){
-    document.querySelector('.layout-hero .img-wrap').style.aspectRatio='auto';
-    const hero=document.querySelector('.layout-hero img'); hero.style.height='auto'; hero.alt=record.heroAlt;
+    const heroWrap=document.querySelector('.layout-hero .img-wrap');
+    const hero=document.querySelector('.layout-hero img');
+    if(heroWrap) heroWrap.style.aspectRatio='auto';
+    if(hero){hero.style.height='auto';hero.alt=record.heroAlt;}
     const story=document.createElement('section'); story.className='project-story';
     const h=document.createElement('h3'); h.textContent=p.storyTitle || 'Project narrative'; story.append(h);
     p.story.forEach(text=>{const paragraph=document.createElement('p');paragraph.textContent=text;story.append(paragraph)});
