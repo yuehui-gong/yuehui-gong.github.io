@@ -278,7 +278,15 @@ html:not(.day){color-scheme:dark}
 @media(hover:hover) and (pointer:fine){html.day,html.day body,html.day body *{cursor:auto!important}html.day button,html.day a,html.day .card{cursor:pointer!important}}
 @media(max-width:640px){header{padding:20px 18px}.brand{font-size:11px}.nav-icons{gap:10px}#appearanceToggle{font-size:10px;padding:8px}.nav-icons>svg{display:none}}
 </style>
-<link rel="stylesheet" href="assets/site.css"></head>
+<link rel="stylesheet" href="assets/site.css"><style>
+/* Keep project locations visible against the globe in both themes. */
+html .globe-wrap .marker .core{background:#a3ff12;border-color:#17220b;box-shadow:0 0 0 1px #a3ff1299,0 0 8px #a3ff1270;}
+html .globe-wrap .marker.active .core{background:#a3ff12;box-shadow:0 0 0 2px #a3ff1270,0 0 16px #a3ff12;}
+html .globe-wrap .marker .ring{border-color:#a3ff12;box-shadow:0 0 8px #a3ff1240;}
+html.day .globe-wrap .marker .core,html.day .globe-wrap .marker.active .core{background:#a3ff12;border-color:#355508;box-shadow:0 0 0 1px #35550890,0 0 10px #a3ff12;}
+html.day .globe-wrap .marker .ring{border-color:#79bc00;}
+</style>
+</head>
 <body data-page="projects">
 
 <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
