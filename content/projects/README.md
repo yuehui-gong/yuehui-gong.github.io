@@ -10,6 +10,8 @@ For each new project:
 
 Coordinates are `[longitude, latitude]` and locate the project on the globe. Descriptions are an array of paragraphs. An empty collaborators array displays a dash. An empty awards array adds no awards entry. `summary` is the short sidebar introduction; `description` is the full narrative beneath the images.
 
+An optional `introduction` on a `layout` group inserts text immediately before that image group on the project page. Use `{"title":"Section heading","paragraphs":["First paragraph","Second paragraph"]}`; keep the group's `kind` and `files` unchanged. Leaving Traces uses this before its closing plan.
+
 For The Latent Ground (`YG_261002_Berlin_2026`), the two original uploads are preserved in `originals/`. The website uses resized JPEGs outside that subfolder. The perspective sheet is displayed in full, without cropping; the master plan retains its original proportions.
 
 Still to confirm for The Latent Ground: collaborator names, image credits, and preferred project category (currently “Landscape design”). The map coordinates are an approximate site position.

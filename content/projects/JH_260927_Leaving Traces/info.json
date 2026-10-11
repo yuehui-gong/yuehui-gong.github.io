@@ -110,6 +110,14 @@
     },
     {
       "kind": "closing-plan",
+      "introduction": {
+        "title": "storytelling center (Historic Underground Railroad Station Site)",
+        "paragraphs": [
+          "Along The Storytelling Center proposes a temporary place for histories to be encountered and carried onward. Walls assembled from locally salvaged timber enclose a floor inscribed with gathered historical accounts and oral memories of the Underground Railroad. Above them, a suspended wax ceiling places the room within the changing light and warmth of each day.",
+          "In the proposed material cycle, sunlight gradually warms and softens the wax. As it descends, the ceiling opens to more light while the words below become obscured. What makes the room more visible also makes its stories less legible. Returning visitors encounter an altered surface: a passage read one day may be partly covered the next, until accumulated wax buries the inscriptions.",
+          "The enclosure, too, is conceived to weather and eventually disappear within the continuing cycles of day and night. Its impermanence holds the vulnerability of memory in view. As the physical traces recede, the work of remembrance passes to those who have read, listened, and gathered here. What remains depends on the stories they carry beyond the walls, and on their willingness to tell them again."
+        ]
+      },
       "files": [
         "web/plan.webp"
       ]

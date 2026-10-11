@@ -255,6 +255,11 @@
   .reference-sheet .collection-closing-plan{justify-items:center;margin:24px 0 32px;}
   .reference-sheet.materiality-stacked .collection-closing-plan{margin-top:72px;}
   .collection-closing-plan figure{width:72%;max-width:680px;}
+  .content > .project-story-inline{width:72%;max-width:680px;align-self:center;padding:0;margin:48px 0 0;text-align:left;}
+  .project-story-inline h3{font-size:18px;line-height:1.5;margin-bottom:20px;}
+  .project-story-inline p:last-child{margin-bottom:0;}
+  .reference-sheet.materiality-stacked .project-story-inline + .collection-closing-plan{margin-top:48px;}
+  @media(max-width:600px){.content > .project-story-inline{width:100%;margin-top:36px;}}
   .reference-sheet figcaption{font-size:9px;padding-top:7px;letter-spacing:.04em;}
   @media(max-width:520px){
     .reference-sheet .project-collection{gap:8px;margin-top:22px;}
@@ -428,7 +433,7 @@
      for sending a single page to someone; use the shared-folder version
      (project.html + projects-data.js) for the real, linked-up site.
      ============================================================================ -->
-<script src="assets/project-content.js?v=20261009-hero"></script>
+<script src="assets/project-content.js?v=20261011-storytelling"></script>
 <script>
 (async()=>{
 const PROJECTS = await window.loadStudioProjects();
@@ -496,10 +501,17 @@ function renderMeta(list){
     </div>`).join("");
 }
 
+function escapeProjectText(value){
+  return String(value ?? '').replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+}
+
 function renderBlock(b){
   switch(b.type){
-    case "collection":
-      return `<section class="block project-collection collection-${b.kind}">${b.images.map((image,index)=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="${b.kind==='material-and-panorama' && index===0 ? 'eager' : 'lazy'}">${image.caption ? `<figcaption>${image.caption}</figcaption>` : ''}</figure>`).join('')}</section>`;
+    case "collection": {
+      const intro=b.introduction;
+      const story=intro ? `<section class="project-story project-story-inline" aria-label="${escapeProjectText(intro.title)}"><h3>${escapeProjectText(intro.title)}</h3>${intro.paragraphs.map(text=>`<p>${escapeProjectText(text)}</p>`).join('')}</section>` : '';
+      return story + `<section class="block project-collection collection-${b.kind}">${b.images.map((image,index)=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="${b.kind==='material-and-panorama' && index===0 ? 'eager' : 'lazy'}">${image.caption ? `<figcaption>${image.caption}</figcaption>` : ''}</figure>`).join('')}</section>`;
+    }
     case "hero":
       return `<div class="block layout-hero"><div class="img-wrap"><img src="${b.src}" alt=""></div></div>`;
     case "full":
