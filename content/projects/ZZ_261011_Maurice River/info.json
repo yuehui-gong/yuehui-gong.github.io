@@ -103,62 +103,22 @@
   ],
   "layout": [
     {
-      "kind": "maurice-sheet",
+      "kind": "maurice-tides",
       "files": [
-        "web/section.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
-        "web/mean-high-water.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
-        "web/mean-tidal-level.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
+        "web/section.webp",
+        "web/mean-high-water.webp",
+        "web/mean-tidal-level.webp",
         "web/mean-low-water.webp"
       ]
     },
     {
-      "kind": "maurice-sheet",
+      "kind": "maurice-comparisons",
       "files": [
-        "web/baywatch-1.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
-        "web/baywatch-2.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
-        "web/baywatch-3.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
-        "web/baywatch-4.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
-        "web/baywatch-5.webp"
-      ]
-    },
-    {
-      "kind": "maurice-sheet",
-      "files": [
+        "web/baywatch-1.webp",
+        "web/baywatch-2.webp",
+        "web/baywatch-3.webp",
+        "web/baywatch-4.webp",
+        "web/baywatch-5.webp",
         "web/baywatch-6.webp"
       ]
     },
