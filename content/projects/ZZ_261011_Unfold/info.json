@@ -103,5 +103,6 @@
   "presentation": "reference-sheet",
   "narrativePlacement": "sidebar",
   "color": "#8c9d86",
-  "imageCredits": ""
+  "imageCredits": "",
+  "pageTheme": "night"
 }
