@@ -1,0 +1,158 @@
+{
+  "slug": "ZZ_261011_Unfold",
+  "title": "Unfold",
+  "shortTitle": "Unfold",
+  "year": 2022,
+  "timeSpan": "September–December 2022",
+  "location": {
+    "city": "Mannheim",
+    "country": "Germany",
+    "coordinates": [
+      8.466,
+      49.487
+    ]
+  },
+  "type": "Renewable energy art proposal",
+  "competition": "LAGI 2022",
+  "collaborators": [
+    "Wei Xia",
+    "Menghan Yu",
+    "Andreina Sojo",
+    "Priyanjali Sinha"
+  ],
+  "awards": [],
+  "keywords": [
+    "solar energy",
+    "water harvesting",
+    "urban agriculture",
+    "kinetic design"
+  ],
+  "summary": "A kinetic installation in Mannheim proposes to harvest solar energy and atmospheric water, connecting renewable infrastructure with irrigation and urban agriculture.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Inspired by Mannheim’s identity as a city of inventions and the story of its water tower, Unfold proposes a kinetic artwork that harvests solar energy and atmospheric water. The installation connects renewable energy, agriculture, and everyday urban life through a visible cycle of unfolding, collecting, and distributing resources.",
+    "The proposal combines an organic photovoltaic (OPV) skin, a solar-driven hygroscopic water-harvesting device, and a conceptual bladeless irrigation drone. Adjustable triangular photovoltaic panels collect sunlight while allowing solar heat to reach the water-harvesting device. At night, a sorbent captures moisture from the air; during the day, sunlight releases that moisture as vapor, which is condensed and collected.",
+    "The unfolding structure is designed to synchronize with this daily cycle. As water collection reaches capacity, the photovoltaic skin retracts and the drone is intended to carry water to crops and other planting areas. After irrigation, it returns to recharge and the structure unfolds again. These movements make energy and water production visible, inviting visitors to consider how sustainable infrastructure can become part of public space.",
+    "Conceived for parks, farmland, and private gardens, Unfold brings resource production closer to where it is used. Harvested electricity is proposed to support irrigation, lighting, water features, and charging facilities, while collected water supports planting. Modular components and replaceable parts are intended to simplify assembly and maintenance. Lightweight structures, recyclable materials, and locally sourced components form part of the project’s approach to reducing environmental impact."
+  ],
+  "hero": {
+    "file": "web/render-1.webp",
+    "alt": "Render 1 — Unfold"
+  },
+  "images": [
+    {
+      "file": "web/conceptual-idea.webp",
+      "alt": "Conceptual Idea — Unfold",
+      "caption": "Conceptual Idea",
+      "description": ""
+    },
+    {
+      "file": "web/plan1.webp",
+      "alt": "Plan1 — Unfold",
+      "caption": "Plan1",
+      "description": ""
+    },
+    {
+      "file": "web/plan-2.webp",
+      "alt": "Plan 2 — Unfold",
+      "caption": "Plan 2",
+      "description": ""
+    },
+    {
+      "file": "web/facade.webp",
+      "alt": "Facade — Unfold",
+      "caption": "Facade",
+      "description": ""
+    },
+    {
+      "file": "web/component.webp",
+      "alt": "Component — Unfold",
+      "caption": "Component",
+      "description": ""
+    },
+    {
+      "file": "web/unfolding-process.webp",
+      "alt": "Unfolding Process — Unfold",
+      "caption": "Unfolding Process",
+      "description": ""
+    },
+    {
+      "file": "web/section-1.webp",
+      "alt": "Section 1 — Unfold",
+      "caption": "Section 1",
+      "description": ""
+    },
+    {
+      "file": "web/section-2.webp",
+      "alt": "Section 2 — Unfold",
+      "caption": "Section 2",
+      "description": ""
+    },
+    {
+      "file": "web/render-2.webp",
+      "alt": "Render 2 — Unfold",
+      "caption": "Render 2",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/conceptual-idea.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/plan1.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/plan-2.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/facade.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/component.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/unfolding-process.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/section-1.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/section-2.webp"
+      ]
+    },
+    {
+      "kind": "unfold-sheet",
+      "files": [
+        "web/render-2.webp"
+      ]
+    }
+  ],
+  "presentation": "reference-sheet",
+  "narrativePlacement": "sidebar",
+  "color": "#8c9d86",
+  "imageCredits": ""
+}
