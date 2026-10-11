@@ -511,7 +511,7 @@ const project = {
   location: record.loc,
   meta: [
     { label: "Collaborator", value: record.collaborator || "—" },
-    ...(!record.hideAward ? [{ label: "Award", value: record.awards?.length ? record.awards.map(a => ({ text: `${a.name}${a.year ? ` ${a.year}` : ""} — ${a.distinction}`, url: a.url })) : record.award || "—" }] : []),
+    ...(!record.hideAward && (record.awards?.length || (record.award && !["—", "-"].includes(record.award.trim()))) ? [{ label: "Award", value: record.awards?.length ? record.awards.map(a => ({ text: `${a.name}${a.year ? ` ${a.year}` : ""} — ${a.distinction}`, url: a.url })) : record.award || "—" }] : []),
     { label: "Year",         value: record.year },
     ...(record.instructor ? [{label:"Instructor",value:record.instructor}] : []),
     ...(record.studio ? [{label:"Studio",value:record.studio}] : []),
