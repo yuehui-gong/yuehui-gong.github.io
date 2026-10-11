@@ -23,8 +23,8 @@
   ];
   const levelOrder=[
     /award of excellence|first place|first prize|^winner$/i,
-    /second prize|outstanding award/i,
-    /third prize|honor award|silver winner/i,
+    /second place|second prize|outstanding award/i,
+    /third place|third prize|honor award|silver winner/i,
     /honorable mention|commendation/i,
     /finalist|shortlisted/i
   ];

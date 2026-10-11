@@ -1,0 +1,94 @@
+{
+  "slug": "JH_261011_ASLA EP 2026",
+  "title": "SOIL HOLDS: MATTER, MEMORY, COMMONS",
+  "shortTitle": "SOIL HOLDS: MATTER, MEMORY, COMMONS",
+  "location": {
+    "site": "Angel’s Knoll",
+    "city": "Los Angeles, California",
+    "country": "United States",
+    "coordinates": [-118.2509, 34.0513]
+  },
+  "year": 2026,
+  "type": "Landscape design",
+  "collaborators": ["Zicheng Zhao", "Zhijie Wang"],
+  "awards": [
+    {
+      "name": "ASLA Emerging Professionals Design Competition",
+      "year": 2026,
+      "distinction": "Second Place",
+      "url": "https://www.asla.org/news-insights/land/%28clone%29-reimagining-angel-s-knoll-celebrating-the-2026-emerging-professionals-design-competition"
+    }
+  ],
+  "keywords": ["soil", "memory", "commons", "materiality", "stewardship", "accessibility"],
+  "summary": "A proposal for Angel’s Knoll connects soil repair, urban memory, and community stewardship through an accessible landscape shaped by ongoing care.",
+  "storyTitle": "Project narrative",
+  "description": [
+    "Bunker Hill was cut down to build a city, and what remains is soil. The soil at Angel’s Knoll has outlasted every attempt to erase, stabilize, and pave around it. Damaged and compacted, this persistent ground forms the project’s foundation, treated as living matter, relationship, and memory.",
+    "As matter, the hill operates as a dynamic, heterogeneous field, spanning flat plateaus, sharp inclines, and shifting solar exposures. Here, site clearing initiates a material metabolism: organic debris is cycled upward to nourish preserved vegetation at the crest, while descending the slope, the physical reshaping intensifies. The ground fractures into a textured patchwork of micro-conditions, secured by varied erosion controls. Native bands bind the ground between open plots left to succeed on their own, where the slow labor of becoming soil stays in view. This is provisional ground, built without knowing the outcome and left to inherit its form.",
+    "This ongoing repair also catalyzes social connection. Occupying a sharp urban threshold between the elevated corporate plateau and historic downtown, the reconstructed soil bridges contrasting realities. We treat the balance between ecological labor and public life as an evolving relationship. Initially, the hill serves as an exposed working ground, inviting the city to work and witness the labor of rebuilding. Over time, soil rebuilding softens into everyday, recreational stewardship; observation matures into active belonging as surrounding communities merge with the site’s ongoing care—bringing compost, tending trees, and gathering seeds to disperse its renewed vitality.",
+    "Operating as memory, the hill reveals a composite of deep geology and urban remains. Miocene marine sedimentary rock, fragments of old retaining walls, and Alberhill fire clay bricks are daylighted across the landscape. These displaced remnants of Bunker Hill form a mosaic where erased history resurfaces. Yet, collective memory demands equal access. The steep incline is sculpted into a choreographed terrain. By supporting climbing, descending, perching, and gathering, the design transforms an impassable barrier into an inclusive landscape—allowing all bodies to navigate, rest within, and inhabit the city’s layered ground."
+  ],
+  "hero": {
+    "file": "web/01-site-plan.webp",
+    "alt": "SOIL HOLDS site plan showing planted soil patches, accessible paths and gathering spaces at Angel’s Knoll"
+  },
+  "images": [
+    {
+      "file": "web/02-urban-threshold.webp",
+      "alt": "Diagrams connecting the corporate plateau and historic downtown through movement and gathering on Angel’s Knoll",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/03-soil-rebuilding.webp",
+      "alt": "Soil rebuilding sections and community engagement diagrams showing successive stages of repair and stewardship",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/04-working-ground.webp",
+      "alt": "Working ground perspectives showing erosion controls, retained trees, organic debris and changing planted slopes",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/05-geology-and-memory.webp",
+      "alt": "Geology and material memory studies linking Fernando Formation rock, Bunker Hill remnants and historic core bricks",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/06-commons.webp",
+      "alt": "Commons perspective with people gathering on reclaimed timber terraces beside an ecological seed garden",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/07-hillside-stewardship.webp",
+      "alt": "Hillside perspective showing accessible paths, planted soil patches and recovered material outcrops",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "web/08-angels-flight-threshold.webp",
+      "alt": "Gathering spaces at the Angels Flight threshold with native planting, geological outcrops and retained wall fragments",
+      "caption": "",
+      "description": ""
+    }
+  ],
+  "layout": [
+    {"kind": "board-sheet", "files": ["web/02-urban-threshold.webp"]},
+    {"kind": "board-sheet", "files": ["web/03-soil-rebuilding.webp"]},
+    {"kind": "board-sheet", "files": ["web/04-working-ground.webp"]},
+    {"kind": "board-sheet", "files": ["web/05-geology-and-memory.webp"]},
+    {"kind": "board-sheet", "files": ["web/06-commons.webp"]},
+    {"kind": "board-sheet", "files": ["web/07-hillside-stewardship.webp"]},
+    {"kind": "board-sheet", "files": ["web/08-angels-flight-threshold.webp"]}
+  ],
+  "imageCredits": "",
+  "presentation": "reference-sheet",
+  "layoutVariant": "board-sheets",
+  "narrativePlacement": "sidebar",
+  "pageTheme": "day",
+  "color": "#899875"
+}

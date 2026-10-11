@@ -417,6 +417,10 @@
 .kingston-page .layout-hero .img-wrap img,.kingston-page .project-collection img{width:100%;height:auto;max-height:none;}
 .kingston-page .collection-kingston-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(32px,3vw,56px);}
 @media(max-width:860px){.kingston-page .collection-kingston-sheet{margin-top:24px;}}
+.board-sheets-page .content.reference-sheet{max-width:1500px;}
+.board-sheets-page .layout-hero .img-wrap img,.board-sheets-page .collection-board-sheet img{width:100%;height:auto;max-height:none;}
+.board-sheets-page .collection-board-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(32px,3vw,56px);}
+@media(max-width:860px){.board-sheets-page .collection-board-sheet{margin-top:24px;}}
 .collection-unfold-sheet img{display:block;width:100%;height:auto;max-height:none;}
 
 .unfold-page .content.reference-sheet{max-width:1500px;}
@@ -598,6 +602,7 @@ function renderBlock(b){
 
 function renderProject(p){
   if(record.slug==='JH_261011_Stitching Kingston') document.body.classList.add('kingston-page');
+  if(record.layoutVariant==='board-sheets') document.body.classList.add('board-sheets-page');
   if(record.slug==='ZZ_261011_Unfold') document.body.classList.add('unfold-page');
   if(record.slug==='ZZ_261011_Maurice River') document.body.classList.add('maurice-page');
   if(p.book && record.presentation==='comic-book') document.body.classList.add('comic-project');
