@@ -5,3 +5,17 @@ input:focus,textarea:focus{background-color:var(--field-fill);border-bottom-colo
 input::selection,textarea::selection{background:#e2895c66;color:var(--ink)}
 input:autofill{background-color:var(--field-fill);color:var(--ink)}
 input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus{ -webkit-box-shadow:0 0 0 1000px var(--field-fill) inset; -webkit-text-fill-color:var(--ink);caret-color:var(--accent)}
+
+/* Office information moved from About. */
+.office{border-top:1px solid var(--line);padding:40px 0 0;display:grid;grid-template-columns:1fr 2fr;gap:48px;}
+.office .section-label{font:10px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 20px;}
+.office h2{margin-bottom:20px;}
+.office h3{font-size:18px;font-weight:400;margin:0 0 16px;}
+.office p:not(.section-label){font-size:13px;line-height:1.9;color:var(--muted);}
+.office-details{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.office-map{grid-column:2;position:relative;min-width:0;aspect-ratio:800/285;border:1px solid var(--line);overflow:hidden;}
+.office-map svg{display:block;width:100%;height:100%;}
+.office-map span{position:absolute;bottom:16px;left:16px;background:var(--bg);padding:8px;font:9px var(--mono);color:var(--muted);}
+.endnote{display:flex;justify-content:space-between;gap:24px;padding:36px 0 70px;font:10px/1.8 var(--mono);color:var(--muted);}
+.endnote p{margin:0;}
+@media(max-width:600px){.office{grid-template-columns:1fr;gap:28px;}.office-map{grid-column:1;}.office-details{gap:20px;}.endnote{flex-direction:column;padding-bottom:40px;}}
