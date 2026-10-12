@@ -277,6 +277,13 @@
 .project-collection.collection-voice-sheet,.project-collection.collection-voice-pair{width:100%;max-width:none}
 .collection-voice-pair{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px}
 @media(max-width:600px){.collection-voice-pair{grid-template-columns:1fr}}
+/* Natural Monetary Reserve exhibition composition. */
+.collection-natural-sheet{width:100%;padding:24px 0;gap:32px;}
+.collection-natural-exhibition{width:92%;display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1fr);gap:20px;padding:32px 0 48px;align-items:start;}
+.collection-natural-exhibition .exhibition-column{display:flex;flex-direction:column;gap:20px;min-width:0;}
+.collection-natural-exhibition .exhibition-column:last-child figure:last-child img{aspect-ratio:1.08;object-fit:cover;object-position:center bottom;}
+@media(max-width:600px){.collection-natural-exhibition{width:100%;gap:12px;padding:24px 0;}.collection-natural-exhibition .exhibition-column{gap:12px;}}
+
 </style>
 <link rel="stylesheet" href="assets/site.css"><style>
 :root{--sidebar-w:clamp(480px,38vw,640px)}
@@ -565,6 +572,10 @@ function renderAwardEntry(value){
 function renderBlock(b){
   switch(b.type){
     case "collection": {
+if(b.kind==='natural-exhibition'){
+  const column=images=>`<div class="exhibition-column">${images.map(image=>`<figure><img src="${image.src}" alt="${escapeProjectText(image.alt || '')}" loading="lazy"></figure>`).join('')}</div>`;
+  return `<section class="block project-collection collection-natural-exhibition">${column(b.images.slice(0,4))}${column(b.images.slice(4))}</section>`;
+}
       const intro=b.introduction;
       const story=intro ? `<section class="project-story project-story-inline" aria-label="${escapeProjectText(intro.title)}"><h3>${escapeProjectText(intro.title)}</h3>${intro.paragraphs.map(text=>`<p>${escapeProjectText(text)}</p>`).join('')}</section>` : '';
       return story + `<section class="block project-collection collection-${b.kind}">${b.images.map((image,index)=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="${b.kind==='material-and-panorama' && index===0 ? 'eager' : 'lazy'}">${image.caption ? `<figcaption>${image.caption}</figcaption>` : ''}</figure>`).join('')}</section>`;

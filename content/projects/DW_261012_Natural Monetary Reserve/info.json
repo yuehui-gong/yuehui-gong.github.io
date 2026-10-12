@@ -55,10 +55,74 @@
       "alt": "Natural Monetary Reserve — project sheet 4",
       "caption": "",
       "description": ""
+    },
+    {
+      "file": "exhibition4.webp",
+      "alt": "Water state map model",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "exhibition7.webp",
+      "alt": "Algae bloom specimen tubes",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "exhibition2.webp",
+      "alt": "Water States exhibition overview",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "exhibition-diagram.webp",
+      "alt": "Water and commodity network diagram",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "exhibition5.webp",
+      "alt": "Aquifer section model",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "exhibition.webp",
+      "alt": "Exhibition table and water models",
+      "caption": "",
+      "description": ""
+    },
+    {
+      "file": "exhibition3.webp",
+      "alt": "Projected water state models",
+      "caption": "",
+      "description": ""
     }
   ],
   "imageCredits": "",
   "color": "#8a9b78",
   "storyTitle": "Project Narrative",
-  "narrativePlacement": "sidebar"
+  "narrativePlacement": "sidebar",
+  "layout": [
+    {
+      "kind": "natural-sheet",
+      "files": [
+        "0.webp",
+        "1.webp",
+        "4.webp"
+      ]
+    },
+    {
+      "kind": "natural-exhibition",
+      "files": [
+        "exhibition4.webp",
+        "exhibition7.webp",
+        "exhibition2.webp",
+        "exhibition-diagram.webp",
+        "exhibition5.webp",
+        "exhibition.webp",
+        "exhibition3.webp"
+      ]
+    }
+  ]
 }
