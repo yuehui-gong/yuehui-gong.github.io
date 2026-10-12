@@ -6,10 +6,8 @@
     "site": "",
     "city": "Global",
     "country": "",
-    "coordinates": [
-      -88.414851,
-      40.860372
-    ]
+    "coordinates": null,
+    "coordinatePrecision": "global project; no single site"
   },
   "year": 2022,
   "type": "Academic Study / Research",
@@ -18,12 +16,8 @@
     "Jin Huang",
     "Yue Hu"
   ],
-  "awards": [
-
-  ],
-  "keywords": [
-
-  ],
+  "awards": [],
+  "keywords": [],
   "summary": "",
   "description": [
     "Have you ever paused to consider the subtle connections embedded within the words we use daily? \"Cash flow,\" \"groundwater banking,\" and even \"stock\" seem to hint at links between water and money.",

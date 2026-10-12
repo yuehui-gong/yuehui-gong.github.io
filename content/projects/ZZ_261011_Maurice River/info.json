@@ -7,9 +7,11 @@
     "city": "Maurice River Estuary, New Jersey",
     "country": "United States",
     "coordinates": [
-      -75.39,
-      39.22
-    ]
+      -75.0440674,
+      39.2137252
+    ],
+    "coordinatePrecision": "estuary reference point",
+    "coordinateSource": "https://www.topozone.com/new-jersey/cumberland-nj/stream/maurice-river-2/"
   },
   "type": "Coastal landscape design",
   "collaborators": [

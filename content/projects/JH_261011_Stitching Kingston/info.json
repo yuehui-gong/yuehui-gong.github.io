@@ -6,7 +6,12 @@
     "site": "Barnes Gully and Parade Gardens",
     "city": "Kingston",
     "country": "Jamaica",
-    "coordinates": null
+    "coordinates": [
+      -76.787691,
+      17.969761
+    ],
+    "coordinatePrecision": "neighborhood reference point",
+    "coordinateSource": "https://www.yellowpages.net/phone-1-8764891474-community-center-Kingston-JMEN80157.html"
   },
   "year": 2024,
   "type": "Urban design",
@@ -120,19 +125,84 @@
     }
   ],
   "layout": [
-    {"kind": "kingston-sheet", "files": ["web/02-kingston-gully-network.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/03-community-challenges.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/04-parade-gardens-analysis.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/05-community-waste-management.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/06-waste-collection-system.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/07-barnes-gully-master-plan.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/08-gully-filtration-strategies.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/09-commercial-plaza.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/10-community-sports-field.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/11-ecological-gateway.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/12-waterfront-festival.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/13-sunset-walk.webp"]},
-    {"kind": "kingston-sheet", "files": ["web/14-citywide-green-network.webp"]}
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/02-kingston-gully-network.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/03-community-challenges.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/04-parade-gardens-analysis.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/05-community-waste-management.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/06-waste-collection-system.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/07-barnes-gully-master-plan.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/08-gully-filtration-strategies.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/09-commercial-plaza.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/10-community-sports-field.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/11-ecological-gateway.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/12-waterfront-festival.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/13-sunset-walk.webp"
+      ]
+    },
+    {
+      "kind": "kingston-sheet",
+      "files": [
+        "web/14-citywide-green-network.webp"
+      ]
+    }
   ],
   "imageCredits": "",
   "presentation": "reference-sheet",

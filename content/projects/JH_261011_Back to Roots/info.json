@@ -6,14 +6,26 @@
     "site": "Lake Okeechobee",
     "city": "Florida",
     "country": "United States",
-    "coordinates": null
+    "coordinates": [
+      -80.833117,
+      26.950334
+    ],
+    "coordinatePrecision": "lake reference point",
+    "coordinateSource": "https://waterdata.usgs.gov/monitoring-location/USGS-02276400/"
   },
   "year": 2024,
   "type": "speculative landscape design",
-  "collaborators": ["Wei Xia"],
+  "collaborators": [
+    "Wei Xia"
+  ],
   "awards": [],
   "hideAward": true,
-  "keywords": ["memory", "counterfactual", "cultural continuity", "ecology"],
+  "keywords": [
+    "memory",
+    "counterfactual",
+    "cultural continuity",
+    "ecology"
+  ],
   "summary": "A landscape proposal told through a graphic novel, imagining cultural continuity and renewed relations with land around Lake Okeechobee.",
   "storyTitle": "Project narrative",
   "description": [
@@ -30,15 +42,78 @@
   "book": {
     "mode": "spreads",
     "pages": [
-      {"file": "comic-cover.jpg", "kind": "cover", "label": "Cover", "width": 2063, "height": 3225, "alt": "Back to Roots cover"},
-      {"file": "comic-spread1.jpg", "kind": "spread", "label": "Two Generations", "width": 4125, "height": 3225, "alt": "Spread 1: Osceola remembers his grandmother and stories of displacement"},
-      {"file": "comic-spread2.jpg", "kind": "spread", "label": "Land and Memory", "width": 4125, "height": 3225, "alt": "Spread 2: archival collage and an imagined elder reflect on removal, boarding schools, and land and water"},
-      {"file": "comic-spread3.jpg", "kind": "spread", "label": "Back to Roots", "width": 4125, "height": 3225, "alt": "Spread 3: Osceola at ages five and ninety-two, with a map of Lake Okeechobee"},
-      {"file": "comic-spread4.jpg", "kind": "spread", "label": "The Preserve", "width": 4125, "height": 3225, "alt": "Spread 4: Osceola and landscape architect Allison discuss the preserve and plant gardens"},
-      {"file": "comic-spread5.jpg", "kind": "spread", "label": "Landscape in Time", "width": 4125, "height": 3225, "alt": "Spread 5: four forest scenes trace flooding, tree death, loss, and renewal"},
-      {"file": "comic-spread6.jpg", "kind": "spread", "label": "Expansion", "width": 4125, "height": 3225, "alt": "Spread 6: an imagined expansion toward Miccosukee lands and a question about economic consequences"},
-      {"file": "comic-spread7.jpg", "kind": "spread", "label": "Appendix", "width": 4125, "height": 3225, "alt": "Spread 7: preserve plan with memorial, plant and medicine wheel gardens and visitor center"},
-      {"file": "comic-backcover.jpg", "kind": "backcover", "label": "Back cover", "width": 2063, "height": 3225, "alt": "Back to Roots back cover"}
+      {
+        "file": "comic-cover.jpg",
+        "kind": "cover",
+        "label": "Cover",
+        "width": 2063,
+        "height": 3225,
+        "alt": "Back to Roots cover"
+      },
+      {
+        "file": "comic-spread1.jpg",
+        "kind": "spread",
+        "label": "Two Generations",
+        "width": 4125,
+        "height": 3225,
+        "alt": "Spread 1: Osceola remembers his grandmother and stories of displacement"
+      },
+      {
+        "file": "comic-spread2.jpg",
+        "kind": "spread",
+        "label": "Land and Memory",
+        "width": 4125,
+        "height": 3225,
+        "alt": "Spread 2: archival collage and an imagined elder reflect on removal, boarding schools, and land and water"
+      },
+      {
+        "file": "comic-spread3.jpg",
+        "kind": "spread",
+        "label": "Back to Roots",
+        "width": 4125,
+        "height": 3225,
+        "alt": "Spread 3: Osceola at ages five and ninety-two, with a map of Lake Okeechobee"
+      },
+      {
+        "file": "comic-spread4.jpg",
+        "kind": "spread",
+        "label": "The Preserve",
+        "width": 4125,
+        "height": 3225,
+        "alt": "Spread 4: Osceola and landscape architect Allison discuss the preserve and plant gardens"
+      },
+      {
+        "file": "comic-spread5.jpg",
+        "kind": "spread",
+        "label": "Landscape in Time",
+        "width": 4125,
+        "height": 3225,
+        "alt": "Spread 5: four forest scenes trace flooding, tree death, loss, and renewal"
+      },
+      {
+        "file": "comic-spread6.jpg",
+        "kind": "spread",
+        "label": "Expansion",
+        "width": 4125,
+        "height": 3225,
+        "alt": "Spread 6: an imagined expansion toward Miccosukee lands and a question about economic consequences"
+      },
+      {
+        "file": "comic-spread7.jpg",
+        "kind": "spread",
+        "label": "Appendix",
+        "width": 4125,
+        "height": 3225,
+        "alt": "Spread 7: preserve plan with memorial, plant and medicine wheel gardens and visitor center"
+      },
+      {
+        "file": "comic-backcover.jpg",
+        "kind": "backcover",
+        "label": "Back cover",
+        "width": 2063,
+        "height": 3225,
+        "alt": "Back to Roots back cover"
+      }
     ]
   },
   "color": "#bd3b32",
