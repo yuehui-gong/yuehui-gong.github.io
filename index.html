@@ -120,6 +120,16 @@ const KEYWORD_DEFS = {
   art:"Where landscape and installation blur together."
 };
 
+// Use one display labelfor case/whitespace variants across projects.
+const keywordLabels = new Map();
+PROJECTS.forEach(project => {
+  project.kw = [...new Set((project.kw || []).map(word => {
+    const label = String(word).trim().replace(/\s+/g, ' ');
+    const key = label.toLocaleLowerCase('en');
+    if (!keywordLabels.has(key)) keywordLabels.set(key, label);
+    return keywordLabels.get(key);
+  }).filter(Boolean))];
+});
 const UNIQUE_KEYWORDS = [...new Set(PROJECTS.flatMap(p => p.kw))];
 const MAX_KEYWORD_LEVELS = 4;
 
@@ -149,11 +159,11 @@ function resize() {
   ctx.setTransform(dpr,0,0,dpr,0,0);
 }
 
-/* ── build a denser node pool: each keyword repeated 2-4x with varied size tiers ── */
+/* Each distinct keyword has one floating node. */
 let nodes = [];
 function initNodes() {
   nodes = [];
-  const REPEATS = 3;
+  const REPEATS = 1;
   UNIQUE_KEYWORDS.forEach(k => {
     for (let r = 0; r < REPEATS; r++) {
       const tier = Math.random();
