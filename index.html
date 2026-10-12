@@ -42,7 +42,7 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
 #project-photos{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden}
 .project-photo{position:absolute;margin:0;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .4s;background:#eee;box-shadow:0 8px 32px #0002}
 #project-photos.visible .project-photo{opacity:1;transform:translateY(0)}
-.project-photo img{width:100%;height:100%;display:block;object-fit:cover}
+.project-photo img{width:100%;height:100%;display:block;object-fit:contain}
 .project-photo a{display:block;width:100%;height:100%;color:inherit;pointer-events:none}
 #project-photos.visible .project-photo a{pointer-events:auto}
 .project-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:24px 12px 10px;background:linear-gradient(transparent,#0009);color:white;font-size:10px}
@@ -223,16 +223,25 @@ function showPhotos(n){
  const width=Math.max(160,Math.min(W*.54,aw-24)),height=Math.max(120,Math.min(H*.56,H-88));
  projects.forEach((p,i)=>{
   const f=document.createElement('figure');f.className='project-photo';
-  const w=width*(i%2?.82:1),h=height*(i%2?.90:1);
-  const centerX=n.selected?n.x-n._w/2:n.x;
-  const right=centerX<aw/2;
-  let x=right?centerX+n._w/2+36:centerX-n._w/2-36-w;
-  x+=(right?1:-1)*(i%2)*width*.30;
-  const y=n.y-h/2+(i-(projects.length-1)/2)*height*.53;
-  Object.assign(f.style,{left:Math.max(12,Math.min(aw-w-12,x))+'px',top:Math.max(68,Math.min(H-h-16,y))+'px',width:w+'px',height:h+'px',transitionDelay:i*45+'ms'});
+  const maxW=width*(i%2?.82:1),maxH=height*(i%2?.90:1);
   const link=document.createElement('a');link.href='project.html?slug='+encodeURIComponent(p.slug);link.setAttribute('aria-label','View '+p.title);
-  const img=new Image();img.alt=p.heroAlt||p.title+' — illustrative landscape';img.src=p.image;
-  img.onerror=()=>{img.hidden=true;};
+  const img=new Image();img.alt=p.heroAlt||p.title+' — illustrative landscape';
+  f.style.visibility='hidden';
+  function fitPhoto(){
+   if(generation!==photoGeneration || !img.naturalWidth) return;
+   const fit=Math.min(maxW/img.naturalWidth,maxH/img.naturalHeight);
+   const w=img.naturalWidth*fit,h=img.naturalHeight*fit;
+   const centerX=n.selected?n.x-n._w/2:n.x;
+   const right=centerX<aw/2;
+   let x=right?centerX+n._w/2+36:centerX-n._w/2-36-w;
+   x+=(right?1:-1)*(i%2)*width*.30;
+   const y=n.y-h/2+(i-(projects.length-1)/2)*height*.53;
+   Object.assign(f.style,{left:Math.max(12,Math.min(aw-w-12,x))+'px',top:Math.max(68,Math.min(H-h-16,y))+'px',width:w+'px',height:h+'px',transitionDelay:i*45+'ms',visibility:'visible'});
+  }
+  img.onload=fitPhoto;
+  img.onerror=()=>{f.remove();};
+  img.src=p.image;
+  if(img.complete) fitPhoto();
   const c=document.createElement('figcaption');c.textContent=p.title+' · View project ↗';
   link.append(img);f.append(link,c);c.style.pointerEvents='none';photoLayer.append(f);
  });
