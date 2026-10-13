@@ -1,14 +1,12 @@
 {
   "id": "member-03",
-  "name": "Team Member Three",
-  "role": "Material & spatial practice",
-  "bio": [
-    "This profile introduces a designer who explores how a landscape is experienced through movement, touch, and material. Their work within the studio moves between the scale of a route and the detail of an edge, considering how small decisions shape the character of a larger place. Drawing, model making, and material tests are central to their process."
-  ],
-  "portraitA": "a.svg",
-  "portraitAlt": "Portrait to follow",
-  "portraitB": "b.svg",
-  "bCaption": "A personal interest, a field note, or an unexpected side. More to follow.",
-  "bLabel": "Personal archive",
-  "bAlt": "B-side image placeholder"
+  "name": "Jiewen Hu",
+  "role": "",
+  "bio": [],
+  "portraitA": "portrait.webp",
+  "portraitAlt": "Portrait of Jiewen Hu",
+  "portraitB": "",
+  "bCaption": "",
+  "bLabel": "",
+  "bAlt": ""
 }

@@ -1,14 +1,12 @@
 {
   "id": "member-01",
-  "name": "Jupi",
-  "role": "Landscape design & research",
-  "bio": [
-    "This profile introduces a designer whose work begins with close observation of the ground. Their interests include topography, water, and the everyday ways people inhabit shared space. Within the studio, they help connect early site research to the development of spatial ideas, moving between field notes, drawings, and physical studies."
-  ],
-  "portraitA": "Jupi.jpg",
-  "portraitAlt": "Portrait to follow",
-  "portraitB": "Jupi_2.jpg",
-  "bCaption": "An unexpected side",
-  "bLabel": "Personal archive",
-  "bAlt": "B-side image placeholder"
+  "name": "Zicheng (Kai) Zhao",
+  "role": "",
+  "bio": [],
+  "portraitA": "portrait.webp",
+  "portraitAlt": "Portrait of Zicheng (Kai) Zhao",
+  "portraitB": "",
+  "bCaption": "",
+  "bLabel": "",
+  "bAlt": ""
 }
