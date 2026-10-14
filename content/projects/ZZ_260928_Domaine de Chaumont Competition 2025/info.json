@@ -36,7 +36,27 @@
   ],
   "hero": {
     "file": "web/axon.webp",
-    "alt": "Axonometric for Whispers Beyond the Looking Glass"
+    "alt": "Axonometric for Whispers Beyond the Looking Glass",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 2600,
+    "height": 1839
   },
   "images": [
     {

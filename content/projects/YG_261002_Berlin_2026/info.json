@@ -39,7 +39,27 @@
   ],
   "hero": {
     "file": "perspective.jpg",
-    "alt": "Three landscape perspectives showing the mist plaza, substrate islands, and wet meadow at Tilla-Durieux-Park"
+    "alt": "Three landscape perspectives showing the mist plaza, substrate islands, and wet meadow at Tilla-Durieux-Park",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 3167,
+    "height": 1500
   },
   "images": [
     {

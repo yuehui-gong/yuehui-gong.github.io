@@ -33,7 +33,27 @@
   ],
   "hero": {
     "file": "web/plan.webp",
-    "alt": "Plan — New sediment ground"
+    "alt": "Plan — New sediment ground",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2100.webp",
+        "width": 2100
+      }
+    ],
+    "width": 2100,
+    "height": 1062
   },
   "images": [
     {

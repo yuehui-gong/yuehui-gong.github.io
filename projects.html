@@ -345,7 +345,7 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
 
 
 
-<script src="assets/project-content.js?v=20261009-hero"></script>
+<script src="assets/project-content.js?v=responsive-covers-1"></script>
 <script>
 (async function(){
 
@@ -358,7 +358,7 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
     var coordinates=Array.isArray(p.coords)?p.coords:[];
     var position={lon:coordinates[0],lat:coordinates[1]};
     if(!hasCoordinates(position)) position={lon:null,lat:null};
-    return {name:p.shortTitle,city:p.city,country:p.country,loc:p.loc,type:p.type,...position,seed:p.slug,img:p.img,slug:p.slug};
+    return {name:p.shortTitle,city:p.city,country:p.country,loc:p.loc,type:p.type,...position,seed:p.slug,img:p.img,heroPreviews:p.heroPreviews,heroWidth:p.heroWidth,heroHeight:p.heroHeight,slug:p.slug};
   }));
   function cameraPosition(index){
     if(hasCoordinates(projects[index])) return projects[index];
@@ -393,6 +393,13 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
       '<p class="card-name">'+p.name+'</p>' +
       '<p class="card-type">'+p.type+'</p>' +
       '<span class="card-frame"><img src="'+img+'" alt="'+p.name+'" loading="lazy"></span>';
+    var cover=card.querySelector('img');
+    cover.decoding='async';
+    if(p.heroPreviews.length){
+      // Account for object-fit: cover on the existing 4:5 card frame.
+      cover.sizes=Math.ceil(Math.max(200,250*p.heroWidth/p.heroHeight))+'px';
+      cover.srcset=p.heroPreviews.map(function(v){return encodeURI(v.src)+' '+v.width+'w';}).join(', ');
+    }
     card.addEventListener('click', function(e){ if(!didDrag || e.detail===0) { location.href='project.html?slug='+encodeURIComponent(p.slug); } });
     track.appendChild(card);
   });

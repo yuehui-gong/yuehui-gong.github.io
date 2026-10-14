@@ -19,9 +19,7 @@
     "Yanjie Shen",
     "Chen Fei"
   ],
-  "awards": [
-
-  ],
+  "awards": [],
   "keywords": [
     "Connectivity",
     "Mobility"
@@ -33,7 +31,27 @@
   ],
   "hero": {
     "file": "cover.webp",
-    "alt": "Flowing Fabric — project cover"
+    "alt": "Flowing Fabric — project cover",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 2600,
+    "height": 1767
   },
   "images": [
     {

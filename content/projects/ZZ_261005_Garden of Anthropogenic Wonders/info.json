@@ -38,7 +38,27 @@
   ],
   "hero": {
     "file": "web/perspective.webp",
-    "alt": "Perspective — Garden of Anthropogenic Wonders"
+    "alt": "Perspective — Garden of Anthropogenic Wonders",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 3600,
+    "height": 2160
   },
   "images": [
     {

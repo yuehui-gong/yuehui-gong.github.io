@@ -28,7 +28,27 @@
   ],
   "hero": {
     "file": "web/perspective-1.webp",
-    "alt": "Owl habitat and the shadowed ditch in the Leaving Traces landscape proposal"
+    "alt": "Owl habitat and the shadowed ditch in the Leaving Traces landscape proposal",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 3200,
+    "height": 2263
   },
   "images": [
     {

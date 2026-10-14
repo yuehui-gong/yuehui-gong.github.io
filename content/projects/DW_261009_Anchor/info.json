@@ -18,9 +18,7 @@
     "Bo Pan",
     "Dea Baze"
   ],
-  "awards": [
-
-  ],
+  "awards": [],
   "keywords": [
     "Affordability",
     "Community"
@@ -32,7 +30,27 @@
   ],
   "hero": {
     "file": "cover.webp",
-    "alt": "Anchor — project cover"
+    "alt": "Anchor — project cover",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 2600,
+    "height": 1935
   },
   "images": [
     {

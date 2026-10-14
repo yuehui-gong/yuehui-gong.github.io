@@ -31,7 +31,27 @@
   ],
   "hero": {
     "file": "web/render.webp",
-    "alt": "Render — Hemp For Water"
+    "alt": "Render — Hemp For Water",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 3600,
+    "height": 1802
   },
   "images": [
     {

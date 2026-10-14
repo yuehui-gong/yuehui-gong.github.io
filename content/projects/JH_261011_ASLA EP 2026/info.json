@@ -6,11 +6,17 @@
     "site": "Angel’s Knoll",
     "city": "Los Angeles, California",
     "country": "United States",
-    "coordinates": [-118.2509, 34.0513]
+    "coordinates": [
+      -118.2509,
+      34.0513
+    ]
   },
   "year": 2026,
   "type": "Landscape design",
-  "collaborators": ["Zicheng Zhao", "Zhijie Wang"],
+  "collaborators": [
+    "Zicheng Zhao",
+    "Zhijie Wang"
+  ],
   "awards": [
     {
       "name": "ASLA Emerging Professionals Design Competition",
@@ -19,7 +25,14 @@
       "url": "https://www.asla.org/news-insights/land/%28clone%29-reimagining-angel-s-knoll-celebrating-the-2026-emerging-professionals-design-competition"
     }
   ],
-  "keywords": ["soil", "memory", "commons", "materiality", "stewardship", "accessibility"],
+  "keywords": [
+    "soil",
+    "memory",
+    "commons",
+    "materiality",
+    "stewardship",
+    "accessibility"
+  ],
   "summary": "A proposal for Angel’s Knoll connects soil repair, urban memory, and community stewardship through an accessible landscape shaped by ongoing care.",
   "storyTitle": "Project narrative",
   "description": [
@@ -30,7 +43,27 @@
   ],
   "hero": {
     "file": "web/01-site-plan.webp",
-    "alt": "SOIL HOLDS site plan showing planted soil patches, accessible paths and gathering spaces at Angel’s Knoll"
+    "alt": "SOIL HOLDS site plan showing planted soil patches, accessible paths and gathering spaces at Angel’s Knoll",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 3200,
+    "height": 3200
   },
   "images": [
     {
@@ -77,13 +110,48 @@
     }
   ],
   "layout": [
-    {"kind": "board-sheet", "files": ["web/02-urban-threshold.webp"]},
-    {"kind": "board-sheet", "files": ["web/03-soil-rebuilding.webp"]},
-    {"kind": "board-sheet", "files": ["web/04-working-ground.webp"]},
-    {"kind": "board-sheet", "files": ["web/05-geology-and-memory.webp"]},
-    {"kind": "board-sheet", "files": ["web/06-commons.webp"]},
-    {"kind": "board-sheet", "files": ["web/07-hillside-stewardship.webp"]},
-    {"kind": "board-sheet", "files": ["web/08-angels-flight-threshold.webp"]}
+    {
+      "kind": "board-sheet",
+      "files": [
+        "web/02-urban-threshold.webp"
+      ]
+    },
+    {
+      "kind": "board-sheet",
+      "files": [
+        "web/03-soil-rebuilding.webp"
+      ]
+    },
+    {
+      "kind": "board-sheet",
+      "files": [
+        "web/04-working-ground.webp"
+      ]
+    },
+    {
+      "kind": "board-sheet",
+      "files": [
+        "web/05-geology-and-memory.webp"
+      ]
+    },
+    {
+      "kind": "board-sheet",
+      "files": [
+        "web/06-commons.webp"
+      ]
+    },
+    {
+      "kind": "board-sheet",
+      "files": [
+        "web/07-hillside-stewardship.webp"
+      ]
+    },
+    {
+      "kind": "board-sheet",
+      "files": [
+        "web/08-angels-flight-threshold.webp"
+      ]
+    }
   ],
   "imageCredits": "",
   "presentation": "reference-sheet",

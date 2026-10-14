@@ -47,7 +47,27 @@
   "hero": {
     "file": "hero.jpg",
     "alt": "Perspective of children and neighbors gathering beneath a climber-planted canopy in Candelo",
-    "display": "viewport"
+    "display": "viewport",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2185.webp",
+        "width": 2185
+      }
+    ],
+    "width": 2185,
+    "height": 2336
   },
   "images": [
     {

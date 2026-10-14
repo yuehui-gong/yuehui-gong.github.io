@@ -30,7 +30,27 @@
   "storyTitle": "A Limestone Quarry Landscape Lifecycle with Emotional Sedimentation",
   "hero": {
     "file": "hero.jpg",
-    "alt": "Landscape perspective of Sentiment – Sedimentation in the limestone quarry"
+    "alt": "Landscape perspective of Sentiment – Sedimentation in the limestone quarry",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-1729.webp",
+        "width": 1729
+      }
+    ],
+    "width": 1729,
+    "height": 1926
   },
   "images": [
     {

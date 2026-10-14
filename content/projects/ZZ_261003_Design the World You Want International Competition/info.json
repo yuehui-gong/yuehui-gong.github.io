@@ -45,7 +45,27 @@
   ],
   "hero": {
     "file": "web/perspective-6.webp",
-    "alt": "Tidal waterfront landscape at Victoria Harbour"
+    "alt": "Tidal waterfront landscape at Victoria Harbour",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 2800,
+    "height": 1687
   },
   "images": [
     {

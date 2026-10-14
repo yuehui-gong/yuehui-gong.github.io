@@ -42,7 +42,27 @@
   "pageTheme": "day",
   "hero": {
     "file": "biomes-and-seeds.jpg",
-    "alt": "Global biomes and seed dispersal research illustrated with botanical studies"
+    "alt": "Global biomes and seed dispersal research illustrated with botanical studies",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 3000,
+    "height": 1941
   },
   "images": [
     {

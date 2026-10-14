@@ -94,7 +94,7 @@ html,body,#stage{background:#000;color:#eee}
   <button id="clear-btn" type="button" hidden>Clear</button>
 </div>
 
-<script src="assets/project-content.js?v=20261009-hero"></script>
+<script src="assets/project-content.js?v=responsive-covers-1"></script>
 <script src="assets/keyword-layout.js"></script>
 <script>
 (async()=>{
@@ -240,6 +240,12 @@ function showPhotos(n){
   }
   img.onload=fitPhoto;
   img.onerror=()=>{f.remove();};
+  img.decoding='async';
+  if(p.heroPreviews.length){
+   const ratio=p.heroWidth/p.heroHeight;
+   img.sizes=Math.min(maxW,maxH*ratio)+'px';
+   img.srcset=p.heroPreviews.map(v=>encodeURI(v.src)+' '+v.width+'w').join(', ');
+  }
   img.src=p.image;
   if(img.complete) fitPhoto();
   const c=document.createElement('figcaption');c.textContent=p.title+' · View project ↗';

@@ -16,9 +16,7 @@
   "collaborators": [
     "Yuan Tian"
   ],
-  "awards": [
-
-  ],
+  "awards": [],
   "keywords": [
     "Resilience",
     "Restoration",
@@ -32,7 +30,27 @@
   ],
   "hero": {
     "file": "cover.webp",
-    "alt": "Living With The Coast — coastal homes and a shared waterfront boardwalk"
+    "alt": "Living With The Coast — coastal homes and a shared waterfront boardwalk",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 2600,
+    "height": 1682
   },
   "images": [
     {

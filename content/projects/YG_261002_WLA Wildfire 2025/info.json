@@ -41,7 +41,27 @@
   ],
   "hero": {
     "file": "forest-recovery.jpg",
-    "alt": "Perspective of a regenerating forest with visitors and interpretive infrastructure"
+    "alt": "Perspective of a regenerating forest with visitors and interpretive infrastructure",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-1792.webp",
+        "width": 1792
+      }
+    ],
+    "width": 1792,
+    "height": 1031
   },
   "images": [
     {

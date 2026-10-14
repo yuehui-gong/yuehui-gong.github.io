@@ -48,7 +48,27 @@
   ],
   "hero": {
     "file": "Section Perspective-1.jpg",
-    "alt": "Section perspective of grey water and biomass capture in the Water Afterlife landscape"
+    "alt": "Section perspective of grey water and biomass capture in the Water Afterlife landscape",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 2592,
+    "height": 1728
   },
   "images": [
     {

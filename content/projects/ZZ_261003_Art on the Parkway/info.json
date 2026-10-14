@@ -32,7 +32,23 @@
   ],
   "hero": {
     "file": "web/axon.webp",
-    "alt": "Axonometric drawing of the proposed bird infrastructure"
+    "alt": "Axonometric drawing of the proposed bird infrastructure",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1500.webp",
+        "width": 1500
+      }
+    ],
+    "width": 1500,
+    "height": 1155
   },
   "images": [
     {

@@ -42,7 +42,27 @@
   ],
   "hero": {
     "file": "web/01-barnes-gully-existing-conditions.webp",
-    "alt": "Existing conditions along Barnes Gully, including solid waste and raw sewage entering Kingston Harbour"
+    "alt": "Existing conditions along Barnes Gully, including solid waste and raw sewage entering Kingston Harbour",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2400.webp",
+        "width": 2400
+      }
+    ],
+    "width": 3200,
+    "height": 1561
   },
   "images": [
     {

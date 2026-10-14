@@ -36,7 +36,27 @@
   ],
   "hero": {
     "file": "comic-cover.jpg",
-    "alt": "Back to Roots graphic novel cover, with a red landscape strip against black"
+    "alt": "Back to Roots graphic novel cover, with a red landscape strip against black",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2063.webp",
+        "width": 2063
+      }
+    ],
+    "width": 2063,
+    "height": 3225
   },
   "images": [],
   "book": {

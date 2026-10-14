@@ -31,7 +31,27 @@
   ],
   "hero": {
     "file": "web/hero.webp",
-    "alt": "Perspective of Regain the Voice’s public space and elevated architectural framework"
+    "alt": "Perspective of Regain the Voice’s public space and elevated architectural framework",
+    "previews": [
+      {
+        "file": "previews/hero-400.webp",
+        "width": 400
+      },
+      {
+        "file": "previews/hero-800.webp",
+        "width": 800
+      },
+      {
+        "file": "previews/hero-1600.webp",
+        "width": 1600
+      },
+      {
+        "file": "previews/hero-2320.webp",
+        "width": 2320
+      }
+    ],
+    "width": 2320,
+    "height": 1097
   },
   "images": [
     {
