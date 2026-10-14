@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Field Notes Studio — Mobile Preview</title>
+<title>Field Notes Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@ html,body,#stage{background:#000;color:#eee}
 .project-photo img{opacity:.55}
 </style>
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/home-cursor.css"><link rel="stylesheet" href="assets/mobile-landing.css?v=20261014b"></head>
+<link rel="stylesheet" href="assets/home-cursor.css"><link rel="stylesheet" href="assets/mobile-landing.css?v=original-20261014c"></head>
 <body data-page="home">
 
 <div id="stage">
@@ -96,7 +96,7 @@ html,body,#stage{background:#000;color:#eee}
 
 <script src="assets/project-content.js?v=20261009-hero"></script>
 <script src="assets/keyword-layout.js"></script>
-<script src="assets/mobile-landing.js?v=20261014b"></script>
+<script src="assets/mobile-controls.js?v=original-20261014c"></script>
 <script>
 (async()=>{
 const PROJECTS = await window.loadStudioProjects();
@@ -132,10 +132,8 @@ PROJECTS.forEach(project => {
   }).filter(Boolean))];
 });
 const UNIQUE_KEYWORDS = [...new Set(PROJECTS.flatMap(p => p.kw))];
-if (matchMedia('(max-width:700px)').matches) {
-  window.buildMobileLanding(PROJECTS, UNIQUE_KEYWORDS);
-  return;
-}
+const MOBILE = matchMedia('(max-width:700px)').matches;
+let mobileControls = null, pressedNode = null;
 const MAX_KEYWORD_LEVELS = 4;
 
 function projectsFor(selected) {
@@ -166,6 +164,28 @@ function resize() {
 
 /* Each distinct keyword has one floating node. */
 let nodes = [];
+
+function mobileBounds(){return {left:18,right:W-18,top:Math.max(225,document.getElementById('headline').getBoundingClientRect().bottom+48),bottom:H-110};}
+function mobileWidth(n){const key=n.selected?'selected':n.size;if(n._mobileWidthKey===key)return n._mobileWidth;n._mobileWidthKey=key;ctx.font=`400 ${n.selected?18:n.size}px 'Space Grotesk', sans-serif`;return n._mobileWidth=ctx.measureText(n.text.toUpperCase()).width;}
+function clampMobileWord(n){const b=mobileBounds(),w=mobileWidth(n),cx=n.selected?n.x-w/2:n.x;const left=b.left+w/2,right=b.right-w/2;
+ if(cx<left){n.x=left+(n.selected?w/2:0);n.vx=Math.abs(n.vx);}if(cx>right){n.x=right+(n.selected?w/2:0);n.vx=-Math.abs(n.vx);}n.y=Math.max(b.top+22,Math.min(b.bottom-22,n.y));}
+function initMobileWords(){
+ const b=mobileBounds(),capacity=Math.min(20,Math.max(6,Math.floor((b.right-b.left)*(b.bottom-b.top)/8000)));
+ const pool=[...nodes].sort(()=>Math.random()-.5).slice(0,capacity);nodes.forEach(n=>n._mobileShown=pool.includes(n));
+ const items=pool.map(n=>({id:n.layoutId,width:mobileWidth(n)+24,height:48,x:b.left+Math.random()*(b.right-b.left),y:b.top+Math.random()*(b.bottom-b.top)}));
+ const positions=window.scatterKeywordLayout(items,b);pool.forEach(n=>{const p=positions.find(p=>p.id===n.layoutId);n.x=p.x;n.y=p.y;});
+}
+function separateMobileWords(pool){
+ for(let pass=0;pass<12;pass++)for(let i=0;i<pool.length;i++)for(let j=i+1;j<pool.length;j++){
+  const a=pool[i],b=pool[j],aw=mobileWidth(a),bw=mobileWidth(b),ax=a.selected?a.x-aw/2:a.x,bx=b.selected?b.x-bw/2:b.x;
+  const dx=bx-ax,dy=b.y-a.y,ox=(aw+bw)/2+12-Math.abs(dx),oy=46-Math.abs(dy);
+  if(ox>0&&oy>0){const horizontal=ox<oy,sign=(horizontal?dx:dy)>=0?1:-1,amount=Math.min(horizontal?ox:oy,8)/2;
+   if(!a.selected&&a!==pressedNode){if(horizontal)a.x-=sign*amount;else a.y-=sign*amount;}
+   if(!b.selected&&b!==pressedNode){if(horizontal)b.x+=sign*amount;else b.y+=sign*amount;}
+  }
+ }pool.forEach(n=>{if(!n.selected)clampMobileWord(n);});
+}
+
 function initNodes() {
   nodes = [];
   const REPEATS = 1;
@@ -182,8 +202,8 @@ function initNodes() {
         text: k, type: 'keyword',
         x: 70 + Math.random() * (W - 360), y: 100 + Math.random() * (H - 280),
         vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.42,
-        size: size,
-        baseOpacity: 0.22 + Math.random() * 0.36,
+        size: MOBILE ? 14.5 + Math.random()*3 : size,
+        baseOpacity: MOBILE ? .68 + Math.random()*.25 : .22 + Math.random()*.36,
         _fade: 1,
         selected: false,
         popTimer: 800 + Math.random()*2400,
@@ -196,6 +216,7 @@ function initNodes() {
 
 resize();
 initNodes();
+if(MOBILE) initMobileWords();
 window.addEventListener('resize', () => {
   const oldW = W, oldH = H;
   resize();
@@ -203,6 +224,7 @@ window.addEventListener('resize', () => {
     n.x = n.x * (W / oldW);
     n.y = n.y * (H / oldH);
   });
+  if(MOBILE && !selectedPath().length) initMobileWords();
 });
 
 let isNight = !document.documentElement.classList.contains("day"); window.addEventListener("site-theme",e=>{isNight=e.detail==="night"});
@@ -216,6 +238,7 @@ let photoGeneration=0;
 let photoKey='';
 function hidePhotos(){photoGeneration++;photoKey='';photoLayer.inert=true;photoLayer.classList.remove('visible');}
 function showPhotos(n){
+ if(MOBILE)return;
  const path=selectedPath();
  const key=path.length?path.map(node=>node.layoutId).join(','):'hover:'+n.layoutId;
  if(key===photoKey) return;
@@ -296,11 +319,7 @@ function arrangeFocusedKeywords(candidates, selected) {
       anchorX: selectedCenters.get(n._candAnchor).x, anchorY: n._candAnchor.y
     };
   });
-  const bounds = {
-    left: 24, right: W - 24,
-    top: headerRect.bottom - canvasRect.top + 24, bottom: H - 28,
-    obstacles
-  };
+  const bounds = MOBILE ? {...mobileBounds(),obstacles:selected.map(n=>({x:n.x-n._w/2,y:n.y,width:n._w+24,height:48}))} : {left:24,right:W-24,top:headerRect.bottom-canvasRect.top+24,bottom:H-28,obstacles};
   // Keep the next level near the most recently selected word, with room to breathe.
   const anchor = selectedCenters.get(selected[selected.length - 1]);
   const span = Math.sqrt(items.reduce((area, item) => area + item.width * item.height, 0) * 4);
@@ -366,7 +385,7 @@ function draw(now = performance.now()) {
     if (n._isCandidate) candidateNodes.push(n);
     else n._lineEmphasis = 0;
     if (n._selectionParent && !n._selectionParent.selected) n._selectionParent = null;
-    n._interactive = !selectedReps.length || n.selected || (n._isCandidate && stageReady);
+    n._interactive = (MOBILE ? (!selectedReps.length && n._mobileShown) : !selectedReps.length) || n.selected || (n._isCandidate && stageReady);
     const targetOpacity = n._interactive ? 1 : 0;
     n._fade += (targetOpacity - n._fade) * opacityStep;
     if (Math.abs(n._fade - targetOpacity) < .005) n._fade = targetOpacity;
@@ -404,7 +423,7 @@ function draw(now = performance.now()) {
   /* the hover cluster (orbiting related words around the hovered node) is itself a
      no-fly zone for unrelated free-floating words */
   let hoverExclusionCircle = null;
-  if (!selectedReps.length && hoveredNode && !hoveredNode.selected && !hoveredNode._isCandidate) {
+  if (!MOBILE && !selectedReps.length && hoveredNode && !hoveredNode.selected && !hoveredNode._isCandidate) {
     const clusterCount = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0).length;
     if (clusterCount > 0) {
       hoverExclusionCircle = { x: hoveredNode.x, y: hoveredNode.y, r: 110 + Math.min(clusterCount,4)*38 + 50 };
@@ -415,7 +434,7 @@ function draw(now = performance.now()) {
 
   nodes.forEach(n => {
     // The focused layout settles once; drifting resumes when selection is cleared.
-    if (selectedReps.length) return;
+    if (selectedReps.length || (MOBILE && !n._mobileShown)) return;
 
     /* occasional "pop up" — sudden brief size pulse while still drifting */
     n.popTimer -= 1;
@@ -435,13 +454,13 @@ function draw(now = performance.now()) {
     }
     n._popScale = popScale;
 
-    if (n === hoveredNode) {
+    if (n === hoveredNode || n === pressedNode) {
       /* pinned in place while hovered — no drift, no exclusion bounce */
       return;
     }
 
     let tx = null, ty = null;
-    if (!selectedReps.length && hoveredNode && hoveredNode !== n && !hoveredNode._isCandidate) {
+    if (!MOBILE && !selectedReps.length && hoveredNode && hoveredNode !== n && !hoveredNode._isCandidate) {
       const rel = relatedness(hoveredNode.text, n.text);
       if (rel > 0 && n.text !== hoveredNode.text) {
         const others = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0);
@@ -466,17 +485,21 @@ function draw(now = performance.now()) {
         n.vy *= 0.94;
       }
 
-      n.x += n.vx; n.y += n.vy;
+      n.x += n.vx * (MOBILE ? .55 : 1); n.y += n.vy * (MOBILE ? .55 : 1);
+      if(MOBILE) clampMobileWord(n); else {
       if (n.x < 60) { n.x = 60; n.vx = Math.abs(n.vx); }
       if (n.x > playW - 40) { n.x = playW - 40; n.vx = -Math.abs(n.vx); }
       if (n.y < 80) { n.y = 80; n.vy = Math.abs(n.vy); }
       if (n.y > H - 110) { n.y = H - 110; n.vy = -Math.abs(n.vy); }
+      }
       /* Keep the unselected hover cluster clear while the background drifts. */
       if (inExclusion(n.x, n.y)) {
         n.x -= n.vx*3; n.vx = -n.vx;
       }
     }
   });
+
+  if(MOBILE) separateMobileWords(selectedReps.length ? [...selectedReps,...candidateNodes] : nodes.filter(n=>n._mobileShown));
 
   // Selected keywords stay at their click coordinates, even after the pointer leaves.
 
@@ -522,10 +545,10 @@ function draw(now = performance.now()) {
   });
 
   nodes.forEach(n => {
-    if (n._fade === 0) { n._w = 0; n._h = 0; return; }
+    if (n._fade === 0 || (MOBILE && !n._interactive)) { n._w = 0; n._h = 0; return; }
     const isHover = n === hoveredNode;
-    const popMul = n._popScale || 1;
-    const fs = n.selected ? 18 : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2));
+    const popMul = MOBILE ? 1 : (n._popScale || 1);
+    const fs = n.selected ? 18 : (MOBILE ? n.size : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2)));
     ctx.font = '400 ' + fs.toFixed(1) + "px 'Space Grotesk', sans-serif";
     const photosVisible = photoLayer.classList.contains('visible');
     let col;
@@ -561,10 +584,12 @@ function nodeAt(x, y, includeBackground = false) {
   const focused = nodes.some(n => n.selected);
   let found = null;
   let background = null;
+  let nearest=Infinity;
   nodes.forEach(n => {
     if(n._hiddenByWord || !n._w || n._fade < .05 || (n._isCandidate && !n._interactive)) return;
     const cx = n.selected ? n.x - n._w / 2 : n.x;
-    if (Math.abs(x - cx) < n._w / 2 + 10 && Math.abs(y - n.y) < n._h / 2 + 6) {
+    if (Math.abs(x - cx) < n._w / 2 + (MOBILE?15:10) && Math.abs(y - n.y) < (MOBILE?Math.max(22,n._h/2+8):n._h/2+6)) {
+      if(MOBILE){const d=Math.hypot((x-cx)/Math.max(22,n._w/2), (y-n.y)/22);if(d>=nearest)return;nearest=d;}
       if (!focused || n.selected || n._isCandidate) found = n;
       else if (includeBackground) background = n;
     }
@@ -574,6 +599,7 @@ function nodeAt(x, y, includeBackground = false) {
 }
 
 stage.addEventListener('mousemove', e => {
+  if(MOBILE) return;
   const r = canvas.getBoundingClientRect();
   mouseX = e.clientX - r.left; mouseY = e.clientY - r.top;
   const overControl = e.target.closest('.site-header, #clear-btn');
@@ -655,7 +681,7 @@ function selectKeyword(node, parent = null) {
 }
 
 stage.addEventListener('click', e => {
-  if (e.target.closest('.site-header, #clear-btn')) return;
+  if (e.target.closest('.site-header, #clear-btn, .mobile-toolbar, .mobile-sheet')) return;
   const rect = canvas.getBoundingClientRect();
   const clicked = nodeAt(e.clientX - rect.left, e.clientY - rect.top, true);
   if (!clicked) return;
@@ -741,6 +767,18 @@ window.addEventListener('keydown', e => {
 
 function updateSelectionControls() {
   document.getElementById('clear-btn').hidden = selectedPath().length === 0;
+  mobileControls?.refresh();
+}
+
+if(MOBILE){
+ mobileControls=window.buildMobileControls(PROJECTS,UNIQUE_KEYWORDS,{
+  selected:()=>selectedPath().map(n=>n.text),
+  toggle:word=>{const n=nodes.find(n=>n.text===word);if(!n)return;if(n.selected){clearSelection();return;}
+   const b=mobileBounds();if(!n._mobileShown&&!n._isCandidate){n.x=W/2;n.y=(b.top+b.bottom)/2;}selectKeyword(n);hoveredNode=null;updateSelectionControls();}
+ });
+ stage.addEventListener('pointerdown',e=>{if(e.target.closest('.site-header,.mobile-toolbar,.mobile-sheet'))return;const r=canvas.getBoundingClientRect();pressedNode=nodeAt(e.clientX-r.left,e.clientY-r.top);});
+ stage.addEventListener('pointerup',()=>{pressedNode=null;});stage.addEventListener('pointercancel',()=>pressedNode=null);
+ document.fonts.ready.then(()=>{nodes.forEach(n=>delete n._mobileWidthKey);if(!selectedPath().length)initMobileWords();});
 }
 
 })();

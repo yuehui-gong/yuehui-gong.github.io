@@ -15,13 +15,8 @@
   .mobile-selected{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
   .mobile-selected:empty{display:none;}
   .mobile-selected button{background:var(--ink);color:var(--bg);border:0;border-radius:24px;padding:10px 14px;font:12px 'Space Grotesk',sans-serif;}
-  .mobile-word-field{position:relative;flex:1;min-height:0;}
-  .mobile-word{position:absolute;left:0;top:0;min-height:44px;max-width:44%;border:0;background:none;color:var(--ink);font:600 clamp(13px,3.8vw,17px) 'Space Grotesk',sans-serif;line-height:1.25;padding:10px 7px;overflow-wrap:anywhere;cursor:pointer;z-index:2;transition:color .4s,opacity .4s;will-change:transform;}
-  .mobile-word.is-anchor{font-size:22px;font-weight:700;max-width:58%;color:var(--ink);}
-  .mobile-word.is-dim{opacity:.20;cursor:default;}
-  .mobile-connections{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1;}
-  .mobile-connections line{stroke:var(--ink-dim);stroke-width:.7;opacity:.32;}
-  .mobile-photo{position:absolute;left:16%;top:20%;width:68%;height:60%;object-fit:cover;filter:grayscale(.6);opacity:.12;pointer-events:none;z-index:0;border-radius:8px;}
+  .mobile-word-field{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(5,minmax(44px,1fr));gap:10px 14px;flex:1;min-height:0;}
+  .mobile-word{border:0;background:none;color:var(--ink);font:600 clamp(12px,3.55vw,16px) 'Space Grotesk',sans-serif;line-height:1.25;padding:8px 4px;overflow-wrap:anywhere;cursor:pointer;animation:mobile-drift 7s ease-in-out infinite alternate;animation-delay:var(--delay);}
   .mobile-word:nth-child(3n){color:var(--ink-dim);font-weight:400;}
   .mobile-word:focus-visible{outline:2px solid var(--accent);border-radius:8px;}
   @keyframes mobile-drift{from{transform:translateY(-3px)}to{transform:translateY(3px)}}
@@ -45,3 +40,5 @@
   @media(max-height:680px){#headline{top:84px;}#headline h1{font-size:25px;}#mobile-explore{top:200px;}.mobile-word-field{grid-template-rows:repeat(4,minmax(44px,1fr));}}
   @media(prefers-reduced-motion:reduce){.mobile-word{animation:none;}}
 }
+
+@media(max-width:700px){#kw-canvas{display:block!important;touch-action:manipulation;}#mobile-explore{pointer-events:none;}#clear-btn{display:none!important;}.mobile-keyword-list button{text-transform:uppercase;font-weight:400;} .home-cursor{display:none!important;}}
