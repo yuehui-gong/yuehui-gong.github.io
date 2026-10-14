@@ -398,7 +398,7 @@ html.day .globe-wrap .marker .ring{border-color:#79bc00;}
     if(p.heroPreviews.length){
       // Account for object-fit: cover on the existing 4:5 card frame.
       cover.sizes=Math.ceil(Math.max(200,250*p.heroWidth/p.heroHeight))+'px';
-      cover.srcset=p.heroPreviews.map(function(v){return encodeURI(v.src)+' '+v.width+'w';}).join(', ');
+      cover.srcset=p.heroPreviews.map(function(v){return v.src+' '+v.width+'w';}).join(', ');
     }
     card.addEventListener('click', function(e){ if(!didDrag || e.detail===0) { location.href='project.html?slug='+encodeURIComponent(p.slug); } });
     track.appendChild(card);

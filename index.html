@@ -244,7 +244,7 @@ function showPhotos(n){
   if(p.heroPreviews.length){
    const ratio=p.heroWidth/p.heroHeight;
    img.sizes=Math.min(maxW,maxH*ratio)+'px';
-   img.srcset=p.heroPreviews.map(v=>encodeURI(v.src)+' '+v.width+'w').join(', ');
+   img.srcset=p.heroPreviews.map(v=>v.src+' '+v.width+'w').join(', ');
   }
   img.src=p.image;
   if(img.complete) fitPhoto();
