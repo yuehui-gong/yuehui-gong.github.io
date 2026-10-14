@@ -12,3 +12,24 @@ body[data-graphics=rectangles] .study-rectangles{display:block;position:relative
 .study-rectangles i{position:absolute;background:var(--accent)}.study-rectangles i:nth-child(1){width:68%;height:35%;left:0;top:10%}.study-rectangles i:nth-child(2){width:35%;height:74%;right:0;bottom:0;opacity:.5}.study-rectangles i:nth-child(3){width:62%;height:36%;left:10%;bottom:8%;border:2px solid var(--accent);background:transparent}
 body[data-page=about] .graphic-study{right:auto;left:5vw;width:clamp(170px,23vw,340px);height:clamp(170px,23vw,340px);bottom:3vh}
 @media(max-width:700px){.graphic-study,body[data-page=about] .graphic-study{width:150px;height:150px;right:20px;left:auto;bottom:20px;opacity:.7}.study-letters{font-size:145px!important}}
+
+/* Graphics belong to the title column and scroll with the content. */
+.graphic-study,body[data-page=about] .graphic-study{position:relative;inset:auto;z-index:auto;opacity:1;width:min(100%,360px);height:260px;margin:38px 0 18px;overflow:hidden;pointer-events:none}
+body[data-page=about] .studio>div:first-child{min-width:0}
+body[data-page=about] .graphic-study{height:clamp(220px,28vw,400px);width:100%;margin-top:48px}
+body[data-page=project] .graphic-study{width:100%;height:130px;margin:24px 0 30px}
+body[data-page=home] .graphic-study{height:clamp(70px,13vh,140px);width:260px;max-width:70vw;margin:24px auto 0}
+body[data-graphics=letters] .study-letters{font-size:clamp(150px,22vw,320px);line-height:1;transform:none;justify-content:flex-start;letter-spacing:-.1em;filter:none}
+body[data-page=home][data-graphics=letters] .study-letters,body[data-page=project][data-graphics=letters] .study-letters{font-size:155px;justify-content:center}
+body[data-graphics=organic] .study-organic{position:relative;width:76%;height:80%;margin:8% 10%;transform:rotate(-12deg);border-radius:67% 33% 63% 37% / 46% 56% 44% 54%;padding:0;border:2px solid var(--accent)}
+.study-organic>div{position:absolute;left:12%;top:18%;width:94%;height:85%;background:var(--accent);border-radius:41% 59% 26% 74% / 53% 32% 68% 47%;box-shadow:none;backdrop-filter:none;opacity:.85;transform:rotate(15deg)}
+body[data-page=project] .study-organic,body[data-page=home] .study-organic{width:70%;height:75%;margin:5% 12%}
+.study-rectangles i:nth-child(1){width:75%;height:22%;top:14%;left:0}.study-rectangles i:nth-child(2){width:28%;height:66%;right:0;bottom:10%;opacity:.55}.study-rectangles i:nth-child(3){width:72%;height:42%;left:8%;bottom:10%}
+body[data-motion=subtle] .study-organic>div{animation:form-breathe 8s ease-in-out infinite alternate}
+body[data-motion=subtle] .study-letters{animation:print-shift 6s ease-in-out infinite alternate}
+body[data-motion=subtle] .study-rectangles i:nth-child(2){animation:block-shift 6s ease-in-out infinite alternate}
+@keyframes form-breathe{to{border-radius:62% 38% 53% 47% / 37% 64% 36% 63%;transform:rotate(5deg) scale(.94)}}
+@keyframes print-shift{to{background-position:4px 2px;opacity:.7}}
+@keyframes block-shift{to{transform:translateY(-12px)}}
+@media(max-width:700px){body[data-page=about] .graphic-study{height:200px;max-width:320px;margin:24px 0}.graphic-study{max-width:100%}}
+@media(prefers-reduced-motion:reduce){.graphic-study *{animation:none!important}}
