@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="../../">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notes Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Space Grotesk',-apple-system,sans-serif;width:100%;height:100%;overflow:hidden}
+body{cursor:default}
+
+#stage{position:relative;width:100%;height:100vh;background:#fff;overflow:hidden;transition:background .6s}
+#kw-canvas{position:absolute;inset:0;width:100%;height:100%}
+
+nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-content:space-between;align-items:center;padding:0 32px;z-index:25;background:transparent}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:17px;letter-spacing:.02em;color:#111;transition:color .6s}
+.nav-links{display:flex;gap:32px}
+.nav-link{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;color:#888;font-weight:500;cursor:pointer;transition:color .25s}
+.nav-link:hover{color:#111}
+
+#headline{position:absolute;bottom:36px;left:32px;z-index:10;pointer-events:none}
+#headline h1{font-family:'Space Grotesk',sans-serif;font-size:2.6rem;font-weight:400;line-height:1.08;color:#111;margin:0;transition:color .6s}
+#headline h1 em{font-style:italic}
+#headline p{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:.1em;color:#999;margin-top:12px;transition:color .6s}
+
+#hover-card{position:absolute;display:none;background:#fff;border:0.5px solid #e8e8e8;padding:18px 20px;width:220px;z-index:30;pointer-events:none;border-radius:2px;box-shadow:0 6px 28px rgba(0,0,0,0.07);transition:background .6s,border-color .6s}
+#hc-word{font-family:'Space Grotesk',sans-serif;font-style:italic;font-size:18px;color:#111;margin-bottom:7px;transition:color .6s}
+#hc-def{font-family:'Space Grotesk',sans-serif;font-size:11.5px;line-height:1.65;color:#888;margin-bottom:13px;font-weight:400}
+.hc-divider{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.hc-divider-line{width:13px;height:1px;background:#ddd}
+.hc-divider-label{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb}
+#hc-list{display:flex;flex-direction:column;gap:5px;font-family:'Space Grotesk',sans-serif}
+
+#clear-btn{position:absolute;right:32px;bottom:36px;z-index:30;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#D85A30;cursor:pointer;padding:10px;background:var(--bg);border:1px solid var(--line);transition:opacity .2s;font-weight:500;opacity:.75}
+#clear-btn:hover{opacity:1}
+
+
+
+#project-photos{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden}
+.project-photo{position:absolute;margin:0;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .4s;background:#eee;box-shadow:0 8px 32px #0002}
+#project-photos.visible .project-photo{opacity:1;transform:translateY(0)}
+.project-photo img{width:100%;height:100%;display:block;object-fit:contain}
+.project-photo a{display:block;width:100%;height:100%;color:inherit;pointer-events:none}
+#project-photos.visible .project-photo a{pointer-events:auto}
+.project-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:24px 12px 10px;background:linear-gradient(transparent,#0009);color:white;font-size:10px}
+@media(prefers-reduced-motion:reduce){.project-photo{transition:none}}
+/* Keywords draw above photos; the stage handles word hits before following links. */
+#kw-canvas{z-index:21;pointer-events:none}
+/* Softer photography keeps dark keywords legible without text outlines. */
+.project-photo{background:#fff}
+.project-photo img{opacity:.68}
+/* Unified typography with bold floating keywords. */
+.nav-logo,#headline h1,#hc-word{font-family:'Space Grotesk',sans-serif;font-weight:700;font-style:normal}
+#headline h1 em{font-style:normal}
+
+/* Black theme */
+html,body,#stage{background:#000;color:#eee}
+.nav-logo,#headline h1,#hc-word{color:#f3f3f3}
+.nav-link{color:#aaa}.nav-link:hover{color:#fff}
+#headline p,#hc-def{color:#aaa}
+#hover-card{background:#141414;border-color:#333;box-shadow:0 6px 28px #0006}
+.hc-divider-line{background:#444}.hc-divider-label{color:#999}
+.project-photo{background:#000}
+.project-photo img{opacity:.55}
+</style>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/home-cursor.css"><link rel="stylesheet" href="previews/graphic-options/theme.css"></head>
+<body data-page="home">
+
+<div id="stage">
+  <canvas id="kw-canvas"></canvas>
+
+  <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
+
+  <div id="headline">
+    <h1 id="hl-h1">We read the land<br>before we <em>touch</em> it.</h1>
+    <p id="hl-p">Landscape design &nbsp;·&nbsp; Ecology &nbsp;·&nbsp; Research</p>
+  </div>
+
+  <div id="project-photos" aria-label="Matching projects" inert></div>
+  <div id="hover-card">
+    <div id="hc-word"></div>
+    <div id="hc-def"></div>
+    <div class="hc-divider">
+      <div class="hc-divider-line"></div>
+      <div class="hc-divider-label">Appears in</div>
+    </div>
+    <div id="hc-list"></div>
+  </div>
+
+  <button id="clear-btn" type="button" hidden>Clear</button>
+</div>
+
+<script src="assets/project-content.js?v=20261009-hero"></script>
+<script src="assets/keyword-layout.js"></script>
+<script>
+(async()=>{
+const PROJECTS = await window.loadStudioProjects();
+
+// Illustrative photos only. Replace these URLs with actual project photography.
+const photoIDs=['1441974231531-c6227db76b6e','1472396961693-142e6e269027','1464822759023-fed622ff2c3b','1470770841072-f978cf4d019e','1448375240586-882707db888b','1439853949212-09789e1a135e','1470071459604-3b5ec3a7fe05','1500530855697-b586d89ba3ee'];
+PROJECTS.forEach(p=>p.image=p.img);
+const KEYWORD_DEFS = {
+  water:"Hydrology as a design driver — flow, flood, recovery.",
+  ecology:"Designing with living systems rather than around them.",
+  community:"Spaces shaped by who actually shows up to use them.",
+  meadow:"Unmanicured ground, left to find its own composition.",
+  "native species":"Plant palettes drawn from what already belongs here.",
+  "slow design":"Projects measured in seasons, not deadlines.",
+  heritage:"Sites read as layered records of past use.",
+  stone:"Material as memory — weight, weather, and time.",
+  materiality:"How a surface feels under a hand or a foot.",
+  topography:"The ground's own logic, traced before any plan.",
+  paths:"Movement scripted by terrain, not the other way round.",
+  contemplative:"Space designed to slow a visitor down.",
+  resilience:"Built to function differently in a dry year and a wet one.",
+  art:"Where landscape and installation blur together."
+};
+
+// Use one display labelfor case/whitespace variants across projects.
+const keywordLabels = new Map();
+PROJECTS.forEach(project => {
+  project.kw = [...new Set((project.kw || []).map(word => {
+    const label = String(word).trim().replace(/\s+/g, ' ');
+    const key = label.toLocaleLowerCase('en');
+    if (!keywordLabels.has(key)) keywordLabels.set(key, label);
+    return keywordLabels.get(key);
+  }).filter(Boolean))];
+});
+const UNIQUE_KEYWORDS = [...new Set(PROJECTS.flatMap(p => p.kw))];
+const MAX_KEYWORD_LEVELS = 4;
+
+function projectsFor(selected) {
+  if (selected.length === 0) return [];
+  return PROJECTS.filter(p => selected.every(k => p.kw.includes(k)));
+}
+function relatedness(a, b) {
+  let shared = 0;
+  PROJECTS.forEach(p => { if (p.kw.includes(a) && p.kw.includes(b)) shared++; });
+  return shared;
+}
+function projectsWith(kw) {
+  return PROJECTS.filter(p => p.kw.includes(kw));
+}
+
+const canvas = document.getElementById('kw-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+
+function resize() {
+  const r = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  W = r.width; H = r.height;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+
+/* Each distinct keyword has one floating node. */
+let nodes = [];
+function initNodes() {
+  nodes = [];
+  const REPEATS = 1;
+  UNIQUE_KEYWORDS.forEach(k => {
+    for (let r = 0; r < REPEATS; r++) {
+      const tier = Math.random();
+      let size;
+      if (tier < 0.45) size = 12 + Math.random()*3;
+      else if (tier < 0.8) size = 16 + Math.random()*4;
+      else size = 21 + Math.random()*4;
+
+      nodes.push({
+        layoutId: nodes.length,
+        text: k, type: 'keyword',
+        x: 70 + Math.random() * (W - 360), y: 100 + Math.random() * (H - 280),
+        vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.42,
+        size: size,
+        baseOpacity: 0.22 + Math.random() * 0.36,
+        _fade: 1,
+        selected: false,
+        popTimer: 800 + Math.random()*2400,
+        popping: false,
+        popProgress: 0
+      });
+    }
+  });
+}
+
+resize();
+initNodes();
+window.addEventListener('resize', () => {
+  const oldW = W, oldH = H;
+  resize();
+  nodes.forEach(n => {
+    n.x = n.x * (W / oldW);
+    n.y = n.y * (H / oldH);
+  });
+});
+
+let isNight = !document.documentElement.classList.contains("day"); window.addEventListener("site-theme",e=>{isNight=e.detail==="night"});
+const stage = document.getElementById('stage');
+
+let mouseX = -999, mouseY = -999, hoveredNode = null;
+const hoverCard = document.getElementById('hover-card');
+
+const photoLayer=document.getElementById('project-photos');
+let photoGeneration=0;
+let photoKey='';
+function hidePhotos(){photoGeneration++;photoKey='';photoLayer.inert=true;photoLayer.classList.remove('visible');}
+function showPhotos(n){
+ const path=selectedPath();
+ const key=path.length?path.map(node=>node.layoutId).join(','):'hover:'+n.layoutId;
+ if(key===photoKey) return;
+ photoKey=key;
+ const generation=++photoGeneration;
+ photoLayer.inert=true;photoLayer.classList.remove('visible');photoLayer.replaceChildren();
+ const projects=projectsFor(path.length?path.map(node=>node.text):[n.text]);
+ n=path[path.length-1]||n;
+ const aw=W;
+ const width=Math.max(160,Math.min(W*.54,aw-24)),height=Math.max(120,Math.min(H*.56,H-88));
+ projects.forEach((p,i)=>{
+  const f=document.createElement('figure');f.className='project-photo';
+  const maxW=width*(i%2?.82:1),maxH=height*(i%2?.90:1);
+  const link=document.createElement('a');link.href='project.html?slug='+encodeURIComponent(p.slug);link.setAttribute('aria-label','View '+p.title);
+  const img=new Image();img.alt=p.heroAlt||p.title+' — illustrative landscape';
+  f.style.visibility='hidden';
+  function fitPhoto(){
+   if(generation!==photoGeneration || !img.naturalWidth) return;
+   const fit=Math.min(maxW/img.naturalWidth,maxH/img.naturalHeight);
+   const w=img.naturalWidth*fit,h=img.naturalHeight*fit;
+   const centerX=n.selected?n.x-n._w/2:n.x;
+   const right=centerX<aw/2;
+   let x=right?centerX+n._w/2+36:centerX-n._w/2-36-w;
+   x+=(right?1:-1)*(i%2)*width*.30;
+   const y=n.y-h/2+(i-(projects.length-1)/2)*height*.53;
+   Object.assign(f.style,{left:Math.max(12,Math.min(aw-w-12,x))+'px',top:Math.max(68,Math.min(H-h-16,y))+'px',width:w+'px',height:h+'px',transitionDelay:i*45+'ms',visibility:'visible'});
+  }
+  img.onload=fitPhoto;
+  img.onerror=()=>{f.remove();};
+  img.src=p.image;
+  if(img.complete) fitPhoto();
+  const c=document.createElement('figcaption');c.textContent=p.title+' · View project ↗';
+  link.append(img);f.append(link,c);c.style.pointerEvents='none';photoLayer.append(f);
+ });
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{if(generation===photoGeneration){photoLayer.inert=false;photoLayer.classList.add('visible');}}));
+}
+window.addEventListener('resize',()=>{
+ const path=selectedPath();
+ hidePhotos();
+ if(path.length) showPhotos(path[path.length-1]);
+});
+function selectedPath() {
+  return nodes.filter(n => n.selected).sort((a,b) => a.selOrder - b.selOrder);
+}
+
+const reducedKeywordMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let lastDrawTime = performance.now();
+let focusLayoutKey = '';
+let candidateStageKey = '';
+let candidateRevealAt = 0;
+let pendingStageReveal = false;
+const stageCandidates = new Map();
+
+function arrangeFocusedKeywords(candidates, selected) {
+  if (!candidates.length) return;
+  const canvasRect = canvas.getBoundingClientRect();
+  const headerRect = document.querySelector('.site-header').getBoundingClientRect();
+  const headlineRect = document.getElementById('headline').getBoundingClientRect();
+  const obstacles = [{
+    x: headlineRect.left - canvasRect.left + headlineRect.width / 2,
+    y: headlineRect.top - canvasRect.top + headlineRect.height / 2,
+    width: headlineRect.width + 32, height: headlineRect.height + 32
+  }];
+  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  const selectedCenters = new Map();
+  selected.forEach(n => {
+    const width = ctx.measureText(n.text.toUpperCase()).width;
+    const center = { x: n.x - width / 2, y: n.y };
+    selectedCenters.set(n, center);
+    obstacles.push({ ...center, width: width + 32, height: 46 });
+  });
+  const items = candidates.map(n => {
+    const size = n.size * 1.2;
+    ctx.font = `400 ${size.toFixed(1)}px 'Space Grotesk', sans-serif`;
+    return {
+      id: n.layoutId, x: n.x, y: n.y,
+      width: ctx.measureText(n.text.toUpperCase()).width + 24, height: size + 20,
+      anchorX: selectedCenters.get(n._candAnchor).x, anchorY: n._candAnchor.y
+    };
+  });
+  const bounds = {
+    left: 24, right: W - 24,
+    top: headerRect.bottom - canvasRect.top + 24, bottom: H - 28,
+    obstacles
+  };
+  // Keep the next level near the most recently selected word, with room to breathe.
+  const anchor = selectedCenters.get(selected[selected.length - 1]);
+  const span = Math.sqrt(items.reduce((area, item) => area + item.width * item.height, 0) * 4);
+  const cloudWidth = Math.min(bounds.right - bounds.left, Math.max(380, span * 1.5));
+  const cloudHeight = Math.min(bounds.bottom - bounds.top, Math.max(260, span));
+  const left = Math.max(bounds.left, Math.min(bounds.right - cloudWidth, anchor.x - cloudWidth / 2));
+  const top = Math.max(bounds.top, Math.min(bounds.bottom - cloudHeight, anchor.y - cloudHeight / 2));
+  let positions = window.scatterKeywordLayout(items, {
+    ...bounds, left, right: left + cloudWidth, top, bottom: top + cloudHeight
+  });
+  const boxes = positions.map((p,i) => ({ ...items[i], ...p }));
+  const overlaps = (a,b) => Math.abs(a.x-b.x) < (a.width+b.width)/2 && Math.abs(a.y-b.y) < (a.height+b.height)/2;
+  if (boxes.some((box,i) => [...boxes.slice(i+1), ...obstacles].some(other => overlaps(box,other)))) {
+    positions = window.scatterKeywordLayout(items, bounds);
+  }
+  const targets = new Map(positions.map(p => [p.id, p]));
+  candidates.forEach(n => {
+    const target = targets.get(n.layoutId);
+    n._layoutX = target.x;
+    n._layoutY = target.y;
+  });
+}
+
+function draw(now = performance.now()) {
+  const elapsed = Math.max(0, Math.min(now - lastDrawTime, 50));
+  lastDrawTime = now;
+  const fadeStep = reducedKeywordMotion.matches ? 1 : 1 - Math.exp(-elapsed / 120);
+  ctx.clearRect(0, 0, W, H);
+  const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
+  const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
+  const textColorSel = '#D85A30';
+  const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
+
+  const selectedReps = selectedPath();
+
+  // Each level must be compatible with the entire selected path, not just one word.
+  const selectedWords = new Set(selectedReps.map(n => n.text));
+  const nextWords = new Set(selectedReps.length < MAX_KEYWORD_LEVELS
+    ? projectsFor([...selectedWords]).flatMap(p => p.kw).filter(word => !selectedWords.has(word)) : []);
+  const latest = selectedReps[selectedReps.length - 1];
+  const stageKey = selectedReps.map(n => n.layoutId).join(',');
+  if (stageKey !== candidateStageKey) {
+    const previousCandidates = new Map(stageCandidates);
+    stageCandidates.clear();
+    nextWords.forEach(word => {
+      const previous = previousCandidates.get(word);
+      const candidate = previous && !previous.selected ? previous : nodes
+        .filter(n => n.text === word && !n.selected)
+        .sort((a,b) => Math.hypot(a.x-latest.x,a.y-latest.y) - Math.hypot(b.x-latest.x,b.y-latest.y))[0];
+      if (candidate) stageCandidates.set(word,candidate);
+    });
+    pendingStageReveal = !!candidateStageKey && !!stageKey && !reducedKeywordMotion.matches;
+    candidateRevealAt = pendingStageReveal ? now + 220 : now;
+    candidateStageKey = stageKey;
+  }
+  const stageReady = now >= candidateRevealAt;
+  const opacityStep = pendingStageReveal ? 1 - Math.exp(-elapsed / 40) : fadeStep;
+  const candidateNodes = [];
+  nodes.forEach(n => {
+    n._hiddenByWord = false;
+    n._isCandidate = stageCandidates.get(n.text) === n;
+    n._candAnchor = n._isCandidate ? latest : null;
+    if (n._isCandidate) candidateNodes.push(n);
+    else n._lineEmphasis = 0;
+    if (n._selectionParent && !n._selectionParent.selected) n._selectionParent = null;
+    n._interactive = !selectedReps.length || n.selected || (n._isCandidate && stageReady);
+    const targetOpacity = n._interactive ? 1 : 0;
+    n._fade += (targetOpacity - n._fade) * opacityStep;
+    if (Math.abs(n._fade - targetOpacity) < .005) n._fade = targetOpacity;
+  });
+
+  const layoutKey = selectedReps.length ? `${W}:${H}:${selectedReps.map(n => n.layoutId).join(',')}` : '';
+  if (layoutKey !== focusLayoutKey) {
+    if (selectedReps.length) arrangeFocusedKeywords(candidateNodes, selectedReps);
+    focusLayoutKey = layoutKey;
+  }
+  if (pendingStageReveal && stageReady) {
+    candidateNodes.forEach(n => {
+      n.x = n._layoutX;
+      n.y = n._layoutY;
+      n._fade = 0;
+    });
+    pendingStageReveal = false;
+  }
+  const layoutStep = reducedKeywordMotion.matches ? 1 : 1 - Math.exp(-elapsed / 170);
+  candidateNodes.forEach(n => {
+    if (pendingStageReveal || n === hoveredNode) return;
+    const dx = n._layoutX - n.x, dy = n._layoutY - n.y;
+    n.x = Math.abs(dx) < .2 ? n._layoutX : n.x + dx * layoutStep;
+    n.y = Math.abs(dy) < .2 ? n._layoutY : n.y + dy * layoutStep;
+  });
+
+  function inExclusion(x,y){
+    if (hoverExclusionCircle) {
+      const dx = x - hoverExclusionCircle.x, dy = y - hoverExclusionCircle.y;
+      if (Math.sqrt(dx*dx+dy*dy) < hoverExclusionCircle.r) return true;
+    }
+    return false;
+  }
+
+  /* the hover cluster (orbiting related words around the hovered node) is itself a
+     no-fly zone for unrelated free-floating words */
+  let hoverExclusionCircle = null;
+  if (!selectedReps.length && hoveredNode && !hoveredNode.selected && !hoveredNode._isCandidate) {
+    const clusterCount = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0).length;
+    if (clusterCount > 0) {
+      hoverExclusionCircle = { x: hoveredNode.x, y: hoveredNode.y, r: 110 + Math.min(clusterCount,4)*38 + 50 };
+    }
+  }
+
+  const playW = W * 0.98;
+
+  nodes.forEach(n => {
+    // The focused layout settles once; drifting resumes when selection is cleared.
+    if (selectedReps.length) return;
+
+    /* occasional "pop up" — sudden brief size pulse while still drifting */
+    n.popTimer -= 1;
+    if (n.popTimer <= 0 && !n.popping) {
+      n.popping = true;
+      n.popProgress = 0;
+      n.popTimer = 2500 + Math.random()*3500;
+    }
+    let popScale = 1;
+    if (n.popping) {
+      n.popProgress += 0.035;
+      if (n.popProgress >= 1) { n.popping = false; n.popProgress = 0; }
+      else {
+        const t = n.popProgress;
+        popScale = 1 + Math.sin(t*Math.PI) * 0.55;
+      }
+    }
+    n._popScale = popScale;
+
+    if (n === hoveredNode) {
+      /* pinned in place while hovered — no drift, no exclusion bounce */
+      return;
+    }
+
+    let tx = null, ty = null;
+    if (!selectedReps.length && hoveredNode && hoveredNode !== n && !hoveredNode._isCandidate) {
+      const rel = relatedness(hoveredNode.text, n.text);
+      if (rel > 0 && n.text !== hoveredNode.text) {
+        const others = nodes.filter(m => !m.selected && !m._isCandidate && !m._hiddenByWord && m !== hoveredNode && m.text !== hoveredNode.text && relatedness(hoveredNode.text, m.text) > 0);
+        const idx = others.indexOf(n);
+        const angle = idx * 1.15 + 0.5;
+        const orbitR = 110 + (idx % 4) * 38;
+        tx = hoveredNode.x + Math.cos(angle) * orbitR;
+        ty = hoveredNode.y + Math.sin(angle) * orbitR;
+      }
+    }
+
+    if (tx !== null) {
+      n.x += (tx - n.x) * 0.02;
+      n.y += (ty - n.y) * 0.02;
+    } else {
+      /* only rein in abnormal burst speed (from deselect/clear) — leave normal
+         calm drift speeds completely untouched so words travel the full canvas */
+      const curSpeed = Math.hypot(n.vx, n.vy);
+      const calmMax = 0.65;
+      if (curSpeed > calmMax) {
+        n.vx *= 0.94;
+        n.vy *= 0.94;
+      }
+
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 60) { n.x = 60; n.vx = Math.abs(n.vx); }
+      if (n.x > playW - 40) { n.x = playW - 40; n.vx = -Math.abs(n.vx); }
+      if (n.y < 80) { n.y = 80; n.vy = Math.abs(n.vy); }
+      if (n.y > H - 110) { n.y = H - 110; n.vy = -Math.abs(n.vy); }
+      /* Keep the unselected hover cluster clear while the background drifts. */
+      if (inExclusion(n.x, n.y)) {
+        n.x -= n.vx*3; n.vx = -n.vx;
+      }
+    }
+  });
+
+  // Selected keywords stay at their click coordinates, even after the pointer leaves.
+
+  function drawFocusedConnection(from, to, emphasis) {
+    const opacity = ((isNight ? .06 : .04) + emphasis * .5) * Math.min(from._fade, to._fade);
+    ctx.beginPath();
+    ctx.moveTo(from.selected ? from.x - from._w / 2 : from.x, from.y);
+    ctx.lineTo(to.selected ? to.x - to._w / 2 : to.x, to.y);
+    ctx.strokeStyle = isNight ? `rgba(255,255,255,${opacity})` : `rgba(32,37,34,${opacity})`;
+    ctx.lineWidth = 1 + emphasis * 1.25;
+    ctx.stroke();
+  }
+
+  // A clicked relationship remains emphasized until either endpoint is deselected.
+  selectedReps.forEach(n => {
+    if (n._selectionParent) drawFocusedConnection(n, n._selectionParent, 1);
+  });
+
+  /* connecting lines: candidates to their anchor selected word, and hover-cluster lines */
+  candidateNodes.forEach(cand => {
+    const active = hoveredNode === cand;
+    const previous = cand._lineEmphasis || 0;
+    cand._lineEmphasis = previous + ((active ? 1 : 0) - previous) * fadeStep;
+    drawFocusedConnection(cand, cand._candAnchor, cand._lineEmphasis);
+  });
+
+  nodes.forEach(a => {
+    if (a._hiddenByWord || a._isCandidate) return;
+    nodes.forEach(b => {
+      if (a === b || b._hiddenByWord || b._isCandidate) return;
+      const rel = relatedness(a.text, b.text);
+      if (rel === 0) return;
+      const bothVisible = (hoveredNode === a || hoveredNode === b);
+      if (!bothVisible) return;
+      if (a.selected || b.selected) return;
+      if (a.text === b.text) return;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+  });
+
+  nodes.forEach(n => {
+    if (n._fade === 0) { n._w = 0; n._h = 0; return; }
+    const isHover = n === hoveredNode;
+    const popMul = n._popScale || 1;
+    const fs = n.selected ? 18 : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2));
+    ctx.font = '400 ' + fs.toFixed(1) + "px 'Space Grotesk', sans-serif";
+    const photosVisible = photoLayer.classList.contains('visible');
+    let col;
+    if (n.selected) {
+      col = textColorSel;
+    } else if (n._isCandidate) {
+      col = isHover ? textColorSel : (isNight ? '#fff' : '#202522');
+    } else if (isHover) {
+      col = textColorHover;
+    } else {
+      const [r, g, b] = baseTextColor;
+      let op = n.baseOpacity;
+      if (n.popping) op = Math.min(0.85, op + (n._popScale-1)*0.5);
+      col = `rgba(${r},${g},${b},${op.toFixed(2)})`;
+    }
+    ctx.fillStyle = col;
+    ctx.textAlign = n.selected ? 'right' : 'center';
+    ctx.textBaseline = 'middle';
+    const displayText = n.text.toUpperCase();
+    if (photosVisible && !selectedReps.length) ctx.fillStyle = isNight ? '#fff' : '#202522';
+    ctx.globalAlpha = n._fade;
+    ctx.fillText(displayText, n.x, n.y);
+    ctx.globalAlpha = 1;
+    n._w = ctx.measureText(displayText).width;
+    n._h = fs + 8;
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+function nodeAt(x, y, includeBackground = false) {
+  const focused = nodes.some(n => n.selected);
+  let found = null;
+  let background = null;
+  nodes.forEach(n => {
+    if(n._hiddenByWord || !n._w || n._fade < .05 || (n._isCandidate && !n._interactive)) return;
+    const cx = n.selected ? n.x - n._w / 2 : n.x;
+    if (Math.abs(x - cx) < n._w / 2 + 10 && Math.abs(y - n.y) < n._h / 2 + 6) {
+      if (!focused || n.selected || n._isCandidate) found = n;
+      else if (includeBackground) background = n;
+    }
+  });
+  // Foreground words take priority when a drifting background word crosses them.
+  return found || background;
+}
+
+stage.addEventListener('mousemove', e => {
+  const r = canvas.getBoundingClientRect();
+  mouseX = e.clientX - r.left; mouseY = e.clientY - r.top;
+  const overControl = e.target.closest('.site-header, #clear-btn');
+  const found = overControl ? null : nodeAt(mouseX, mouseY);
+  if (found !== hoveredNode) {
+    hoveredNode = found;
+    if(found) showPhotos(found);
+    if (found && !found.selected && !found._isCandidate) {
+      const def = KEYWORD_DEFS[found.text] || '';
+      const rel = projectsWith(found.text);
+      document.getElementById('hc-word').textContent = found.text;
+      document.getElementById('hc-def').textContent = def;
+      document.getElementById('hc-list').innerHTML = rel.map(p =>
+        `<div style="font-size:11px;color:${isNight?'#999':'#666'};display:flex;align-items:center;gap:7px"><span style="width:5px;height:5px;border-radius:50%;background:${p.color};flex-shrink:0"></span>${p.title}</div>`
+      ).join('');
+      const wordHalfW = found._w/2;
+      const wordHalfH = found._h/2;
+      const cardW = 220;
+      const cardH = 215;
+      const gap = 22;
+      let hx, hy;
+
+      /* horizontal: keep card near the word but never overlapping it horizontally either,
+         by placing it to whichever side has more room */
+      const roomRight = W - (found.x + wordHalfW);
+      const roomLeft = found.x - wordHalfW;
+      if (roomRight > cardW + gap || roomRight > roomLeft) {
+        hx = found.x + wordHalfW + gap;
+      } else {
+        hx = found.x - wordHalfW - gap - cardW;
+      }
+      hx = Math.max(16, Math.min(W - cardW - 16, hx));
+
+      /* vertical: place the whole card fully above or fully below the word, never straddling it */
+      const roomAbove = found.y - wordHalfH - 70;
+      const roomBelow = H - (found.y + wordHalfH) - 30;
+      if (roomAbove > cardH) {
+        hy = found.y - wordHalfH - gap - cardH;
+      } else if (roomBelow > cardH) {
+        hy = found.y + wordHalfH + gap;
+      } else {
+        hy = Math.max(70, Math.min(H - cardH - 16, found.y - cardH/2));
+      }
+      hoverCard.style.left = hx + 'px';
+      hoverCard.style.top = hy + 'px';
+      hoverCard.style.display = 'block';
+    } else {
+      hoverCard.style.display = 'none';
+    }
+  }
+  if (!found && !nodes.some(n => n.selected) && !e.target.closest('.project-photo')) hidePhotos();
+  stage.style.cursor = found ? 'pointer' : 'default';
+});
+
+stage.addEventListener('mouseleave', () => {
+  hoveredNode = null;
+  if (!nodes.some(n => n.selected)) hidePhotos();
+  hoverCard.style.display = 'none';
+});
+
+let selectionCounter = 0;
+
+function selectKeyword(node, parent = null) {
+  const path = selectedPath();
+  if (node.selected || path.length >= MAX_KEYWORD_LEVELS ||
+      path.some(n => n.text === node.text) ||
+      !projectsFor([...path.map(n => n.text), node.text]).length) return false;
+  if (path.length) parent = path[path.length - 1];
+  // Selected labels are right-aligned; preserve their visible center on promotion.
+  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  node._w = ctx.measureText(node.text.toUpperCase()).width;
+  node._h = 26;
+  node.x += node._w / 2;
+  node._selectionParent = parent;
+  node.selected = true;
+  node._isCandidate = false;
+  node.selOrder = ++selectionCounter;
+  return true;
+}
+
+stage.addEventListener('click', e => {
+  if (e.target.closest('.site-header, #clear-btn')) return;
+  const rect = canvas.getBoundingClientRect();
+  const clicked = nodeAt(e.clientX - rect.left, e.clientY - rect.top, true);
+  if (!clicked) return;
+  e.preventDefault();
+  if (nodes.some(n => n.selected) && !clicked.selected && !clicked._isCandidate) {
+    clearSelection();
+    return;
+  }
+  hoveredNode = clicked;
+  if (clicked._isCandidate) {
+    /* Keep the emphasized connection when a related word becomes selected. */
+    if (!selectKeyword(clicked, clicked._candAnchor)) return;
+    hoverCard.style.display = 'none';
+    updateSelectionControls();
+    showPhotos(clicked);
+    return;
+  }
+
+  const willSelect = !clicked.selected;
+
+  if (willSelect) {
+    selectKeyword(clicked);
+  } else {
+    // Removing a level also removes its descendants, returning to the prior level.
+    const removedOrder = clicked.selOrder;
+    nodes.forEach(n => {
+      if (n.selected && n.selOrder >= removedOrder) {
+        n.x -= n._w / 2;
+        n.selected = false;
+        n._selectionParent = null;
+        n._isDupe = false;
+        n._hiddenByWord = false;
+        n.selOrder = 0;
+        const angle = Math.random() * Math.PI * 2;
+        const burst = 2.2 + Math.random()*1.2;
+        n.vx = Math.cos(angle) * burst;
+        n.vy = Math.sin(angle) * burst;
+      }
+    });
+    hoveredNode = null;
+  }
+  hoverCard.style.display = 'none';
+  updateSelectionControls();
+  const path = selectedPath();
+  const focus = path[path.length - 1];
+  if (focus) showPhotos(focus);
+  else {
+    hoveredNode = null;
+    hidePhotos();
+  }
+});
+
+function clearSelection() {
+  hoveredNode = null;
+  hoverCard.style.display = 'none';
+  hidePhotos();
+  nodes.forEach(n => {
+    if (n.selected) n.x -= n._w / 2;
+    n._selectionParent = null;
+    n._lineEmphasis = 0;
+    if (n.selected || n._isCandidate || n._hiddenByWord) {
+      n.selected = false;
+      n._isDupe = false;
+      n._hiddenByWord = false;
+      n._isCandidate = false;
+      n.selOrder = 0;
+      const angle = Math.random() * Math.PI * 2;
+      const burst = 2.2 + Math.random()*1.2;
+      n.vx = Math.cos(angle) * burst;
+      n.vy = Math.sin(angle) * burst;
+    }
+  });
+  selectionCounter = 0;
+  updateSelectionControls();
+}
+document.getElementById('clear-btn').addEventListener('click', e => {
+  e.stopPropagation();
+  clearSelection();
+});
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') clearSelection();
+});
+
+function updateSelectionControls() {
+  document.getElementById('clear-btn').hidden = selectedPath().length === 0;
+}
+
+})();
+</script>
+
+<script src="assets/home-cursor.js"></script><script src="previews/graphic-options/theme.js"></script></body>
+</html>
