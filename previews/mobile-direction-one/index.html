@@ -546,7 +546,7 @@ function draw(now = performance.now()) {
 
   nodes.forEach(n => {
     if (n._fade === 0 || (MOBILE && !n._interactive)) { n._w = 0; n._h = 0; return; }
-    const isHover = n === hoveredNode;
+    const isHover = n === hoveredNode || (MOBILE && n === pressedNode);
     const popMul = MOBILE ? 1 : (n._popScale || 1);
     const fs = n.selected ? 18 : (MOBILE ? n.size : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2)));
     ctx.font = '400 ' + fs.toFixed(1) + "px 'Space Grotesk', sans-serif";
