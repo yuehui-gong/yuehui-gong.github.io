@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" class="day">
+<head><base href="../../">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — Field Notes Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --paper:#ffffff;
+    --grey:#8a8a8a;
+    --line:#e4e4e4;
+    --sidebar-w: 460px;
+    --gutter: 48px;
+    --nav-h: 54px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; color-scheme:light; }
+  html:not(.day){ color-scheme:dark; }
+  body{
+    font-family:'Inter', -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+
+  /* ---------- top nav ---------- */
+  #proj-nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    height:var(--nav-h); display:flex; align-items:center; justify-content:space-between;
+    padding:0 32px; background:rgba(255,255,255,.9); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  #proj-nav .back{ cursor:pointer; color:var(--grey); }
+  #proj-nav .back:hover{ color:var(--ink); }
+  #proj-nav .studio{ cursor:pointer; font-weight:600; letter-spacing:.04em; }
+
+  /* ============ NO SEPARATE "FIRST SCREEN" ANYMORE ============
+     One layout for the whole page: a sticky left info column that
+     never moves once you start scrolling, and a right column that
+     scrolls normally, starting with the hero image as its first block. */
+  .project-body{
+    display:grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    align-items:start;
+    padding-top:var(--nav-h);
+  }
+
+  .sidebar{
+    position:sticky;
+    top:var(--nav-h);
+    height:calc(100vh - var(--nav-h));
+    padding:40px 64px 32px 48px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    text-align:right;
+    border-right:1px solid var(--line);
+  }
+
+  .sidebar h2{
+    font-size:22px; font-weight:600; letter-spacing:-.01em; line-height:1.2; margin-bottom:8px;
+  }
+  .sidebar .eyebrow{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:8px;
+  }
+  .sidebar .loc{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:24px;
+  }
+
+  .meta-list{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+  .meta-item{ display:flex; flex-direction:column; align-items:flex-end; }
+  .meta-item .label{
+    font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:3px;
+  }
+  .meta-item .value{ font-size:11.5px; font-weight:500; }
+  .award-entry + .award-entry{ margin-top:8px; }
+
+  /* the 200-word intro — lives in the sidebar, right below the meta list.
+     It fades out as the page scrolls (opacity tied to scroll position),
+     staying in its own space the whole time so nothing else in the
+     sidebar ever moves into it or overlaps it while it fades. */
+  #proj-desc-wrap{
+    max-width:320px;
+    padding-top:32px;
+    transition:opacity .08s linear;
+  }
+  #proj-desc-wrap p{
+    font-size:12.5px; line-height:1.65; color:var(--ink-dim);
+  }
+
+  .sidebar .share{
+    display:flex; gap:14px; padding-top:24px; margin-top:auto;
+    font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey);
+  }
+  .sidebar .share span{ cursor:pointer; }
+  .sidebar .share span:hover{ color:var(--ink); }
+
+  /* ---------- RIGHT COLUMN: flexible media stack ---------- */
+  .content{
+    display:flex;
+    flex-direction:column;
+    padding:0 var(--gutter);
+  }
+  .block{ padding-top:2px; padding-bottom:2px; }
+  .block img{ width:100%; display:block; }
+  .layout-full img{ height:auto; }
+
+  /* hero — the first block of every project, a 4:3 image with equal
+     side gutters, replacing what used to be a separate full-screen section */
+  .layout-hero{ padding-top:40px; }
+  .layout-hero .img-wrap{ width:100%; aspect-ratio:4/3; overflow:hidden; }
+  .layout-hero .img-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .media-grid{ display:grid; gap:10px; }
+  .media-grid.cols-1{ grid-template-columns:1fr; }
+  .media-grid.cols-2{ grid-template-columns:repeat(2,1fr); }
+  .media-grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+  .media-grid.cols-4{ grid-template-columns:repeat(4,1fr); }
+  .media-grid img{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/3; }
+
+  .layout-caption .caption{
+    display:flex; justify-content:space-between; gap:40px;
+    padding:22px 0 60px; border-bottom:1px solid var(--line);
+  }
+  .layout-caption .caption .cap-label{
+    font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);
+    flex-shrink:0; width:140px;
+  }
+  .layout-caption .caption p{ font-size:13px; line-height:1.6; color:var(--ink-dim); max-width:520px; }
+
+  .layout-quote{ position:relative; }
+  .layout-quote .quote{ padding:60px 0; max-width:640px; }
+  .layout-quote .quote p{ font-size:22px; line-height:1.45; font-weight:500; letter-spacing:-.01em; }
+  .layout-quote .quote .attr{
+    margin-top:16px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey);
+  }
+
+  .layout-offset{ padding:60px 0 60px 18%; }
+
+  .spacer-sm{ height:2px; background:var(--line); margin:0 calc(var(--gutter) * -1); }
+
+  .project-end{ padding:80px 0 120px; border-top:1px solid var(--line); }
+  .project-end .next-label{
+    font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);
+    margin-bottom:10px;
+  }
+  .project-end h3{ font-size:32px; font-weight:600; letter-spacing:-.01em; cursor:pointer; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px){
+    :root{ --sidebar-w: 100%; --gutter: 24px; }
+    .project-body{ grid-template-columns:1fr; }
+    .sidebar{
+      position:relative; height:auto; top:auto;
+      border-right:none; border-bottom:1px solid var(--line);
+      padding:32px 24px;
+    }
+    #proj-desc-wrap{ opacity:1 !important; max-width:100%; }
+    .layout-hero{ padding-top:0; }
+    .media-grid.cols-2, .media-grid.cols-3, .media-grid.cols-4{ grid-template-columns:1fr; }
+    .layout-caption .caption{ flex-direction:column; gap:10px; padding:18px 0 40px; }
+    .layout-offset{ padding:40px 0; }
+    .layout-quote .quote{ padding:40px 0; }
+    .project-end{ padding:60px 0 90px; }
+  }
+.project-story{padding:48px 0 64px;max-width:760px}.project-story h3{font-size:20px;font-weight:500;margin-bottom:24px}.project-story p{font-size:14px;line-height:1.85;margin:0 0 22px;color:var(--ink)}
+
+  .project-collection{width:90%;align-self:center;padding:40px 0;display:grid;gap:22px;}
+  .project-collection figure{margin:0;min-width:0;}
+  .project-collection img{width:100%;height:auto;display:block;}
+  .project-collection figcaption{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);padding-top:12px;}
+  .collection-perspectives{width:82%;gap:36px;}
+  .collection-concepts{width:82%;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 16px;padding:28px 0 44px;}
+  .collection-materials{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px;padding-bottom:12px;}
+  .collection-timeline{padding-top:16px;}
+  @media(max-width:860px){
+    .project-collection{width:100%;padding:24px 0;gap:16px;}
+    .collection-perspectives{width:92%;gap:24px;}
+    .collection-concepts{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .collection-materials{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .collection-timeline{padding-top:8px;}
+    .project-collection figcaption{font-size:9px;letter-spacing:.05em;}
+  }
+
+  /* Keep secondary drawings deliberately small even on wide displays. */
+  .collection-plan-composition{width:92%;max-width:1300px;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);align-items:center;gap:24px 36px;}
+  .collection-plan-composition figure:nth-child(1){grid-column:1;grid-row:1;}
+  .collection-plan-composition figure:nth-child(2){grid-column:1;grid-row:2;}
+  .collection-plan-composition figure:nth-child(3){grid-column:2;grid-row:1 / span 2;}
+  .collection-concepts{width:64%;max-width:600px;gap:18px 14px;}
+  .collection-materials{width:72%;max-width:800px;gap:22px 18px;}
+  .collection-timeline{width:72%;max-width:800px;}
+  .sidebar.has-narrative{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;}
+  .sidebar.has-narrative>*{flex-shrink:0;}
+  .sidebar.has-narrative .project-story{width:100%;padding:28px 0 8px;text-align:left;}
+  .sidebar.has-narrative .project-story h3{font-size:12px;margin-bottom:16px;}
+  .sidebar.has-narrative .project-story p{font-size:12.5px;line-height:1.8;margin-bottom:18px;}
+  @media(max-width:860px){
+    .sidebar.has-narrative{height:auto;overflow:visible;}
+    .collection-plan-composition{width:100%;gap:16px;}
+    .collection-concepts{width:82%;max-width:460px;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 10px;}
+    .collection-materials,.collection-timeline{width:88%;max-width:600px;}
+  }
+  @media(max-width:520px){
+    .collection-plan-composition{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .collection-plan-composition figure:nth-child(1){grid-column:1;grid-row:1;}
+    .collection-plan-composition figure:nth-child(2){grid-column:2;grid-row:1;}
+    .collection-plan-composition figure:nth-child(3){grid-column:1 / span 2;grid-row:2;}
+    .collection-concepts{width:88%;grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+
+  /* Compact composition based on the supplied project sheet. */
+  .content.reference-sheet{width:100%;max-width:1080px;justify-self:center;min-width:0;}
+  .reference-sheet .project-collection{width:100%;max-width:none;padding:0;margin-top:32px;gap:16px;}
+  .reference-sheet .layout-hero{padding-bottom:0;}
+  .reference-sheet .collection-paired-views{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:16px;}
+  .reference-sheet .collection-paired-views + .collection-paired-views{margin-top:40px;}
+  .reference-sheet .collection-concept-plan{grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,2.5fr);align-items:center;gap:10px 14px;}
+  .collection-concept-plan figure:nth-child(1){grid-area:1 / 1;}
+  .collection-concept-plan figure:nth-child(2){grid-area:1 / 2;}
+  .collection-concept-plan figure:nth-child(3){grid-area:2 / 1;}
+  .collection-concept-plan figure:nth-child(4){grid-area:2 / 2;}
+  .collection-concept-plan figure:nth-child(5){grid-area:3 / 1;}
+  .collection-concept-plan figure:nth-child(6){grid-area:3 / 2;}
+  .collection-concept-plan figure:nth-child(7){grid-area:1 / 3 / span 3 / 4;}
+  .reference-sheet .collection-material-board{grid-template-columns:minmax(0,3.2fr) repeat(2,minmax(0,1fr));align-items:center;gap:12px; margin:40px 0 48px;}
+  .collection-material-board figure:nth-child(1){grid-area:1 / 1 / span 2 / 2;}
+  .collection-material-board figure:nth-child(2){grid-area:1 / 2;}
+  .collection-material-board figure:nth-child(3){grid-area:1 / 3;}
+  .collection-material-board figure:nth-child(4){grid-area:2 / 2;}
+  .collection-material-board figure:nth-child(5){grid-area:2 / 3;}
+  .reference-sheet .project-collection.collection-concept-study{grid-template-columns:minmax(0,1fr);justify-items:center;margin-top:clamp(-32px,-3vw,-10px);}
+  .collection-concept-study figure{width:84%;}
+  .reference-sheet .collection-concept-study + .collection-paired-views{margin-top:4px;}
+  .reference-sheet .collection-material-and-panorama{grid-template-columns:minmax(0,1.3fr) minmax(0,3.2fr);align-items:center;margin:20px 0 0;}
+  .reference-sheet.materiality-stacked .collection-material-and-panorama{grid-template-columns:minmax(0,1fr);justify-items:center;gap:44px;margin-top:32px;}
+  /* Show source rows 576–2496: retain all four studies, omit blank borders and the embedded caption. */
+  .materiality-stacked .collection-material-and-panorama figure:first-child{width:48.4%;max-width:423.5px;aspect-ratio:2265 / 1920;position:relative;overflow:hidden;}
+  .materiality-stacked .collection-material-and-panorama figure:first-child img{position:absolute;top:-30%;left:0;width:100%;height:auto;max-height:none;}
+  .materiality-stacked .collection-material-and-panorama figure:last-child{width:100%;}
+  .reference-sheet .collection-closing-plan{justify-items:center;margin:24px 0 32px;}
+  .reference-sheet.materiality-stacked .collection-closing-plan{margin-top:72px;}
+  .collection-closing-plan figure{width:72%;max-width:680px;}
+  .content > .project-story-inline{width:72%;max-width:680px;align-self:center;padding:0;margin:48px 0 0;text-align:left;}
+  .project-story-inline h3{font-size:9px;line-height:1.5;margin-bottom:20px;}
+  .project-story-inline p{font-size:9px;}
+  .project-story-inline p:last-child{margin-bottom:0;}
+  .reference-sheet.materiality-stacked .project-story-inline + .collection-closing-plan{margin-top:48px;}
+  @media(max-width:600px){.content > .project-story-inline{width:100%;margin-top:36px;}}
+  @media(max-width:520px){.project-story-inline h3,.project-story-inline p{font-size:8px;}}
+  .reference-sheet figcaption{font-size:9px;padding-top:7px;letter-spacing:.04em;}
+  @media(max-width:520px){
+    .reference-sheet .project-collection{gap:8px;margin-top:22px;}
+    .reference-sheet figcaption{font-size:8px;}
+    .reference-sheet .collection-concept-plan{grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,2.5fr);}
+    .reference-sheet .collection-material-board{grid-template-columns:minmax(0,2.6fr) repeat(2,minmax(0,1fr));}
+  }
+
+.content .plan-enlarged img{max-height:min(1520px,160vh)}
+@media(max-width:860px){.content .plan-enlarged img{max-height:150svh}}
+
+.collection-candelo-single,.collection-candelo-pair{width:100%;padding:24px 0;}
+.collection-candelo-pair{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center;}
+@media(max-width:600px){.collection-candelo-pair{grid-template-columns:minmax(0,1fr);}}
+
+.content.viewport-hero .layout-hero{margin-inline:calc(-1 * var(--gutter));padding:0;}
+.content.viewport-hero .layout-hero .img-wrap{height:calc(100svh - var(--nav-h));display:flex;justify-content:center;align-items:center;}
+.content.viewport-hero .layout-hero img{height:100% !important;max-height:none;width:100%;object-fit:contain;}
+.project-collection.collection-voice-sheet,.project-collection.collection-voice-pair{width:100%;max-width:none}
+.collection-voice-pair{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px}
+@media(max-width:600px){.collection-voice-pair{grid-template-columns:1fr}}
+/* Natural Monetary Reserve exhibition composition. */
+.collection-natural-sheet{width:100%;padding:24px 0;gap:32px;}
+.collection-natural-exhibition{width:92%;display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1fr);gap:20px;padding:32px 0 48px;align-items:start;}
+.collection-natural-exhibition .exhibition-column{display:flex;flex-direction:column;gap:20px;min-width:0;}
+.collection-natural-exhibition .exhibition-column:last-child figure:last-child img{aspect-ratio:1.08;object-fit:cover;object-position:center bottom;}
+@media(max-width:600px){.collection-natural-exhibition{width:100%;gap:12px;padding:24px 0;}.collection-natural-exhibition .exhibition-column{gap:12px;}}
+
+</style>
+<link rel="stylesheet" href="assets/site.css"><style>
+:root{--sidebar-w:clamp(480px,38vw,640px)}
+.project-body{grid-template-columns:var(--sidebar-w) minmax(0,1fr)}
+.sidebar{padding-left:40px;padding-right:48px}
+#proj-desc-wrap{max-width:100%}
+.content{min-width:0}
+.comic-project{--sidebar-w:clamp(330px,28vw,440px)}
+.comic-project .content{padding:24px;}
+.comic-project .sidebar{padding:32px 28px;overflow-y:auto;}
+.comic-project .sidebar .project-story p{font-size:11px;line-height:1.75;}
+.comic-project #project-book{width:100%;min-width:0;}
+.comic-project .project-end{padding:48px 0 64px;margin-top:32px;}
+@media(max-width:860px){.comic-project .content{padding:24px 16px;}.comic-project .sidebar{overflow:visible;}}
+.content img{max-height:min(760px,80vh);object-fit:contain}
+.layout-hero .img-wrap{aspect-ratio:auto;overflow:visible}
+.layout-hero .img-wrap img{height:auto;max-height:min(760px,80vh);object-fit:contain}
+.media-grid img{height:auto;aspect-ratio:auto;object-fit:contain}
+@media(max-width:860px){.project-body{grid-template-columns:minmax(0,1fr)}.sidebar{padding:32px 24px}.content img,.layout-hero .img-wrap img{max-height:75svh}}
+
+/* Ground in Friction: project-specific reference composition. */
+.content.reference-sheet.ground-friction{max-width:1600px;width:100%;}
+.ground-friction .layout-hero{display:none;}
+.ground-friction .project-collection{margin-top:clamp(36px,5vw,100px);gap:clamp(14px,1.2vw,24px);padding:0;}
+.ground-friction .project-collection:first-of-type{margin-top:0;}
+.ground-friction .project-collection figure{margin:0;min-width:0;}
+.ground-friction .project-collection img{display:block;width:100%;height:auto;max-height:none;}
+.ground-friction figcaption{display:none;}
+.ground-friction .collection-ground-opening{grid-template-columns:minmax(0,3.5fr) minmax(0,1fr);align-items:stretch;}
+.collection-ground-opening figure:first-child{grid-column:1;grid-row:1 / span 2;}
+.ground-friction .collection-ground-opening figure:first-child img{height:100%;object-fit:cover;}
+.ground-friction .collection-ground-views{grid-template-columns:repeat(3,minmax(0,1fr));}
+.ground-friction .collection-ground-plan{grid-template-columns:minmax(0,2.4fr) minmax(0,1fr);align-items:center;}
+.collection-ground-plan figure:first-child{grid-column:1;grid-row:1 / span 2;}
+.ground-friction .collection-ground-ecology{grid-template-columns:minmax(0,1fr);}
+@media(max-width:600px){
+ .ground-friction .project-collection{gap:12px;margin-top:36px;}
+ .ground-friction .collection-ground-opening,.ground-friction .collection-ground-plan{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .ground-friction .collection-ground-opening figure:first-child,.ground-friction .collection-ground-plan figure:first-child{grid-column:1 / -1;grid-row:auto;}
+ .ground-friction .collection-ground-opening figure:first-child img{height:auto;}
+ .ground-friction .collection-ground-views{grid-template-columns:minmax(0,1fr);}
+}
+
+.content.reference-sheet.symbiotic-garden{max-width:1400px;}
+.symbiotic-garden .layout-hero{display:none;}
+.symbiotic-garden .project-collection{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 48px;margin-top:clamp(48px,5vw,80px);padding:0;}
+.symbiotic-garden .project-collection:first-of-type{margin-top:0;}
+.symbiotic-garden .project-collection figure{min-width:0;margin:0;}
+.symbiotic-garden .project-collection img{width:100%;height:auto;max-height:none;}
+.symbiotic-garden figcaption{display:none;}
+.symbiotic-garden .collection-garden-top{gap:28px 48px;align-items:center;}
+.collection-garden-top figure:nth-child(1){grid-column:1;grid-row:1;}
+.collection-garden-top figure:nth-child(2){grid-column:1;grid-row:2;}
+.collection-garden-top figure:nth-child(3){grid-column:2;grid-row:1 / span 2;}
+.symbiotic-garden .collection-garden-pair{align-items:center;}
+.symbiotic-garden .collection-garden-bottom{grid-template-columns:minmax(0,1fr);}
+@media(max-width:600px){
+ .symbiotic-garden .project-collection{gap:24px;margin-top:40px;}
+ .symbiotic-garden .collection-garden-pair{grid-template-columns:minmax(0,1fr);}
+}
+.reference-sheet .collection-anthropogenic-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(40px,5vw,80px);}
+.collection-anthropogenic-sheet img{width:100%;height:auto;max-height:none;}
+.reference-sheet .collection-root-city-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(40px,5vw,80px);}
+.collection-root-city-sheet img{width:100%;height:auto;max-height:none;}
+
+.root-city-page .project-body{grid-template-columns:clamp(300px,26vw,420px) minmax(0,1fr);}
+.root-city-page .content.reference-sheet{max-width:none;width:100%;padding:0 24px;}
+.root-city-page .layout-hero .img-wrap img{max-height:none;height:auto;width:100%;}
+.root-city-page .collection-root-city-sheet{width:100%;max-width:none;}
+@media(max-width:860px){
+ .root-city-page .project-body{grid-template-columns:minmax(0,1fr);}
+ .root-city-page .content.reference-sheet{padding:0 12px;}
+}
+
+.hemp-page .content.reference-sheet{max-width:1600px;padding:0 24px;}
+.hemp-page .layout-hero img{max-height:none;}
+.reference-sheet .collection-hemp-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(56px,6vw,96px);}
+.collection-hemp-sheet img{width:100%;height:auto;max-height:none;}
+
+.hemp-page .layout-hero{display:none;}
+.hemp-page figcaption{display:none;}
+.hemp-page .project-collection:first-of-type{margin-top:32px;}
+.hemp-page .collection-hemp-composition{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:36px 48px;align-items:start;margin-top:clamp(56px,6vw,96px);}
+.collection-hemp-composition figure:nth-child(1){grid-area:1 / 1;}
+.collection-hemp-composition figure:nth-child(2){grid-area:2 / 1;}
+.collection-hemp-composition figure:nth-child(3){grid-area:3 / 1;}
+.collection-hemp-composition figure:nth-child(4){grid-area:1 / 2 / span 3 / 3;}
+.hemp-page .collection-hemp-composition img{width:100%;height:auto;max-height:none;}
+@media(max-width:600px){.hemp-page .content.reference-sheet{padding:0 12px;}.hemp-page .collection-hemp-composition{gap:24px;}.hemp-page .project-collection{margin-top:40px;}}
+
+.hemp-page .project-collection{width:100%;justify-self:stretch;}
+.hemp-page .project-collection figure{width:100%;margin:0;min-width:0;}
+.hemp-page .project-collection img{display:block;width:100%;height:auto;max-height:none;}
+.hemp-page .project-end{margin-top:64px;}
+
+.rewilding-page .content.reference-sheet{max-width:1600px;padding:0 24px;}
+.rewilding-page .layout-hero img{max-height:none;}
+.reference-sheet .collection-rewilding-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(56px,6vw,96px);}
+.collection-rewilding-sheet img{display:block;width:100%;height:auto;max-height:none;}
+
+.rewilding-page .project-collection{width:100%;gap:28px;margin-top:48px;}
+.rewilding-page .project-collection img{display:block;width:100%;height:auto;max-height:none;}
+.rewilding-page figcaption{display:none;}
+.rewilding-page .layout-hero .img-wrap img{height:auto;max-height:none;}
+.rewilding-page .collection-rewilding-analysis{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:24px 40px;}
+.collection-rewilding-analysis figure:first-child{grid-column:1;grid-row:1 / span 2;}
+.collection-rewilding-analysis figure:nth-child(2){grid-column:2;grid-row:1;}
+.collection-rewilding-analysis figure:nth-child(3){grid-column:2;grid-row:2;}
+.rewilding-page .collection-rewilding-plans,.rewilding-page .collection-rewilding-renders{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:40px;}
+@media(max-width:600px){
+ .rewilding-page .content.reference-sheet{padding:0 12px;}
+ .rewilding-page .project-collection{margin-top:32px;gap:16px;}
+ .rewilding-page .collection-rewilding-analysis,.rewilding-page .collection-rewilding-plans,.rewilding-page .collection-rewilding-renders{gap:16px;}
+}
+.reference-sheet .collection-maurice-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(48px,5vw,80px);}
+.collection-maurice-sheet img{display:block;width:100%;height:auto;max-height:none;}
+
+.maurice-page .content.reference-sheet{max-width:1500px;}
+.maurice-page .project-collection{width:100%;gap:28px;margin-top:48px;}
+.maurice-page .project-collection img{display:block;width:100%;height:auto;max-height:none;}
+.maurice-page .layout-hero .img-wrap img{height:auto;max-height:none;}
+.maurice-page figcaption{display:none;}
+.maurice-page .collection-maurice-tides{grid-template-columns:minmax(0,3.4fr) minmax(0,1fr);align-items:center;gap:12px 32px;}
+.collection-maurice-tides figure:first-child{grid-column:1;grid-row:1 / span 3;}
+.collection-maurice-tides figure:nth-child(2){grid-column:2;grid-row:1;}
+.collection-maurice-tides figure:nth-child(3){grid-column:2;grid-row:2;}
+.collection-maurice-tides figure:nth-child(4){grid-column:2;grid-row:3;}
+.maurice-page .collection-maurice-comparisons{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;}
+@media(max-width:600px){
+ .maurice-page .project-collection{margin-top:32px;gap:16px;}
+ .maurice-page .collection-maurice-tides{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+ .maurice-page .collection-maurice-tides figure:first-child{grid-column:1 / -1;grid-row:1;}
+ .maurice-page .collection-maurice-tides figure:nth-child(n+2){grid-column:auto;grid-row:2;}
+ .maurice-page .collection-maurice-comparisons{grid-template-columns:minmax(0,1fr);}
+}
+.reference-sheet .collection-unfold-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(48px,5vw,80px);}
+.kingston-page .content.reference-sheet{max-width:1500px;}
+.kingston-page .layout-hero .img-wrap img,.kingston-page .project-collection img{width:100%;height:auto;max-height:none;}
+.kingston-page .collection-kingston-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(32px,3vw,56px);}
+@media(max-width:860px){.kingston-page .collection-kingston-sheet{margin-top:24px;}}
+.board-sheets-page .content.reference-sheet{max-width:1500px;}
+.board-sheets-page .layout-hero .img-wrap img,.board-sheets-page .collection-board-sheet img{width:100%;height:auto;max-height:none;}
+.board-sheets-page .collection-board-sheet{grid-template-columns:minmax(0,1fr);margin-top:clamp(32px,3vw,56px);}
+@media(max-width:860px){.board-sheets-page .collection-board-sheet{margin-top:24px;}}
+.collection-unfold-sheet img{display:block;width:100%;height:auto;max-height:none;}
+
+.unfold-page .content.reference-sheet{max-width:1500px;}
+.unfold-page .layout-hero .img-wrap img{max-height:none;height:auto;}
+.unfold-page .project-collection{width:100%;margin-top:32px;gap:24px;}
+.unfold-page .project-collection img{display:block;width:100%;height:auto;max-height:none;}
+.unfold-page figcaption{display:none;}
+.unfold-page .collection-unfold-drawings{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}
+@media(max-width:600px){.unfold-page .project-collection{margin-top:24px;gap:12px;}}
+</style>
+<link rel="stylesheet" href="assets/comic-reader.css?v=20261011-reader-layout-2">
+<link rel="stylesheet" href="previews/graphic-options/theme.css"></head>
+<body data-page="project" class="day">
+
+  <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></header>
+
+  <div class="project-body">
+
+    <!-- ONE sidebar, sticky from the very top of the page. Everything in
+         it except #proj-desc-wrap stays put for the entire scroll. -->
+    <aside class="sidebar">
+
+      <div class="eyebrow" id="proj-eyebrow"></div>
+      <h2 id="proj-title"></h2>
+      <div class="loc" id="proj-loc"></div>
+      <div class="meta-list" id="proj-meta"></div>
+
+      <div id="proj-desc-wrap"><p id="proj-desc"></p></div>
+
+      <div class="share">
+        <span>X</span>
+      </div>
+    </aside>
+
+    <!-- the media stack — first block is always the hero image,
+         the rest come from `record.blocks` -->
+    <div class="content" id="proj-content"></div>
+
+  </div>
+
+<!-- ============================================================================
+     STANDALONE VERSION: the project data is embedded directly below instead
+     of being loaded from projects-data.js. This file works on its own —
+     double-click it, email it, it doesn't need any other file next to it.
+
+     Trade-off: this is now its OWN copy of the data, separate from the one
+     landing-page.html / projects-page.html read from projects-data.js. If
+     you edit a project here, that edit won't show up on those other pages
+     (and vice versa) unless you copy the change over by hand. Use this file
+     for sending a single page to someone; use the shared-folder version
+     (project.html + projects-data.js) for the real, linked-up site.
+     ============================================================================ -->
+<script src="assets/vendor/page-flip-2.0.7.browser.js?v=20261011-physical-book-2"></script>
+<script src="assets/comic-reader.js?v=20261011-reader-layout-2"></script>
+<script src="assets/project-content.js?v=20261011-award-display"></script>
+<script>
+(async()=>{
+const PROJECTS = await window.loadStudioProjects();
+
+const TYPES = ["All", "Public Realm", "Residential", "Cultural", "Institutional", "Urban Strategy", "Installation"];
+
+/* =========================================================================
+   Reads `?slug=...` from the URL and looks it up in the shared PROJECTS
+   array (e.g. project.html?slug=tidal-garden). That param is exactly what
+   becomes a Next.js dynamic route segment later ( /work/[slug]/page.jsx ) —
+   only how `record` gets fetched changes, not the renderer below.
+
+   Block types:
+   - hero     : the 4:3 image every project opens with (auto-inserted first)
+   - full     : one full-width image
+   - grid     : a row of N images (cols: 2, 3, or 4)
+   - caption  : one image + a short caption line to its right
+   - quote    : one image + a large pull-quote
+   - offset   : one smaller, indented image with extra breathing room
+   ========================================================================= */
+
+
+if(!PROJECTS.length){ location.replace('projects.html'); return; }
+const slug = new URLSearchParams(location.search).get('slug') || PROJECTS[0].slug;
+const record = PROJECTS.find(p => (p.slug === slug || p.aliases?.includes(slug))) ;
+if(!record){ location.replace('projects.html'); return; }
+document.body.dataset.projectTheme = record.pageTheme === 'night' ? 'night' : 'day';
+window.dispatchEvent(new CustomEvent('project-theme'));
+const idx = PROJECTS.findIndex(p => p.slug === record.slug);
+const nextRecord = PROJECTS[(idx + 1) % PROJECTS.length];
+
+const heroSrc = (record.blocks && record.blocks[0] && record.blocks[0].src) || record.img;
+
+const project = {
+  title: record.title,
+  eyebrow: record.type,
+  location: record.loc,
+  meta: [
+    { label: "Collaborator", value: record.collaborator || "—" },
+    ...(!record.hideAward && (record.awards?.length || (record.award && !["—", "-"].includes(record.award.trim()))) ? [{ label: "Award", value: record.awards?.length ? record.awards.map(a => ({ text: `${a.name}${a.year ? ` ${a.year}` : ""} — ${a.distinction}`, url: a.url })) : record.award || "—" }] : []),
+    { label: "Year",         value: record.year },
+    ...(record.instructor ? [{label:"Instructor",value:record.instructor}] : []),
+    ...(record.studio ? [{label:"Studio",value:record.studio}] : []),
+    ...(record.authorship ? [{label:"Authorship",value:record.authorship}] : []),
+    ...(record.competition ? [{ label: "Competition", value: record.competition }] : []),
+    { label: "Keyword",      value: record.kw.join(" / ") }
+  ],
+  description: record.teaser || record.description,
+  story: record.story,
+  storyTitle: record.storyTitle,
+  narrativePlacement: record.narrativePlacement,
+  book: record.book,
+  blocks: [
+    { type: "hero", src: heroSrc },
+    ...(record.blocks && record.blocks.length ? record.blocks.slice(1) : [{ type: "full", src: record.img }])
+  ],
+  next: nextRecord.title,
+  nextSlug: nextRecord.slug
+};
+
+function renderMeta(list){
+  return list.map(m => `
+    <div class="meta-item">
+      <div class="label">${m.label}</div>
+      <div class="value">${Array.isArray(m.value) ? m.value.map(value => `<div class="award-entry">${renderAwardEntry(value)}</div>`).join('') : m.value}</div>
+    </div>`).join("");
+}
+
+function escapeProjectText(value){
+  return String(value ?? '').replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+}
+
+function renderAwardEntry(value){
+  const entry = value && typeof value === 'object' ? value : { text: value };
+  const text = escapeProjectText(entry.text);
+  if(entry.url){
+    try{
+      const url = new URL(entry.url);
+      if(url.protocol === 'https:' || url.protocol === 'http:'){
+        return `<a href="${escapeProjectText(url.href)}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+      }
+    }catch{}
+  }
+  return text;
+}
+
+function renderBlock(b){
+  switch(b.type){
+    case "collection": {
+if(b.kind==='natural-exhibition'){
+  const column=images=>`<div class="exhibition-column">${images.map(image=>`<figure><img src="${image.src}" alt="${escapeProjectText(image.alt || '')}" loading="lazy"></figure>`).join('')}</div>`;
+  return `<section class="block project-collection collection-natural-exhibition">${column(b.images.slice(0,4))}${column(b.images.slice(4))}</section>`;
+}
+      const intro=b.introduction;
+      const story=intro ? `<section class="project-story project-story-inline" aria-label="${escapeProjectText(intro.title)}"><h3>${escapeProjectText(intro.title)}</h3>${intro.paragraphs.map(text=>`<p>${escapeProjectText(text)}</p>`).join('')}</section>` : '';
+      return story + `<section class="block project-collection collection-${b.kind}">${b.images.map((image,index)=>`<figure><img src="${image.src}" alt="${image.alt || ''}" loading="${b.kind==='material-and-panorama' && index===0 ? 'eager' : 'lazy'}">${image.caption ? `<figcaption>${image.caption}</figcaption>` : ''}</figure>`).join('')}</section>`;
+    }
+    case "hero":
+      return `<div class="block layout-hero"><div class="img-wrap"><img src="${b.src}" alt=""></div></div>`;
+    case "full":
+      return `<div class="block layout-full"><img src="${b.src}" alt=""></div>`;
+    case "grid":
+      return `<div class="block media-grid cols-${b.cols}">
+        ${b.images.map(src => `<img src="${src}" alt="">`).join("")}
+      </div>`;
+    case "caption":
+      return `<div class="block layout-caption${b.displayScale===2 ? ' plan-enlarged' : ''}">
+        <img src="${b.src}" alt="${b.alt || ''}" loading="lazy">
+        <div class="caption">
+          <div class="cap-label">${b.label}</div>
+          <p>${b.text}</p>
+        </div>
+      </div>`;
+    case "quote":
+      return `<div class="block layout-quote">
+        <img src="${b.src}" alt="">
+        <div class="quote">
+          <p>"${b.text}"</p>
+          <div class="attr">${b.attr}</div>
+        </div>
+      </div>`;
+    case "offset":
+      return `<div class="block layout-offset"><img src="${b.src}" alt=""></div>`;
+    default:
+      return "";
+  }
+}
+
+function renderProject(p){
+  if(record.slug==='JH_261011_Stitching Kingston') document.body.classList.add('kingston-page');
+  if(record.layoutVariant==='board-sheets') document.body.classList.add('board-sheets-page');
+  if(record.slug==='ZZ_261011_Unfold') document.body.classList.add('unfold-page');
+  if(record.slug==='ZZ_261011_Maurice River') document.body.classList.add('maurice-page');
+  if(p.book && record.presentation==='comic-book') document.body.classList.add('comic-project');
+  if(record.slug==='ZZ_261011_Rewilding - Co-Create With Birds') document.body.classList.add('rewilding-page');
+  if(record.slug==='ZZ_261010_Hemp For Water') document.body.classList.add('hemp-page');
+  if(record.slug==='ZZ_261005_Root City') document.body.classList.add('root-city-page');
+  if(record.heroDisplay==='viewport') document.getElementById('proj-content').classList.add('viewport-hero');
+  if(record.layoutVariant==='symbiotic-garden') document.getElementById('proj-content').classList.add('symbiotic-garden');
+  if(record.layoutVariant==='ground-friction') document.getElementById('proj-content').classList.add('ground-friction');
+  if(record.presentation==='reference-sheet') document.getElementById('proj-content').classList.add('reference-sheet');
+  if((new URLSearchParams(location.search).get('layout') || record.layoutVariant)==='stacked-materiality') document.getElementById('proj-content').classList.add('materiality-stacked');
+  document.getElementById("proj-eyebrow").textContent = p.eyebrow;
+  document.getElementById("proj-title").textContent = p.title;
+  document.getElementById("proj-loc").textContent = p.location;
+  document.getElementById("proj-desc").textContent = p.description;
+  document.getElementById("proj-meta").innerHTML = renderMeta(p.meta);
+  if(record.webLink?.url){
+    try {
+      const url=new URL(record.webLink.url);
+      if(['https:','http:'].includes(url.protocol)){
+        const item=document.createElement('div');item.className='meta-item';
+        const label=document.createElement('div');label.className='label';label.textContent='Web link';
+        const link=document.createElement('a');link.className='value';link.href=url.href;
+        link.target='_blank';link.rel='noopener noreferrer';link.textContent=(record.webLink.label || 'Project publication')+' ↗';
+        item.append(label,link);document.getElementById('proj-meta').append(item);
+      }
+    } catch(error){console.warn('Invalid project web link');}
+  }
+  const bookMarkup=p.book ? '<section id="project-book"></section>' : '';
+  const mediaMarkup=!p.book || p.book.placement==='before-images' ? p.blocks.map(renderBlock).join("") : '';
+  document.getElementById("proj-content").innerHTML = bookMarkup + mediaMarkup +
+    `<div class="project-end" onclick="location.href='project.html?slug=${p.nextSlug}'">
+       <div class="next-label">Next Project</div><h3>${p.next}</h3>
+     </div>`;
+  if(p.book){
+    window.createComicReader(document.getElementById('project-book'),{
+      title:p.title,pages:p.book.pages,mode:p.book.mode || 'spreads'
+    });
+  }
+  if(p.story){
+    const heroWrap=document.querySelector('.layout-hero .img-wrap');
+    const hero=document.querySelector('.layout-hero img');
+    if(heroWrap) heroWrap.style.aspectRatio='auto';
+    if(hero){hero.style.height='auto';hero.alt=record.heroAlt;}
+    const story=document.createElement('section'); story.className='project-story';
+    const h=document.createElement('h3'); h.textContent=p.storyTitle || 'Project narrative'; story.append(h);
+    p.story.forEach(text=>{const paragraph=document.createElement('p');paragraph.textContent=text;story.append(paragraph)});
+    if(p.narrativePlacement==='sidebar'){
+      const sidebar=document.querySelector('.sidebar');
+      sidebar.classList.add('has-narrative');
+      document.getElementById('proj-desc-wrap').hidden=true;
+      sidebar.querySelector('.share').before(story);
+    } else document.querySelector('.project-end').before(story);
+  }
+  document.title = p.title + " — Field Notes Studio";
+}
+
+renderProject(project);
+
+/* fade the 200-word description out as the page scrolls, so it never
+   sits there competing with, or overlapping, the meta info above it */
+const descWrap = document.getElementById('proj-desc-wrap');
+const FADE_DISTANCE = 220; // px of scroll over which it fully disappears
+function onScroll(){
+  if(descWrap.hidden) return;
+  const y = window.scrollY || document.documentElement.scrollTop;
+  const opacity = Math.max(0, 1 - y / FADE_DISTANCE);
+  descWrap.style.opacity = opacity;
+  descWrap.style.pointerEvents = opacity < 0.05 ? 'none' : 'auto';
+}
+window.addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+})();
+</script>
+<script src="previews/graphic-options/theme.js"></script></body>
+</html>
