@@ -4,7 +4,7 @@
   .site-brand{font-size:12px!important;}
   .site-links{gap:14px;}
   .site-links a{font-size:10px;}
-  .site-links a:not([href="projects.html"]){display:none;}
+  .site-links a:not([href$="projects.html"]){display:none;}
   #site-theme{font-size:9px;padding:7px 9px;}
   #headline{top:94px;left:24px;right:24px;bottom:auto;}
   #headline h1{font-size:29px;line-height:1.13;letter-spacing:-.035em;}

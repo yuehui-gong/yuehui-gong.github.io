@@ -26,11 +26,11 @@ window.buildMobileLanding=function(projects,words){
     const old=new Map(moving.map(n=>[n.word,n]));const width=field.clientWidth,height=field.clientHeight;
     const focusSlots=[[.24,.08],[.76,.13],[.22,.30],[.78,.32],[.23,.73],[.77,.70],[.27,.92],[.73,.94]];
     moving=visible.map((word,i)=>{
-      let n=old.get(word);if(!n){const b=document.createElement('button');b.type='button';b.className='mobile-word';b.textContent=word;b.onclick=()=>toggle(word);field.append(b);n={word,button:b,x:width/2,y:height/2,phase:i*1.7};}
+      let n=old.get(word);const isNew=!n;if(!n){const b=document.createElement('button');b.type='button';b.className='mobile-word';b.textContent=word;b.onclick=()=>toggle(word);field.append(b);n={word,button:b,x:width/2,y:height/2,phase:i*1.7};}
       const anchor=selected.length&&i===0,active=anchor||!selected.length||related.includes(word);
       n.button.classList.toggle('is-anchor',Boolean(anchor));n.button.classList.toggle('is-dim',!active);n.button.disabled=!active;n.button.setAttribute('aria-pressed',String(selected.includes(word)));
       const slot=selected.length?(anchor?[.5,.5]:focusSlots[i-1]):[(i%2===0?.23:.77)+(i%3-1)*.018,(Math.floor(i/2)+.5)/Math.ceil(count/2)+(i%2?.02:-.02)];
-      n.tx=slot[0]*width;n.ty=slot[1]*height;n.anchor=anchor;n.active=active;old.delete(word);return n;
+      n.tx=slot[0]*width;n.ty=slot[1]*height;if(isNew&&!selected.length){n.x=n.tx;n.y=n.ty;}n.anchor=anchor;n.active=active;old.delete(word);return n;
     });
     old.forEach(n=>n.button.remove());
     lines.innerHTML=selected.length?moving.filter(n=>n.active&&!n.anchor).map(()=>'<line/>').join(''):'';
