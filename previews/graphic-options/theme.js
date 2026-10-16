@@ -9,7 +9,28 @@ let state={},raf=0;const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 if(stage){water=document.createElement('canvas');water.id='underwater';water.setAttribute('aria-hidden','true');stage.prepend(water);ctx=water.getContext('2d');}
 function drawWater(t=0){if(!water)return;const w=water.width,h=water.height,day=state.mode==='day';ctx.clearRect(0,0,w,h);const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,day?'#b7cfcd':'#45565d');bg.addColorStop(.42,day?'#dce7e2':'#1d3039');bg.addColorStop(1,day?'#f4f6ed':'#080f18');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
 // Light shafts widen and soften with depth; the water surface refracts slowly.
-ctx.globalCompositeOperation='screen';ctx.filter='blur(22px)';for(let i=0;i<9;i++){const x=(i/8)*w+Math.sin(t*.00014+i*1.7)*w*.045;const light=ctx.createLinearGradient(x,0,x,h*.9);light.addColorStop(0,day?'#ffffff44':'#c3e1df55');light.addColorStop(1,'#ffffff00');ctx.fillStyle=light;ctx.beginPath();ctx.moveTo(x-12,0);ctx.lineTo(x+30,0);ctx.lineTo(x+w*.16,h*.9);ctx.lineTo(x-w*.08,h*.9);ctx.fill();}ctx.filter='blur(2px)';for(let j=0;j<26;j++){ctx.beginPath();for(let x=0;x<=w;x+=8){const y=14+j*3.5+Math.sin(x*.009+t*.00022+j*.6)*(4+j*.35)+Math.cos(x*.019-t*.00013)*3;x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.strokeStyle=`rgba(215,235,232,${.035+(j%4)*.014})`;ctx.lineWidth=1+(j%3);ctx.stroke();}ctx.filter='none';ctx.globalCompositeOperation='source-over';for(let i=0;i<45;i++){const x=((i*137.17)%w+Math.sin(t*.0001+i)*10),y=((i*81.23+t*.002)%h);ctx.fillStyle=day?'#667b7518':'#d8ebe921';ctx.fillRect(x,y,1,1);}}
+ctx.globalCompositeOperation='screen';ctx.filter='blur(22px)';for(let i=0;i<9;i++){const x=(i/8)*w+Math.sin(t*.00014+i*1.7)*w*.045;const light=ctx.createLinearGradient(x,0,x,h*.9);light.addColorStop(0,day?'#ffffff44':'#c3e1df55');light.addColorStop(1,'#ffffff00');ctx.fillStyle=light;ctx.beginPath();ctx.moveTo(x-12,0);ctx.lineTo(x+30,0);ctx.lineTo(x+w*.16,h*.9);ctx.lineTo(x-w*.08,h*.9);ctx.fill();}
+// Uneven, overlapping surface reflections: compressed near the horizon,
+// broader and softer below. Seeded phases avoid flickering between frames.
+ctx.globalCompositeOperation='source-over';
+const surfaceDepth=Math.min(h*.24,220),phase=t*.00012;
+for(let j=0;j<38;j++){
+ const depth=j/37,base=3+Math.pow(depth,1.65)*surfaceDepth;
+ ctx.filter='blur('+(0.4+depth*1.8)+'px)';
+ const wave=(x)=>base+Math.sin(x*.012+phase+j*.81)*(2+depth*8)+Math.sin(x*.027-phase*.7+j*1.93)*(1+depth*3);
+ for(let k=0;k<7;k++){
+  const start=(k/7)*w+Math.sin(j*7.13+k*3.2)*w*.065;
+  const length=w*(.055+.055*(.5+.5*Math.sin(j*2.7+k*5.1)));
+  const alpha=(1-depth)*(day?.20:.34)*(.45+.55*(.5+.5*Math.sin(k*2.3+j)));
+  const shine=ctx.createLinearGradient(start,0,start+length,0);
+  shine.addColorStop(0,'rgba(220,239,235,0)');shine.addColorStop(.45,'rgba(220,239,235,'+alpha+')');shine.addColorStop(1,'rgba(220,239,235,0)');
+  ctx.strokeStyle=shine;ctx.lineWidth=1.5+depth*5;ctx.beginPath();
+  for(let x=start;x<=start+length;x+=4){const y=wave(x);x===start?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();
+  ctx.strokeStyle='rgba(6,19,26,'+alpha*.55+')';ctx.lineWidth=2+depth*7;ctx.beginPath();
+  for(let x=start;x<=start+length;x+=4){const y=wave(x)+4+depth*3;x===start?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();
+ }
+}
+ctx.filter='none';ctx.globalCompositeOperation='source-over';for(let i=0;i<45;i++){const x=((i*137.17)%w+Math.sin(t*.0001+i)*10),y=((i*81.23+t*.002)%h);ctx.fillStyle=day?'#667b7518':'#d8ebe921';ctx.fillRect(x,y,1,1);}}
 let last=0;function tick(t){if(t-last>40){drawWater(t);last=t;}raf=requestAnimationFrame(tick)}
 function syncWater(){cancelAnimationFrame(raf);if(!water||state.graphics!=='underwater')return;water.width=Math.min(1400,stage.clientWidth);water.height=Math.round(water.width*stage.clientHeight/stage.clientWidth);drawWater(0);if(state.motion==='subtle'&&!reduced.matches&&!document.hidden)raf=requestAnimationFrame(tick);}
 window.addEventListener('resize',syncWater);document.addEventListener('visibilitychange',syncWater);reduced.addEventListener('change',syncWater);
@@ -17,3 +38,4 @@ function apply(v){state=v;document.body.dataset.graphics=v.graphics||'none';docu
 window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===parent&&e.data?.type==='palette-preview')apply(e.data)});parent.postMessage({type:'palette-ready'},location.origin);
 document.querySelectorAll('.site-links a,.site-brand').forEach(a=>{a.onclick=e=>{e.preventDefault();const target=a.getAttribute('href');parent.postMessage({type:'preview-page',page:target.startsWith('about')?'about':target.startsWith('project.html')?'project':'index'},location.origin)}});
 })();
+
