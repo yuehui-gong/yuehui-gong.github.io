@@ -10,14 +10,9 @@ if(stage){water=document.createElement('canvas');water.id='underwater';water.set
 // Deterministic interpolated noise: no periodic wave bands or visible tiles.
 function waterNoise(x,y){const ix=Math.floor(x),iy=Math.floor(y);let fx=x-ix,fy=y-iy;fx=fx*fx*(3-2*fx);fy=fy*fy*(3-2*fy);const hash=(a,b)=>{let n=Math.imul(a,374761393)+Math.imul(b,668265263);n=Math.imul(n^(n>>>13),1274126177);return ((n^(n>>>16))>>>0)/4294967295;};const a=hash(ix,iy),b=hash(ix+1,iy),c=hash(ix,iy+1),d=hash(ix+1,iy+1);return (a+(b-a)*fx)*(1-fy)+(c+(d-c)*fx)*fy;}
 function drawWater(t=0){if(!water)return;const w=water.width,h=water.height,day=state.mode==='day';ctx.clearRect(0,0,w,h);const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,day?'#b7cfcd':'#44484b');bg.addColorStop(.42,day?'#dce7e2':'#252a2e');bg.addColorStop(1,day?'#f4f6ed':'#0a0d11');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
-// Broad, uneven illumination through a continuous turbulent surface.
-ctx.globalCompositeOperation='screen';ctx.filter='none';
-for(const [position,width,strength] of [[.24,.25,.12],[.61,.38,.22],[.86,.19,.08]]){
- const x=(position+Math.sin(t*.00006+position*8)*.012)*w;
- ctx.save();ctx.translate(x,0);ctx.scale(width*w,h*.92);
- const light=ctx.createRadialGradient(0,0,0,0,0,1);light.addColorStop(0,'rgba(225,228,226,'+strength+')');light.addColorStop(1,'rgba(225,228,226,0)');ctx.fillStyle=light;ctx.fillRect(-1,-1,2,2);ctx.restore();
-}
-ctx.globalCompositeOperation='source-over';
+// Light shafts widen and soften with depth; the water surface refracts slowly.
+ctx.globalCompositeOperation='screen';ctx.filter='blur(22px)';for(let i=0;i<9;i++){const x=(i/8)*w+Math.sin(t*.00014+i*1.7)*w*.045;const light=ctx.createLinearGradient(x,0,x,h*.9);light.addColorStop(0,day?'#ffffff44':'#c3d5d72e');light.addColorStop(1,'#ffffff00');ctx.fillStyle=light;ctx.beginPath();ctx.moveTo(x-12,0);ctx.lineTo(x+30,0);ctx.lineTo(x+w*.16,h*.9);ctx.lineTo(x-w*.08,h*.9);ctx.fill();}
+ctx.filter='none';ctx.globalCompositeOperation='source-over';
 const surfaceDepth=Math.min(h*.27,230),phase=t*.000025,sw=640,sh=120;
 if(!drawWater.surface){drawWater.surface=document.createElement('canvas');drawWater.surface.width=sw;drawWater.surface.height=sh;drawWater.pixels=drawWater.surface.getContext('2d').createImageData(sw,sh);}
 const sc=drawWater.surface.getContext('2d'),pixels=drawWater.pixels;
