@@ -7,23 +7,31 @@ if(title){const wrap=document.createElement('div');wrap.className='study-title';
 if(document.body.dataset.page!=='home'){const repeats=document.createElement('div');repeats.className='organic-repeats';repeats.setAttribute('aria-hidden','true');repeats.innerHTML='<div class="organic-echo echo-middle"><svg viewBox="0 0 700 700" aria-hidden="true"><path class="organic-fill" d="M40 450 C-10 365 80 310 160 280 C240 250 205 170 285 145 C370 118 405 220 490 245 C600 277 650 340 615 415 C580 490 475 460 405 505 C325 557 335 635 230 625 C125 615 100 540 40 450 Z"/><path class="organic-line" d="M125 600 C35 545 90 430 155 375 C220 320 170 250 200 175 C230 100 325 65 390 105 C455 145 410 240 460 285 C510 330 650 300 655 390 C660 480 545 510 475 520 C380 535 390 640 300 660 C225 677 190 640 125 600 Z"/></svg></div><div class="organic-echo echo-bottom"><svg viewBox="0 0 700 700" aria-hidden="true"><path class="organic-fill" d="M40 450 C-10 365 80 310 160 280 C240 250 205 170 285 145 C370 118 405 220 490 245 C600 277 650 340 615 415 C580 490 475 460 405 505 C325 557 335 635 230 625 C125 615 100 540 40 450 Z"/><path class="organic-line" d="M125 600 C35 545 90 430 155 375 C220 320 170 250 200 175 C230 100 325 65 390 105 C455 145 410 240 460 285 C510 330 650 300 655 390 C660 480 545 510 475 520 C380 535 390 640 300 660 C225 677 190 640 125 600 Z"/></svg></div>';document.body.append(repeats);}
 let state={},raf=0;const reduced=matchMedia('(prefers-reduced-motion: reduce)');const stage=document.querySelector('#stage');let water,ctx;
 if(stage){water=document.createElement('canvas');water.id='underwater';water.setAttribute('aria-hidden','true');stage.prepend(water);ctx=water.getContext('2d');}
+// Deterministic interpolated noise: no periodic wave bands or visible tiles.
+function waterNoise(x,y){const ix=Math.floor(x),iy=Math.floor(y);let fx=x-ix,fy=y-iy;fx=fx*fx*(3-2*fx);fy=fy*fy*(3-2*fy);const hash=(a,b)=>{let n=Math.imul(a,374761393)+Math.imul(b,668265263);n=Math.imul(n^(n>>>13),1274126177);return ((n^(n>>>16))>>>0)/4294967295;};const a=hash(ix,iy),b=hash(ix+1,iy),c=hash(ix,iy+1),d=hash(ix+1,iy+1);return (a+(b-a)*fx)*(1-fy)+(c+(d-c)*fx)*fy;}
 function drawWater(t=0){if(!water)return;const w=water.width,h=water.height,day=state.mode==='day';ctx.clearRect(0,0,w,h);const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,day?'#b7cfcd':'#44484b');bg.addColorStop(.42,day?'#dce7e2':'#252a2e');bg.addColorStop(1,day?'#f4f6ed':'#0a0d11');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
-// Light shafts widen and soften with depth; the water surface refracts slowly.
-ctx.globalCompositeOperation='screen';ctx.filter='blur(22px)';for(let i=0;i<9;i++){const x=(i/8)*w+Math.sin(t*.00014+i*1.7)*w*.045;const light=ctx.createLinearGradient(x,0,x,h*.9);light.addColorStop(0,day?'#ffffff44':'#c3d5d72e');light.addColorStop(1,'#ffffff00');ctx.fillStyle=light;ctx.beginPath();ctx.moveTo(x-12,0);ctx.lineTo(x+30,0);ctx.lineTo(x+w*.16,h*.9);ctx.lineTo(x-w*.08,h*.9);ctx.fill();}
-// Continuous refracted surface rather than separate decorative shapes.
-ctx.filter='none';ctx.globalCompositeOperation='source-over';
-const surfaceDepth=Math.min(h*.25,240),phase=t*.000075;
-const sw=800,sh=140;
-if(!drawWater.surface){drawWater.surface=document.createElement('canvas');drawWater.surface.width=sw;drawWater.surface.height=sh;}
-const sc=drawWater.surface.getContext('2d'),pixels=sc.createImageData(sw,sh);
+// Broad, uneven illumination through a continuous turbulent surface.
+ctx.globalCompositeOperation='screen';ctx.filter='none';
+for(const [position,width,strength] of [[.24,.25,.12],[.61,.38,.22],[.86,.19,.08]]){
+ const x=(position+Math.sin(t*.00006+position*8)*.012)*w;
+ ctx.save();ctx.translate(x,0);ctx.scale(width*w,h*.92);
+ const light=ctx.createRadialGradient(0,0,0,0,0,1);light.addColorStop(0,'rgba(225,228,226,'+strength+')');light.addColorStop(1,'rgba(225,228,226,0)');ctx.fillStyle=light;ctx.fillRect(-1,-1,2,2);ctx.restore();
+}
+ctx.globalCompositeOperation='source-over';
+const surfaceDepth=Math.min(h*.27,230),phase=t*.000025,sw=640,sh=120;
+if(!drawWater.surface){drawWater.surface=document.createElement('canvas');drawWater.surface.width=sw;drawWater.surface.height=sh;drawWater.pixels=drawWater.surface.getContext('2d').createImageData(sw,sh);}
+const sc=drawWater.surface.getContext('2d'),pixels=drawWater.pixels;
 for(let y=0;y<sh;y++)for(let x=0;x<sw;x++){
- const u=x/sw*25,v=y/sh*15;
- const warp=Math.sin(u*.8+phase)*.8+Math.sin(u*2.1-phase*.6)*.23;
- const ridge=Math.sin(v*3+warp+Math.sin(u*1.6+v*.7+phase)*1.3);
- const detail=Math.sin(u*4.2+v*5.1-phase)*Math.sin(u*1.9-v*3.7+phase*.4);
- const n=ridge*.38+detail*.42+Math.sin(u*.6+v*1.7+phase)*.2;
- const fade=Math.pow(1-y/sh,1.9),value=Math.max(0,Math.min(255,124+n*91));
- const i=(y*sw+x)*4;pixels.data[i]=value;pixels.data[i+1]=value+3;pixels.data[i+2]=value+4;pixels.data[i+3]=Math.round(fade*205);
+ const u=x/sw*20,v=y/sh*12;
+ const warp=waterNoise(u*.45+phase,v*.5)*2;
+ const a=waterNoise(u+phase,v+warp-phase*.4);
+ const b=waterNoise(u*2.3-phase*.3,v*2.3+warp);
+ const c=waterNoise(u*5.7+phase*.4,v*5.7);
+ const n=a*.55+b*.30+c*.15;
+ const slope=waterNoise(u+phase,v+warp+.12-phase*.4)-a;
+ const fade=Math.pow(1-y/sh,2.3);
+ const value=Math.max(0,Math.min(255,(day?145:80)+(n-.5)*125+slope*390));
+ const i=(y*sw+x)*4;pixels.data[i]=value;pixels.data[i+1]=value;pixels.data[i+2]=value;pixels.data[i+3]=Math.round(fade*230);
 }
 sc.putImageData(pixels,0,0);ctx.imageSmoothingEnabled=true;ctx.drawImage(drawWater.surface,0,0,w,surfaceDepth);
 ctx.filter='none';ctx.globalCompositeOperation='source-over';for(let i=0;i<45;i++){const x=((i*137.17)%w+Math.sin(t*.0001+i)*10),y=((i*81.23+t*.002)%h);ctx.fillStyle=day?'#667b7518':'#d8ebe921';ctx.fillRect(x,y,1,1);}}
