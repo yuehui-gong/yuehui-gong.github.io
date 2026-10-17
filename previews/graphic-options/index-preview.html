@@ -325,9 +325,10 @@ function draw(now = performance.now()) {
   const fadeStep = reducedKeywordMotion.matches ? 1 : 1 - Math.exp(-elapsed / 120);
   ctx.clearRect(0, 0, W, H);
   const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
-  const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
+  const dayInk=window.previewInk||'#22364f';
+  const baseTextColor = isNight ? [255,255,255] : dayInk.match(/[a-f0-9]{2}/gi).map(n=>parseInt(n,16));
   const textColorSel = '#D85A30';
-  const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
+  const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : dayInk;
 
   const selectedReps = selectedPath();
 
@@ -527,7 +528,7 @@ function draw(now = performance.now()) {
     if (n.selected) {
       col = textColorSel;
     } else if (n._isCandidate) {
-      col = isHover ? textColorSel : (isNight ? '#fff' : '#202522');
+      col = isHover ? textColorSel : (isNight ? '#fff' : dayInk);
     } else if (isHover) {
       col = textColorHover;
     } else {
@@ -540,7 +541,7 @@ function draw(now = performance.now()) {
     ctx.textAlign = n.selected ? 'right' : 'center';
     ctx.textBaseline = 'middle';
     const displayText = n.text.toUpperCase();
-    if (photosVisible && !selectedReps.length) ctx.fillStyle = isNight ? '#fff' : '#202522';
+    if (photosVisible && !selectedReps.length) ctx.fillStyle = isNight ? '#fff' : dayInk;
     ctx.globalAlpha = n._fade;
     ctx.fillText(displayText, n.x, n.y);
     ctx.globalAlpha = 1;
