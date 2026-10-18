@@ -274,7 +274,7 @@ function arrangeFocusedKeywords(candidates, selected) {
     y: headlineRect.top - canvasRect.top + headlineRect.height / 2,
     width: headlineRect.width + 32, height: headlineRect.height + 32
   }];
-  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  ctx.font = "400 18px "+(window.previewFont||"'Space Grotesk',sans-serif");
   const selectedCenters = new Map();
   selected.forEach(n => {
     const width = ctx.measureText(n.text.toUpperCase()).width;
@@ -284,7 +284,7 @@ function arrangeFocusedKeywords(candidates, selected) {
   });
   const items = candidates.map(n => {
     const size = n.size * 1.2;
-    ctx.font = `400 ${size.toFixed(1)}px 'Space Grotesk', sans-serif`;
+    ctx.font = `400 ${size.toFixed(1)}px ${window.previewFont||"'Space Grotesk',sans-serif"}`;
     return {
       id: n.layoutId, x: n.x, y: n.y,
       width: ctx.measureText(n.text.toUpperCase()).width + 24, height: size + 20,
@@ -325,9 +325,10 @@ function draw(now = performance.now()) {
   const fadeStep = reducedKeywordMotion.matches ? 1 : 1 - Math.exp(-elapsed / 120);
   ctx.clearRect(0, 0, W, H);
   const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
-  const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
+  const dayInk=window.previewInk||'#22364f';
+  const baseTextColor = isNight ? [255,255,255] : dayInk.match(/[a-f0-9]{2}/gi).map(n=>parseInt(n,16));
   const textColorSel = '#D85A30';
-  const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
+  const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : dayInk;
 
   const selectedReps = selectedPath();
 
@@ -521,13 +522,13 @@ function draw(now = performance.now()) {
     const isHover = n === hoveredNode;
     const popMul = n._popScale || 1;
     const fs = n.selected ? 18 : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2));
-    ctx.font = '400 ' + fs.toFixed(1) + "px 'Space Grotesk', sans-serif";
+    ctx.font = '400 ' + fs.toFixed(1) + "px "+(window.previewFont||"'Space Grotesk',sans-serif");
     const photosVisible = photoLayer.classList.contains('visible');
     let col;
     if (n.selected) {
       col = textColorSel;
     } else if (n._isCandidate) {
-      col = isHover ? textColorSel : (isNight ? '#fff' : '#202522');
+      col = isHover ? textColorSel : (isNight ? '#fff' : dayInk);
     } else if (isHover) {
       col = textColorHover;
     } else {
@@ -540,7 +541,7 @@ function draw(now = performance.now()) {
     ctx.textAlign = n.selected ? 'right' : 'center';
     ctx.textBaseline = 'middle';
     const displayText = n.text.toUpperCase();
-    if (photosVisible && !selectedReps.length) ctx.fillStyle = isNight ? '#fff' : '#202522';
+    if (photosVisible && !selectedReps.length) ctx.fillStyle = isNight ? '#fff' : dayInk;
     ctx.globalAlpha = n._fade;
     ctx.fillText(displayText, n.x, n.y);
     ctx.globalAlpha = 1;
@@ -638,7 +639,7 @@ function selectKeyword(node, parent = null) {
       !projectsFor([...path.map(n => n.text), node.text]).length) return false;
   if (path.length) parent = path[path.length - 1];
   // Selected labels are right-aligned; preserve their visible center on promotion.
-  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  ctx.font = "400 18px "+(window.previewFont||"'Space Grotesk',sans-serif");
   node._w = ctx.measureText(node.text.toUpperCase()).width;
   node._h = 26;
   node.x += node._w / 2;
