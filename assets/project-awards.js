@@ -3,6 +3,14 @@
   const status=document.getElementById('awards-status');
   if(!list || !status) return;
 
+  function appendLinkArrow(link){
+    const arrow=document.createElement('span');
+    arrow.className='link-arrow';
+    arrow.setAttribute('aria-hidden','true');
+    arrow.textContent='\u00a0↗';
+    link.append(arrow);
+  }
+
   // Editorial display order; award levels break ties within the same competition.
   const recognitionOrder=[
     /peter joseph lenn/i,
@@ -71,27 +79,29 @@
           const url=new URL(award.url);
           if(url.protocol==='https:' || url.protocol==='http:') awardUrl=url.href;
         }catch{}
-        const name=document.createElement(awardUrl ? 'a' : 'span');
+        const name=document.createElement('span');
         name.className='award-name';
         const distinction=typeof award.distinction==='string' && award.distinction.trim() && award.distinction.trim()!=='-' ? award.distinction.trim() : '';
         name.textContent=distinction || award.name;
-        if(awardUrl){
-          name.href=awardUrl;
-          name.target='_blank';
-          name.rel='noopener noreferrer';
-          name.setAttribute('aria-label',[name.textContent,award.name,year,project.shortTitle || project.title].join(' — '));
-        }
         details.append(name);
-        if(distinction){
-          const organization=document.createElement('span');
+        if(distinction || awardUrl){
+          const organization=document.createElement(awardUrl ? 'a' : 'span');
           organization.className='award-organization';
           organization.textContent=award.name;
+          if(awardUrl){
+            organization.href=awardUrl;
+            organization.target='_blank';
+            organization.rel='noopener noreferrer';
+            organization.setAttribute('aria-label',[award.name,distinction,year,project.shortTitle || project.title].join(' — '));
+            appendLinkArrow(organization);
+          }
           details.append(organization);
         }
         const link=document.createElement('a');
         link.className='project-link';
         link.href='project.html?slug='+encodeURIComponent(project.slug);
         link.textContent=project.shortTitle || project.title;
+        appendLinkArrow(link);
         row.append(details,link);
         entries.append(row);
       }
