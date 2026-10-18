@@ -3,7 +3,7 @@
 const field=document.getElementById('people-field');if(!field)return;
 const read=async url=>{const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw Error(r.status);return r.json()};
 try{
-const config=await read('content/about/index.json');const studio=document.getElementById('studio-photo');studio.src=config.studio.image;studio.alt=config.studio.alt;
+const config=await read('content/about/index.json');
 const profiles=await Promise.all(config.members.map(async id=>({id,...await read('content/about/team/'+id+'/profile.json')})));
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 field.className='people-field team-ribbon';field.removeAttribute('aria-live');field.setAttribute('aria-label','Team portraits. Select a portrait to read the biography.');
@@ -14,7 +14,7 @@ const groups=[];for(let copy=0;copy<3;copy++){const group=document.createElement
 let offset=0,width=0,last=0,raf=0,visible=false,hover=false,focus=false;
 function stopped(){return reduced.matches||!visible||document.hidden||hover||focus||dialog.open}
 function draw(){track.style.transform=reduced.matches?'none':`translate3d(${-width-offset}px,0,0)`}
-function measure(){width=groups[1].getBoundingClientRect().width;offset=width?offset%width:0;draw()}
+function measure(){const portraitWidth=Math.max(180,field.clientWidth/Math.max(1,Math.min(3.2,profiles.length-1.5)));field.style.setProperty('--portrait-width',portraitWidth+'px');width=groups[1].getBoundingClientRect().width;offset=width?offset%width:0;draw()}
 function schedule(){if(stopped()){last=0;return}if(!raf)raf=requestAnimationFrame(frame)}
 function frame(now){raf=0;if(stopped()){last=0;return}offset=(offset+Math.min(last?(now-last)/1000:0,.05)*28)%width;last=now;draw();schedule()}
 field.addEventListener('pointerover',e=>{if(e.pointerType==='mouse'&&e.target.closest('.ribbon-person')){hover=true;schedule()}});field.addEventListener('pointerout',e=>{if(e.pointerType==='mouse'&&!e.relatedTarget?.closest('.ribbon-person')){hover=false;schedule()}});

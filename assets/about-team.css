@@ -22,3 +22,6 @@
 @media(max-width:700px){.people-field.team-ribbon{--portrait-width:130px;--portrait-gap:10px;padding-top:85px;padding-bottom:85px;margin-bottom:35px}.team-reader{padding:20px}}
 @media(hover:none){.ribbon-name{opacity:1;font-size:9px}.ribbon-person:active .ribbon-face{transform:scale(1.2)}.ribbon-person:active img{filter:none}}
 @media(prefers-reduced-motion:reduce){.people-field.team-ribbon{overflow-x:auto}.portrait-group[aria-hidden=true]{display:none}.portrait-track{transform:none!important;will-change:auto}.ribbon-face,.ribbon-face>img,.ribbon-name,.ribbon-caption{transition:none}.ribbon-name{opacity:1}}
+
+/* Larger portraits leave fewer than four visible, avoiding repeated people. */
+.studio + section[aria-labelledby="team-title"]{margin-top:80px}.people-field.team-ribbon{padding-top:125px;padding-bottom:130px}.ribbon-name,.ribbon-caption{font-size:12px}@media(max-width:700px){.studio + section[aria-labelledby="team-title"]{margin-top:50px}.people-field.team-ribbon{padding-top:90px;padding-bottom:95px}}
