@@ -35,3 +35,7 @@ body[data-motion=subtle][data-graphics=rectangles] .study-rectangles i:last-chil
 @keyframes tab-register{to{translate:8px 0}}
 @media(prefers-reduced-motion:reduce){body[data-graphics=rectangles] .study-rectangles i{animation:none!important}}
 @media(max-width:700px){body[data-graphics=rectangles] .study-title{min-width:0;max-width:100%}body[data-graphics=rectangles] #proj-title{overflow-wrap:anywhere}body[data-graphics=rectangles] .study-rectangles i:first-child{top:65%;height:25%}body[data-graphics=rectangles] .study-rectangles i:last-child{top:65%;height:25%}}
+
+/* Font studies affect both page type and the canvas keyword renderer. */
+body[data-font]:not([data-font=space]),body[data-font]:not([data-font=space]) :is(h1,h2,h3,p,a,button,label,li,figcaption,.bio,.role,.label,.site-brand,.section-label,.keyword,#hc-word,#hc-def,#hc-list){font-family:var(--preview-font)!important}
+body[data-font=georgia] :is(h1,h2,h3){letter-spacing:-.035em!important}body[data-font=mono] :is(h1,h2,h3){letter-spacing:-.055em!important}
