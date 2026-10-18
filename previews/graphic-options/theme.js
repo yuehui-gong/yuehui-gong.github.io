@@ -1,6 +1,6 @@
 (()=>{
 const colors={olive:'#292b22',forest:'#182b26',slate:'#242e3c',steel:'#263235'},accents={yellow:'#f3e84c',orange:'#ff9656',lime:'#c0ed65',blue:'#76b7ff',teal:'#55ddce',terracotta:'#e2895c'};
-const daylight={olive:{bg:'#f4f3e8',ink:'#303323',muted:'#656951'},forest:{bg:'#edf5ef',ink:'#173d2d',muted:'#536d5c'},slate:{bg:'#eef2f9',ink:'#22364f',muted:'#596b83'},steel:{bg:'#edf4f5',ink:'#243f46',muted:'#567279'}};
+const daylight={olive:{bg:'#ffffff',ink:'#303323',muted:'#656951'},forest:{bg:'#ffffff',ink:'#173d2d',muted:'#536d5c'},slate:{bg:'#ffffff',ink:'#22364f',muted:'#596b83'},steel:{bg:'#ffffff',ink:'#243f46',muted:'#567279'}};
 const nav=document.querySelector('.site-links');if(nav)nav.innerHTML='<a href="index.html">Landing</a><a href="about.html">About</a><a href="project.html">Project</a><button id="preview-switch" role="switch" aria-label="Daylight mode" aria-checked="false"></button>';
 document.getElementById('preview-switch')?.addEventListener('click',()=>parent.postMessage({type:'preview-toggle'},location.origin));
 const title=document.querySelector('#studio-title, #headline h1, #proj-title');
