@@ -15,3 +15,6 @@
 
 /* Tighter portrait spacing without changing portrait dimensions. */
 .people-field.team-flow{width:82%;margin-left:auto;margin-right:auto}.team-flow .team-card{width:29.27%;padding-bottom:20px}@media(max-width:700px){.people-field.team-flow{width:100%}.team-flow .team-card{width:47%}}
+
+/* Bound the motion to the actual cards, not the viewport. */
+.people-field.team-flow{min-height:0;mask-image:none;margin-top:28px;margin-bottom:55px}.team-flow .team-card{padding-top:0;padding-bottom:12px}
