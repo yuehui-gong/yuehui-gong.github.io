@@ -33,14 +33,15 @@ body[data-page="awards"] .award-year{margin:0;padding-top:24px;font-family:Georg
 .award-organization{color:var(--muted);font:10px/1.5 var(--mono);letter-spacing:.015em}
 .award-name,.award-organization,.project-link{min-width:0;overflow-wrap:anywhere}
 .project-link{justify-self:start;color:var(--muted);font-size:13px;line-height:1.65}
-.award-name,.project-link{text-underline-offset:4px;text-decoration-thickness:1px;transition:color .2s}
-.award-name:hover,.award-name:focus-visible,.project-link:hover,.project-link:focus-visible{color:var(--ink);text-decoration:underline}
-.award-name:focus-visible,.project-link:focus-visible{outline-color:var(--ink)}
+a.award-organization,.project-link{text-underline-offset:4px;text-decoration-thickness:1px;transition:color .2s}
+a.award-organization:hover,a.award-organization:focus-visible,.project-link:hover,.project-link:focus-visible{color:var(--ink);text-decoration:underline}
+a.award-organization:focus-visible,.project-link:focus-visible{outline-color:var(--ink)}
+.link-arrow{display:inline-block;white-space:nowrap;font-family:var(--mono);line-height:1}
 .awards-status{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
 footer{display:flex;justify-content:space-between;gap:20px;padding:25px 34px;border-top:1px solid var(--line);color:var(--muted);font:10px/1.7 var(--mono);letter-spacing:.04em}
 @media(max-width:900px){main{padding:52px 28px 80px}.award-year-group{grid-template-columns:60px minmax(0,1fr);column-gap:24px}.award-row{column-gap:28px}}
 @media(max-width:600px){main{padding:40px 20px 64px}.awards-heading{margin-bottom:40px}.award-year-group{grid-template-columns:46px minmax(0,1fr);column-gap:16px}.award-row{grid-template-columns:minmax(0,1fr);gap:12px;padding:20px 0}.award-name{font-size:15px}.award-organization{font-size:9px}.project-link{font-size:12px}footer{padding:22px 20px;flex-wrap:wrap}footer span:last-child{width:100%}}
-@media(prefers-reduced-motion:reduce){.award-name,.project-link{transition:none}}
+@media(prefers-reduced-motion:reduce){a.award-organization,.project-link{transition:none}}
 </style>
 </head>
 <body data-page="awards">
@@ -57,7 +58,7 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:25px 34px;bor
 </main>
 <footer><span>© 2025 Field Notes Studio</span><span>Landscape · Ecology · Research</span><span>United States — Shanghai</span></footer>
 <script src="assets/project-content.js?v=responsive-covers-1"></script>
-<script src="assets/project-awards.js?v=20261011-soil-holds"></script>
+<script src="assets/project-awards.js?v=20261018-organizer-links"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>
