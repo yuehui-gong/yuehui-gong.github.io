@@ -1,6 +1,6 @@
 @font-face{font-family:'Roboto Condensed';src:url('./fonts/RobotoCondensed.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
 body[data-page=home]{--bg:#030407;--paper:#030407;font-family:'Roboto Condensed',sans-serif}body[data-page=home].day{--bg:#fff;--paper:#fff}
 body[data-page=home] :is(h1,h2,h3,p,a,button,#hc-word,#hc-def,#hc-list){font-family:'Roboto Condensed',sans-serif!important}
-#universe-background{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}.day #universe-background{display:none}
-body[data-page=home] #headline{left:8vw;bottom:12vh;max-width:680px}body[data-page=home] #headline h1{font-size:clamp(42px,5.2vw,80px);max-width:600px;text-transform:uppercase;font-weight:700;letter-spacing:-.025em;line-height:1}body[data-page=home] #headline p{font-family:'Roboto Condensed',sans-serif}
-@media(max-width:700px){body[data-page=home] #headline{left:24px;bottom:8vh;max-width:calc(100% - 48px)}body[data-page=home] #headline h1{font-size:42px}}
+#universe-background{position:absolute;inset:0;pointer-events:none;z-index:0;background:#030407 url('./home-universe.webp') right top/cover no-repeat;opacity:.28}.day #universe-background{display:none}
+body[data-page=home] #headline{left:clamp(24px,2.5vw,48px);bottom:5vh;max-width:320px}body[data-page=home] #headline h1{font-size:clamp(24px,1.8vw,34px);text-transform:uppercase;font-weight:700;letter-spacing:-.025em;line-height:1.05}body[data-page=home] #headline p{font-family:'Roboto Condensed',sans-serif;font-size:9px;letter-spacing:.04em;margin-top:10px}
+@media(max-width:700px){body[data-page=home] #headline{left:24px;bottom:32px;max-width:calc(100% - 48px)}body[data-page=home] #headline h1{font-size:24px}}
