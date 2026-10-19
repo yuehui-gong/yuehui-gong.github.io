@@ -14,7 +14,7 @@ const groups=[];for(let copy=0;copy<3;copy++){const group=document.createElement
 let offset=0,width=0,last=0,raf=0,visible=false,hover=false,focus=false;
 function stopped(){return reduced.matches||!visible||document.hidden||hover||focus||dialog.open}
 function draw(){track.style.transform=reduced.matches?'none':`translate3d(${-width-offset}px,0,0)`}
-function measure(){const portraitWidth=Math.max(180,field.clientWidth/Math.max(1,Math.min(3.2,profiles.length-1.5)));field.style.setProperty('--portrait-width',portraitWidth+'px');width=groups[1].getBoundingClientRect().width;offset=width?offset%width:0;draw()}
+function measure(){const portraitWidth=Math.max(155,field.clientWidth/Math.max(1,Math.min(3.75,profiles.length-1.25)));field.style.setProperty('--portrait-width',portraitWidth+'px');width=groups[1].getBoundingClientRect().width;offset=width?offset%width:0;draw()}
 function schedule(){if(stopped()){last=0;return}if(!raf)raf=requestAnimationFrame(frame)}
 function frame(now){raf=0;if(stopped()){last=0;return}offset=(offset+Math.min(last?(now-last)/1000:0,.05)*28)%width;last=now;draw();schedule()}
 field.addEventListener('pointerover',e=>{if(e.pointerType==='mouse'&&e.target.closest('.ribbon-person')){hover=true;schedule()}});field.addEventListener('pointerout',e=>{if(e.pointerType==='mouse'&&!e.relatedTarget?.closest('.ribbon-person')){hover=false;schedule()}});

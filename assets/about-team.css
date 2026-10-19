@@ -14,7 +14,7 @@
 .ribbon-person{position:relative;display:block;flex:0 0 var(--portrait-width);width:var(--portrait-width);border:0;padding:0;background:none;color:var(--ink);cursor:pointer;text-align:left;overflow:visible}
 .ribbon-face{display:block;position:relative;transform:scale(1);transition:transform .3s ease;transform-origin:center}
 .ribbon-face>img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:grayscale(1) brightness(.75);transition:filter .3s ease,box-shadow .3s ease}
-.ribbon-person:hover,.ribbon-person:focus-visible{z-index:5;outline:none}.ribbon-person:hover .ribbon-face,.ribbon-person:focus-visible .ribbon-face{transform:scale(1.32)}
+.ribbon-person:hover,.ribbon-person:focus-visible{z-index:5;outline:none}.ribbon-person:hover .ribbon-face,.ribbon-person:focus-visible .ribbon-face{transform:scale(1.2)}
 .ribbon-person:hover img,.ribbon-person:focus-visible img{filter:grayscale(0) brightness(1);box-shadow:0 0 0 1px var(--ink),0 15px 40px #0005}
 .ribbon-name,.ribbon-caption{position:absolute;left:0;right:0;font:10px/1.5 var(--mono);opacity:0;transition:opacity .2s;color:var(--ink)}.ribbon-name{bottom:calc(100% + 10px)}.ribbon-caption{top:calc(100% + 10px);color:var(--muted)}
 .ribbon-person:hover .ribbon-name,.ribbon-person:hover .ribbon-caption,.ribbon-person:focus-visible .ribbon-name,.ribbon-person:focus-visible .ribbon-caption{opacity:1}
@@ -25,3 +25,6 @@
 
 /* Larger portraits leave fewer than four visible, avoiding repeated people. */
 .studio + section[aria-labelledby="team-title"]{margin-top:80px}.people-field.team-ribbon{padding-top:125px;padding-bottom:130px}.ribbon-name,.ribbon-caption{font-size:12px}@media(max-width:700px){.studio + section[aria-labelledby="team-title"]{margin-top:50px}.people-field.team-ribbon{padding-top:90px;padding-bottom:95px}}
+
+/* Break the portrait ribbon out of the text column. */
+.people-field.team-ribbon{width:94vw;max-width:none;margin-left:calc(50% - 47vw);padding-top:90px;padding-bottom:95px}@media(max-width:700px){.people-field.team-ribbon{width:calc(100vw - 24px);margin-left:calc(50% - 50vw + 12px);padding-top:70px;padding-bottom:75px}}
