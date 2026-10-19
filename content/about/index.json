@@ -7,9 +7,9 @@
   },
   "members": [
     "member-01",
-    "member-02",
-    "member-03",
     "member-04",
-    "member-05"
+    "member-05",
+    "member-03",
+    "member-02"
   ]
 }
