@@ -1,14 +1,17 @@
 {
   "id": "member-02",
-  "name": "Team Member Two",
-  "role": "Ecology & planting",
+  "name": "Yuehui Gong",
+  "role": "",
   "bio": [
-    "This profile introduces a designer interested in the relationships between plants, people, and changing environmental conditions. Their contribution to the studio brings ecological questions into the design process from the beginning, considering soil, habitat, and maintenance alongside spatial character. They enjoy translating complex research into planting strategies that can be discussed, tested, and adapted with others."
+    "Yuehui Gong is a designer whose work is grounded in curiosity toward place, process, and the relationships between people and their environments. She believes design is not a fixed product, but an ongoing process of engaging with the movement of water, the growth of plants, the traces of history, and the everyday ways people inhabit a landscape. Yuehui sees landscape as an adaptive, layered, and open-ended system that can hold memory, support ecology, and create more generous forms of public life.",
+    "Yuehui received her Master of Landscape Architecture from the University of Pennsylvania Weitzman School of Design, with a Certificate in GIS and Spatial Analysis, where she was awarded ASLA certificate of merit and the Robert M. Hanna Prize in Design. She earned her Bachelor of Urban and Rural Planning from Southeast University.",
+    "Her professional experience spans landscape architecture practice in the United States, including SWA, SGA, and SCAPE, where she has contributed to work across public realm design, waterfront resilience, ecological restoration, geospatial analysis, and community-centered planning.",
+    "Yuehui’s award-winning work has been recognized by LA+, World Landscape Architecture, and TerraViva Competitions, reflecting her continued interest in design as a way to connect ecological processes, cultural narratives, and lived experience."
   ],
-  "portraitA": "a.svg",
-  "portraitAlt": "Portrait to follow",
-  "portraitB": "b.svg",
-  "bCaption": "A personal interest, a field note, or an unexpected side. More to follow.",
-  "bLabel": "Personal archive",
-  "bAlt": "B-side image placeholder"
+  "portraitA": "portrait-yuehui.webp",
+  "portraitAlt": "Portrait of Yuehui Gong",
+  "portraitB": "",
+  "bCaption": "",
+  "bLabel": "",
+  "bAlt": ""
 }

@@ -28,3 +28,9 @@
 
 /* Break the portrait ribbon out of the text column. */
 .people-field.team-ribbon{width:94vw;max-width:none;margin-left:calc(50% - 47vw);padding-top:90px;padding-bottom:95px}@media(max-width:700px){.people-field.team-ribbon{width:calc(100vw - 24px);margin-left:calc(50% - 50vw + 12px);padding-top:70px;padding-bottom:75px}}
+
+/* Compact biographies remain visible; the strip accepts wheel and drag input. */
+.team-ribbon{touch-action:pan-y}.ribbon-person{align-self:flex-start;user-select:none}.ribbon-face{transform-origin:center bottom}.ribbon-person>.ribbon-name{position:static;display:block;opacity:1;font:400 16px/1.4 'Space Grotesk',sans-serif;margin:18px 0 8px}.ribbon-bio{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font:12px/1.7 'Space Grotesk',sans-serif;color:var(--muted);min-height:5.1em}.ribbon-person>.ribbon-caption{position:static;display:block;opacity:1;margin-top:12px;font-size:10px;text-decoration:underline;text-underline-offset:3px}.team-ribbon.is-dragging,.team-ribbon.is-dragging .ribbon-person{cursor:grabbing}.team-ribbon.is-dragging .ribbon-face{transform:none}.people-field.team-ribbon{padding-top:135px;padding-bottom:65px}@media(max-width:700px){.people-field.team-ribbon{padding-top:85px;padding-bottom:45px}.ribbon-person>.ribbon-name{font-size:14px}.ribbon-bio{font-size:11px}}
+
+/* A single set of capped portraits: no duplicate people on wide screens. */
+.portrait-track{margin-inline:auto}.people-field.team-ribbon{padding-top:100px}.portrait-group{padding-right:0}@media(max-width:700px){.people-field.team-ribbon{padding-top:70px}}
