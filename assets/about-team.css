@@ -37,3 +37,6 @@
 
 /* Move each unique profile through a circular track, even on wide displays. */
 .portrait-track{position:relative;width:100%;margin:0}.portrait-group{display:block}.ribbon-person{position:absolute;left:0;top:0;will-change:transform}.team-ribbon{cursor:grab}@media(prefers-reduced-motion:reduce){.portrait-track{width:max-content;height:auto!important}.portrait-group{display:flex}.ribbon-person{position:relative;transform:none!important;will-change:auto}}
+
+/* Keep a fixed close gap rather than distributing portraits across a wide monitor. */
+.people-field.team-ribbon{margin-left:50%;translate:-50% 0}

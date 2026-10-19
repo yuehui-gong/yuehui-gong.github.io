@@ -6,7 +6,7 @@ try{
 const config=await read('content/about/index.json');
 const profiles=await Promise.all(config.members.map(async id=>({id,...await read('content/about/team/'+id+'/profile.json')})));
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-field.className='people-field team-ribbon';field.removeAttribute('aria-live');field.setAttribute('aria-label','Team portraits. Select a portrait to read the biography.');
+field.className='people-field team-ribbon';field.style.maxWidth=(profiles.length*304-280*1.2-24)+'px';field.removeAttribute('aria-live');field.setAttribute('aria-label','Team portraits. Select a portrait to read the biography.');
 const track=document.createElement('div');track.className='portrait-track';
 const dialog=document.createElement('dialog');dialog.className='team-reader';const close=document.createElement('button');close.type='button';close.textContent='Close';const body=document.createElement('div');dialog.append(close,body);document.body.append(dialog);close.onclick=()=>dialog.close();dialog.onclick=e=>{if(e.target===dialog)dialog.close()};
 function open(p){body.replaceChildren();const h=document.createElement('h3');h.id='team-reader-name';h.textContent=p.name;const bio=document.createElement('div');bio.className='team-bio';for(const value of p.bio||[]){const paragraph=document.createElement('p');paragraph.textContent=value;bio.append(paragraph)}body.append(h,bio);dialog.setAttribute('aria-labelledby',h.id);dialog.showModal()}
@@ -17,7 +17,7 @@ function stopped(){return manual||!!drag||reduced.matches||!visible||document.hi
 const cards=[...groups[0].children];
 function wrap(value){return ((value%width)+width)%width}
 function draw(){track.style.transform='none';cards.forEach((card,i)=>{card.style.transform=reduced.matches?'none':`translate3d(${wrap(i*step-offset+portraitWidth*1.2)-portraitWidth*1.2}px,0,0)`})}
-function measure(){portraitWidth=Math.min(280,Math.max(160,field.clientWidth/3.75));field.style.setProperty('--portrait-width',portraitWidth+'px');width=Math.max(profiles.length*(portraitWidth+12),field.clientWidth+portraitWidth*1.4+24);step=width/profiles.length;track.style.height=reduced.matches?'auto':Math.ceil(Math.max(...cards.map(c=>c.offsetHeight)))+'px';offset=wrap(offset);draw()}
+function measure(){portraitWidth=Math.min(280,Math.max(160,field.clientWidth/3.75));field.style.setProperty('--portrait-width',portraitWidth+'px');step=portraitWidth+24;width=profiles.length*step;track.style.height=reduced.matches?'auto':Math.ceil(Math.max(...cards.map(c=>c.offsetHeight)))+'px';offset=wrap(offset);draw()}
 function schedule(){if(stopped()){last=0;return}if(!raf)raf=requestAnimationFrame(frame)}
 function frame(now){raf=0;if(stopped()){last=0;return}offset=wrap(offset+Math.min(last?(now-last)/1000:0,.05)*28);last=now;draw();schedule()}
 field.addEventListener('pointerover',e=>{if(e.pointerType==='mouse'&&e.target.closest('.ribbon-person')){hover=true;schedule()}});field.addEventListener('pointerout',e=>{if(e.pointerType==='mouse'&&!e.relatedTarget?.closest('.ribbon-person')){hover=false;schedule()}});
