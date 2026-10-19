@@ -39,3 +39,8 @@ body[data-motion=subtle][data-graphics=rectangles] .study-rectangles i:last-chil
 /* Font studies affect both page type and the canvas keyword renderer. */
 body[data-font]:not([data-font=space]),body[data-font]:not([data-font=space]) :is(h1,h2,h3,p,a,button,label,li,figcaption,.bio,.role,.label,.site-brand,.section-label,.keyword,#hc-word,#hc-def,#hc-list){font-family:var(--preview-font)!important}
 body[data-font=georgia] :is(h1,h2,h3){letter-spacing:-.035em!important}body[data-font=mono] :is(h1,h2,h3){letter-spacing:-.055em!important}
+
+@font-face{font-family:'Roboto Condensed';src:url('./fonts/RobotoCondensed.ttf') format('truetype');font-style:normal;font-weight:100 900;font-display:swap}
+body[data-font=condensed] :is(h1,h2,h3){text-transform:uppercase;font-weight:700!important;letter-spacing:-.025em!important;line-height:1!important}
+body[data-graphics=universe] #underwater{display:block}body[data-page=home][data-graphics=universe] #headline{left:8vw;bottom:12vh;max-width:680px}body[data-page=home][data-graphics=universe] #headline h1{font-size:clamp(42px,5.2vw,80px);max-width:600px}body[data-graphics=universe] #headline p{color:#b5bdca}body[data-graphics=universe] .site-header{background:#030407!important}
+@media(max-width:700px){body[data-page=home][data-graphics=universe] #headline{left:24px;bottom:8vh;max-width:calc(100% - 48px)}body[data-page=home][data-graphics=universe] #headline h1{font-size:42px}}
