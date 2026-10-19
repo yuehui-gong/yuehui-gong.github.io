@@ -67,7 +67,7 @@ html,body,#stage{background:#000;color:#eee}
 .project-photo img{opacity:.55}
 </style>
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/home-cursor.css"></head>
+<link rel="stylesheet" href="assets/home-cursor.css"><link rel="stylesheet" href="assets/landing-universe.css"></head>
 <body data-page="home">
 
 <div id="stage">
@@ -280,7 +280,7 @@ function arrangeFocusedKeywords(candidates, selected) {
     y: headlineRect.top - canvasRect.top + headlineRect.height / 2,
     width: headlineRect.width + 32, height: headlineRect.height + 32
   }];
-  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  ctx.font = "400 18px 'Roboto Condensed', sans-serif";
   const selectedCenters = new Map();
   selected.forEach(n => {
     const width = ctx.measureText(n.text.toUpperCase()).width;
@@ -290,7 +290,7 @@ function arrangeFocusedKeywords(candidates, selected) {
   });
   const items = candidates.map(n => {
     const size = n.size * 1.2;
-    ctx.font = `400 ${size.toFixed(1)}px 'Space Grotesk', sans-serif`;
+    ctx.font = `400 ${size.toFixed(1)}px 'Roboto Condensed', sans-serif`;
     return {
       id: n.layoutId, x: n.x, y: n.y,
       width: ctx.measureText(n.text.toUpperCase()).width + 24, height: size + 20,
@@ -527,7 +527,7 @@ function draw(now = performance.now()) {
     const isHover = n === hoveredNode;
     const popMul = n._popScale || 1;
     const fs = n.selected ? 18 : (isHover ? n.size*1.2 : n.size * Math.min(popMul,1.2));
-    ctx.font = '400 ' + fs.toFixed(1) + "px 'Space Grotesk', sans-serif";
+    ctx.font = '400 ' + fs.toFixed(1) + "px 'Roboto Condensed', sans-serif";
     const photosVisible = photoLayer.classList.contains('visible');
     let col;
     if (n.selected) {
@@ -644,7 +644,7 @@ function selectKeyword(node, parent = null) {
       !projectsFor([...path.map(n => n.text), node.text]).length) return false;
   if (path.length) parent = path[path.length - 1];
   // Selected labels are right-aligned; preserve their visible center on promotion.
-  ctx.font = "400 18px 'Space Grotesk', sans-serif";
+  ctx.font = "400 18px 'Roboto Condensed', sans-serif";
   node._w = ctx.measureText(node.text.toUpperCase()).width;
   node._h = 26;
   node.x += node._w / 2;
@@ -747,5 +747,6 @@ function updateSelectionControls() {
 })();
 </script>
 <script src="assets/site.js"></script>
+<script src="assets/landing-universe.js"></script>
 <script src="assets/home-cursor.js"></script></body>
 </html>
