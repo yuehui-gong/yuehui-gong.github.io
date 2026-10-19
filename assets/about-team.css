@@ -34,3 +34,6 @@
 
 /* A single set of capped portraits: no duplicate people on wide screens. */
 .portrait-track{margin-inline:auto}.people-field.team-ribbon{padding-top:100px}.portrait-group{padding-right:0}@media(max-width:700px){.people-field.team-ribbon{padding-top:70px}}
+
+/* Move each unique profile through a circular track, even on wide displays. */
+.portrait-track{position:relative;width:100%;margin:0}.portrait-group{display:block}.ribbon-person{position:absolute;left:0;top:0;will-change:transform}.team-ribbon{cursor:grab}@media(prefers-reduced-motion:reduce){.portrait-track{width:max-content;height:auto!important}.portrait-group{display:flex}.ribbon-person{position:relative;transform:none!important;will-change:auto}}
