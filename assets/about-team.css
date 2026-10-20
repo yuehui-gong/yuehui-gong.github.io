@@ -40,3 +40,13 @@
 
 /* Keep a fixed close gap rather than distributing portraits across a wide monitor. */
 .people-field.team-ribbon{margin-left:50%;translate:-50% 0}
+
+/* Give the team more of the About page, keeping the full studio statement. */
+body[data-page=about] .studio{grid-template-columns:29% minmax(0,1fr);gap:44px;padding-top:48px}
+body[data-page=about] .studio h1{font-size:clamp(60px,6.4vw,92px);margin-top:22px}
+body[data-page=about] .studio-copy{padding-top:22px}
+body[data-page=about] .studio-copy p{line-height:1.7;margin-bottom:18px}
+body[data-page=about] .studio + section[aria-labelledby="team-title"]{margin-top:44px}
+body[data-page=about] .team-heading{margin-bottom:12px}
+body[data-page=about] .people-field.team-ribbon{padding-top:64px;padding-bottom:72px;margin-bottom:40px}
+@media(max-width:600px){body[data-page=about] .studio{grid-template-columns:1fr;gap:12px;padding-top:28px}body[data-page=about] .studio h1{font-size:60px;margin:12px 0}body[data-page=about] .studio-copy{padding-top:0}body[data-page=about] .people-field.team-ribbon{padding-top:50px;padding-bottom:45px}}
