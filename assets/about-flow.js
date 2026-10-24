@@ -18,7 +18,7 @@ const article=document.createElement('article');article.className='editorial-per
 const img=new Image();img.src='content/about/team/'+p.id+'/'+p.portraitA;img.alt=p.portraitAlt||p.name;img.decoding='async';img.loading='lazy';
 const name=document.createElement('h3');name.textContent=p.name;
 article.append(img,name);
-if(p.role){const role=document.createElement('p');role.className='editorial-role';role.textContent=p.role;article.append(role);}
+
 const bio=document.createElement('div');bio.className='editorial-bio';
 const paragraph=document.createElement('p');paragraph.textContent=(p.bio||[])[0]||'';bio.append(paragraph);
 const more=document.createElement('button');more.type='button';more.className='editorial-read';more.textContent='Read biography';more.setAttribute('aria-label','Read biography of '+p.name);more.addEventListener('click',()=>showBiography(p));article.append(bio,more);field.append(article);
