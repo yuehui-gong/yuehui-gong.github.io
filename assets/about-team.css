@@ -71,3 +71,8 @@ body[data-page=about] .people-field.team-ribbon{padding-top:64px;padding-bottom:
 .editorial-bio p{font:13px/1.8 'Space Grotesk',sans-serif;color:var(--muted);margin:0 0 18px}
 @media(max-width:700px){.people-field.team-editorial{grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 24px}.editorial-person:nth-child(n){grid-column:auto}}
 @media(max-width:480px){.people-field.team-editorial{grid-template-columns:1fr;gap:48px}.editorial-person{max-width:360px;width:100%;margin-inline:auto}}
+
+.editorial-bio{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;overflow:hidden}
+.editorial-bio p{margin-bottom:0}
+.editorial-read{display:inline-block;margin-top:14px;padding:0;border:0;background:none;color:var(--muted);font:10px/1.6 var(--mono);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.editorial-read:hover{color:var(--ink)}
