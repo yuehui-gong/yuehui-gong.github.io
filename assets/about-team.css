@@ -50,3 +50,14 @@ body[data-page=about] .studio + section[aria-labelledby="team-title"]{margin-top
 body[data-page=about] .team-heading{margin-bottom:12px}
 body[data-page=about] .people-field.team-ribbon{padding-top:64px;padding-bottom:72px;margin-bottom:40px}
 @media(max-width:600px){body[data-page=about] .studio{grid-template-columns:1fr;gap:12px;padding-top:28px}body[data-page=about] .studio h1{font-size:60px;margin:12px 0}body[data-page=about] .studio-copy{padding-top:0}body[data-page=about] .people-field.team-ribbon{padding-top:50px;padding-bottom:45px}}
+
+/* Fixed, aligned team cards: desktop three columns, tablet two, phone one. */
+.people-field.team-static{display:block;width:100%;margin:40px 0 80px;overflow:visible;isolation:isolate}
+.team-static .portrait-track{width:100%;height:auto;position:static;transform:none;will-change:auto}
+.team-static .portrait-group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 32px;padding:0}
+.team-static .ribbon-person{position:relative;left:auto;top:auto;width:100%;transform:none;will-change:auto;align-self:start}
+.team-static .ribbon-face,.team-static .ribbon-person:hover .ribbon-face,.team-static .ribbon-person:focus-visible .ribbon-face{transform:none}
+.team-static .ribbon-face>img{aspect-ratio:4/5;object-fit:cover}
+.team-static .ribbon-person:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+@media(max-width:950px){.team-static .portrait-group{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 24px}}
+@media(max-width:540px){.team-static .portrait-group{grid-template-columns:1fr;gap:40px}.people-field.team-static{margin:28px 0 50px}.team-static .ribbon-person{max-width:360px;margin-inline:auto}}
