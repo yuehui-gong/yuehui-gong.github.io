@@ -65,7 +65,7 @@ body[data-page=about] .people-field.team-ribbon{padding-top:64px;padding-bottom:
 /* Original editorial arrangement with deliberate empty columns. */
 .people-field.team-editorial{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:90px 46px;width:100%;margin:40px 0 100px;align-items:start}
 .editorial-person{min-width:0}.editorial-person:nth-child(5n+1){grid-column:1}.editorial-person:nth-child(5n+2){grid-column:3}.editorial-person:nth-child(5n+3){grid-column:2}.editorial-person:nth-child(5n+4){grid-column:3}.editorial-person:nth-child(5n+5){grid-column:1}
-.editorial-person>img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.editorial-person>img{display:block;width:80%;max-width:280px;aspect-ratio:1;object-fit:cover}
 .editorial-person h3{font:400 18px/1.35 'Space Grotesk',sans-serif;margin:14px 0 7px;color:var(--ink)}
 .editorial-role{font:10px/1.7 var(--mono);color:var(--muted);margin:0 0 18px}
 .editorial-bio p{font:13px/1.8 'Space Grotesk',sans-serif;color:var(--muted);margin:0 0 18px}
