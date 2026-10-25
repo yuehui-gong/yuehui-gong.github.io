@@ -121,3 +121,9 @@ body[data-page=about] .team-heading h2{text-align:left}
 
 /* Let the narrative fill the same right-hand column as the portraits. */
 body[data-page=about] .studio-copy{max-width:none;width:100%;min-width:0}
+
+/* Keep closed biography panels from adding empty scroll space below the footer. */
+.editorial-bio{display:none}
+@media(hover:hover){.editorial-person:hover .editorial-bio,.editorial-person:focus-within .editorial-bio{display:block}}
+body[data-page=about] section[aria-labelledby="team-title"]{padding-bottom:32px}
+body[data-page=about] footer{padding-top:16px;padding-bottom:16px}
