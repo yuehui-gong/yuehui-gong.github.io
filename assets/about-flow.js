@@ -17,11 +17,11 @@ for(const p of profiles){
 const article=document.createElement('article');article.className='editorial-person';
 const img=new Image();img.src='content/about/team/'+p.id+'/'+p.portraitA;img.alt=p.portraitAlt||p.name;img.decoding='async';img.loading='lazy';
 const name=document.createElement('h3');name.textContent=p.name;
-article.append(img,name);
+const portrait=document.createElement('button');portrait.type='button';portrait.className='team-cutout';portrait.setAttribute('aria-label','Read biography of '+p.name);portrait.addEventListener('click',()=>showBiography(p));portrait.append(img);article.append(portrait,name);
 
 const bio=document.createElement('div');bio.className='editorial-bio';
-const paragraph=document.createElement('p');paragraph.textContent=(p.bio||[])[0]||'';bio.append(paragraph);
-const more=document.createElement('button');more.type='button';more.className='editorial-read';more.textContent='Read biography';more.setAttribute('aria-label','Read biography of '+p.name);more.addEventListener('click',()=>showBiography(p));article.append(bio,more);field.append(article);
+bio.id='bio-'+p.id;portrait.setAttribute('aria-describedby',bio.id);for(const text of p.bio||[]){const paragraph=document.createElement('p');paragraph.textContent=text;bio.append(paragraph);}bio.tabIndex=0;bio.setAttribute('role','region');bio.setAttribute('aria-label',p.name+' biography');
+article.append(bio);field.append(article);
 }
 }catch(error){console.error(error);field.textContent='Team profiles could not load. Please refresh.'}
 })();
