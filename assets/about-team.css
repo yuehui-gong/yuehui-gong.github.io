@@ -94,3 +94,14 @@ body[data-page=about] .team-heading h2{font-size:clamp(30px,3vw,46px);text-align
 .editorial-bio p{font-size:13px;line-height:1.75;margin:0 0 14px;color:var(--muted)}
 @media(max-width:700px){body[data-page=about] section[aria-labelledby="team-title"]{padding:36px 20px 48px}.people-field.team-editorial{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 20px}.editorial-person:nth-child(n){grid-column:auto}.editorial-person:nth-child(even) .editorial-bio{left:auto;right:0}}
 @media(hover:none){.editorial-person:hover .editorial-bio,.editorial-person:focus-within .editorial-bio{display:none}}
+
+/* Reference arrangement: two upper corners, center, then two lower portraits. */
+@media(min-width:701px){
+.people-field.team-editorial{grid-template-columns:repeat(3,minmax(0,220px));justify-content:center;gap:28px 40px}
+.editorial-person:nth-child(1){grid-area:1 / 1}
+.editorial-person:nth-child(2){grid-area:1 / 3}
+.editorial-person:nth-child(3){grid-area:2 / 2}
+.editorial-person:nth-child(4){grid-area:3 / 3}
+.editorial-person:nth-child(5){grid-area:3 / 2}
+.editorial-person:nth-child(2) .editorial-bio,.editorial-person:nth-child(4) .editorial-bio{left:auto;right:0}
+}
