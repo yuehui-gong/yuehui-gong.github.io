@@ -108,3 +108,13 @@ body[data-page=about] .team-heading h2{font-size:clamp(30px,3vw,46px);text-align
 
 /* A subtle portrait backdrop, coordinated with both site themes. */
 html.day .team-cutout{background:#eeeeeb}
+
+/* Align team title with the studio name and profiles with the narrative column. */
+body[data-page=about] section[aria-labelledby="team-title"]{padding-left:0;padding-right:0}
+body[data-page=about] .team-heading{justify-content:flex-start}
+body[data-page=about] .team-heading h2{text-align:left}
+@media(min-width:701px){
+.people-field.team-editorial{width:calc(71% - 44px);margin-left:calc(29% + 44px);grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 24px;justify-content:start}
+}
+@media(min-width:701px) and (max-width:800px){.people-field.team-editorial{width:calc(71% - 44px);margin-left:calc(29% + 44px)}}
+@media(max-width:700px){.people-field.team-editorial{width:100%;margin-left:0}}
