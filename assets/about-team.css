@@ -118,3 +118,6 @@ body[data-page=about] .team-heading h2{text-align:left}
 }
 @media(min-width:701px) and (max-width:800px){.people-field.team-editorial{width:calc(71% - 44px);margin-left:calc(29% + 44px)}}
 @media(max-width:700px){.people-field.team-editorial{width:100%;margin-left:0}}
+
+/* Let the narrative fill the same right-hand column as the portraits. */
+body[data-page=about] .studio-copy{max-width:none;width:100%;min-width:0}
