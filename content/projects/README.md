@@ -14,4 +14,4 @@ An optional `introduction` on a `layout` group inserts text immediately before t
 
 For The Latent Ground (`YG_261002_Berlin_2026`), the two original uploads are preserved in `originals/`. The website uses resized JPEGs outside that subfolder. The perspective sheet is displayed in full, without cropping; the master plan retains its original proportions.
 
-Still to confirm for The Latent Ground: collaborator names, image credits, and preferred project category (currently “Landscape design”). The map coordinates are an approximate site position.
+The Latent Ground collaborator names are confirmed. Image credits are optional and omitted when not supplied. The project category is currently “Landscape design”. The map coordinates are an approximate site position.
