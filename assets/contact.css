@@ -2,7 +2,7 @@
 /* Warm field highlights, including the browser's autofill state. */
 input,textarea{--field-fill:color-mix(in srgb,var(--accent) 16%,var(--bg));caret-color:var(--accent)}
 input:focus,textarea:focus{background-color:var(--field-fill);border-bottom-color:var(--accent)}
-input::selection,textarea::selection{background:#e2895c66;color:var(--ink)}
+input::selection,textarea::selection{background:#c0ed6566;color:var(--ink)}
 input:autofill{background-color:var(--field-fill);color:var(--ink)}
 input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus{ -webkit-box-shadow:0 0 0 1000px var(--field-fill) inset; -webkit-text-fill-color:var(--ink);caret-color:var(--accent)}
 

@@ -16,7 +16,7 @@
 .comic-reader *::after { box-sizing: border-box; }
 .comic-reader [hidden] { display: none !important; }
 .comic-reader:focus { outline: none; }
-.comic-reader:focus-visible { outline: 1px solid var(--accent, #e2895c); outline-offset: 6px; }
+.comic-reader:focus-visible { outline: 1px solid var(--accent, #c0ed65); outline-offset: 6px; }
 
 .comic-reader-stage {
   position: relative;
@@ -127,7 +127,7 @@
 }
 .comic-reader-button svg { width: 18px; height: 18px; display: block; fill: none; stroke: currentColor; }
 .comic-reader-button:hover:not(:disabled) { background: #ffffff12; }
-.comic-reader-button:focus-visible { outline: 2px solid var(--accent, #e2895c); outline-offset: 2px; }
+.comic-reader-button:focus-visible { outline: 2px solid var(--accent, #c0ed65); outline-offset: 2px; }
 .comic-reader-button:disabled { opacity: .24; cursor: default; }
 .comic-reader-previous,
 .comic-reader-next {
@@ -195,7 +195,7 @@
 .comic-reader-progress::-moz-range-progress,
 .comic-reader-zoom-range::-moz-range-progress { height: 3px; border-radius: 2px; background: #dedede; }
 .comic-reader-progress:focus-visible,
-.comic-reader-zoom-range:focus-visible { outline: 2px solid var(--accent, #e2895c); outline-offset: 2px; }
+.comic-reader-zoom-range:focus-visible { outline: 2px solid var(--accent, #c0ed65); outline-offset: 2px; }
 .comic-reader-progress:disabled,
 .comic-reader-zoom-range:disabled { opacity: .35; cursor: default; }
 
@@ -234,7 +234,7 @@
 .comic-reader-thumbnail[aria-current="true"],
 .comic-reader-thumbnail[aria-pressed="true"],
 .comic-reader-thumbnail.is-active { border-color: #ffffffb3; color: #fff; }
-.comic-reader-thumbnail:focus-visible { outline: 2px solid var(--accent, #e2895c); outline-offset: 2px; }
+.comic-reader-thumbnail:focus-visible { outline: 2px solid var(--accent, #c0ed65); outline-offset: 2px; }
 .comic-reader-thumbnails[aria-expanded="true"] { background: #ffffff14; }
 
 .comic-reader-status,

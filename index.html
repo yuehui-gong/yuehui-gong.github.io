@@ -34,7 +34,7 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
 .hc-divider-label{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb}
 #hc-list{display:flex;flex-direction:column;gap:5px;font-family:'Space Grotesk',sans-serif}
 
-#clear-btn{position:absolute;right:32px;bottom:36px;z-index:30;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#D85A30;cursor:pointer;padding:10px;background:var(--bg);border:1px solid var(--line);transition:opacity .2s;font-weight:500;opacity:.75}
+#clear-btn{position:absolute;right:32px;bottom:36px;z-index:30;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#c0ed65;cursor:pointer;padding:10px;background:var(--bg);border:1px solid var(--line);transition:opacity .2s;font-weight:500;opacity:.75}
 #clear-btn:hover{opacity:1}
 
 
@@ -332,7 +332,7 @@ function draw(now = performance.now()) {
   ctx.clearRect(0, 0, W, H);
   const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
   const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
-  const textColorSel = '#D85A30';
+  const textColorSel = '#c0ed65';
   const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
 
   const selectedReps = selectedPath();
