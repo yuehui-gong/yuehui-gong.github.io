@@ -29,3 +29,8 @@ html body[data-page=home] #headline .studio-statement{font-weight:400!important}
 /* Reading and metadata roles shared across editorial pages. */
 html body[data-page] .sidebar .project-story p{font-size:var(--type-body)!important;line-height:var(--type-leading)!important}
 html body[data-page] :is(.label,.loc,.eyebrow,.award-organization,.cap-label){font-size:11px;line-height:1.6;font-weight:400}
+
+/* Consistent secondary text roles, including dynamically loaded biographies. */
+html body[data-page] :is(.editorial-bio p,.team-reader .team-bio p,.project-link,.award-name,.meta-list .value){font-size:var(--type-body)!important;line-height:var(--type-leading)!important;font-weight:400!important}
+html body[data-page] :is(.label,.loc,.eyebrow,.award-organization,.cap-label,.team-role,figcaption){font-size:11px!important;line-height:1.6!important;font-weight:400!important;letter-spacing:.025em!important;text-transform:none!important}
+html body[data-page] :is(.editorial-person h3,.team-reader h3){font-size:22px!important;font-weight:500!important;line-height:1.25!important;letter-spacing:-.02em!important}
