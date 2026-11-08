@@ -4,3 +4,8 @@
 
 /* Shared day/night switch; preserves the existing theme behaviour. */
 #site-theme{position:relative;flex-shrink:0;width:52px;height:28px;padding:0;border-radius:30px;background:color-mix(in srgb,var(--ink) 12%,var(--bg));font-size:0}#site-theme:after{content:'';position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .2s}#site-theme[aria-checked=true]:after{transform:translateX(24px)}#site-theme[aria-checked=true]{background:color-mix(in srgb,var(--ink) 15%,var(--bg))}@media(prefers-reduced-motion:reduce){#site-theme:after{transition:none}}
+
+/* Consistent text selection in both themes, including form controls. */
+::selection{background:#c0ed65!important;color:#202522!important;text-shadow:none!important}
+::-moz-selection{background:#c0ed65!important;color:#202522!important;text-shadow:none!important}
+input::selection,textarea::selection{background:#c0ed65!important;color:#202522!important}
