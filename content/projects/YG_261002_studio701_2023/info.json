@@ -12,7 +12,9 @@
   },
   "year": 2022,
   "type": "Academic project",
-  "collaborators": [],
+  "collaborators": [
+    "Yuehui Gong"
+  ],
   "awards": [],
   "keywords": [
     "Emotion",

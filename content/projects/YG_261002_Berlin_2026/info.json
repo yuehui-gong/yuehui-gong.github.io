@@ -12,7 +12,12 @@
   },
   "year": 2026,
   "type": "Landscape design",
-  "collaborators": [],
+  "collaborators": [
+    "Yuehui Gong",
+    "Jiewen Hu",
+    "Zicheng (Kai) Zhao",
+    "Chaowu Li"
+  ],
   "awards": [
     {
       "name": "Peter Joseph Lenné Prize",
