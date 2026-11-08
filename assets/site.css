@@ -9,3 +9,9 @@
 ::selection{background:#c0ed65!important;color:#202522!important;text-shadow:none!important}
 ::-moz-selection{background:#c0ed65!important;color:#202522!important;text-shadow:none!important}
 input::selection,textarea::selection{background:#c0ed65!important;color:#202522!important}
+
+/* Shared sans-serif typography; landing statement retains its own typeface. */
+:root{--mono:'Space Grotesk',sans-serif}
+html body :is(h1,h2,h3,h4,h5,h6,p,a,button,input,textarea,select,label,span,div,li,dt,dd,small,figcaption){font-family:'Space Grotesk',sans-serif!important}
+body[data-page=home] #headline .studio-statement{font-family:'Roboto Condensed',sans-serif!important;font-size:clamp(20px,1.8vw,30px);font-weight:700;line-height:1.08;letter-spacing:-.025em;text-transform:uppercase;margin-top:12px}
+body[data-page=home] #headline h1{font-size:clamp(26px,2.2vw,40px);font-weight:500;line-height:1.05;letter-spacing:-.04em;text-transform:none}
