@@ -12,8 +12,10 @@ html:root body[data-page] :is(#headline h1,#headline .studio-statement,#studio-t
 html:root body[data-page] :is(#studio-title,#contact-title,.awards-title){font-size:${s.title}!important;text-transform:${c==='uppercase'?'uppercase':'none'}!important}
 html:root body[data-page] :is(.team-heading h2,#inquiries-title){font-size:${s.section}!important;text-transform:${c==='uppercase'?'uppercase':'none'}!important}
 html:root body[data-page] :is(.studio-copy p,.contact-intro p,.team-bio p,.project-story p,.contact-locations p,.editorial-bio p,.project-link,.award-name,.meta-list .value){font-size:${s.body}!important;line-height:${s.leading}!important}
-html:root body[data-page] #proj-title{font-size:${s.project}!important;line-height:1.15!important;text-transform:none!important;font-weight:500!important}
+html:root body[data-page] #proj-title{font-size:${s.project}!important;line-height:1.15!important;text-transform:${c==='uppercase'?'uppercase':'none'}!important;font-weight:500!important}
 html:root body[data-page] :is(.eyebrow,.label,.loc,.award-organization,.cap-label){font-size:11px!important;letter-spacing:${c==='uppercase'?'.08em':'0'}!important;text-transform:${c==='uppercase'?'uppercase':'none'}!important}
+/* One case policy for all heading and label roles, including async content. */
+html:root body[data-page] :is(h1,h2,h3,h4,h5,h6,.card-name,.project-link,.award-name,.location-name,.marker-label,.next-label,.label,.loc,.eyebrow,.cap-label,.award-organization,.site-links a,.team-role,figcaption){text-transform:${c==='uppercase'?'uppercase':'none'}!important}
 </style>`;text=text.replace('</head>',style+'</head>');frame.srcdoc=text;document.querySelector('#copy').textContent='Copy preview link';}
 for(const control of [page,font,hierarchy,letterCase])control.onchange=render;
 frame.onload=()=>{const doc=frame.contentDocument;if(!doc)return;doc.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a)return;const url=new URL(a.href);const target=url.pathname.split('/').pop().replace('.html','');if(url.origin===location.origin&&[...page.options].some(o=>o.value===target)){e.preventDefault();page.value=target;render();}});if(letterCase.value==='sentence'){for(const [selector,title] of [['#studio-title','Value'],['#team-title','Our team']]){const e=doc.querySelector(selector);if(e)e.textContent=title;}}};
