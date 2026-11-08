@@ -15,3 +15,9 @@ input::selection,textarea::selection{background:#c0ed65!important;color:#202522!
 html body :is(h1,h2,h3,h4,h5,h6,p,a,button,input,textarea,select,label,span,div,li,dt,dd,small,figcaption){font-family:'Space Grotesk',sans-serif!important}
 body[data-page=home] #headline .studio-statement{font-family:'Roboto Condensed',sans-serif!important;font-size:clamp(20px,1.8vw,30px);font-weight:700;line-height:1.08;letter-spacing:-.025em;text-transform:uppercase;margin-top:12px}
 body[data-page=home] #headline h1{font-size:clamp(26px,2.2vw,40px);font-weight:500;line-height:1.05;letter-spacing:-.04em;text-transform:none}
+
+/* Shared editorial type scale: page titles, section headings, and reading text. */
+:root{--type-title:clamp(52px,6.5vw,94px);--type-body:15px;--type-leading:1.85}
+html body[data-page] :is(.awards-title,#studio-title,#contact-title){font-family:'Space Grotesk',sans-serif!important;font-size:var(--type-title)!important;font-weight:400!important;line-height:1.05!important;letter-spacing:-.055em!important}
+html body[data-page] :is(.team-heading h2,.office h2,#inquiries-title){font-family:'Space Grotesk',sans-serif!important;font-size:32px!important;font-weight:400!important;line-height:1.15!important;letter-spacing:-.035em!important}
+html body[data-page] :is(.studio-copy p,.studio-copy p:first-child,.contact-intro p,.team-bio p,.bio p,.office-intro,.office-details p:not(.section-label),.contact-locations p,.narrative p){font-size:var(--type-body)!important;line-height:var(--type-leading)!important;letter-spacing:0!important}
