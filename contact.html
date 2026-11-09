@@ -1,16 +1,26 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact — Field Notes Studio</title><meta name="description" content="Project inquiries, research, and collaborations with Field Notes Studio. Philadelphia &amp; New York, USA. Shanghai &amp; Suzhou, China.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/contact.css?v=20261108-footer"><link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"></head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/site.css?v=aligned-titles-20261108"><link rel="stylesheet" href="assets/contact.css?v=20261108-footer"><link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"></head>
 <body data-page="contact"><a class="skip" href="#main">Skip to contact details</a><header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
 <main id="main">
-<section class="contact-intro" aria-labelledby="contact-title"><h1 id="contact-title">Contact us<span>.</span></h1><p>We welcome conversations about landscapes, ecological research, and the places we share. Tell us what you are thinking about, where you are working, or what you would like to explore together.</p></section>
-<section class="contact-details" aria-labelledby="inquiries-title"><div class="contact-column"><h2 id="inquiries-title">Get in touch<span>.</span></h2><dl class="contact-address"><div><dt>Email</dt><dd>To follow</dd></div><div><dt>LinkedIn</dt><dd>To follow</dd></div><div><dt>Social media</dt><dd>To follow</dd></div></dl>
+<section class="contact-intro" aria-labelledby="contact-title"><h1 id="contact-title">Contact us<span>.</span></h1></section>
+<section class="contact-details" aria-label="Contact details"><div class="contact-column"><dl class="contact-address"><div><dt>Email</dt><dd>To follow</dd></div><div><dt>Social media</dt><dd>To follow</dd></div></dl>
 <form aria-label="Contact form preview" onsubmit="return false">
 <div class="name-fields"><label>First name <span>(required)</span><input name="firstName" autocomplete="given-name" required></label><label>Last name <span>(required)</span><input name="lastName" autocomplete="family-name" required></label></div>
 <label>Email <span>(required)</span><input name="email" type="email" autocomplete="email" required></label>
 <label>Message <span>(required)</span><textarea name="message" rows="4" required></textarea></label>
 <button class="send" type="button" disabled aria-describedby="form-note">Send ↗</button><p id="form-note">Form preview — sending will be available soon.</p>
-</form></div><figure class="contact-image"><div role="img" aria-label="Studio image placeholder"></div><figcaption>Studio image to follow</figcaption></figure></section>
+</form></div><div class="contact-map" role="region" aria-label="Team locations: Suzhou, Philadelphia, New York, and Shanghai">
+<div class="contact-map-viewport" tabindex="0" aria-label="Map. Use arrow keys to move, plus or minus to zoom, and zero to reset.">
+<svg class="contact-map-drawing" viewBox="0 0 540 540" aria-hidden="true">
+<defs><pattern id="contact-map-grid" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#222a22"/></pattern><pattern id="contact-map-land-dots" width="3.6" height="3.6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".68" fill="#777e75" opacity=".85"/></pattern></defs>
+<rect width="100%" height="100%" fill="url(#contact-map-grid)"/>
+<g class="contact-map-land"><use href="assets/contact-map.svg?v=world-1#world-land" fill="#151a16"/><use href="assets/contact-map.svg?v=world-1#world-land" fill="url(#contact-map-land-dots)"/></g>
+<g class="contact-map-pins"/></svg>
+<div class="contact-map-labels"></div>
+</div>
+<span class="contact-map-caption" aria-hidden="true">Locations</span>
+</div></section>
 <section class="contact-locations" aria-labelledby="location-title"><h2 id="location-title">Location</h2><p>Philadelphia &amp; New York, USA<br>Shanghai &amp; Suzhou, China</p></section>
 </main>
-<footer><span>© 2026 Field Notes Studio</span></footer><script src="assets/site.js"></script><script src="assets/home-cursor.js?v=shared-point-1"></script></body></html>
+<footer><span>© 2026 Field Notes Studio</span></footer><script src="assets/site.js"></script><script src="assets/contact-map.js?v=20261108-no-controls"></script><script src="assets/home-cursor.js?v=shared-point-1"></script></body></html>

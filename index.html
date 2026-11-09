@@ -34,7 +34,7 @@ nav{position:absolute;top:0;left:0;right:0;height:58px;display:flex;justify-cont
 .hc-divider-label{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb}
 #hc-list{display:flex;flex-direction:column;gap:5px;font-family:'Space Grotesk',sans-serif}
 
-#clear-btn{position:absolute;right:32px;bottom:36px;z-index:30;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#D85A30;cursor:pointer;padding:10px;background:var(--bg);border:1px solid var(--line);transition:opacity .2s;font-weight:500;opacity:.75}
+#clear-btn{position:absolute;right:32px;bottom:36px;z-index:30;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#c0ed65;cursor:pointer;padding:10px;background:var(--bg);border:1px solid var(--line);transition:opacity .2s;font-weight:500;opacity:.75}
 #clear-btn:hover{opacity:1}
 
 
@@ -66,7 +66,7 @@ html,body,#stage{background:#000;color:#eee}
 .project-photo{background:#000}
 .project-photo img{opacity:.55}
 </style>
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=type-scale-20261107">
 <link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"><link rel="stylesheet" href="assets/landing-universe.css?v=round-stars-1"></head>
 <body data-page="home">
 
@@ -76,8 +76,8 @@ html,body,#stage{background:#000;color:#eee}
   <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
 
   <div id="headline">
-    <h1 id="hl-h1">We read the land<br>before we touch<br>it.</h1>
-    <p id="hl-p">Landscape design &nbsp;·&nbsp; Ecology &nbsp;·&nbsp; Research</p>
+    <h1 id="hl-h1">Field Notes Studio</h1>
+    <p id="hl-p" class="studio-statement">We read the land<br>before we touch it.</p>
   </div>
 
   <div id="project-photos" aria-label="Matching projects" inert></div>
@@ -332,7 +332,7 @@ function draw(now = performance.now()) {
   ctx.clearRect(0, 0, W, H);
   const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
   const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
-  const textColorSel = '#D85A30';
+  const textColorSel = '#c0ed65';
   const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
 
   const selectedReps = selectedPath();

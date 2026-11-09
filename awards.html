@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=aligned-titles-20261108">
 <style>
 *{box-sizing:border-box}
 body{margin:0;-webkit-font-smoothing:antialiased}
@@ -21,18 +21,21 @@ main{width:100%;max-width:1440px;min-height:calc(100svh - 150px);margin:0 auto;p
 .awards-heading{margin-bottom:56px}
 .awards-kicker{display:flex;align-items:center;gap:8px;margin:0 0 18px;color:var(--muted);font:9px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase}
 .awards-kicker::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--accent)}
-body[data-page="awards"] .awards-title{margin:0;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(64px,8.5vw,116px);font-weight:400;line-height:1;letter-spacing:-.055em}
+body[data-page="awards"] .awards-title{margin:0;font-family:'Space Grotesk',sans-serif!important;font-size:clamp(64px,8.5vw,116px);font-weight:400;line-height:1;letter-spacing:-.055em}
 .awards-list{width:100%}
 .award-year-group{display:grid;grid-template-columns:76px minmax(0,1fr);column-gap:32px;border-top:1px solid var(--line)}
-body[data-page="awards"] .award-year{margin:0;padding-top:24px;font-family:Georgia,'Times New Roman',serif!important;font-size:16px;font-weight:400;line-height:1.3;font-variant-numeric:tabular-nums}
+body[data-page="awards"] .award-year{margin:0;padding-top:24px;font-family:'Space Grotesk',sans-serif!important;font-size:16px;font-weight:400;line-height:1.3;font-variant-numeric:tabular-nums}
 .award-entries{list-style:none;margin:0;padding:0}
 .award-row{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px 48px;align-items:start;min-height:86px;padding:22px 0}
 .award-row + .award-row{border-top:1px solid var(--line)}
 .award-details{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:8px}
-.award-name{font:16px/1.35 Georgia,'Times New Roman',serif}
+.award-name{font:16px/1.35 'Space Grotesk',sans-serif}
 .award-organization{color:var(--muted);font:10px/1.5 var(--mono);letter-spacing:.015em}
 .award-name,.award-organization,.project-link{min-width:0;overflow-wrap:anywhere}
 .project-link{justify-self:start;color:var(--muted);font-size:13px;line-height:1.65}
+/* Keep the award announcement at reading size and the project link secondary. */
+#awards-list a.award-organization{font-size:var(--type-body,15px)!important}
+#awards-list .project-link{font-size:11px!important}
 a.award-organization,.project-link{text-underline-offset:4px;text-decoration-thickness:1px;transition:color .2s}
 a.award-organization:hover,a.award-organization:focus-visible,.project-link:hover,.project-link:focus-visible{color:var(--ink);text-decoration:underline}
 a.award-organization:focus-visible,.project-link:focus-visible{outline-color:var(--ink)}
@@ -49,8 +52,8 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:25px 34px;bor
 <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html" aria-current="page">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
 <main id="main" aria-labelledby="page-title">
 <div class="awards-heading">
-<p class="awards-kicker">Selected recognition</p>
-<h1 id="page-title" class="awards-title">Awards</h1>
+
+<h1 id="page-title" class="awards-title">Awards<span class="name-dot">.</span></h1>
 </div>
 <p id="awards-status" class="awards-status" role="status">Loading awards…</p>
 <div id="awards-list" class="awards-list"></div>

@@ -12,7 +12,12 @@
   },
   "year": 2026,
   "type": "Landscape design",
-  "collaborators": [],
+  "collaborators": [
+    "Yuehui Gong",
+    "Jiewen Hu",
+    "Zicheng (Kai) Zhao",
+    "Kwan Yu (Lilian) Chung"
+  ],
   "awards": [
     {
       "name": "Peter Joseph Lenné Prize",
@@ -107,7 +112,6 @@
       "displayScale": 2
     }
   ],
-  "imageCredits": "",
   "color": "#8a9b78",
   "storyTitle": "An unfinished ecological performance",
   "aliases": [

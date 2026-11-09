@@ -285,7 +285,7 @@
 @media(max-width:600px){.collection-natural-exhibition{width:100%;gap:12px;padding:24px 0;}.collection-natural-exhibition .exhibition-column{gap:12px;}}
 
 </style>
-<link rel="stylesheet" href="assets/site.css"><style>
+<link rel="stylesheet" href="assets/site.css?v=type-scale-20261107"><style>
 :root{--sidebar-w:clamp(480px,38vw,640px)}
 .project-body{grid-template-columns:var(--sidebar-w) minmax(0,1fr)}
 .sidebar{padding-left:40px;padding-right:48px}
@@ -659,7 +659,7 @@ function renderProject(p){
     if(heroWrap) heroWrap.style.aspectRatio='auto';
     if(hero){hero.style.height='auto';hero.alt=record.heroAlt;}
     const story=document.createElement('section'); story.className='project-story';
-    const h=document.createElement('h3'); h.textContent=p.storyTitle || 'Project narrative'; story.append(h);
+    const h=document.createElement('h3'); h.textContent=p.storyTitle && !p.title.endsWith(p.storyTitle) ? p.storyTitle : 'Project narrative'; story.append(h);
     p.story.forEach(text=>{const paragraph=document.createElement('p');paragraph.textContent=text;story.append(paragraph)});
     if(p.narrativePlacement==='sidebar'){
       const sidebar=document.querySelector('.sidebar');

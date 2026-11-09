@@ -1,6 +1,6 @@
 {
   "slug": "YG_261002_studio701_2023",
-  "title": "Sentiment – Sedimentation",
+  "title": "Sentiment – Sedimentation: A Limestone Quarry Landscape Lifecycle with Emotional Sedimentation",
   "shortTitle": "Sentiment – Sedimentation",
   "location": {
     "city": "Lisbon",
@@ -12,7 +12,9 @@
   },
   "year": 2022,
   "type": "Academic project",
-  "collaborators": [],
+  "collaborators": [
+    "Yuehui Gong"
+  ],
   "awards": [],
   "keywords": [
     "Emotion",
