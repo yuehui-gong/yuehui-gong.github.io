@@ -33,6 +33,9 @@ body[data-page="awards"] .award-year{margin:0;padding-top:24px;font-family:'Spac
 .award-organization{color:var(--muted);font:10px/1.5 var(--mono);letter-spacing:.015em}
 .award-name,.award-organization,.project-link{min-width:0;overflow-wrap:anywhere}
 .project-link{justify-self:start;color:var(--muted);font-size:13px;line-height:1.65}
+/* Keep the award announcement at reading size and the project link secondary. */
+#awards-list a.award-organization{font-size:var(--type-body,15px)!important}
+#awards-list .project-link{font-size:11px!important}
 a.award-organization,.project-link{text-underline-offset:4px;text-decoration-thickness:1px;transition:color .2s}
 a.award-organization:hover,a.award-organization:focus-visible,.project-link:hover,.project-link:focus-visible{color:var(--ink);text-decoration:underline}
 a.award-organization:focus-visible,.project-link:focus-visible{outline-color:var(--ink)}
