@@ -24,3 +24,8 @@ input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus
 .contact-map button:focus-visible{outline:1px solid #c0ed65;outline-offset:-2px}
 
 body[data-page=contact] footer{justify-content:center;align-items:center;text-align:center}
+
+/* Keep the location details directly beneath their map. */
+.contact-map-column{min-width:0;width:100%;max-width:560px}
+.contact-map-column .contact-locations{border-top:0;padding:24px 0 0}
+.contact-map-column .contact-locations h2{margin-bottom:12px}
