@@ -11,3 +11,5 @@ input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus
 .contact-locations h2{font:10px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 20px;}
 .contact-locations p{font-size:18px;line-height:1.9;margin:0;}
 @media(max-width:600px){.contact-locations{padding:28px 0 40px;}.contact-locations p{font-size:16px;}}
+
+body[data-page=contact] footer{justify-content:center;align-items:center;text-align:center}
