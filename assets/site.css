@@ -34,3 +34,12 @@ html body[data-page] :is(.label,.loc,.eyebrow,.award-organization,.cap-label){fo
 html body[data-page] :is(.editorial-bio p,.team-reader .team-bio p,.project-link,.award-name,.meta-list .value){font-size:var(--type-body)!important;line-height:var(--type-leading)!important;font-weight:400!important}
 html body[data-page] :is(.label,.loc,.eyebrow,.award-organization,.cap-label,.team-role,figcaption){font-size:11px!important;line-height:1.6!important;font-weight:400!important;letter-spacing:.025em!important;text-transform:none!important}
 html body[data-page] :is(.editorial-person h3,.team-reader h3){font-size:22px!important;font-weight:500!important;line-height:1.25!important;letter-spacing:-.02em!important}
+/* Shared title origin across About, Awards, and Contact. */
+html body:is([data-page=about],[data-page=awards],[data-page=contact]) main{width:100%;max-width:1440px;margin:0 auto;padding:80px 64px 96px;box-sizing:border-box}
+html body[data-page=about] .studio{padding-top:0!important;align-items:start}
+html body[data-page=about] .studio-copy{padding-top:0}
+html body[data-page=contact] .contact-intro{padding-top:0!important;align-items:start;grid-template-columns:44% minmax(0,1fr);gap:50px}
+html body[data-page] :is(#studio-title,#contact-title,.awards-title){margin:0!important}
+html body[data-page] :is(#studio-title,#contact-title,.awards-title) span{color:var(--accent)}
+@media(max-width:800px){html body:is([data-page=about],[data-page=awards],[data-page=contact]) main{padding:56px 28px 72px}}
+@media(max-width:600px){html body:is([data-page=about],[data-page=awards],[data-page=contact]) main{padding:40px 22px 56px}html body[data-page=contact] .contact-intro{grid-template-columns:1fr;gap:32px}}
