@@ -453,8 +453,6 @@
 
       <div class="eyebrow" id="proj-eyebrow"></div>
       <h2 id="proj-title"></h2>
-      <div class="label location-label">Location</div>
-      <div class="loc" id="proj-loc"></div>
       <div class="meta-list" id="proj-meta"></div>
 
       <div id="proj-desc-wrap"><p id="proj-desc"></p></div>
@@ -523,6 +521,7 @@ const project = {
   eyebrow: record.type,
   location: record.loc,
   meta: [
+    { label: "Location", value: escapeProjectText(record.loc || "—") },
     { label: "Collaborator", value: record.collaborator || "—" },
     ...(!record.hideAward && (record.awards?.length || (record.award && !["—", "-"].includes(record.award.trim()))) ? [{ label: "Award", value: record.awards?.length ? record.awards.map(a => ({ text: `${a.name}${a.year ? ` ${a.year}` : ""} — ${a.distinction}`, url: a.url })) : record.award || "—" }] : []),
     { label: "Year",         value: record.year },
@@ -629,7 +628,6 @@ function renderProject(p){
   if((new URLSearchParams(location.search).get('layout') || record.layoutVariant)==='stacked-materiality') document.getElementById('proj-content').classList.add('materiality-stacked');
   document.getElementById("proj-eyebrow").textContent = p.eyebrow;
   document.getElementById("proj-title").textContent = p.title;
-  document.getElementById("proj-loc").textContent = p.location;
   document.getElementById("proj-desc").textContent = p.description;
   document.getElementById("proj-meta").innerHTML = renderMeta(p.meta);
   if(record.webLink?.url){
