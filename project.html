@@ -440,7 +440,25 @@
 @media(max-width:600px){.unfold-page .project-collection{margin-top:24px;gap:12px;}}
 </style>
 <link rel="stylesheet" href="assets/comic-reader.css?v=20261011-reader-layout-2">
-<link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"></head>
+<link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1">
+<style>
+/* Shared project text layout, independent of each project's graphic layout. */
+body[data-page=project]{--project-text-width:clamp(340px,30vw,560px);--project-text-inset:clamp(24px,2.5vw,48px)}
+body[data-page=project] .project-body{grid-template-columns:var(--project-text-width) minmax(0,1fr)}
+body[data-page=project] .sidebar{min-width:0;padding:40px var(--project-text-inset) 32px;overflow-y:auto;scrollbar-width:thin}
+body[data-page=project] .sidebar>*{flex-shrink:0;max-width:100%}
+body[data-page=project] .sidebar h2{font-size:22px;line-height:1.25;overflow-wrap:anywhere}
+body[data-page=project] .sidebar .meta-list{width:100%;gap:10px}
+body[data-page=project] .sidebar .meta-item{max-width:100%;overflow-wrap:anywhere}
+body[data-page=project] .sidebar .project-story,body[data-page=project] #proj-desc-wrap{width:100%;max-width:none;padding-top:72px;text-align:left}
+body[data-page=project] .sidebar .project-story p,body[data-page=project] #proj-desc-wrap p{font-size:14px;line-height:1.8;margin:0 0 18px;color:var(--ink)}
+@media(max-width:900px){
+ body[data-page=project] .project-body{grid-template-columns:minmax(0,1fr)}
+ body[data-page=project] .sidebar{position:relative;top:auto;height:auto;overflow:visible;border-right:0;border-bottom:1px solid var(--line);padding:32px 24px}
+ body[data-page=project] .sidebar .project-story,body[data-page=project] #proj-desc-wrap{max-width:68ch;align-self:center;opacity:1!important}
+}
+</style>
+</head>
 <body data-page="project" class="day">
 
   <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></header>
