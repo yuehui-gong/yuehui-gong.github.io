@@ -67,3 +67,7 @@ html:root body[data-page]:is(body,#main-type-system) #site-theme{font-size:0!imp
 html:root body[data-page=projects]:is(body,#main-type-system) .caption .name{font-size:26px!important;font-weight:500!important;line-height:1.25!important}
 html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:22px!important;font-weight:600!important;line-height:1.25!important}
 @media(max-width:640px){html:root body[data-page=projects]:is(body,#main-type-system) .caption .name{font-size:18px!important}}
+/* Quiet copyright text and more prominent individual project titles. */
+html:root body[data-page]:is(body,#main-type-system) footer,html:root body[data-page]:is(body,#main-type-system) footer :is(span,p,a,small){font-size:10px!important;line-height:1.6!important;font-weight:400!important}
+html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:clamp(30px,2.8vw,42px)!important;line-height:1.1!important;font-weight:400!important;letter-spacing:-.035em!important;margin-bottom:28px}
+@media(max-width:600px){html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:30px!important}}
