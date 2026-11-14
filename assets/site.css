@@ -63,3 +63,7 @@ html:root body[data-page]:is(body,#main-type-system) :is(.meta-list .label,.awar
 html:root body[data-page]:is(body,#main-type-system) :is(strong,b){font-weight:700!important}
 html:root body[data-page]:is(body,#main-type-system) .card-frame::after{font-size:var(--type-body)!important}
 html:root body[data-page]:is(body,#main-type-system) #site-theme{font-size:0!important}
+/* Restore project-name hierarchy independently of the 15px reading size. */
+html:root body[data-page=projects]:is(body,#main-type-system) .caption .name{font-size:26px!important;font-weight:500!important;line-height:1.25!important}
+html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:22px!important;font-weight:600!important;line-height:1.25!important}
+@media(max-width:640px){html:root body[data-page=projects]:is(body,#main-type-system) .caption .name{font-size:18px!important}}
