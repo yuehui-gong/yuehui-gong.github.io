@@ -52,3 +52,14 @@ html:root{--mono:'DM Sans',sans-serif}
 html:root body,html:root body[data-page]:is(body,#main-type-system) *,html:root body[data-page]:is(body,#main-type-system) *::before,html:root body[data-page]:is(body,#main-type-system) *::after{font-family:'DM Sans',sans-serif!important;text-transform:none!important}
 html:root body[data-page=project]:is(body,#main-type-system) .meta-list .label{font-size:11px!important;line-height:1.6!important;font-weight:400!important;letter-spacing:.08em!important;text-transform:uppercase!important}
 html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{font-size:14px!important;line-height:1.8!important;font-weight:400!important;letter-spacing:0!important}
+/* Two-size text system: responsive display titles and 15px supporting text. */
+html:root{--type-body:15px;--type-leading:1.8;--weight-light:300;--weight-regular:400;--weight-bold:700}
+html:root body[data-page]:is(body,#main-type-system) :is(p,a,button,input,textarea,select,label,span,div,li,dt,dd,small,figcaption,h1,h2,h3,h4,h5,h6){font-size:var(--type-body)!important}
+html:root body[data-page]:is(body,#main-type-system) :is(#studio-title,#contact-title,.awards-title){font-size:var(--type-title)!important;font-weight:400!important;line-height:1.05!important}
+html:root body[data-page]:is(body,#main-type-system) :is(#studio-title,#contact-title,.awards-title) span{font-size:inherit!important}
+html:root body[data-page=home]:is(body,#main-type-system) #headline h1{font-size:clamp(34px,3.4vw,56px)!important}
+html:root body[data-page]:is(body,#main-type-system) :is(.team-heading h2,#inquiries-title,.editorial-person h3,#proj-title,.project-story h3,.project-end h3){font-size:var(--type-body)!important;font-weight:700!important}
+html:root body[data-page]:is(body,#main-type-system) :is(.meta-list .label,.award-year,.team-role){font-size:var(--type-body)!important;font-weight:300!important}
+html:root body[data-page]:is(body,#main-type-system) :is(strong,b){font-weight:700!important}
+html:root body[data-page]:is(body,#main-type-system) .card-frame::after{font-size:var(--type-body)!important}
+html:root body[data-page]:is(body,#main-type-system) #site-theme{font-size:0!important}
