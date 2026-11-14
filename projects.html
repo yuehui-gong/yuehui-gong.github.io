@@ -381,7 +381,7 @@ html.day .globe-wrap .marker .ring{border-color:#c0ed65;}
   var locationName = document.getElementById('locationName');
   var locationGps = document.getElementById('locationGps');
 
-  var CARD_W = 200, GAP = 44, STEP = CARD_W + GAP;
+  var CARD_W = 200, GAP = 60, STEP = CARD_W + GAP;
 
   projects.forEach(function(p, i){
     var card = document.createElement('button');
@@ -417,7 +417,7 @@ html.day .globe-wrap .marker .ring{border-color:#c0ed65;}
   function layoutPadding(){
     var oldStep = STEP;
     CARD_W = parseFloat(getComputedStyle(track.firstElementChild).width);
-    GAP = CARD_W<180 ? 26 : 44; STEP = CARD_W + GAP;
+    GAP = CARD_W<180 ? 36 : 60; STEP = CARD_W + GAP;
     currentScroll = (currentScroll || 0) / oldStep * STEP; targetScroll = (targetScroll || 0) / oldStep * STEP;
     maxScroll = (projects.length-1)*STEP;
     padLeft = Math.max(0, (track.clientWidth - CARD_W) / 2);
