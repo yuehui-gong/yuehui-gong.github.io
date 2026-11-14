@@ -14,7 +14,11 @@
   "year": 2025,
   "type": "Landscape competition proposal",
   "competition": "ASLA Emerging Professional Competition 2025",
-  "collaborators": [],
+  "collaborators": [
+    "Jiewen Hu",
+    "Zicheng (Kai) Zhao",
+    "Lillian (Kuanyu) Zhung"
+  ],
   "awards": [],
   "keywords": [
     "liminality",
