@@ -333,7 +333,6 @@ html.day .globe-wrap .marker .ring{border-color:#c0ed65;}
 </div>
 
 <div class="hud-location" id="hudLocation" aria-live="polite">
-  <div class="location-label">PROJECT LOCATION</div>
   <div class="location-name" id="locationName"></div>
   <div class="location-gps" id="locationGps"></div>
 </div>
@@ -392,7 +391,6 @@ html.day .globe-wrap .marker .ring{border-color:#c0ed65;}
     card.setAttribute('aria-label', p.name + ', ' + p.city);
     var img = p.img;
     card.innerHTML =
-      '<p class="card-name">'+p.name+'</p>' +
       '<p class="card-type">'+p.type+'</p>' +
       '<span class="card-frame"><img src="'+img+'" alt="'+p.name+'" loading="lazy"></span>';
     var cover=card.querySelector('img');
