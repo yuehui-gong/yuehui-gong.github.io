@@ -43,3 +43,6 @@ html body[data-page] :is(#studio-title,#contact-title,.awards-title){margin:0!im
 html body[data-page] :is(#studio-title,#contact-title,.awards-title) span{color:var(--accent)}
 @media(max-width:800px){html body:is([data-page=about],[data-page=awards],[data-page=contact]) main{padding:56px 28px 72px}}
 @media(max-width:600px){html body:is([data-page=about],[data-page=awards],[data-page=contact]) main{padding:40px 22px 56px}html body[data-page=contact] .contact-intro{grid-template-columns:1fr;gap:32px}}
+/* Shared footer only for Awards, About, and Contact. */
+html body:is([data-page=awards],[data-page=about],[data-page=contact]) .editorial-footer{display:flex;flex-direction:row;justify-content:center;align-items:center;width:100%;box-sizing:border-box;border-top:1px solid var(--line);padding:26px 24px;margin:0;text-align:center;color:var(--muted);font-size:10px;line-height:1.8;letter-spacing:0}
+@media(max-width:600px){html body:is([data-page=awards],[data-page=about],[data-page=contact]) .editorial-footer{padding:22px 24px}}
