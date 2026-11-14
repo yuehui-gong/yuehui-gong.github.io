@@ -46,3 +46,9 @@ html body[data-page] :is(#studio-title,#contact-title,.awards-title) span{color:
 /* Shared footer only for Awards, About, and Contact. */
 html body:is([data-page=awards],[data-page=about],[data-page=contact]) .editorial-footer{display:flex;flex-direction:row;justify-content:center;align-items:center;width:100%;box-sizing:border-box;border-top:1px solid var(--line);padding:26px 24px;margin:0;text-align:center;color:var(--muted);font-size:10px;line-height:1.8;letter-spacing:0}
 @media(max-width:600px){html body:is([data-page=awards],[data-page=about],[data-page=contact]) .editorial-footer{padding:22px 24px}}
+
+/* Main typography: DM Sans; sentence case with uppercase project metadata labels. */
+html:root{--mono:'DM Sans',sans-serif}
+html:root body,html:root body[data-page]:is(body,#main-type-system) *,html:root body[data-page]:is(body,#main-type-system) *::before,html:root body[data-page]:is(body,#main-type-system) *::after{font-family:'DM Sans',sans-serif!important;text-transform:none!important}
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .label{font-size:11px!important;line-height:1.6!important;font-weight:400!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{font-size:14px!important;line-height:1.8!important;font-weight:400!important;letter-spacing:0!important}
