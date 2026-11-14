@@ -71,3 +71,4 @@ html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-si
 html:root body[data-page]:is(body,#main-type-system) footer,html:root body[data-page]:is(body,#main-type-system) footer :is(span,p,a,small){font-size:10px!important;line-height:1.6!important;font-weight:400!important}
 html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:clamp(30px,2.8vw,42px)!important;line-height:1.1!important;font-weight:400!important;letter-spacing:-.035em!important;margin-bottom:28px}
 @media(max-width:600px){html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:30px!important}}
+html:root body[data-page=projects]:is(body,#main-type-system) .marker-label{font-size:12px!important;font-weight:300!important;line-height:1.35!important;letter-spacing:0!important;text-transform:none!important;padding:3px 6px;top:3px}
