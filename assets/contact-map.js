@@ -39,13 +39,13 @@
     });
     labels.append(label);
     const marker = svg('g',{class:'contact-map-pin'});
-    const leader = svg('line',{stroke:'#83a94d','stroke-width':.75,opacity:.85});
+    const leader = svg('line',{class:'contact-map-leader','stroke-width':.75,opacity:.85});
     marker.append(leader);
     const rings = svg('g',{});
     rings.append(
-      svg('circle',{r:9,fill:'none',stroke:'#b9ec68',opacity:.3}),
-      svg('circle',{r:5,fill:'#0a1009',stroke:'#b9ec68'}),
-      svg('circle',{r:2,fill:'#c0ed65'})
+      svg('circle',{class:'contact-map-ring',r:9,fill:'none',opacity:.3}),
+      svg('circle',{class:'contact-map-ring contact-map-ring-inner',r:5}),
+      svg('circle',{class:'contact-map-center',r:2})
     );
     marker.append(rings);
     pins.append(marker);
