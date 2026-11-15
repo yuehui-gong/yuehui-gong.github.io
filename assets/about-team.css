@@ -100,10 +100,10 @@ body[data-page=about] .team-heading h2{font-size:clamp(30px,3vw,46px);text-align
 .people-field.team-editorial{grid-template-columns:repeat(3,minmax(0,220px));justify-content:center;gap:28px 40px}
 .editorial-person:nth-child(1){grid-area:1 / 1}
 .editorial-person:nth-child(2){grid-area:1 / 3}
-.editorial-person:nth-child(3){grid-area:2 / 1}
-.editorial-person:nth-child(4){grid-area:3 / 3}
+.editorial-person:nth-child(3){grid-area:2 / 3}
+.editorial-person:nth-child(4){grid-area:2 / 2}
 .editorial-person:nth-child(5){grid-area:3 / 2}
-.editorial-person:nth-child(2) .editorial-bio,.editorial-person:nth-child(4) .editorial-bio{left:auto;right:0}
+.editorial-person:nth-child(2) .editorial-bio,.editorial-person:nth-child(3) .editorial-bio{left:auto;right:0}
 }
 
 /* A subtle portrait backdrop, coordinated with both site themes. */
