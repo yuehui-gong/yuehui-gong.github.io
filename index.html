@@ -65,6 +65,7 @@ html,body,#stage{background:#000;color:#eee}
 .hc-divider-line{background:#444}.hc-divider-label{color:#999}
 .project-photo{background:#000}
 .project-photo img{opacity:.55}
+@media(max-width:640px){#stage{height:100svh;min-height:560px}html,body{overflow:auto}#clear-btn{right:12px;bottom:12px}}
 </style>
 <link rel="stylesheet" href="assets/site.css?v=title-footer-20261114">
 <link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"><link rel="stylesheet" href="assets/landing-universe.css?v=round-stars-1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"></head>
@@ -325,6 +326,126 @@ function arrangeFocusedKeywords(candidates, selected) {
   });
 }
 
+  function drawFocusedConnection(from, to, emphasis) {
+    const opacity = ((isNight ? .06 : .04) + emphasis * .5) * Math.min(from._fade, to._fade);
+    ctx.beginPath();
+    ctx.moveTo(from.selected ? from.x - from._w / 2 : from.x, from.y);
+    ctx.lineTo(to.selected ? to.x - to._w / 2 : to.x, to.y);
+    ctx.strokeStyle = isNight ? `rgba(255,255,255,${opacity})` : `rgba(32,37,34,${opacity})`;
+    ctx.lineWidth = 1 + emphasis * 1.25;
+    ctx.stroke();
+  }
+
+/* Mobile: 25 freely drifting labels, with collision envelopes for the full pulse. */
+const mobileKeywords = window.matchMedia('(max-width: 640px)');
+const MOBILE_KEYWORD_LIMIT = 25;
+let mobileSlots = [], mobileKey = '', mobileNextSwap = 0, mobileLastTime = 0;
+function drawMobileKeywords(now, selected) {
+  const rect = canvas.getBoundingClientRect();
+  const top = document.querySelector('.site-header').getBoundingClientRect().bottom - rect.top + 18;
+  const bottom = document.getElementById('headline').getBoundingClientRect().top - rect.top - 18;
+  const rows = Math.max(1, Math.ceil(Math.min(MOBILE_KEYWORD_LIMIT,nodes.length)/2));
+  const cellW = (W-24)/2, cellH = Math.max(1,(bottom-top)/rows);
+  const dt = Math.min(.04,Math.max(0,(now-mobileLastTime)/1000)); mobileLastTime=now;
+  const motion = !reducedKeywordMotion.matches;
+  const eligible = selected.length ? [...selected,...nodes.filter(n=>!n.selected && selected.length < MAX_KEYWORD_LEVELS && projectsFor([...selected.map(s=>s.text),n.text]).length)] : nodes;
+  const key = [W,H,...selected.map(n=>n.layoutId)].join(':');
+  function measure(node,scale=1) {
+    ctx.font="400 18px 'DM Sans', sans-serif";
+    const width=Math.max(1,ctx.measureText(node.text).width);
+    const size=Math.max(1,Math.min(node.size,18,(cellW-24)*18/(width*1.2),(cellH-14)/1.2)*scale);
+    return {size,width:width*size/18*1.2+14,height:size*1.2+14};
+  }
+  const overlaps=(a,b)=>Math.abs(a.x-b.x)<(a.width+b.width)/2 && Math.abs(a.y-b.y)<(a.height+b.height)/2;
+  function free(box,others) {
+    return box.x-box.width/2>=12 && box.x+box.width/2<=W-12 &&
+      box.y-box.height/2>=top && box.y+box.height/2<=bottom && !others.some(other=>overlaps(box,other));
+  }
+  function place(box,others) {
+    if(Number.isFinite(box.x) && free(box,others))return true;
+    for(let attempt=0;attempt<1600;attempt++){
+      box.x=12+box.width/2+Math.random()*Math.max(0,W-24-box.width);
+      box.y=top+box.height/2+Math.random()*Math.max(0,bottom-top-box.height);
+      if(free(box,others))return true;
+    }
+    return false;
+  }
+  if(key!==mobileKey){
+    mobileKey=key;
+    const previous=mobileSlots.map(s=>s.node);
+    const pool=eligible.filter(n=>!selected.includes(n));
+    for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+    const chosen=(selected.length?[...selected,...pool]:[...previous.filter(n=>eligible.includes(n)),...pool.filter(n=>!previous.includes(n))]).slice(0,MOBILE_KEYWORD_LIMIT);
+    mobileSlots=chosen.map(node=>({node,phase:Math.random()*Math.PI*2,born:now-500,vx:(Math.random()<.5?-1:1)*(9+Math.random()*10),vy:(Math.random()<.5?-1:1)*(8+Math.random()*9)}));
+    for(let retry=0;retry<8;retry++){
+      mobileSlots.forEach(s=>Object.assign(s,measure(s.node,Math.pow(.9,retry)),{x:NaN,y:NaN}));
+      const placed=[];
+      const sorted=[...mobileSlots].sort((a,b)=>b.width*b.height-a.width*a.height);
+      for(const slot of sorted) if(place(slot,placed)) placed.push(slot);
+      if(placed.length===mobileSlots.length)break;
+      if(retry===7)mobileSlots=mobileSlots.filter(slot=>placed.includes(slot));
+    }
+    mobileNextSwap=now+2400;
+  }
+  if(!selected.length && !document.hidden && now>=mobileNextSwap && mobileSlots.length){
+    const available=nodes.filter(n=>!mobileSlots.some(s=>s.node===n||s.next===n));
+    const swappable=mobileSlots.filter(s=>s.node!==hoveredNode&&!s.next);
+    if(available.length&&swappable.length){
+      const slot=swappable[Math.floor(Math.random()*swappable.length)];
+      const next=available[Math.floor(Math.random()*available.length)];
+      const box={...measure(next),x:slot.x,y:slot.y};
+      if(place(box,mobileSlots.filter(s=>s!==slot))){slot.next=next;slot.nextBox=box;slot.swapAt=now;}
+    }
+    mobileNextSwap=now+2400;
+  }
+  mobileSlots.forEach(slot=>{
+    if(slot.next && now-slot.swapAt>=250){
+      // Other words may have moved during the fade; recheck before revealing.
+      if(place(slot.nextBox,mobileSlots.filter(s=>s!==slot))){slot.node=slot.next;Object.assign(slot,slot.nextBox);slot.born=now;}
+      slot.next=null;slot.nextBox=null;
+    }
+    if(!motion||slot.node.selected||slot.node===hoveredNode)return;
+    const others=mobileSlots.filter(s=>s!==slot);
+    const dx=slot.vx*dt,dy=slot.vy*dt;
+    const proposed={...slot,x:slot.x+dx,y:slot.y+dy};
+    if(free(proposed,others)){slot.x=proposed.x;slot.y=proposed.y;}
+    else{
+      const horizontal={...slot,x:slot.x+dx},vertical={...slot,y:slot.y+dy};
+      const canX=free(horizontal,others);
+      if(canX)slot.x+=dx;else slot.vx=-slot.vx;
+      const canY=free({...vertical,x:slot.x},others);
+      if(canY)slot.y+=dy;else slot.vy=-slot.vy;
+      if(canX&&canY)slot.vx=-slot.vx;
+    }
+  });
+  nodes.forEach(n=>{n._fade=0;n._w=0;n._interactive=false;n._isCandidate=false;});
+  mobileSlots.forEach(slot=>{
+    const n=slot.node;
+    let alpha=Math.min(1,(now-slot.born)/250);
+    if(slot.next)alpha*=Math.max(0,1-(now-slot.swapAt)/250);
+    const pulse=1+(motion?.2*Math.max(0,Math.sin(now/1800+slot.phase)):0);
+    const fs=slot.size*pulse;
+    ctx.font="400 "+fs.toFixed(1)+"px 'DM Sans', sans-serif";
+    n._w=ctx.measureText(n.text).width;n._h=fs+4;n._mobileSize=fs;
+    n.x=slot.x+(n.selected?n._w/2:0);n.y=slot.y;
+    n._fade=alpha;n._interactive=true;n._isCandidate=selected.length>0&&!n.selected;n._candAnchor=selected[selected.length-1]||null;
+  });
+  if(selected.length){
+    for(const {node:n} of mobileSlots){
+      const anchor=n.selected?n._selectionParent:n._candAnchor;
+      if(anchor && anchor._fade>0)drawFocusedConnection(n,anchor,n.selected||n===hoveredNode?1:.45);
+    }
+  }
+  mobileSlots.forEach(({node:n})=>{
+    ctx.font="400 "+n._mobileSize.toFixed(1)+"px 'DM Sans', sans-serif";
+    ctx.textAlign=n.selected?'right':'center';ctx.textBaseline='middle';
+    ctx.fillStyle=n.selected||n===hoveredNode?'#c0ed65':n._isCandidate?(isNight?'#fff':'#202522'):isNight?'rgba(255,255,255,'+n.baseOpacity+')':'rgba(0,0,0,'+n.baseOpacity+')';
+    ctx.globalAlpha=n._fade;ctx.fillText(n.text,n.x,n.y);ctx.globalAlpha=1;
+  });
+}
+document.fonts.ready.then(()=>{mobileKey='';});
+
+
 function draw(now = performance.now()) {
   const elapsed = Math.max(0, Math.min(now - lastDrawTime, 50));
   lastDrawTime = now;
@@ -336,6 +457,11 @@ function draw(now = performance.now()) {
   const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
 
   const selectedReps = selectedPath();
+  if (mobileKeywords.matches) {
+    drawMobileKeywords(now, selectedReps);
+    requestAnimationFrame(draw);
+    return;
+  }
 
   // Each level must be compatible with the entire selected path, not just one word.
   const selectedWords = new Set(selectedReps.map(n => n.text));
@@ -481,15 +607,6 @@ function draw(now = performance.now()) {
 
   // Selected keywords stay at their click coordinates, even after the pointer leaves.
 
-  function drawFocusedConnection(from, to, emphasis) {
-    const opacity = ((isNight ? .06 : .04) + emphasis * .5) * Math.min(from._fade, to._fade);
-    ctx.beginPath();
-    ctx.moveTo(from.selected ? from.x - from._w / 2 : from.x, from.y);
-    ctx.lineTo(to.selected ? to.x - to._w / 2 : to.x, to.y);
-    ctx.strokeStyle = isNight ? `rgba(255,255,255,${opacity})` : `rgba(32,37,34,${opacity})`;
-    ctx.lineWidth = 1 + emphasis * 1.25;
-    ctx.stroke();
-  }
 
   // A clicked relationship remains emphasized until either endpoint is deselected.
   selectedReps.forEach(n => {
@@ -645,6 +762,7 @@ function selectKeyword(node, parent = null) {
   if (path.length) parent = path[path.length - 1];
   // Selected labels are right-aligned; preserve their visible center on promotion.
   ctx.font = "400 18px 'DM Sans', sans-serif";
+  if (mobileKeywords.matches) ctx.font = `400 ${node._mobileSize}px 'DM Sans', sans-serif`;
   node._w = ctx.measureText(node.text).width;
   node._h = 26;
   node.x += node._w / 2;
@@ -750,3 +868,5 @@ function updateSelectionControls() {
 <script src="assets/landing-universe.js?v=round-stars-1"></script>
 <script src="assets/home-cursor.js?v=shared-point-1"></script></body>
 </html>
+
+
