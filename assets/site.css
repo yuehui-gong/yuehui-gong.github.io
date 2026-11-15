@@ -74,3 +74,7 @@ html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-si
 html:root body[data-page=projects]:is(body,#main-type-system) .marker-label{font-size:12px!important;font-weight:300!important;line-height:1.35!important;letter-spacing:0!important;text-transform:none!important;padding:3px 6px;top:3px}
 
 html:root body[data-page=contact]:is(body,#main-type-system) :is(.contact-map-city,.contact-map-caption){font-size:12px!important;font-weight:300!important;line-height:1.35!important;letter-spacing:0!important;text-transform:none!important;padding:3px 6px}
+
+/* Project metadata: quieter uppercase labels above regular-size values. */
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .label{font-size:12px!important;font-weight:300!important;line-height:1.5!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{font-size:15px!important;font-weight:400!important;line-height:1.8!important}
