@@ -4,13 +4,15 @@
   "shortTitle": "Leaving Traces",
   "location": {
     "site": "-",
-    "city": "-",
+    "city": "Chester County, PA",
     "country": "-",
     "coordinates": null
   },
-  "year": "-",
+  "year": 2023,
   "type": "-",
-  "collaborators": [],
+  "collaborators": [
+    "Jiewen Hu"
+  ],
   "awards": [],
   "keywords": [
     "process",

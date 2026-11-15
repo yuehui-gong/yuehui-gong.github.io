@@ -184,7 +184,7 @@
   .card-frame { display:block; position:relative; transition:box-shadow .3s; }
   .card.is-selected .card-frame { box-shadow:0 0 0 2px #eeece5,0 16px 45px #0009; }
   .card.is-selected .card-name { color:#fff; }
-  .card-frame::after { content:'SELECTED'; position:absolute; top:12px; left:12px; padding:6px 9px; background:#eeece5; color:#101114; font:10px var(--mono); letter-spacing:.12em; opacity:0; transition:opacity .2s; }
+  .card-frame::after { content:'Selected'; position:absolute; top:12px; left:12px; padding:6px 9px; background:#eeece5; color:#101114; font:10px var(--mono); letter-spacing:.12em; opacity:0; transition:opacity .2s; }
   .card.is-selected .card-frame::after { opacity:1; }
   .card:focus-visible { outline:1px solid #fff; outline-offset:8px; }
   .caption { text-align:center; padding:12px 20px 0; }
@@ -292,7 +292,7 @@ html:not(.day){color-scheme:dark}
 /* Crop the triptych gutters out of this project's portrait preview only. */
 .card[data-project="YG_261002_Berlin_2026"] .card-frame img{transform:scale(1.24);transform-origin:center}
 </style>
-<link rel="stylesheet" href="assets/site.css?v=type-scale-20261107"><style>
+<link rel="stylesheet" href="assets/site.css?v=map-label-20261114"><style>
 /* Keep project locations visible against the globe in both themes. */
 html .globe-wrap .marker .core{background:#c0ed65;border-color:#17220b;box-shadow:0 0 0 1px #c0ed6599,0 0 8px #c0ed6570;}
 html .globe-wrap .marker.active .core{background:#c0ed65;box-shadow:0 0 0 2px #c0ed6570,0 0 16px #c0ed65;}
@@ -300,7 +300,7 @@ html .globe-wrap .marker .ring{border-color:#c0ed65;box-shadow:0 0 8px #c0ed6540
 html.day .globe-wrap .marker .core,html.day .globe-wrap .marker.active .core{background:#c0ed65;border-color:#355508;box-shadow:0 0 0 1px #35550890,0 0 10px #c0ed65;}
 html.day .globe-wrap .marker .ring{border-color:#c0ed65;}
 </style>
-<link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"></head>
+<link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"></head>
 <body data-page="projects">
 
 <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
@@ -489,7 +489,7 @@ html.day .globe-wrap .marker .ring{border-color:#c0ed65;}
         targetScroll=(e.detail===0?i:nearby[(selected+1)%nearby.length])*STEP;
       });
       m.addEventListener('wheel',function(e){e.preventDefault();track.dispatchEvent(new WheelEvent('wheel',{deltaX:e.deltaX,deltaY:e.deltaY,deltaMode:e.deltaMode,cancelable:true}));},{passive:false});
-      m.innerHTML='<span class="ring"></span><span class="core"></span><span class="marker-label">'+p.city.toUpperCase()+'</span>';
+      m.innerHTML='<span class="ring"></span><span class="core"></span><span class="marker-label">'+p.city+'</span>';
       layer.appendChild(m); markers.push(m);
     });
   }

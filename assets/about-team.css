@@ -127,3 +127,7 @@ body[data-page=about] .studio-copy{max-width:none;width:100%;min-width:0}
 @media(hover:hover){.editorial-person:hover .editorial-bio,.editorial-person:focus-within .editorial-bio{display:block}}
 body[data-page=about] section[aria-labelledby="team-title"]{padding-bottom:32px}
 body[data-page=about] footer{padding-top:16px;padding-bottom:16px}
+
+/* Breathing room between the studio introduction and portraits. */
+body[data-page=about] .studio + section[aria-label='Studio team']{margin-top:110px}
+@media(max-width:700px){body[data-page=about] .studio + section[aria-label='Studio team']{margin-top:64px}}

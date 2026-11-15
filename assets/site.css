@@ -46,3 +46,35 @@ html body[data-page] :is(#studio-title,#contact-title,.awards-title) span{color:
 /* Shared footer only for Awards, About, and Contact. */
 html body:is([data-page=awards],[data-page=about],[data-page=contact]) .editorial-footer{display:flex;flex-direction:row;justify-content:center;align-items:center;width:100%;box-sizing:border-box;border-top:1px solid var(--line);padding:26px 24px;margin:0;text-align:center;color:var(--muted);font-size:10px;line-height:1.8;letter-spacing:0}
 @media(max-width:600px){html body:is([data-page=awards],[data-page=about],[data-page=contact]) .editorial-footer{padding:22px 24px}}
+
+/* Main typography: DM Sans; sentence case with uppercase project metadata labels. */
+html:root{--mono:'DM Sans',sans-serif}
+html:root body,html:root body[data-page]:is(body,#main-type-system) *,html:root body[data-page]:is(body,#main-type-system) *::before,html:root body[data-page]:is(body,#main-type-system) *::after{font-family:'DM Sans',sans-serif!important;text-transform:none!important}
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .label{font-size:11px!important;line-height:1.6!important;font-weight:400!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{font-size:14px!important;line-height:1.8!important;font-weight:400!important;letter-spacing:0!important}
+/* Two-size text system: responsive display titles and 15px supporting text. */
+html:root{--type-body:15px;--type-leading:1.8;--weight-light:300;--weight-regular:400;--weight-bold:700}
+html:root body[data-page]:is(body,#main-type-system) :is(p,a,button,input,textarea,select,label,span,div,li,dt,dd,small,figcaption,h1,h2,h3,h4,h5,h6){font-size:var(--type-body)!important}
+html:root body[data-page]:is(body,#main-type-system) :is(#studio-title,#contact-title,.awards-title){font-size:var(--type-title)!important;font-weight:400!important;line-height:1.05!important}
+html:root body[data-page]:is(body,#main-type-system) :is(#studio-title,#contact-title,.awards-title) span{font-size:inherit!important}
+html:root body[data-page=home]:is(body,#main-type-system) #headline h1{font-size:clamp(34px,3.4vw,56px)!important}
+html:root body[data-page]:is(body,#main-type-system) :is(.team-heading h2,#inquiries-title,.editorial-person h3,#proj-title,.project-story h3,.project-end h3){font-size:var(--type-body)!important;font-weight:700!important}
+html:root body[data-page]:is(body,#main-type-system) :is(.meta-list .label,.award-year,.team-role){font-size:var(--type-body)!important;font-weight:300!important}
+html:root body[data-page]:is(body,#main-type-system) :is(strong,b){font-weight:700!important}
+html:root body[data-page]:is(body,#main-type-system) .card-frame::after{font-size:var(--type-body)!important}
+html:root body[data-page]:is(body,#main-type-system) #site-theme{font-size:0!important}
+/* Restore project-name hierarchy independently of the 15px reading size. */
+html:root body[data-page=projects]:is(body,#main-type-system) .caption .name{font-size:26px!important;font-weight:500!important;line-height:1.25!important}
+html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:22px!important;font-weight:600!important;line-height:1.25!important}
+@media(max-width:640px){html:root body[data-page=projects]:is(body,#main-type-system) .caption .name{font-size:18px!important}}
+/* Quiet copyright text and more prominent individual project titles. */
+html:root body[data-page]:is(body,#main-type-system) footer,html:root body[data-page]:is(body,#main-type-system) footer :is(span,p,a,small){font-size:10px!important;line-height:1.6!important;font-weight:400!important}
+html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:clamp(30px,2.8vw,42px)!important;line-height:1.1!important;font-weight:400!important;letter-spacing:-.035em!important;margin-bottom:28px}
+@media(max-width:600px){html:root body[data-page=project]:is(body,#main-type-system) #proj-title{font-size:30px!important}}
+html:root body[data-page=projects]:is(body,#main-type-system) .marker-label{font-size:12px!important;font-weight:300!important;line-height:1.35!important;letter-spacing:0!important;text-transform:none!important;padding:3px 6px;top:3px}
+
+html:root body[data-page=contact]:is(body,#main-type-system) :is(.contact-map-city,.contact-map-caption){font-size:12px!important;font-weight:300!important;line-height:1.35!important;letter-spacing:0!important;text-transform:none!important;padding:3px 6px}
+
+/* Project metadata: quieter uppercase labels above regular-size values. */
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .label{font-size:12px!important;font-weight:300!important;line-height:1.5!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{font-size:15px!important;font-weight:400!important;line-height:1.8!important}
