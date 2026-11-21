@@ -65,6 +65,10 @@ html,body,#stage{background:#000;color:#eee}
 .hc-divider-line{background:#444}.hc-divider-label{color:#999}
 .project-photo{background:#000}
 .project-photo img{opacity:.55}
+/* Day photography: the same 45% veil, composited over white instead of black. */
+html.day .project-photo{background:#fff}
+html.day .project-photo figcaption{background:linear-gradient(transparent,#fffd);color:#202522}
+html.day #clear-btn{color:#527a0e;opacity:1}
 @media(max-width:640px){#stage{height:100svh;min-height:560px}html,body{overflow:auto}#clear-btn{right:12px;bottom:12px}}
 </style>
 <link rel="stylesheet" href="assets/site.css?v=title-footer-20261114">
@@ -332,7 +336,7 @@ function arrangeFocusedKeywords(candidates, selected) {
     ctx.moveTo(from.selected ? from.x - from._w / 2 : from.x, from.y);
     ctx.lineTo(to.selected ? to.x - to._w / 2 : to.x, to.y);
     ctx.strokeStyle = isNight ? `rgba(255,255,255,${opacity})` : `rgba(32,37,34,${opacity})`;
-    ctx.lineWidth = 1 + emphasis * 1.25;
+    ctx.lineWidth = isNight ? 1 + emphasis * 1.25 : .5 + emphasis * .4;
     ctx.stroke();
   }
 
@@ -439,7 +443,7 @@ function drawMobileKeywords(now, selected) {
   mobileSlots.forEach(({node:n})=>{
     ctx.font="400 "+n._mobileSize.toFixed(1)+"px 'DM Sans', sans-serif";
     ctx.textAlign=n.selected?'right':'center';ctx.textBaseline='middle';
-    ctx.fillStyle=n.selected||n===hoveredNode?'#c0ed65':n._isCandidate?(isNight?'#fff':'#202522'):isNight?'rgba(255,255,255,'+n.baseOpacity+')':'rgba(0,0,0,'+n.baseOpacity+')';
+    ctx.fillStyle=n.selected||n===hoveredNode?(isNight?'#c0ed65':'#527a0e'):n._isCandidate?(isNight?'#fff':'#202522'):isNight?'rgba(255,255,255,'+n.baseOpacity+')':'rgba(0,0,0,'+n.baseOpacity+')';
     ctx.globalAlpha=n._fade;ctx.fillText(n.text,n.x,n.y);ctx.globalAlpha=1;
   });
 }
@@ -453,7 +457,7 @@ function draw(now = performance.now()) {
   ctx.clearRect(0, 0, W, H);
   const lineColor = isNight ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
   const baseTextColor = isNight ? [255, 255, 255] : [0, 0, 0];
-  const textColorSel = '#c0ed65';
+  const textColorSel = isNight ? '#c0ed65' : '#527a0e';
   const textColorHover = isNight ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.92)';
 
   const selectedReps = selectedPath();
