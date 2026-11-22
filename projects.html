@@ -300,7 +300,16 @@ html .globe-wrap .marker .ring{border-color:#c0ed65;box-shadow:0 0 8px #c0ed6540
 html.day .globe-wrap .marker .core,html.day .globe-wrap .marker.active .core{background:#c0ed65;border-color:#355508;box-shadow:0 0 0 1px #35550890,0 0 10px #c0ed65;}
 html.day .globe-wrap .marker .ring{border-color:#c0ed65;}
 </style>
-<link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"></head>
+<link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"><style>
+/* Reviewed project selection and Daylight locator refinements. */
+html.day .globe-wrap .marker.active .ring{border-color:#355508;box-shadow:0 0 0 1px #35550840,0 0 8px #c0ed6540;}
+.card.is-selected .card-frame img{filter:none}
+html .card.is-selected .card-frame::after{background:#111;color:#fff}
+@media(hover:hover) and (pointer:fine){
+  html .card.is-selected .card-frame:hover,html.day .card.is-selected .card-frame:hover{box-shadow:0 0 0 3px var(--accent),0 16px 45px #0003}
+  html .card.is-selected .card-frame:hover::after{background:var(--accent);color:#202522}
+}
+</style></head>
 <body data-page="projects">
 
 <header class="site-header"><a class="site-brand" href="index.html">Field Notes Studio</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
