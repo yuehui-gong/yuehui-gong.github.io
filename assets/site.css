@@ -78,3 +78,6 @@ html:root body[data-page=contact]:is(body,#main-type-system) :is(.contact-map-ci
 /* Project metadata: quieter uppercase labels above regular-size values. */
 html:root body[data-page=project]:is(body,#main-type-system) .meta-list .label{font-size:12px!important;font-weight:300!important;line-height:1.5!important;letter-spacing:.08em!important;text-transform:uppercase!important}
 html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{font-size:15px!important;font-weight:400!important;line-height:1.8!important}
+
+/* VARV wordmark: dense, heavy lettering shared by every main header. */
+html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{font-family:'DM Sans',sans-serif!important;font-size:24px!important;font-weight:900!important;line-height:1!important;letter-spacing:-.065em!important;text-transform:uppercase!important}
