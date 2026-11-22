@@ -83,4 +83,4 @@ html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{f
 html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{font-family:'DM Sans',sans-serif!important;font-size:24px!important;font-weight:900!important;line-height:1!important;letter-spacing:-.065em!important;text-transform:uppercase!important}
 
 /* Reference-based geometric wordmark; its mask follows the current theme ink. */
-html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{display:block;width:108px;height:24px;flex-shrink:0;font-size:0!important;line-height:0!important;background:var(--ink);-webkit-mask:url('varv-wordmark.svg') center/contain no-repeat;mask:url('varv-wordmark.svg') center/contain no-repeat}
+html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{display:block;width:108px;height:24px;flex-shrink:0;font-size:0!important;line-height:0!important;background:var(--ink);-webkit-mask:url('varv-wordmark.svg?v=solid-2') center/contain no-repeat;mask:url('varv-wordmark.svg?v=solid-2') center/contain no-repeat}
