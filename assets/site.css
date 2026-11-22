@@ -84,3 +84,9 @@ html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{fo
 
 @font-face{font-family:'Chonburi';src:url('fonts/Chonburi-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
 html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{font-family:'Chonburi',serif!important;font-weight:400!important;letter-spacing:-.025em!important;text-transform:lowercase!important}
+
+/* Crop the approved graphic's presentation margins without altering its artwork. */
+html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{display:block;position:relative;width:84px;height:19px;overflow:hidden;flex-shrink:0;mix-blend-mode:screen}
+html:root body[data-page] .site-header .site-brand .brand-graphic{position:absolute;width:108px!important;max-width:none!important;height:54px!important;left:-12px;top:-18.6px;filter:invert(1);object-fit:fill}
+html.day body[data-page] .site-header .site-brand{mix-blend-mode:multiply!important}
+html.day body[data-page] .site-header .site-brand .brand-graphic{filter:none}
