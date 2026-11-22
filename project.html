@@ -475,9 +475,6 @@ body[data-page=project] .sidebar .project-story p,body[data-page=project] #proj-
 
       <div id="proj-desc-wrap"><p id="proj-desc"></p></div>
 
-      <div class="share">
-        <span>X</span>
-      </div>
     </aside>
 
     <!-- the media stack — first block is always the hero image,
@@ -683,7 +680,7 @@ function renderProject(p){
       const sidebar=document.querySelector('.sidebar');
       sidebar.classList.add('has-narrative');
       document.getElementById('proj-desc-wrap').hidden=true;
-      sidebar.querySelector('.share').before(story);
+      sidebar.append(story);
     } else document.querySelector('.project-end').before(story);
   }
   document.title = p.title + " — VARV";
