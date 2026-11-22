@@ -81,3 +81,6 @@ html:root body[data-page=project]:is(body,#main-type-system) .meta-list .value{f
 
 /* VARV wordmark: dense, heavy lettering shared by every main header. */
 html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{font-family:'DM Sans',sans-serif!important;font-size:24px!important;font-weight:900!important;line-height:1!important;letter-spacing:-.065em!important;text-transform:uppercase!important}
+
+@font-face{font-family:'Chonburi';src:url('fonts/Chonburi-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{font-family:'Chonburi',serif!important;font-weight:400!important;letter-spacing:-.025em!important;text-transform:lowercase!important}
