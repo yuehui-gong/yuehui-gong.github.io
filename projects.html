@@ -309,6 +309,15 @@ html .card.is-selected .card-frame::after{background:#111;color:#fff}
   html .card.is-selected .card-frame:hover,html.day .card.is-selected .card-frame:hover{box-shadow:0 0 0 3px var(--accent),0 16px 45px #0003}
   html .card.is-selected .card-frame:hover::after{background:var(--accent);color:#202522}
 }
+</style><style>
+/* Keep mobile location and project count below the complete navigation. */
+@media(max-width:640px){
+  .hud-location{top:var(--projects-hud-top,calc(var(--nav-h,88px) + 16px));bottom:auto;left:24px;right:auto;max-width:calc(100vw - 136px)}
+  .location-name{font-size:16px;line-height:1.2;margin-bottom:5px;overflow-wrap:anywhere}
+  .location-gps{font-size:10px;line-height:1.4}
+  .eyebrow-row{top:var(--projects-hud-top,calc(var(--nav-h,88px) + 16px));left:0;right:0;width:auto;padding:0 24px}
+  .eyebrow-row .count{flex:none;white-space:nowrap}
+}
 </style></head>
 <body data-page="projects">
 
@@ -658,5 +667,17 @@ html .card.is-selected .card-frame::after{background:#111;color:#fff}
   init();
 })();
 </script>
-<script src="assets/site.js"></script><script src="assets/home-cursor.js?v=shared-point-1"></script></body>
+<script src="assets/site.js"></script><script src="assets/home-cursor.js?v=shared-point-1"></script><script>
+(()=>{
+ const header=document.querySelector('.site-header');
+ if(!header)return;
+ function alignProjectHUD(){
+  document.documentElement.style.setProperty('--projects-hud-top',(Math.ceil(Math.max(0,header.getBoundingClientRect().bottom))+16)+'px');
+ }
+ alignProjectHUD();
+ new ResizeObserver(alignProjectHUD).observe(header);
+ window.addEventListener('resize',alignProjectHUD);
+ document.fonts.ready.then(alignProjectHUD);
+})();
+</script></body>
 </html>
