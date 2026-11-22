@@ -481,14 +481,32 @@ function draw(now = performance.now()) {
 
   // Selected keywords stay at their click coordinates, even after the pointer leaves.
 
+  // Soft stellar halo around a crisp, thin connection; isolate canvas state.
+  function strokeGlowingConnection(color, width, strength) {
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = color;
+    if (isNight) {
+      ctx.shadowColor = 'rgba(210,229,255,' + (.35 + strength * .45) + ')';
+      ctx.shadowBlur = 10 + strength * 6;
+      ctx.globalAlpha = .45;
+      ctx.lineWidth = width + 1.5;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 4 + strength * 3;
+    }
+    ctx.lineWidth = width;
+    ctx.stroke();
+    ctx.restore();
+  }
+
   function drawFocusedConnection(from, to, emphasis) {
     const opacity = ((isNight ? .06 : .04) + emphasis * .5) * Math.min(from._fade, to._fade);
     ctx.beginPath();
     ctx.moveTo(from.selected ? from.x - from._w / 2 : from.x, from.y);
     ctx.lineTo(to.selected ? to.x - to._w / 2 : to.x, to.y);
-    ctx.strokeStyle = isNight ? `rgba(255,255,255,${opacity})` : `rgba(32,37,34,${opacity})`;
-    ctx.lineWidth = 1 + emphasis * 1.25;
-    ctx.stroke();
+    const color = isNight ? `rgba(240,247,255,${Math.min(1, opacity * 1.3)})` : `rgba(32,37,34,${opacity})`;
+    strokeGlowingConnection(color, .7 + emphasis * .55, emphasis);
   }
 
   // A clicked relationship remains emphasized until either endpoint is deselected.
@@ -516,9 +534,7 @@ function draw(now = performance.now()) {
       if (a.text === b.text) return;
       ctx.beginPath();
       ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = lineColor;
-      ctx.lineWidth = 1;
-      ctx.stroke();
+      strokeGlowingConnection(lineColor, .8, .35);
     });
   });
 
