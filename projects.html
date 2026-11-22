@@ -318,7 +318,11 @@ html .card.is-selected .card-frame::after{background:#111;color:#fff}
   .eyebrow-row{top:var(--projects-hud-top,calc(var(--nav-h,88px) + 16px));left:0;right:0;width:auto;padding:0 24px}
   .eyebrow-row .count{flex:none;white-space:nowrap}
 }
-</style></head>
+</style><style>
+body[data-page=projects] #universe-background{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.8}
+html.day body[data-page=projects] #universe-background{display:none}
+</style>
+</head>
 <body data-page="projects">
 
 <header class="site-header"><a class="site-brand" href="index.html">VARV</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
@@ -679,5 +683,5 @@ html .card.is-selected .card-frame::after{background:#111;color:#fff}
  window.addEventListener('resize',alignProjectHUD);
  document.fonts.ready.then(alignProjectHUD);
 })();
-</script></body>
+</script><script src="assets/landing-universe.js?v=projects-stars-20261122"></script></body>
 </html>
