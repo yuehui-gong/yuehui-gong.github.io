@@ -458,7 +458,13 @@ body[data-page=project] .sidebar .project-story p,body[data-page=project] #proj-
  body[data-page=project] .sidebar .project-story,body[data-page=project] #proj-desc-wrap{max-width:68ch;align-self:center;opacity:1!important}
 }
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;900&display=swap"></head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;900&display=swap"><style>
+/* Project graphics have no external annotation labels or divider rules. */
+body[data-page=project] .content .layout-caption .caption,
+body[data-page=project] .content .project-collection figcaption{display:none}
+body[data-page=project] .content .project-end{border-top:0}
+</style>
+</head>
 <body data-page="project" class="day">
 
   <header class="site-header"><a class="site-brand" href="index.html">VARV</a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></header>
