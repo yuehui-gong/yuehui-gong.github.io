@@ -90,3 +90,8 @@ html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{di
 html:root body[data-page] .site-header .site-brand .brand-graphic{position:absolute;width:108px!important;max-width:none!important;height:54px!important;left:-12px;top:-18.6px;filter:invert(1);object-fit:fill}
 html.day body[data-page] .site-header .site-brand{mix-blend-mode:multiply!important}
 html.day body[data-page] .site-header .site-brand .brand-graphic{filter:none}
+
+/* Approved compact uppercase graphic: show only the first specimen wordmark. */
+html:root body[data-page]:is(body,#main-type-system) .site-header .site-brand{width:84px;height:24px}
+html:root body[data-page] .site-header .site-brand .brand-graphic{width:252px!important;height:168px!important;left:-25.6px;top:-36.7px;filter:none}
+html.day body[data-page] .site-header .site-brand .brand-graphic{filter:invert(1)}
