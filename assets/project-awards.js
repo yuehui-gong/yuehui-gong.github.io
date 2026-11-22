@@ -4,11 +4,24 @@
   if(!list || !status) return;
 
   function appendLinkArrow(link){
-    const arrow=document.createElement('span');
-    arrow.className='link-arrow';
+    // Draw the arrow so mobile font fallback cannot replace it with an emoji.
+    const svgNS='http://www.w3.org/2000/svg';
+    const arrow=document.createElementNS(svgNS,'svg');
+    arrow.setAttribute('class','link-arrow');
+    arrow.setAttribute('viewBox','0 0 16 16');
     arrow.setAttribute('aria-hidden','true');
-    arrow.textContent='\u00a0↗';
-    link.append(arrow);
+    arrow.setAttribute('focusable','false');
+    const path=document.createElementNS(svgNS,'path');
+    path.setAttribute('d','M4 12 12 4M4 4h8v8');
+    arrow.append(path);
+    // Keep the icon with the last word when a link wraps on narrow screens.
+    const text=link.textContent;
+    const lastSpace=text.lastIndexOf(' ');
+    const tail=document.createElement('span');
+    tail.className='link-tail';
+    tail.append(document.createTextNode(text.slice(lastSpace+1)+'\u00a0'),arrow);
+    link.textContent=text.slice(0,lastSpace+1);
+    link.append(tail);
   }
 
   // Editorial display order; award levels break ties within the same competition.
