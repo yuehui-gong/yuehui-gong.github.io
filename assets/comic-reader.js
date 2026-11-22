@@ -241,7 +241,7 @@
       const rootStyle = getComputedStyle(root);
       const outerPadding = expanded ? parseFloat(rootStyle.paddingTop) + parseFloat(rootStyle.paddingBottom) : 0;
       const rootTop = expanded ? 0 : Math.max(0, root.getBoundingClientRect().top);
-      const stageHeight = Math.max(expanded ? 160 : 360, window.innerHeight - rootTop - toolbarHeight - panelHeight - outerPadding - (expanded ? 0 : 24));
+      const stageHeight = expanded ? Math.max(160, window.innerHeight - toolbarHeight - panelHeight - outerPadding) : availableWidth / spreadRatio + vertical;
       const availableHeight = Math.max(100, stageHeight - vertical);
       const width = Math.floor(Math.min(availableWidth, availableHeight * spreadRatio) * zoom);
       const height = Math.round(width / spreadRatio);
