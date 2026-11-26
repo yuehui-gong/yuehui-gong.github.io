@@ -7,3 +7,7 @@ html:root body[data-page=about-test]:is(body,#main-type-system) .values h2 span{
 @media(max-width:540px){html:root body[data-page=about-test]:is(body,#main-type-system) .name-list button{font-size:clamp(28px,6vw,36px)!important}}
 
 .name-list{min-width:0}.name-list button{line-height:1.12!important;padding-bottom:20px;letter-spacing:-.05em}.team-study{column-gap:3vw}@media(max-width:540px){.team-study{grid-template-columns:1fr}.name-list{grid-column:1}.portrait{grid-column:1;max-width:320px;width:100%}.bio{grid-column:1}}
+/* Keep the portrait and biography together at every screen size. */
+.profile{min-width:0}.profile .portrait{position:static}.profile .bio{margin-top:28px;min-height:0;max-width:none}.team-study{padding-top:50px}
+@media(max-width:900px){.profile{grid-column:2;grid-row:2}.team-study{padding-top:20px}}
+@media(max-width:540px){.profile{grid-column:1;grid-row:auto}.profile .portrait{max-width:none}}
