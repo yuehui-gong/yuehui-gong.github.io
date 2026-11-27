@@ -49,3 +49,10 @@ html:root body[data-page=about-test]:is(body,#main-type-system) .name-list butto
 @media(max-width:900px){main{padding:0 6vw 64px}.values{padding:64px 0 100px}.team-study{grid-template-columns:1.25fr 1fr;gap:5vw}.name-list{top:100px}.name-list button{padding-left:18px}.name-list button::before{width:6px;height:6px}.profile{grid-row:1}}
 @media(max-width:600px){main{padding:0 24px 56px}.values{padding:48px 0 72px}.team-study{grid-template-columns:1fr;gap:32px}.name-list{position:static;grid-row:1;gap:2px}.profile{grid-column:1;grid-row:2}.portrait img{aspect-ratio:4/5}.values .value-lead{max-width:22ch}html:root body[data-page=about-test]:is(body,#main-type-system) .name-list button{font-size:clamp(28px,7.4vw,44px)!important}}
 @media(prefers-reduced-motion:reduce){.name-list button,.name-list button::before,.text-disclosure>summary{transition:none}}
+/* Quiet plus/minus disclosure controls. */
+.text-disclosure>summary,.bio .text-disclosure>summary{border:0;border-radius:0;position:relative}
+.text-disclosure>summary::before,.text-disclosure>summary::after{content:'';position:absolute;left:50%;top:50%;background:currentColor;border:0;transform:translate(-50%,-50%);transition:opacity .18s}
+.text-disclosure>summary::before{width:16px;height:1px}
+.text-disclosure>summary::after{width:1px;height:16px}
+.text-disclosure[open]>summary::after{transform:translate(-50%,-50%);opacity:0}
+@media(prefers-reduced-motion:reduce){.text-disclosure>summary::before,.text-disclosure>summary::after{transition:none}}
