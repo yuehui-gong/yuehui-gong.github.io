@@ -8,6 +8,7 @@
  // Individual beds vary in thickness, pinch out, and share broad geological folds.
  function paint(){
   if(!field)return;field.replaceChildren();const w=terrain.clientWidth,h=terrain.clientHeight;
+  const textureWidth=1440; // Fixed geological scale; narrower canvases crop instead of squeezing.
   const ink=document.documentElement.classList.contains('day')?'32,37,34':'224,228,222';
   // Match geological scale to actual year positions, interpolating across boundaries.
   const origin=terrain.getBoundingClientRect().top;
@@ -19,7 +20,7 @@
   const bendStart=section2025?section2025.getBoundingClientRect().top-origin:1000;
   const blend=y=>{const t=Math.max(0,Math.min(1,(y-bendStart+160)/340));return t*t*(3-2*t)};
   const seam=(x,b)=>{
-   const t=x/w,y=b.y,i=b.id,m=blend(y);
+   const t=x/textureWidth,y=b.y,i=b.id,m=blend(y);
    const oldFold=75*Math.sin(t*5+y*.0008)+100*(noise(t*3.2+y*.0004)-.5)+48*Math.tanh((t-(.27+.12*Math.sin(y*.001)))*15);
    // Around 2025 the central trough lifts into two broad crests, then falls to the right.
    const shift=24*Math.sin((y-bendStart)*.002);
@@ -47,7 +48,7 @@
     // Shale: local short laminations that merge and disappear inside a bed.
     if(type===0||type===2||type===4){const n=type===2?Math.round(14+cluster*24):Math.round(4+hash(bi+60)*8);for(let j=1;j<n;j++){const f=j/n;c.beginPath();let pen=false;for(let x=0;x<=w;x+=3){if(noise(x*.006+bi*5+j*.21)<.4){pen=false;continue}const y=at(x,f)+1.5*(noise(x*.07+j)-.5);if(pen)c.lineTo(x,y);else c.moveTo(x,y);pen=true}c.strokeStyle=`rgba(${ink},${type===2?.11:.17})`;c.lineWidth=.65;c.stroke()}}
     // Occasional thin mineral lens pinches out rather than spanning the page.
-    if(type===1){const left=hash(bi+8)*w*.65,right=Math.min(w,left+w*(.15+hash(bi+3)*.3));c.beginPath();for(let x=left;x<=right;x+=3)c.lineTo(x,at(x,.12));for(let x=right;x>=left;x-=3)c.lineTo(x,at(x,.12)+Math.sin((x-left)/(right-left)*Math.PI)*(3+hash(bi)*5));c.closePath();c.fillStyle=`rgba(${ink},.15)`;c.fill()}
+    if(type===1){const left=hash(bi+8)*textureWidth*.65,right=left+textureWidth*(.15+hash(bi+3)*.3);c.beginPath();for(let x=left;x<=right;x+=3)c.lineTo(x,at(x,.12));for(let x=right;x>=left;x-=3)c.lineTo(x,at(x,.12)+Math.sin((x-left)/(right-left)*Math.PI)*(3+hash(bi)*5));c.closePath();c.fillStyle=`rgba(${ink},.15)`;c.fill()}
    }
   }
  }
