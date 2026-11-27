@@ -36,3 +36,6 @@ html:root body[data-page=about-test]:is(body,#main-type-system) .value-lead{font
 .text-disclosure>summary:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
 .values .value-lead{margin-bottom:24px}
 @media(prefers-reduced-motion:reduce){.text-disclosure>summary::after{transition:none}}
+/* Keep the open disclosure control below the uninterrupted text. */
+.text-disclosure[open]{position:relative;padding-bottom:64px}
+.text-disclosure[open]>summary,.bio .text-disclosure[open]>summary{position:absolute;left:0;bottom:0;margin:12px 0 0}
