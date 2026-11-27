@@ -15,7 +15,17 @@
   const scaleAt=y=>{if(y<=zones[0].y)return zones[0].scale;for(let i=1;i<zones.length;i++){if(y<=zones[i].y){const t=(y-zones[i-1].y)/(zones[i].y-zones[i-1].y),ease=t*t*(3-2*t);return zones[i-1].scale*(1-ease)+zones[i].scale*ease}}return zones[zones.length-1].scale};
   const beds=[];let depth=-300,k=0;
   while(depth<h+400){beds.push({y:depth,id:k});depth+=scaleAt(depth)*(.55+hash(k+40)*.95);k++}
-  const seam=(x,b)=>{const t=x/w,y=b.y,i=b.id;return y+75*Math.sin(t*5+y*.0008)+100*(noise(t*3.2+y*.0004)-.5)+48*Math.tanh((t-(.27+.12*Math.sin(y*.001)))*15)+22*(noise(t*8+i*.17)-.5)+8*(noise(x*.035+i*.3)-.5)+2*(noise(x*.18)-.5)};
+  const section2025=list.querySelector('#awards-2025')?.closest('.award-year-group');
+  const bendStart=section2025?section2025.getBoundingClientRect().top-origin:1000;
+  const blend=y=>{const t=Math.max(0,Math.min(1,(y-bendStart+160)/340));return t*t*(3-2*t)};
+  const seam=(x,b)=>{
+   const t=x/w,y=b.y,i=b.id,m=blend(y);
+   const oldFold=75*Math.sin(t*5+y*.0008)+100*(noise(t*3.2+y*.0004)-.5)+48*Math.tanh((t-(.27+.12*Math.sin(y*.001)))*15);
+   // Around 2025 the central trough lifts into two broad crests, then falls to the right.
+   const shift=24*Math.sin((y-bendStart)*.002);
+   const newFold=25+shift-100*Math.exp(-Math.pow((t-.30)/.115,2))-90*Math.exp(-Math.pow((t-.63)/.13,2))+65*Math.pow(t,3)+18*Math.sin(t*9+(y-bendStart)*.0015);
+   return y+oldFold*(1-m)+newFold*m+22*(noise(t*8+i*.17)-.5)+8*(noise(x*.035+i*.3)-.5)+2*(noise(x*.18)-.5);
+  };
   for(let top=0;top<h;top+=800){
    const height=Math.min(800,h-top),canvas=document.createElement('canvas'),dpr=Math.min(devicePixelRatio,1.5);canvas.className='stratum-drawing';canvas.style.top=top+'px';canvas.style.height=height+'px';canvas.width=w*dpr;canvas.height=height*dpr;field.append(canvas);const c=canvas.getContext('2d');c.scale(dpr,dpr);c.translate(0,-top);
    for(let bi=0;bi<beds.length-1;bi++){

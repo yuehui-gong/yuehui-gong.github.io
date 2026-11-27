@@ -25,3 +25,10 @@ html:root body.strata-study[data-page] main{position:relative;isolation:isolate}
 .strata-study #awards-list::before{content:'';position:absolute;left:5vw;top:78px;bottom:48px;width:1px;background:var(--ink);opacity:.38}
 .strata-study .award-year::before{width:calc(5vw - 12px)}
 @media(max-width:650px){.strata-study .geology-field{mask-image:linear-gradient(to right,#0009,#0003 60%,#0001)}.strata-study #awards-list::before{left:18px;top:43px;bottom:36px}.strata-study .award-year::before{width:8px;right:calc(100% + 6px)}}
+/* Match the main awards heading and its first-year spacing exactly. */
+.strata-study .awards-heading{min-height:0;padding:80px max(64px,calc((100vw - 1440px)/2 + 64px)) 0;margin:0 0 56px}
+.strata-study .awards-heading::after{content:none}
+.strata-study .award-year-group:first-of-type{padding-top:1px}
+.strata-study #awards-list::before{top:35px}
+@media(max-width:800px){.strata-study .awards-heading{padding:56px 28px 0}}
+@media(max-width:600px){.strata-study .awards-heading{padding:40px 22px 0;margin-bottom:0}.strata-study .award-year-group:first-of-type{padding-top:1px}.strata-study #awards-list::before{top:36px}}
