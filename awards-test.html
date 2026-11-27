@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Awards test — VARV</title><meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Selected awards and recognition for VARV, arranged by year with links to award announcements and projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=compact-wordmark-20261122">
+<style>
+*{box-sizing:border-box}
+body{margin:0;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--bg)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.skip{position:fixed;top:-60px;left:20px;padding:12px;background:var(--bg);z-index:50}
+.skip:focus{top:10px}
+main{width:100%;max-width:1440px;min-height:calc(100svh - 150px);margin:0 auto;padding:64px 64px 96px}
+.awards-heading{margin-bottom:56px}
+.awards-kicker{display:flex;align-items:center;gap:8px;margin:0 0 18px;color:var(--muted);font:9px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.awards-kicker::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--accent)}
+body[data-page="awards"] .awards-title{margin:0;font-family:'Space Grotesk',sans-serif!important;font-size:clamp(64px,8.5vw,116px);font-weight:400;line-height:1;letter-spacing:-.055em}
+.awards-list{width:100%}
+.award-year-group{display:grid;grid-template-columns:76px minmax(0,1fr);column-gap:32px;border-top:1px solid var(--line)}
+body[data-page="awards"] .award-year{margin:0;padding-top:24px;font-family:'Space Grotesk',sans-serif!important;font-size:16px;font-weight:400;line-height:1.3;font-variant-numeric:tabular-nums}
+.award-entries{list-style:none;margin:0;padding:0}
+.award-row{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px 48px;align-items:start;min-height:86px;padding:22px 0}
+.award-row + .award-row{border-top:1px solid var(--line)}
+.award-details{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:8px}
+.award-name{font:16px/1.35 'Space Grotesk',sans-serif}
+.award-organization{color:var(--muted);font:10px/1.5 var(--mono);letter-spacing:.015em}
+.award-name,.award-organization,.project-link{min-width:0;overflow-wrap:anywhere}
+.project-link{justify-self:start;color:var(--muted);font-size:13px;line-height:1.65}
+/* Keep the award announcement at reading size and the project link secondary. */
+#awards-list a.award-organization{font-size:var(--type-body,15px)!important}
+#awards-list .project-link{font-size:11px!important}
+a.award-organization,.project-link{text-underline-offset:4px;text-decoration-thickness:1px;transition:color .2s}
+a.award-organization:hover,a.award-organization:focus-visible,.project-link:hover,.project-link:focus-visible{color:var(--ink);text-decoration:underline}
+a.award-organization:focus-visible,.project-link:focus-visible{outline-color:var(--ink)}
+.link-arrow{display:inline-block;width:.8em;height:.8em;vertical-align:-.04em;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#awards-list .link-tail{display:inline-block;white-space:nowrap;font-size:inherit!important;line-height:inherit!important;font-weight:inherit!important;letter-spacing:inherit!important}
+.awards-status{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+footer{display:flex;justify-content:space-between;gap:20px;padding:25px 34px;border-top:1px solid var(--line);color:var(--muted);font:10px/1.7 var(--mono);letter-spacing:.04em}
+@media(max-width:900px){main{padding:52px 28px 80px}.award-year-group{grid-template-columns:60px minmax(0,1fr);column-gap:24px}.award-row{column-gap:28px}}
+@media(max-width:600px){main{padding:40px 20px 64px}.awards-heading{margin-bottom:40px}.award-year-group{grid-template-columns:46px minmax(0,1fr);column-gap:16px}.award-row{grid-template-columns:minmax(0,1fr);gap:12px;padding:20px 0}.award-name{font-size:15px}.award-organization{font-size:9px}.project-link{font-size:12px}footer{padding:22px 20px;flex-wrap:wrap}footer span:last-child{width:100%}}
+@media(prefers-reduced-motion:reduce){a.award-organization,.project-link{transition:none}}
+</style>
+<link rel="stylesheet" href="assets/home-cursor.css?v=shared-point-1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;900&display=swap"></head>
+<body data-page="awards">
+<a class="skip" href="#main">Skip to awards</a>
+<header class="site-header"><a class="site-brand" href="index.html"><img class="brand-graphic" src="assets/varv-compact.png" alt="VARV"></a><div class="site-links"><a href="projects.html">Projects</a><a href="awards.html" aria-current="page">Awards</a><a href="about.html">About</a><a href="contact.html">Contact</a><button id="site-theme" type="button">Daylight ↗</button></div></header>
+<main id="main" aria-labelledby="page-title">
+<div class="awards-heading">
+
+<h1 id="page-title" class="awards-title">Awards<span class="name-dot">.</span></h1>
+</div>
+<p id="awards-status" class="awards-status" role="status">Loading awards…</p>
+<div id="awards-list" class="awards-list"></div>
+<noscript><p class="awards-status">Please enable JavaScript to view awards and project links.</p></noscript>
+</main>
+<footer class="editorial-footer"><span>© 2026 VARV</span></footer>
+<script src="assets/project-content.js?v=responsive-covers-1"></script>
+<script src="assets/project-awards.js?v=20261121-svg-arrows"></script>
+<script src="assets/site.js"></script>
+<script src="assets/home-cursor.js?v=shared-point-1"></script></body>
+</html>
