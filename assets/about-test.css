@@ -11,3 +11,15 @@ html:root body[data-page=about-test]:is(body,#main-type-system) .values h2 span{
 .profile{min-width:0}.profile .portrait{position:static}.profile .bio{margin-top:28px;min-height:0;max-width:none}.team-study{padding-top:50px}
 @media(max-width:900px){.profile{grid-column:2;grid-row:2}.team-study{padding-top:20px}}
 @media(max-width:540px){.profile{grid-column:1;grid-row:auto}.profile .portrait{max-width:none}}
+/* Value opens the page; its statement shares the team content alignment. */
+.values{margin:0;padding:clamp(36px,5vw,120px) 0 clamp(70px,8vw,180px);border:0;grid-template-columns:.55fr 3.35fr;gap:3vw}
+.values h1{margin:0;font-weight:400;letter-spacing:-.055em;line-height:1.05}
+.values h1 span{color:var(--accent)}
+.value-content{min-width:0}.values .value-lead{max-width:30ch;margin:0 0 clamp(40px,4vw,80px);line-height:1.18;letter-spacing:-.035em;color:var(--ink)}
+.value-body{columns:2;column-gap:clamp(36px,5vw,100px);max-width:1200px}.value-body p{break-inside:avoid;margin:0 0 24px;line-height:1.85}
+.team-study{border-top:1px solid var(--line);padding-top:clamp(50px,6vw,140px)}
+html:root body[data-page=about-test]:is(body,#main-type-system) #value-title{font-size:clamp(24px,2.5vw,64px)!important}
+html:root body[data-page=about-test]:is(body,#main-type-system) #value-title span{font-size:inherit!important}
+html:root body[data-page=about-test]:is(body,#main-type-system) .value-lead{font-size:clamp(30px,3vw,72px)!important}
+@media(max-width:900px){.values{grid-template-columns:1fr;gap:28px}.value-body{columns:1;max-width:70ch}.values .value-lead{max-width:30ch}.team-study .section-label{display:none}.profile{grid-row:1}.name-list{grid-row:1}}
+@media(max-width:540px){.profile{grid-row:2}.values{padding-top:28px;padding-bottom:64px}.team-study{padding-top:40px}}
