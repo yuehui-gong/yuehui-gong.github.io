@@ -28,3 +28,11 @@ html:root body[data-page=about-test]:is(body,#main-type-system) .value-lead{font
 @media(max-width:900px){.value-content{grid-column:1}}
 /* Let the narrative run horizontally across the content area. */
 .value-body{width:100%;max-width:none}.value-body p{width:100%;max-width:none}
+/* Icon-only, keyboard-accessible disclosures, collapsed by default. */
+.text-disclosure>summary,.bio .text-disclosure>summary{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:12px 0 20px;padding:0;cursor:pointer;list-style:none;text-decoration:none;color:var(--ink);border:0}
+.text-disclosure>summary::-webkit-details-marker{display:none}
+.text-disclosure>summary::after{content:'';width:10px;height:10px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .2s}
+.text-disclosure[open]>summary::after{transform:rotate(225deg)}
+.text-disclosure>summary:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+.values .value-lead{margin-bottom:24px}
+@media(prefers-reduced-motion:reduce){.text-disclosure>summary::after{transition:none}}
