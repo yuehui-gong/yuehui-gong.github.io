@@ -23,3 +23,6 @@ html:root body[data-page=about-test]:is(body,#main-type-system) #value-title spa
 html:root body[data-page=about-test]:is(body,#main-type-system) .value-lead{font-size:clamp(30px,3vw,72px)!important}
 @media(max-width:900px){.values{grid-template-columns:1fr;gap:28px}.value-body{columns:1;max-width:70ch}.values .value-lead{max-width:30ch}.team-study .section-label{display:none}.profile{grid-row:1}.name-list{grid-row:1}}
 @media(max-width:540px){.profile{grid-row:2}.values{padding-top:28px;padding-bottom:64px}.team-study{padding-top:40px}}
+/* A continuous single-column statement without section labels or rules. */
+.value-content{grid-column:2}.value-body{columns:1;max-width:78ch}.value-body p,.value-body p:first-child{color:var(--muted);font-size:var(--type-body);line-height:1.85}.team-study{border-top:0}
+@media(max-width:900px){.value-content{grid-column:1}}
