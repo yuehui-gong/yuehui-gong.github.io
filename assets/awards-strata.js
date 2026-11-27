@@ -1,47 +1,27 @@
 (()=>{
  const list=document.getElementById('awards-list');
- const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
- const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('waiting');observer.unobserve(e.target)}}),{threshold:.06});
- let groups=[];
- function draw(section,index){
-  const canvas=section.querySelector('canvas'),w=section.clientWidth,h=section.clientHeight,dpr=Math.min(devicePixelRatio,2);
-  canvas.width=w*dpr;canvas.height=h*dpr;const c=canvas.getContext('2d');c.scale(dpr,dpr);
-  const day=document.documentElement.classList.contains('day');const ink=day?'32,37,34':'224,228,222';
-  let seed=7831+index*971;const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
-  // Broad folds plus fine irregularity make continuous geological bedding.
-  const fold=(x)=>{const t=x/w;return 36*Math.sin(t*6.2+index*.9)+20*Math.sin(t*13.5+1.2)+8*Math.sin(t*29+index)+3*Math.sin(t*76)};
-  const bed=(x,j)=>42+j*2.3+fold(x)*(0.5+j/90)+2*Math.sin(x*.032+j*.52);
-  for(let j=0;j<36;j++){
-   c.beginPath();for(let x=-4;x<=w+4;x+=4){const y=bed(x,j);x===-4?c.moveTo(x,y):c.lineTo(x,y)}
-   c.strokeStyle=`rgba(${ink},${j%9===0?.52:.16+random()*.14})`;c.lineWidth=j%11===0?1.3:.55;c.stroke();
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ let field,rows=[],frame=0;
+ // All tiles use one continuous world-space bedding function, independent of year boundaries.
+ const bed=(x,y)=>y+65*Math.sin(x*.009+y*.0011)+26*Math.sin(x*.018-y*.0015)+8*Math.sin(x*.049+y*.012)+3*Math.sin(x*.13+y*.04);
+ function paint(){
+  if(!field)return;field.replaceChildren();const w=list.clientWidth,h=list.clientHeight;
+  const ink=document.documentElement.classList.contains('day')?'32,37,34':'227,230,224';
+  for(let top=0;top<h;top+=800){
+   const height=Math.min(800,h-top),canvas=document.createElement('canvas'),dpr=Math.min(devicePixelRatio,1.5);canvas.className='stratum-drawing';canvas.style.top=top+'px';canvas.style.height=height+'px';canvas.width=w*dpr;canvas.height=height*dpr;field.append(canvas);const c=canvas.getContext('2d');c.scale(dpr,dpr);c.translate(0,-top);
+   for(let y=Math.floor((top-140)/160)*160;y<top+height+150;y+=160){
+    // Alternating thick dark beds, fine lamination and granular porous layers.
+    c.beginPath();for(let x=0;x<=w+5;x+=5){const yy=bed(x,y);x?c.lineTo(x,yy):c.moveTo(x,yy)}for(let x=w+5;x>=0;x-=5)c.lineTo(x,bed(x,y+30));c.closePath();c.fillStyle=`rgba(${ink},.74)`;c.fill();
+    for(let j=40;j<118;j+=3){c.beginPath();for(let x=0;x<=w+5;x+=5){const yy=bed(x,y+j);x?c.lineTo(x,yy):c.moveTo(x,yy)}c.strokeStyle=`rgba(${ink},${j%4===0?.64:.36})`;c.lineWidth=j%4===0?1:.6;c.stroke()}
+    let seed=(y+10000)*971;const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+    for(let i=0;i<w*8;i++){const x=rand()*w,yy=bed(x,y+119+rand()*39);c.fillStyle=`rgba(${ink},${.22+rand()*.48})`;c.fillRect(x,yy,rand()*.9+.35,rand()*.9+.35)}
+   }
   }
-  // Sediment grains follow the folds; sparse traces run down the exposed sides.
-  for(let i=0;i<w*10;i++){
-   const x=random()*w,y=random()*150;const yy=y+fold(x)*.7;
-   if(yy<0)continue;c.fillStyle=`rgba(${ink},${.12+random()*.34})`;c.beginPath();c.arc(x,yy,random()*.65+.25,0,Math.PI*2);c.fill();
-  }
-  for(let i=0;i<w*h/110;i++){
-   const x=random()*w,y=145+random()*(h-145);
-   // Keep the reading field quiet, concentrating the geological texture at edges.
-   const edge=x<w*.055||x>w*.94;
-   if(!edge&&random()>.035)continue;
-   c.fillStyle=`rgba(${ink},${edge?.19:.07})`;c.fillRect(x,y,.8,.8);
-  }
-  // Exposed bedding continues down both margins, leaving an untextured reading pocket.
-  c.save();c.beginPath();c.rect(0,150,w*.065,h);c.rect(w*.95,150,w*.05,h);c.clip();
-  for(let j=0;j<(h-150)/6;j++){
-   c.beginPath();for(let x=0;x<=w;x+=5){const y=175+j*6+fold(x)*(1+Math.sin(j*.05)*.35)+3*Math.sin(j*.31+x*.02);x?c.lineTo(x,y):c.moveTo(x,y)}
-   c.strokeStyle=`rgba(${ink},${j%13===0?.28:.11})`;c.lineWidth=.6;c.stroke();
-  }c.restore();
-  // Fine vertical survey marks echo the globe's measured, dotted graphic language.
-  c.strokeStyle=`rgba(${ink},.24)`;c.lineWidth=.6;
-  const ruler=w*.035;c.beginPath();c.moveTo(ruler,155);c.lineTo(ruler,h-20);c.stroke();
-  for(let y=160;y<h-20;y+=20){c.beginPath();c.moveTo(ruler,y);c.lineTo(ruler+(y%100===60?9:4),y);c.stroke()}
  }
- function setup(){
-  const fresh=[...list.querySelectorAll('.award-year-group')];if(!fresh.length)return;
-  groups=fresh;groups.forEach((section,i)=>{if(section.querySelector('canvas'))return;const canvas=document.createElement('canvas');canvas.className='stratum-drawing';canvas.setAttribute('aria-hidden','true');section.prepend(canvas);if(i&&!reduced){section.classList.add('waiting');observer.observe(section)}new ResizeObserver(()=>draw(section,i)).observe(section);draw(section,i)});
- }
- new MutationObserver(setup).observe(list,{childList:true});setup();
- window.addEventListener('site-theme',()=>groups.forEach(draw));
+ function reveal(){frame=0;const vh=innerHeight;rows.forEach(row=>{const y=row.getBoundingClientRect().top;const t=reduced.matches?1:Math.max(0,Math.min(1,(vh*.96-y)/(vh*.36)));row.style.opacity=t;row.style.transform=`translate(${(1-t)*-35}px,${(1-t)*18}px)`;row.style.clipPath=`inset(0 ${(1-t)*18}% ${(1-t)*25}% 0)`})}
+ function schedule(){if(!frame)frame=requestAnimationFrame(reveal)}
+ function setup(){if(field||!list.querySelector('.award-row'))return;rows=[...list.querySelectorAll('.award-row')];field=document.createElement('div');field.className='geology-field';field.setAttribute('aria-hidden','true');list.prepend(field);new ResizeObserver(()=>{paint();schedule()}).observe(list);paint();schedule()}
+ new MutationObserver(setup).observe(list,{childList:true});setup();window.addEventListener('site-theme',paint);window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);reduced.addEventListener('change',schedule);
+ // Keyboard focus always exposes the focused award regardless of scroll position.
+ list.addEventListener('focusin',e=>{const row=e.target.closest('.award-row');if(row){row.style.opacity=1;row.style.transform='none';row.style.clipPath='none'}});
 })();
