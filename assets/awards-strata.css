@@ -1,0 +1,19 @@
+/* Isolated geological study: main awards page is unaffected. */
+body.strata-study main{max-width:none;padding:0;overflow:hidden}
+.strata-study .awards-heading{padding:80px max(5vw,24px) 0;margin:0;min-height:43svh}
+.strata-study .awards-heading::after{content:'Scroll to uncover earlier years ↓';display:block;color:var(--muted);margin-top:28px;font-size:12px}
+.strata-study #awards-status{margin:30px 5vw}
+.strata-study .award-year-group{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,3fr);gap:6vw;border:0;padding:180px 8vw 140px;min-height:90svh}
+.strata-study .stratum-drawing{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+html:root body.strata-study[data-page]:is(body,#main-type-system) .award-year{font-size:clamp(32px,5vw,72px)!important;font-weight:300!important;letter-spacing:-.045em;line-height:1!important;padding:0;position:sticky;top:45px;align-self:start}
+.strata-study .award-year::after{content:'';display:block;width:38px;height:1px;background:var(--ink);opacity:.4;margin-top:22px}
+.strata-study .award-row{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px 40px;padding:24px 0 32px;min-height:112px}
+.strata-study .award-row+.award-row{border:0}
+.strata-study .award-name{font-weight:500!important}
+.strata-study .award-organization{color:var(--ink-dim)}
+.strata-study .project-link{margin-top:3px}
+.strata-study .award-entries{max-width:900px}
+.strata-study .award-year-group:nth-child(even){grid-template-columns:minmax(100px,1.3fr) minmax(0,3fr)}
+.strata-study .award-year-group .award-entries{opacity:1;transform:none}
+@media(prefers-reduced-motion:no-preference){.strata-study .award-year-group.waiting .award-entries{opacity:0;transform:translateY(24px)}.strata-study .award-entries{transition:opacity .8s ease,transform .8s ease}}
+@media(max-width:650px){.strata-study .awards-heading{padding:52px 22px 0;min-height:40svh}.strata-study .award-year-group,.strata-study .award-year-group:nth-child(even){padding:145px 24px 100px;grid-template-columns:1fr;gap:38px;min-height:95svh}.strata-study .award-year{position:static}.strata-study .award-row{grid-template-columns:1fr;gap:12px;padding:20px 0 30px}.strata-study .award-year::after{margin-top:15px}}
