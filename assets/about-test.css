@@ -26,3 +26,5 @@ html:root body[data-page=about-test]:is(body,#main-type-system) .value-lead{font
 /* A continuous single-column statement without section labels or rules. */
 .value-content{grid-column:2}.value-body{columns:1;max-width:78ch}.value-body p,.value-body p:first-child{color:var(--muted);font-size:var(--type-body);line-height:1.85}.team-study{border-top:0}
 @media(max-width:900px){.value-content{grid-column:1}}
+/* Let the narrative run horizontally across the content area. */
+.value-body{width:100%;max-width:none}.value-body p{width:100%;max-width:none}
