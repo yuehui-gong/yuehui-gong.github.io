@@ -1,0 +1,2 @@
+document.querySelectorAll('.person details').forEach(d=>d.addEventListener('toggle',()=>{d.querySelector('summary').textContent=d.open?'−':'+'}));
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.animate([{opacity:.3,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{duration:500,easing:'ease-out'});observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.person').forEach(el=>observer.observe(el))}
