@@ -1,0 +1,40 @@
+/* Continuous geology experiment, scoped to the test page. */
+html:root body.strata-study[data-page] main{max-width:none!important;padding:0!important;overflow:hidden}
+.strata-study .awards-heading{padding:80px max(5vw,24px) 50px;margin:0;min-height:34svh}
+.strata-study .awards-heading::after{content:'Scroll to uncover earlier years ↓';display:block;color:var(--muted);margin-top:28px;font-size:12px}
+.strata-study #awards-status{margin:30px 5vw}
+.strata-study #awards-list{position:relative;isolation:isolate}
+.strata-study .geology-field{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;mask-image:linear-gradient(to right,#000 0%,#0009 8%,#0002 23%,#0001 45%,transparent 75%)}
+.strata-study .stratum-drawing{position:absolute;left:0;width:100%;pointer-events:none}
+.strata-study .award-year-group{position:relative;display:grid;grid-template-columns:60px minmax(0,1fr);gap:35px;border:0;padding:44px 6vw 48px 10vw;min-height:0}
+html:root body.strata-study[data-page]:is(body,#main-type-system) .award-year{font-size:15px!important;font-weight:400!important;letter-spacing:0;line-height:1.5!important;padding:24px 0 0;align-self:start;position:sticky;top:40px}
+.strata-study .award-year::before{content:'';position:absolute;right:calc(100% + 12px);top:34px;width:4vw;border-top:1px dotted var(--muted);opacity:.6}
+.strata-study .award-row{position:relative;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px 30px;padding:24px 0 38px;min-height:126px;will-change:opacity,transform}
+.strata-study .award-row+.award-row{border:0}
+.strata-study .award-row::before{content:'';position:absolute;left:-12px;top:32px;width:3px;height:3px;background:var(--ink);border-radius:50%}
+.strata-study .award-name{font-weight:500!important}
+.strata-study .award-organization{color:var(--ink-dim)}
+.strata-study .project-link{margin-top:3px}
+.strata-study .award-entries{max-width:900px}
+@media(max-width:650px){.strata-study .awards-heading{padding:52px 22px 40px;min-height:32svh}.strata-study .geology-field{mask-image:linear-gradient(to right,#0008 0%,#0002 14%,transparent 65%)}.strata-study .award-year-group{padding:32px 24px 36px 32px;grid-template-columns:1fr;gap:16px;min-height:0}.strata-study .award-year{position:relative!important;padding:0!important}.strata-study .award-year::before{top:11px}.strata-study .award-row{grid-template-columns:1fr;gap:12px;padding:20px 0 34px}}
+@media(prefers-reduced-motion:reduce){.strata-study .award-row{opacity:1!important;transform:none!important;clip-path:none!important;will-change:auto}}
+/* Continuous illustrated section behind both the heading and awards. */
+html:root body.strata-study[data-page] main{position:relative;isolation:isolate}
+.strata-study #awards-list{isolation:auto}
+.strata-study .geology-field{mask-image:linear-gradient(to right,#000c,#0009 35%,#0005 65%,#0002)}
+.strata-study #awards-list::before{content:'';position:absolute;left:5vw;top:78px;bottom:48px;width:1px;background:var(--ink);opacity:.38}
+.strata-study .award-year::before{width:calc(5vw - 12px)}
+@media(max-width:650px){.strata-study .geology-field{mask-image:linear-gradient(to right,#0009,#0003 60%,#0001)}.strata-study #awards-list::before{left:18px;top:43px;bottom:36px}.strata-study .award-year::before{width:8px;right:calc(100% + 6px)}}
+/* Match the main awards heading and its first-year spacing exactly. */
+.strata-study .awards-heading{min-height:0;padding:80px max(64px,calc((100vw - 1440px)/2 + 64px)) 0;margin:0 0 56px}
+.strata-study .awards-heading::after{content:none}
+.strata-study .award-year-group:first-of-type{padding-top:1px}
+.strata-study #awards-list::before{top:35px}
+@media(max-width:800px){.strata-study .awards-heading{padding:56px 28px 0}}
+@media(max-width:600px){.strata-study .awards-heading{padding:40px 22px 0;margin-bottom:0}.strata-study .award-year-group:first-of-type{padding-top:1px}.strata-study #awards-list::before{top:36px}}
+/* Year labels share the title's left edge; leave title placement unchanged. */
+.strata-study .award-year-group{padding-left:max(64px,calc((100vw - 1440px)/2 + 64px))}
+.strata-study #awards-list::before{left:max(40px,calc((100vw - 1440px)/2 + 40px))}
+.strata-study .award-year::before{width:12px;right:calc(100% + 12px)}
+@media(max-width:800px){.strata-study .award-year-group{padding-left:28px}.strata-study #awards-list::before{left:10px}.strata-study .award-year::before{width:10px;right:calc(100% + 8px)}}
+@media(max-width:600px){.strata-study .award-year-group{padding-left:22px}.strata-study #awards-list::before{left:8px}.strata-study .award-year::before{width:8px;right:calc(100% + 6px)}}
